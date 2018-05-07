@@ -80,7 +80,7 @@ for the virtualization interfaces partial update operation typically these are w
 type VirtualizationInterfacesPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableInterface
+	Data *models.WritableVirtualizationInterface
 	/*ID
 	  A unique integer value identifying this interface.
 
@@ -126,13 +126,13 @@ func (o *VirtualizationInterfacesPartialUpdateParams) SetHTTPClient(client *http
 }
 
 // WithData adds the data to the virtualization interfaces partial update params
-func (o *VirtualizationInterfacesPartialUpdateParams) WithData(data *models.WritableInterface) *VirtualizationInterfacesPartialUpdateParams {
+func (o *VirtualizationInterfacesPartialUpdateParams) WithData(data *models.WritableVirtualizationInterface) *VirtualizationInterfacesPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the virtualization interfaces partial update params
-func (o *VirtualizationInterfacesPartialUpdateParams) SetData(data *models.WritableInterface) {
+func (o *VirtualizationInterfacesPartialUpdateParams) SetData(data *models.WritableVirtualizationInterface) {
 	o.Data = data
 }
 

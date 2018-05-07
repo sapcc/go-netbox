@@ -80,7 +80,7 @@ for the virtualization interfaces update operation typically these are written t
 type VirtualizationInterfacesUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableInterface
+	Data *models.WritableVirtualizationInterface
 	/*ID
 	  A unique integer value identifying this interface.
 
@@ -126,13 +126,13 @@ func (o *VirtualizationInterfacesUpdateParams) SetHTTPClient(client *http.Client
 }
 
 // WithData adds the data to the virtualization interfaces update params
-func (o *VirtualizationInterfacesUpdateParams) WithData(data *models.WritableInterface) *VirtualizationInterfacesUpdateParams {
+func (o *VirtualizationInterfacesUpdateParams) WithData(data *models.WritableVirtualizationInterface) *VirtualizationInterfacesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the virtualization interfaces update params
-func (o *VirtualizationInterfacesUpdateParams) SetData(data *models.WritableInterface) {
+func (o *VirtualizationInterfacesUpdateParams) SetData(data *models.WritableVirtualizationInterface) {
 	o.Data = data
 }
 
