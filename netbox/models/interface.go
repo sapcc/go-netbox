@@ -62,7 +62,7 @@ type Interface struct {
 
 	// Is connected
 	// Read Only: true
-	IsConnected string `json:"is_connected,omitempty"`
+	IsConnected *bool `json:"is_connected,omitempty"`
 
 	// lag
 	// Required: true
