@@ -12574,7 +12574,7 @@
         },
         "is_connected": {
           "title": "Is connected",
-          "type": "string",
+          "type": "boolean",
           "readOnly": true
         },
         "interface_connection": {
