@@ -12443,15 +12443,15 @@
         "port_speed": {
           "title": "Port speed (Kbps)",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "upstream_speed": {
           "title": "Upstream speed (Kbps)",
           "description": "Upstream speed, if different from port speed",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "xconnect_id": {
           "title": "Cross-connect ID",
@@ -12487,8 +12487,8 @@
         "vid": {
           "title": "ID",
           "type": "integer",
-          "maximum": 4094,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 4094
         },
         "name": {
           "title": "Name",
@@ -12555,8 +12555,8 @@
         "mtu": {
           "title": "MTU",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         },
         "mac_address": {
           "title": "MAC Address",
@@ -12647,15 +12647,15 @@
         "port_speed": {
           "title": "Port speed (Kbps)",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "upstream_speed": {
           "title": "Upstream speed (Kbps)",
           "description": "Upstream speed, if different from port speed",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "xconnect_id": {
           "title": "Cross-connect ID",
@@ -12706,15 +12706,15 @@
         "port_speed": {
           "title": "Port speed (Kbps)",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "upstream_speed": {
           "title": "Upstream speed (Kbps)",
           "description": "Upstream speed, if different from port speed",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "xconnect_id": {
           "title": "Cross-connect ID",
@@ -12906,8 +12906,8 @@
         "commit_rate": {
           "title": "Commit rate (Kbps)",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "description": {
           "title": "Description",
@@ -12986,8 +12986,8 @@
         "commit_rate": {
           "title": "Commit rate (Kbps)",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "description": {
           "title": "Description",
@@ -13043,8 +13043,8 @@
         "asn": {
           "title": "ASN",
           "type": "integer",
-          "maximum": 4294967295,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 4294967295
         },
         "account": {
           "title": "Account number",
@@ -13114,8 +13114,8 @@
         "asn": {
           "title": "ASN",
           "type": "integer",
-          "maximum": 4294967295,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 4294967295
         },
         "account": {
           "title": "Account number",
@@ -13470,8 +13470,8 @@
           "title": "Position (U)",
           "description": "The lowest-numbered unit occupied by the device",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 32767
         },
         "face": {
           "title": "Face",
@@ -13529,14 +13529,14 @@
         "vc_position": {
           "title": "Vc position",
           "type": "integer",
-          "maximum": 255,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 255
         },
         "vc_priority": {
           "title": "Vc priority",
           "type": "integer",
-          "maximum": 255,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 255
         },
         "comments": {
           "title": "Comments",
@@ -13945,8 +13945,8 @@
         "u_height": {
           "title": "Height (U)",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         },
         "is_full_depth": {
           "title": "Is full depth",
@@ -14054,8 +14054,8 @@
         "u_height": {
           "title": "Height (U)",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         },
         "is_full_depth": {
           "title": "Is full depth",
@@ -14163,8 +14163,8 @@
           "title": "Position (U)",
           "description": "The lowest-numbered unit occupied by the device",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 32767
         },
         "face": {
           "title": "Rack face",
@@ -14205,14 +14205,14 @@
         "vc_position": {
           "title": "Vc position",
           "type": "integer",
-          "maximum": 255,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 255
         },
         "vc_priority": {
           "title": "Vc priority",
           "type": "integer",
-          "maximum": 255,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 255
         },
         "comments": {
           "title": "Comments",
@@ -14291,8 +14291,8 @@
         "mtu": {
           "title": "MTU",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         },
         "mac_address": {
           "title": "MAC Address",
@@ -14570,8 +14570,8 @@
         "mtu": {
           "title": "MTU",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         },
         "mac_address": {
           "title": "MAC Address",
@@ -15154,8 +15154,8 @@
           "items": {
             "title": "Units",
             "type": "integer",
-            "maximum": 32767,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 32767
           }
         },
         "created": {
@@ -15200,8 +15200,8 @@
           "items": {
             "title": "Units",
             "type": "integer",
-            "maximum": 32767,
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 32767
           }
         },
         "user": {
@@ -15399,8 +15399,8 @@
         "u_height": {
           "title": "Height (U)",
           "type": "integer",
-          "maximum": 100,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 100
         },
         "desc_units": {
           "title": "Descending units",
@@ -15495,8 +15495,8 @@
         "u_height": {
           "title": "Height (U)",
           "type": "integer",
-          "maximum": 100,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 100
         },
         "desc_units": {
           "title": "Descending units",
@@ -15675,8 +15675,8 @@
         "asn": {
           "title": "ASN",
           "type": "integer",
-          "maximum": 4294967295,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 4294967295
         },
         "time_zone": {
           "title": "Time zone",
@@ -15809,8 +15809,8 @@
         "asn": {
           "title": "ASN",
           "type": "integer",
-          "maximum": 4294967295,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 4294967295
         },
         "time_zone": {
           "title": "Time zone",
@@ -15987,8 +15987,8 @@
         "weight": {
           "title": "Weight",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         },
         "name": {
           "title": "Name",
@@ -16033,8 +16033,8 @@
         "weight": {
           "title": "Weight",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         },
         "name": {
           "title": "Name",
@@ -16086,14 +16086,14 @@
         "image_height": {
           "title": "Image height",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         },
         "image_width": {
           "title": "Image width",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         },
         "created": {
           "title": "Created",
@@ -16123,8 +16123,8 @@
         "object_id": {
           "title": "Object id",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "name": {
           "title": "Name",
@@ -16721,8 +16721,8 @@
         "vid": {
           "title": "ID",
           "type": "integer",
-          "maximum": 4094,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 4094
         },
         "name": {
           "title": "Name",
@@ -16989,8 +16989,8 @@
         "weight": {
           "title": "Weight",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         }
       }
     },
@@ -17024,8 +17024,8 @@
         "port": {
           "title": "Port number",
           "type": "integer",
-          "maximum": 65535,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 65535
         },
         "protocol": {
           "title": "Protocol",
@@ -17097,8 +17097,8 @@
         "port": {
           "title": "Port number",
           "type": "integer",
-          "maximum": 65535,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 65535
         },
         "protocol": {
           "title": "Protocol",
@@ -17254,8 +17254,8 @@
         "vid": {
           "title": "ID",
           "type": "integer",
-          "maximum": 4094,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 4094
         },
         "name": {
           "title": "Name",
@@ -17335,8 +17335,8 @@
         "vid": {
           "title": "ID",
           "type": "integer",
-          "maximum": 4094,
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 4094
         },
         "name": {
           "title": "Name",
@@ -18136,20 +18136,20 @@
         "vcpus": {
           "title": "VCPUs",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         },
         "memory": {
           "title": "Memory (MB)",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "disk": {
           "title": "Disk (GB)",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "comments": {
           "title": "Comments",
@@ -18226,20 +18226,20 @@
         "vcpus": {
           "title": "VCPUs",
           "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 32767
         },
         "memory": {
           "title": "Memory (MB)",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "disk": {
           "title": "Disk (GB)",
           "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "comments": {
           "title": "Comments",
