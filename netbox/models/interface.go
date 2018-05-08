@@ -56,9 +56,8 @@ type Interface struct {
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
 
-	// Interface connection
-	// Read Only: true
-	InterfaceConnection string `json:"interface_connection,omitempty"`
+	// interface connection
+	InterfaceConnection *InterfaceConnection `json:"interface_connection,omitempty"`
 
 	// Is connected
 	// Read Only: true
@@ -119,6 +118,11 @@ func (m *Interface) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateFormFactor(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateInterfaceConnection(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -223,6 +227,26 @@ func (m *Interface) validateFormFactor(formats strfmt.Registry) error {
 		if err := m.FormFactor.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("form_factor")
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Interface) validateInterfaceConnection(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.InterfaceConnection) { // not required
+		return nil
+	}
+
+	if m.InterfaceConnection != nil {
+
+		if err := m.InterfaceConnection.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("interface_connection")
 			}
 			return err
 		}

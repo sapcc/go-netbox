@@ -12609,9 +12609,7 @@
           "readOnly": true
         },
         "interface_connection": {
-          "title": "Interface connection",
-          "type": "string",
-          "readOnly": true
+          "$ref": "#/definitions/InterfaceConnection"
         },
         "circuit_termination": {
           "$ref": "#/definitions/InterfaceCircuitTermination"
