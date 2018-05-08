@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -54,9 +56,8 @@ type Interface struct {
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
 
-	// Interface connection
-	// Read Only: true
-	InterfaceConnection string `json:"interface_connection,omitempty"`
+	// interface connection
+	InterfaceConnection *InterfaceConnection `json:"interface_connection,omitempty"`
 
 	// Is connected
 	// Read Only: true
@@ -90,7 +91,7 @@ type Interface struct {
 
 	// tagged vlans
 	// Required: true
-	TaggedVlans InterfaceTaggedVlans `json:"tagged_vlans"`
+	TaggedVlans []*InterfaceVLAN `json:"tagged_vlans"`
 
 	// untagged vlan
 	// Required: true
@@ -117,6 +118,11 @@ func (m *Interface) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateFormFactor(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateInterfaceConnection(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -171,6 +177,7 @@ func (m *Interface) validateCircuitTermination(formats strfmt.Registry) error {
 			}
 			return err
 		}
+
 	}
 
 	return nil
@@ -203,6 +210,7 @@ func (m *Interface) validateDevice(formats strfmt.Registry) error {
 			}
 			return err
 		}
+
 	}
 
 	return nil
@@ -222,6 +230,27 @@ func (m *Interface) validateFormFactor(formats strfmt.Registry) error {
 			}
 			return err
 		}
+
+	}
+
+	return nil
+}
+
+func (m *Interface) validateInterfaceConnection(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.InterfaceConnection) { // not required
+		return nil
+	}
+
+	if m.InterfaceConnection != nil {
+
+		if err := m.InterfaceConnection.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("interface_connection")
+			}
+			return err
+		}
+
 	}
 
 	return nil
@@ -241,6 +270,7 @@ func (m *Interface) validateLag(formats strfmt.Registry) error {
 			}
 			return err
 		}
+
 	}
 
 	return nil
@@ -260,6 +290,7 @@ func (m *Interface) validateMode(formats strfmt.Registry) error {
 			}
 			return err
 		}
+
 	}
 
 	return nil
@@ -301,11 +332,23 @@ func (m *Interface) validateTaggedVlans(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := m.TaggedVlans.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("tagged_vlans")
+	for i := 0; i < len(m.TaggedVlans); i++ {
+
+		if swag.IsZero(m.TaggedVlans[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.TaggedVlans[i] != nil {
+
+			if err := m.TaggedVlans[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("tagged_vlans" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+
+		}
+
 	}
 
 	return nil
@@ -325,6 +368,7 @@ func (m *Interface) validateUntaggedVlan(formats strfmt.Registry) error {
 			}
 			return err
 		}
+
 	}
 
 	return nil
