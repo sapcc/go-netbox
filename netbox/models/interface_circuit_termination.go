@@ -64,7 +64,7 @@ type InterfaceCircuitTermination struct {
 
 	// Cross-connect ID
 	// Max Length: 50
-	XconnectID string `json:"xconnect_id,omitempty"`
+	XconnectID int64 `json:"xconnect_id,omitempty"`
 }
 
 // Validate validates this interface circuit termination

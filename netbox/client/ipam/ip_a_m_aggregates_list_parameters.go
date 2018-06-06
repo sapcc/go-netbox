@@ -101,7 +101,7 @@ type IPAMAggregatesListParams struct {
 	/*Rir*/
 	Rir *string
 	/*RirID*/
-	RirID *string
+	RirID *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -219,13 +219,13 @@ func (o *IPAMAggregatesListParams) SetRir(rir *string) {
 }
 
 // WithRirID adds the rirID to the ipam aggregates list params
-func (o *IPAMAggregatesListParams) WithRirID(rirID *string) *IPAMAggregatesListParams {
+func (o *IPAMAggregatesListParams) WithRirID(rirID *int64) *IPAMAggregatesListParams {
 	o.SetRirID(rirID)
 	return o
 }
 
 // SetRirID adds the rirId to the ipam aggregates list params
-func (o *IPAMAggregatesListParams) SetRirID(rirID *string) {
+func (o *IPAMAggregatesListParams) SetRirID(rirID *int64) {
 	o.RirID = rirID
 }
 
@@ -352,11 +352,11 @@ func (o *IPAMAggregatesListParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.RirID != nil {
 
 		// query param rir_id
-		var qrRirID string
+		var qrRirID int64
 		if o.RirID != nil {
 			qrRirID = *o.RirID
 		}
-		qRirID := qrRirID
+		qRirID := swag.FormatInt64(qrRirID)
 		if qRirID != "" {
 			if err := r.SetQueryParam("rir_id", qRirID); err != nil {
 				return err

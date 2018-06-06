@@ -80,7 +80,7 @@ type IPAMServicesListParams struct {
 	/*Device*/
 	Device *string
 	/*DeviceID*/
-	DeviceID *string
+	DeviceID *int64
 	/*Limit
 	  Number of results to return per page.
 
@@ -94,13 +94,13 @@ type IPAMServicesListParams struct {
 	*/
 	Offset *int64
 	/*Port*/
-	Port *float64
+	Port *int64
 	/*Protocol*/
 	Protocol *string
 	/*VirtualMachine*/
 	VirtualMachine *string
 	/*VirtualMachineID*/
-	VirtualMachineID *string
+	VirtualMachineID *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -152,13 +152,13 @@ func (o *IPAMServicesListParams) SetDevice(device *string) {
 }
 
 // WithDeviceID adds the deviceID to the ipam services list params
-func (o *IPAMServicesListParams) WithDeviceID(deviceID *string) *IPAMServicesListParams {
+func (o *IPAMServicesListParams) WithDeviceID(deviceID *int64) *IPAMServicesListParams {
 	o.SetDeviceID(deviceID)
 	return o
 }
 
 // SetDeviceID adds the deviceId to the ipam services list params
-func (o *IPAMServicesListParams) SetDeviceID(deviceID *string) {
+func (o *IPAMServicesListParams) SetDeviceID(deviceID *int64) {
 	o.DeviceID = deviceID
 }
 
@@ -196,13 +196,13 @@ func (o *IPAMServicesListParams) SetOffset(offset *int64) {
 }
 
 // WithPort adds the port to the ipam services list params
-func (o *IPAMServicesListParams) WithPort(port *float64) *IPAMServicesListParams {
+func (o *IPAMServicesListParams) WithPort(port *int64) *IPAMServicesListParams {
 	o.SetPort(port)
 	return o
 }
 
 // SetPort adds the port to the ipam services list params
-func (o *IPAMServicesListParams) SetPort(port *float64) {
+func (o *IPAMServicesListParams) SetPort(port *int64) {
 	o.Port = port
 }
 
@@ -229,13 +229,13 @@ func (o *IPAMServicesListParams) SetVirtualMachine(virtualMachine *string) {
 }
 
 // WithVirtualMachineID adds the virtualMachineID to the ipam services list params
-func (o *IPAMServicesListParams) WithVirtualMachineID(virtualMachineID *string) *IPAMServicesListParams {
+func (o *IPAMServicesListParams) WithVirtualMachineID(virtualMachineID *int64) *IPAMServicesListParams {
 	o.SetVirtualMachineID(virtualMachineID)
 	return o
 }
 
 // SetVirtualMachineID adds the virtualMachineId to the ipam services list params
-func (o *IPAMServicesListParams) SetVirtualMachineID(virtualMachineID *string) {
+func (o *IPAMServicesListParams) SetVirtualMachineID(virtualMachineID *int64) {
 	o.VirtualMachineID = virtualMachineID
 }
 
@@ -266,11 +266,11 @@ func (o *IPAMServicesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if o.DeviceID != nil {
 
 		// query param device_id
-		var qrDeviceID string
+		var qrDeviceID int64
 		if o.DeviceID != nil {
 			qrDeviceID = *o.DeviceID
 		}
-		qDeviceID := qrDeviceID
+		qDeviceID := swag.FormatInt64(qrDeviceID)
 		if qDeviceID != "" {
 			if err := r.SetQueryParam("device_id", qDeviceID); err != nil {
 				return err
@@ -330,11 +330,11 @@ func (o *IPAMServicesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if o.Port != nil {
 
 		// query param port
-		var qrPort float64
+		var qrPort int64
 		if o.Port != nil {
 			qrPort = *o.Port
 		}
-		qPort := swag.FormatFloat64(qrPort)
+		qPort := swag.FormatInt64(qrPort)
 		if qPort != "" {
 			if err := r.SetQueryParam("port", qPort); err != nil {
 				return err
@@ -378,11 +378,11 @@ func (o *IPAMServicesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if o.VirtualMachineID != nil {
 
 		// query param virtual_machine_id
-		var qrVirtualMachineID string
+		var qrVirtualMachineID int64
 		if o.VirtualMachineID != nil {
 			qrVirtualMachineID = *o.VirtualMachineID
 		}
-		qVirtualMachineID := qrVirtualMachineID
+		qVirtualMachineID := swag.FormatInt64(qrVirtualMachineID)
 		if qVirtualMachineID != "" {
 			if err := r.SetQueryParam("virtual_machine_id", qVirtualMachineID); err != nil {
 				return err

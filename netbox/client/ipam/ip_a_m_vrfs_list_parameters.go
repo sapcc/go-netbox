@@ -103,7 +103,7 @@ type IPAMVrfsListParams struct {
 	/*Tenant*/
 	Tenant *string
 	/*TenantID*/
-	TenantID *string
+	TenantID *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -232,13 +232,13 @@ func (o *IPAMVrfsListParams) SetTenant(tenant *string) {
 }
 
 // WithTenantID adds the tenantID to the ipam vrfs list params
-func (o *IPAMVrfsListParams) WithTenantID(tenantID *string) *IPAMVrfsListParams {
+func (o *IPAMVrfsListParams) WithTenantID(tenantID *int64) *IPAMVrfsListParams {
 	o.SetTenantID(tenantID)
 	return o
 }
 
 // SetTenantID adds the tenantId to the ipam vrfs list params
-func (o *IPAMVrfsListParams) SetTenantID(tenantID *string) {
+func (o *IPAMVrfsListParams) SetTenantID(tenantID *int64) {
 	o.TenantID = tenantID
 }
 
@@ -381,11 +381,11 @@ func (o *IPAMVrfsListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if o.TenantID != nil {
 
 		// query param tenant_id
-		var qrTenantID string
+		var qrTenantID int64
 		if o.TenantID != nil {
 			qrTenantID = *o.TenantID
 		}
-		qTenantID := qrTenantID
+		qTenantID := swag.FormatInt64(qrTenantID)
 		if qTenantID != "" {
 			if err := r.SetQueryParam("tenant_id", qTenantID); err != nil {
 				return err

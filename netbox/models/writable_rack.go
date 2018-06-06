@@ -50,7 +50,7 @@ type WritableRack struct {
 
 	// Facility ID
 	// Max Length: 50
-	FacilityID string `json:"facility_id,omitempty"`
+	FacilityID int64 `json:"facility_id,omitempty"`
 
 	// Group
 	Group int64 `json:"group,omitempty"`

@@ -80,7 +80,7 @@ type IPAMVlansListParams struct {
 	/*Group*/
 	Group *string
 	/*GroupID*/
-	GroupID *string
+	GroupID *int64
 	/*IDIn
 	  Multiple values may be separated by commas.
 
@@ -103,19 +103,19 @@ type IPAMVlansListParams struct {
 	/*Role*/
 	Role *string
 	/*RoleID*/
-	RoleID *string
+	RoleID *int64
 	/*Site*/
 	Site *string
 	/*SiteID*/
-	SiteID *string
+	SiteID *int64
 	/*Status*/
 	Status *string
 	/*Tenant*/
 	Tenant *string
 	/*TenantID*/
-	TenantID *string
+	TenantID *int64
 	/*Vid*/
-	Vid *float64
+	Vid *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -167,13 +167,13 @@ func (o *IPAMVlansListParams) SetGroup(group *string) {
 }
 
 // WithGroupID adds the groupID to the ipam vlans list params
-func (o *IPAMVlansListParams) WithGroupID(groupID *string) *IPAMVlansListParams {
+func (o *IPAMVlansListParams) WithGroupID(groupID *int64) *IPAMVlansListParams {
 	o.SetGroupID(groupID)
 	return o
 }
 
 // SetGroupID adds the groupId to the ipam vlans list params
-func (o *IPAMVlansListParams) SetGroupID(groupID *string) {
+func (o *IPAMVlansListParams) SetGroupID(groupID *int64) {
 	o.GroupID = groupID
 }
 
@@ -244,13 +244,13 @@ func (o *IPAMVlansListParams) SetRole(role *string) {
 }
 
 // WithRoleID adds the roleID to the ipam vlans list params
-func (o *IPAMVlansListParams) WithRoleID(roleID *string) *IPAMVlansListParams {
+func (o *IPAMVlansListParams) WithRoleID(roleID *int64) *IPAMVlansListParams {
 	o.SetRoleID(roleID)
 	return o
 }
 
 // SetRoleID adds the roleId to the ipam vlans list params
-func (o *IPAMVlansListParams) SetRoleID(roleID *string) {
+func (o *IPAMVlansListParams) SetRoleID(roleID *int64) {
 	o.RoleID = roleID
 }
 
@@ -266,13 +266,13 @@ func (o *IPAMVlansListParams) SetSite(site *string) {
 }
 
 // WithSiteID adds the siteID to the ipam vlans list params
-func (o *IPAMVlansListParams) WithSiteID(siteID *string) *IPAMVlansListParams {
+func (o *IPAMVlansListParams) WithSiteID(siteID *int64) *IPAMVlansListParams {
 	o.SetSiteID(siteID)
 	return o
 }
 
 // SetSiteID adds the siteId to the ipam vlans list params
-func (o *IPAMVlansListParams) SetSiteID(siteID *string) {
+func (o *IPAMVlansListParams) SetSiteID(siteID *int64) {
 	o.SiteID = siteID
 }
 
@@ -299,24 +299,24 @@ func (o *IPAMVlansListParams) SetTenant(tenant *string) {
 }
 
 // WithTenantID adds the tenantID to the ipam vlans list params
-func (o *IPAMVlansListParams) WithTenantID(tenantID *string) *IPAMVlansListParams {
+func (o *IPAMVlansListParams) WithTenantID(tenantID *int64) *IPAMVlansListParams {
 	o.SetTenantID(tenantID)
 	return o
 }
 
 // SetTenantID adds the tenantId to the ipam vlans list params
-func (o *IPAMVlansListParams) SetTenantID(tenantID *string) {
+func (o *IPAMVlansListParams) SetTenantID(tenantID *int64) {
 	o.TenantID = tenantID
 }
 
 // WithVid adds the vid to the ipam vlans list params
-func (o *IPAMVlansListParams) WithVid(vid *float64) *IPAMVlansListParams {
+func (o *IPAMVlansListParams) WithVid(vid *int64) *IPAMVlansListParams {
 	o.SetVid(vid)
 	return o
 }
 
 // SetVid adds the vid to the ipam vlans list params
-func (o *IPAMVlansListParams) SetVid(vid *float64) {
+func (o *IPAMVlansListParams) SetVid(vid *int64) {
 	o.Vid = vid
 }
 
@@ -347,11 +347,11 @@ func (o *IPAMVlansListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if o.GroupID != nil {
 
 		// query param group_id
-		var qrGroupID string
+		var qrGroupID int64
 		if o.GroupID != nil {
 			qrGroupID = *o.GroupID
 		}
-		qGroupID := qrGroupID
+		qGroupID := swag.FormatInt64(qrGroupID)
 		if qGroupID != "" {
 			if err := r.SetQueryParam("group_id", qGroupID); err != nil {
 				return err
@@ -459,11 +459,11 @@ func (o *IPAMVlansListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if o.RoleID != nil {
 
 		// query param role_id
-		var qrRoleID string
+		var qrRoleID int64
 		if o.RoleID != nil {
 			qrRoleID = *o.RoleID
 		}
-		qRoleID := qrRoleID
+		qRoleID := swag.FormatInt64(qrRoleID)
 		if qRoleID != "" {
 			if err := r.SetQueryParam("role_id", qRoleID); err != nil {
 				return err
@@ -491,11 +491,11 @@ func (o *IPAMVlansListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if o.SiteID != nil {
 
 		// query param site_id
-		var qrSiteID string
+		var qrSiteID int64
 		if o.SiteID != nil {
 			qrSiteID = *o.SiteID
 		}
-		qSiteID := qrSiteID
+		qSiteID := swag.FormatInt64(qrSiteID)
 		if qSiteID != "" {
 			if err := r.SetQueryParam("site_id", qSiteID); err != nil {
 				return err
@@ -539,11 +539,11 @@ func (o *IPAMVlansListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if o.TenantID != nil {
 
 		// query param tenant_id
-		var qrTenantID string
+		var qrTenantID int64
 		if o.TenantID != nil {
 			qrTenantID = *o.TenantID
 		}
-		qTenantID := qrTenantID
+		qTenantID := swag.FormatInt64(qrTenantID)
 		if qTenantID != "" {
 			if err := r.SetQueryParam("tenant_id", qTenantID); err != nil {
 				return err
@@ -555,11 +555,11 @@ func (o *IPAMVlansListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if o.Vid != nil {
 
 		// query param vid
-		var qrVid float64
+		var qrVid int64
 		if o.Vid != nil {
 			qrVid = *o.Vid
 		}
-		qVid := swag.FormatFloat64(qrVid)
+		qVid := swag.FormatInt64(qrVid)
 		if qVid != "" {
 			if err := r.SetQueryParam("vid", qVid); err != nil {
 				return err

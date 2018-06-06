@@ -53,7 +53,7 @@ type Rack struct {
 	// Facility ID
 	// Required: true
 	// Max Length: 50
-	FacilityID *string `json:"facility_id"`
+	FacilityID *int64 `json:"facility_id"`
 
 	// group
 	// Required: true

@@ -94,7 +94,7 @@ type IPAMPrefixesListParams struct {
 	*/
 	Limit *int64
 	/*MaskLength*/
-	MaskLength *float64
+	MaskLength *int64
 	/*Offset
 	  The initial index from which to return the results.
 
@@ -105,25 +105,25 @@ type IPAMPrefixesListParams struct {
 	/*Role*/
 	Role *string
 	/*RoleID*/
-	RoleID *string
+	RoleID *int64
 	/*Site*/
 	Site *string
 	/*SiteID*/
-	SiteID *string
+	SiteID *int64
 	/*Status*/
 	Status *string
 	/*Tenant*/
 	Tenant *string
 	/*TenantID*/
-	TenantID *string
+	TenantID *int64
 	/*VlanID*/
-	VlanID *string
+	VlanID *int64
 	/*VlanVid*/
-	VlanVid *float64
+	VlanVid *int64
 	/*Vrf*/
 	Vrf *string
 	/*VrfID*/
-	VrfID *string
+	VrfID *int64
 	/*Within*/
 	Within *string
 	/*WithinInclude*/
@@ -223,13 +223,13 @@ func (o *IPAMPrefixesListParams) SetLimit(limit *int64) {
 }
 
 // WithMaskLength adds the maskLength to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) WithMaskLength(maskLength *float64) *IPAMPrefixesListParams {
+func (o *IPAMPrefixesListParams) WithMaskLength(maskLength *int64) *IPAMPrefixesListParams {
 	o.SetMaskLength(maskLength)
 	return o
 }
 
 // SetMaskLength adds the maskLength to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) SetMaskLength(maskLength *float64) {
+func (o *IPAMPrefixesListParams) SetMaskLength(maskLength *int64) {
 	o.MaskLength = maskLength
 }
 
@@ -267,13 +267,13 @@ func (o *IPAMPrefixesListParams) SetRole(role *string) {
 }
 
 // WithRoleID adds the roleID to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) WithRoleID(roleID *string) *IPAMPrefixesListParams {
+func (o *IPAMPrefixesListParams) WithRoleID(roleID *int64) *IPAMPrefixesListParams {
 	o.SetRoleID(roleID)
 	return o
 }
 
 // SetRoleID adds the roleId to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) SetRoleID(roleID *string) {
+func (o *IPAMPrefixesListParams) SetRoleID(roleID *int64) {
 	o.RoleID = roleID
 }
 
@@ -289,13 +289,13 @@ func (o *IPAMPrefixesListParams) SetSite(site *string) {
 }
 
 // WithSiteID adds the siteID to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) WithSiteID(siteID *string) *IPAMPrefixesListParams {
+func (o *IPAMPrefixesListParams) WithSiteID(siteID *int64) *IPAMPrefixesListParams {
 	o.SetSiteID(siteID)
 	return o
 }
 
 // SetSiteID adds the siteId to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) SetSiteID(siteID *string) {
+func (o *IPAMPrefixesListParams) SetSiteID(siteID *int64) {
 	o.SiteID = siteID
 }
 
@@ -322,35 +322,35 @@ func (o *IPAMPrefixesListParams) SetTenant(tenant *string) {
 }
 
 // WithTenantID adds the tenantID to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) WithTenantID(tenantID *string) *IPAMPrefixesListParams {
+func (o *IPAMPrefixesListParams) WithTenantID(tenantID *int64) *IPAMPrefixesListParams {
 	o.SetTenantID(tenantID)
 	return o
 }
 
 // SetTenantID adds the tenantId to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) SetTenantID(tenantID *string) {
+func (o *IPAMPrefixesListParams) SetTenantID(tenantID *int64) {
 	o.TenantID = tenantID
 }
 
 // WithVlanID adds the vlanID to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) WithVlanID(vlanID *string) *IPAMPrefixesListParams {
+func (o *IPAMPrefixesListParams) WithVlanID(vlanID *int64) *IPAMPrefixesListParams {
 	o.SetVlanID(vlanID)
 	return o
 }
 
 // SetVlanID adds the vlanId to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) SetVlanID(vlanID *string) {
+func (o *IPAMPrefixesListParams) SetVlanID(vlanID *int64) {
 	o.VlanID = vlanID
 }
 
 // WithVlanVid adds the vlanVid to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) WithVlanVid(vlanVid *float64) *IPAMPrefixesListParams {
+func (o *IPAMPrefixesListParams) WithVlanVid(vlanVid *int64) *IPAMPrefixesListParams {
 	o.SetVlanVid(vlanVid)
 	return o
 }
 
 // SetVlanVid adds the vlanVid to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) SetVlanVid(vlanVid *float64) {
+func (o *IPAMPrefixesListParams) SetVlanVid(vlanVid *int64) {
 	o.VlanVid = vlanVid
 }
 
@@ -366,13 +366,13 @@ func (o *IPAMPrefixesListParams) SetVrf(vrf *string) {
 }
 
 // WithVrfID adds the vrfID to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) WithVrfID(vrfID *string) *IPAMPrefixesListParams {
+func (o *IPAMPrefixesListParams) WithVrfID(vrfID *int64) *IPAMPrefixesListParams {
 	o.SetVrfID(vrfID)
 	return o
 }
 
 // SetVrfID adds the vrfId to the ipam prefixes list params
-func (o *IPAMPrefixesListParams) SetVrfID(vrfID *string) {
+func (o *IPAMPrefixesListParams) SetVrfID(vrfID *int64) {
 	o.VrfID = vrfID
 }
 
@@ -489,11 +489,11 @@ func (o *IPAMPrefixesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if o.MaskLength != nil {
 
 		// query param mask_length
-		var qrMaskLength float64
+		var qrMaskLength int64
 		if o.MaskLength != nil {
 			qrMaskLength = *o.MaskLength
 		}
-		qMaskLength := swag.FormatFloat64(qrMaskLength)
+		qMaskLength := swag.FormatInt64(qrMaskLength)
 		if qMaskLength != "" {
 			if err := r.SetQueryParam("mask_length", qMaskLength); err != nil {
 				return err
@@ -553,11 +553,11 @@ func (o *IPAMPrefixesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if o.RoleID != nil {
 
 		// query param role_id
-		var qrRoleID string
+		var qrRoleID int64
 		if o.RoleID != nil {
 			qrRoleID = *o.RoleID
 		}
-		qRoleID := qrRoleID
+		qRoleID := swag.FormatInt64(qrRoleID)
 		if qRoleID != "" {
 			if err := r.SetQueryParam("role_id", qRoleID); err != nil {
 				return err
@@ -585,11 +585,11 @@ func (o *IPAMPrefixesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if o.SiteID != nil {
 
 		// query param site_id
-		var qrSiteID string
+		var qrSiteID int64
 		if o.SiteID != nil {
 			qrSiteID = *o.SiteID
 		}
-		qSiteID := qrSiteID
+		qSiteID := swag.FormatInt64(qrSiteID)
 		if qSiteID != "" {
 			if err := r.SetQueryParam("site_id", qSiteID); err != nil {
 				return err
@@ -633,11 +633,11 @@ func (o *IPAMPrefixesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if o.TenantID != nil {
 
 		// query param tenant_id
-		var qrTenantID string
+		var qrTenantID int64
 		if o.TenantID != nil {
 			qrTenantID = *o.TenantID
 		}
-		qTenantID := qrTenantID
+		qTenantID := swag.FormatInt64(qrTenantID)
 		if qTenantID != "" {
 			if err := r.SetQueryParam("tenant_id", qTenantID); err != nil {
 				return err
@@ -649,11 +649,11 @@ func (o *IPAMPrefixesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if o.VlanID != nil {
 
 		// query param vlan_id
-		var qrVlanID string
+		var qrVlanID int64
 		if o.VlanID != nil {
 			qrVlanID = *o.VlanID
 		}
-		qVlanID := qrVlanID
+		qVlanID := swag.FormatInt64(qrVlanID)
 		if qVlanID != "" {
 			if err := r.SetQueryParam("vlan_id", qVlanID); err != nil {
 				return err
@@ -665,11 +665,11 @@ func (o *IPAMPrefixesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if o.VlanVid != nil {
 
 		// query param vlan_vid
-		var qrVlanVid float64
+		var qrVlanVid int64
 		if o.VlanVid != nil {
 			qrVlanVid = *o.VlanVid
 		}
-		qVlanVid := swag.FormatFloat64(qrVlanVid)
+		qVlanVid := swag.FormatInt64(qrVlanVid)
 		if qVlanVid != "" {
 			if err := r.SetQueryParam("vlan_vid", qVlanVid); err != nil {
 				return err
@@ -697,11 +697,11 @@ func (o *IPAMPrefixesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if o.VrfID != nil {
 
 		// query param vrf_id
-		var qrVrfID string
+		var qrVrfID int64
 		if o.VrfID != nil {
 			qrVrfID = *o.VrfID
 		}
-		qVrfID := qrVrfID
+		qVrfID := swag.FormatInt64(qrVrfID)
 		if qVrfID != "" {
 			if err := r.SetQueryParam("vrf_id", qVrfID); err != nil {
 				return err

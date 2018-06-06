@@ -92,7 +92,7 @@ type IPAMVlanGroupsListParams struct {
 	/*Site*/
 	Site *string
 	/*SiteID*/
-	SiteID *string
+	SiteID *int64
 	/*Slug*/
 	Slug *string
 
@@ -179,13 +179,13 @@ func (o *IPAMVlanGroupsListParams) SetSite(site *string) {
 }
 
 // WithSiteID adds the siteID to the ipam vlan groups list params
-func (o *IPAMVlanGroupsListParams) WithSiteID(siteID *string) *IPAMVlanGroupsListParams {
+func (o *IPAMVlanGroupsListParams) WithSiteID(siteID *int64) *IPAMVlanGroupsListParams {
 	o.SetSiteID(siteID)
 	return o
 }
 
 // SetSiteID adds the siteId to the ipam vlan groups list params
-func (o *IPAMVlanGroupsListParams) SetSiteID(siteID *string) {
+func (o *IPAMVlanGroupsListParams) SetSiteID(siteID *int64) {
 	o.SiteID = siteID
 }
 
@@ -275,11 +275,11 @@ func (o *IPAMVlanGroupsListParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.SiteID != nil {
 
 		// query param site_id
-		var qrSiteID string
+		var qrSiteID int64
 		if o.SiteID != nil {
 			qrSiteID = *o.SiteID
 		}
-		qSiteID := qrSiteID
+		qSiteID := swag.FormatInt64(qrSiteID)
 		if qSiteID != "" {
 			if err := r.SetQueryParam("site_id", qSiteID); err != nil {
 				return err

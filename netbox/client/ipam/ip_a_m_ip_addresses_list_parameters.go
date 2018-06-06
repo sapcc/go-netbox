@@ -80,7 +80,7 @@ type IPAMIPAddressesListParams struct {
 	/*Device*/
 	Device *string
 	/*DeviceID*/
-	DeviceID *float64
+	DeviceID *int64
 	/*Family*/
 	Family *string
 	/*IDIn
@@ -89,14 +89,14 @@ type IPAMIPAddressesListParams struct {
 	*/
 	IDIn *string
 	/*InterfaceID*/
-	InterfaceID *string
+	InterfaceID *int64
 	/*Limit
 	  Number of results to return per page.
 
 	*/
 	Limit *int64
 	/*MaskLength*/
-	MaskLength *float64
+	MaskLength *int64
 	/*Offset
 	  The initial index from which to return the results.
 
@@ -113,15 +113,15 @@ type IPAMIPAddressesListParams struct {
 	/*Tenant*/
 	Tenant *string
 	/*TenantID*/
-	TenantID *string
+	TenantID *int64
 	/*VirtualMachine*/
 	VirtualMachine *string
 	/*VirtualMachineID*/
-	VirtualMachineID *string
+	VirtualMachineID *int64
 	/*Vrf*/
 	Vrf *string
 	/*VrfID*/
-	VrfID *string
+	VrfID *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -173,13 +173,13 @@ func (o *IPAMIPAddressesListParams) SetDevice(device *string) {
 }
 
 // WithDeviceID adds the deviceID to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) WithDeviceID(deviceID *float64) *IPAMIPAddressesListParams {
+func (o *IPAMIPAddressesListParams) WithDeviceID(deviceID *int64) *IPAMIPAddressesListParams {
 	o.SetDeviceID(deviceID)
 	return o
 }
 
 // SetDeviceID adds the deviceId to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) SetDeviceID(deviceID *float64) {
+func (o *IPAMIPAddressesListParams) SetDeviceID(deviceID *int64) {
 	o.DeviceID = deviceID
 }
 
@@ -206,13 +206,13 @@ func (o *IPAMIPAddressesListParams) SetIDIn(iDIn *string) {
 }
 
 // WithInterfaceID adds the interfaceID to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) WithInterfaceID(interfaceID *string) *IPAMIPAddressesListParams {
+func (o *IPAMIPAddressesListParams) WithInterfaceID(interfaceID *int64) *IPAMIPAddressesListParams {
 	o.SetInterfaceID(interfaceID)
 	return o
 }
 
 // SetInterfaceID adds the interfaceId to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) SetInterfaceID(interfaceID *string) {
+func (o *IPAMIPAddressesListParams) SetInterfaceID(interfaceID *int64) {
 	o.InterfaceID = interfaceID
 }
 
@@ -228,13 +228,13 @@ func (o *IPAMIPAddressesListParams) SetLimit(limit *int64) {
 }
 
 // WithMaskLength adds the maskLength to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) WithMaskLength(maskLength *float64) *IPAMIPAddressesListParams {
+func (o *IPAMIPAddressesListParams) WithMaskLength(maskLength *int64) *IPAMIPAddressesListParams {
 	o.SetMaskLength(maskLength)
 	return o
 }
 
 // SetMaskLength adds the maskLength to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) SetMaskLength(maskLength *float64) {
+func (o *IPAMIPAddressesListParams) SetMaskLength(maskLength *int64) {
 	o.MaskLength = maskLength
 }
 
@@ -305,13 +305,13 @@ func (o *IPAMIPAddressesListParams) SetTenant(tenant *string) {
 }
 
 // WithTenantID adds the tenantID to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) WithTenantID(tenantID *string) *IPAMIPAddressesListParams {
+func (o *IPAMIPAddressesListParams) WithTenantID(tenantID *int64) *IPAMIPAddressesListParams {
 	o.SetTenantID(tenantID)
 	return o
 }
 
 // SetTenantID adds the tenantId to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) SetTenantID(tenantID *string) {
+func (o *IPAMIPAddressesListParams) SetTenantID(tenantID *int64) {
 	o.TenantID = tenantID
 }
 
@@ -327,13 +327,13 @@ func (o *IPAMIPAddressesListParams) SetVirtualMachine(virtualMachine *string) {
 }
 
 // WithVirtualMachineID adds the virtualMachineID to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) WithVirtualMachineID(virtualMachineID *string) *IPAMIPAddressesListParams {
+func (o *IPAMIPAddressesListParams) WithVirtualMachineID(virtualMachineID *int64) *IPAMIPAddressesListParams {
 	o.SetVirtualMachineID(virtualMachineID)
 	return o
 }
 
 // SetVirtualMachineID adds the virtualMachineId to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) SetVirtualMachineID(virtualMachineID *string) {
+func (o *IPAMIPAddressesListParams) SetVirtualMachineID(virtualMachineID *int64) {
 	o.VirtualMachineID = virtualMachineID
 }
 
@@ -349,13 +349,13 @@ func (o *IPAMIPAddressesListParams) SetVrf(vrf *string) {
 }
 
 // WithVrfID adds the vrfID to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) WithVrfID(vrfID *string) *IPAMIPAddressesListParams {
+func (o *IPAMIPAddressesListParams) WithVrfID(vrfID *int64) *IPAMIPAddressesListParams {
 	o.SetVrfID(vrfID)
 	return o
 }
 
 // SetVrfID adds the vrfId to the ipam ip addresses list params
-func (o *IPAMIPAddressesListParams) SetVrfID(vrfID *string) {
+func (o *IPAMIPAddressesListParams) SetVrfID(vrfID *int64) {
 	o.VrfID = vrfID
 }
 
@@ -386,11 +386,11 @@ func (o *IPAMIPAddressesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.DeviceID != nil {
 
 		// query param device_id
-		var qrDeviceID float64
+		var qrDeviceID int64
 		if o.DeviceID != nil {
 			qrDeviceID = *o.DeviceID
 		}
-		qDeviceID := swag.FormatFloat64(qrDeviceID)
+		qDeviceID := swag.FormatInt64(qrDeviceID)
 		if qDeviceID != "" {
 			if err := r.SetQueryParam("device_id", qDeviceID); err != nil {
 				return err
@@ -434,11 +434,11 @@ func (o *IPAMIPAddressesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.InterfaceID != nil {
 
 		// query param interface_id
-		var qrInterfaceID string
+		var qrInterfaceID int64
 		if o.InterfaceID != nil {
 			qrInterfaceID = *o.InterfaceID
 		}
-		qInterfaceID := qrInterfaceID
+		qInterfaceID := swag.FormatInt64(qrInterfaceID)
 		if qInterfaceID != "" {
 			if err := r.SetQueryParam("interface_id", qInterfaceID); err != nil {
 				return err
@@ -466,11 +466,11 @@ func (o *IPAMIPAddressesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.MaskLength != nil {
 
 		// query param mask_length
-		var qrMaskLength float64
+		var qrMaskLength int64
 		if o.MaskLength != nil {
 			qrMaskLength = *o.MaskLength
 		}
-		qMaskLength := swag.FormatFloat64(qrMaskLength)
+		qMaskLength := swag.FormatInt64(qrMaskLength)
 		if qMaskLength != "" {
 			if err := r.SetQueryParam("mask_length", qMaskLength); err != nil {
 				return err
@@ -578,11 +578,11 @@ func (o *IPAMIPAddressesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.TenantID != nil {
 
 		// query param tenant_id
-		var qrTenantID string
+		var qrTenantID int64
 		if o.TenantID != nil {
 			qrTenantID = *o.TenantID
 		}
-		qTenantID := qrTenantID
+		qTenantID := swag.FormatInt64(qrTenantID)
 		if qTenantID != "" {
 			if err := r.SetQueryParam("tenant_id", qTenantID); err != nil {
 				return err
@@ -610,11 +610,11 @@ func (o *IPAMIPAddressesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.VirtualMachineID != nil {
 
 		// query param virtual_machine_id
-		var qrVirtualMachineID string
+		var qrVirtualMachineID int64
 		if o.VirtualMachineID != nil {
 			qrVirtualMachineID = *o.VirtualMachineID
 		}
-		qVirtualMachineID := qrVirtualMachineID
+		qVirtualMachineID := swag.FormatInt64(qrVirtualMachineID)
 		if qVirtualMachineID != "" {
 			if err := r.SetQueryParam("virtual_machine_id", qVirtualMachineID); err != nil {
 				return err
@@ -642,11 +642,11 @@ func (o *IPAMIPAddressesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.VrfID != nil {
 
 		// query param vrf_id
-		var qrVrfID string
+		var qrVrfID int64
 		if o.VrfID != nil {
 			qrVrfID = *o.VrfID
 		}
-		qVrfID := qrVrfID
+		qVrfID := swag.FormatInt64(qrVrfID)
 		if qVrfID != "" {
 			if err := r.SetQueryParam("vrf_id", qVrfID); err != nil {
 				return err
