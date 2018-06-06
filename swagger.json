@@ -3802,7 +3802,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WritableInterface"
+              "$ref": "#/definitions/PatchableInterface"
             }
           }
         ],
@@ -14517,6 +14517,119 @@
         "mgmt_only": {
           "title": "Management only",
           "type": "boolean"
+        }
+      }
+    },
+    "PatchableInterface": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "title": "Device",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64
+        },
+        "form_factor": {
+          "title": "Form factor",
+          "type": "integer",
+          "enum": [
+            0,
+            200,
+            800,
+            1000,
+            1150,
+            1170,
+            1050,
+            1100,
+            1200,
+            1300,
+            1310,
+            1320,
+            1350,
+            1400,
+            1500,
+            1510,
+            1520,
+            1550,
+            1600,
+            2600,
+            2610,
+            2620,
+            2630,
+            2640,
+            3010,
+            3020,
+            3040,
+            3080,
+            3160,
+            4000,
+            4010,
+            4040,
+            4050,
+            5000,
+            5050,
+            5100,
+            5150,
+            5200,
+            32767
+          ]
+        },
+        "enabled": {
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "lag": {
+          "title": "Parent LAG",
+          "type": "integer"
+        },
+        "mtu": {
+          "title": "MTU",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "mac_address": {
+          "title": "MAC Address",
+          "type": "string"
+        },
+        "mgmt_only": {
+          "title": "OOB Management",
+          "description": "This interface is used only for out-of-band management",
+          "type": "boolean"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "mode": {
+          "title": "Mode",
+          "type": "integer",
+          "enum": [
+            100,
+            200,
+            300
+          ]
+        },
+        "untagged_vlan": {
+          "title": "Untagged VLAN",
+          "type": "integer"
+        },
+        "tagged_vlans": {
+          "type": "array",
+          "items": {
+            "title": "Tagged VLANs",
+            "type": "integer"
+          },
+          "uniqueItems": true
         }
       }
     },
