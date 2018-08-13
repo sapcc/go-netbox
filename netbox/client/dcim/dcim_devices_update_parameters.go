@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimDevicesUpdateParams creates a new DcimDevicesUpdateParams object
@@ -80,7 +80,7 @@ for the dcim devices update operation typically these are written to a http.Requ
 type DcimDevicesUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableDevice
+	Data *models.Device
 	/*ID
 	  A unique integer value identifying this device.
 
@@ -126,13 +126,13 @@ func (o *DcimDevicesUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim devices update params
-func (o *DcimDevicesUpdateParams) WithData(data *models.WritableDevice) *DcimDevicesUpdateParams {
+func (o *DcimDevicesUpdateParams) WithData(data *models.Device) *DcimDevicesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim devices update params
-func (o *DcimDevicesUpdateParams) SetData(data *models.WritableDevice) {
+func (o *DcimDevicesUpdateParams) SetData(data *models.Device) {
 	o.Data = data
 }
 

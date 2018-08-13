@@ -54,10 +54,12 @@ type ExportTemplate struct {
 	// Name
 	// Required: true
 	// Max Length: 100
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Template code
 	// Required: true
+	// Min Length: 1
 	TemplateCode *string `json:"template_code"`
 }
 
@@ -155,6 +157,10 @@ func (m *ExportTemplate) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 100); err != nil {
 		return err
 	}
@@ -165,6 +171,10 @@ func (m *ExportTemplate) validateName(formats strfmt.Registry) error {
 func (m *ExportTemplate) validateTemplateCode(formats strfmt.Registry) error {
 
 	if err := validate.Required("template_code", "body", m.TemplateCode); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("template_code", "body", string(*m.TemplateCode), 1); err != nil {
 		return err
 	}
 

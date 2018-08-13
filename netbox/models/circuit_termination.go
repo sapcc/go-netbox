@@ -42,8 +42,7 @@ type CircuitTermination struct {
 	ID int64 `json:"id,omitempty"`
 
 	// interface
-	// Required: true
-	Interface *Interface `json:"interface"`
+	Interface *Interface `json:"interface,omitempty"`
 
 	// Port speed (Kbps)
 	// Required: true
@@ -72,7 +71,7 @@ type CircuitTermination struct {
 
 	// Cross-connect ID
 	// Max Length: 50
-	XconnectID int64 `json:"xconnect_id,omitempty"`
+	XconnectID string `json:"xconnect_id,omitempty"`
 }
 
 // Validate validates this circuit termination
@@ -147,8 +146,8 @@ func (m *CircuitTermination) validateCircuit(formats strfmt.Registry) error {
 
 func (m *CircuitTermination) validateInterface(formats strfmt.Registry) error {
 
-	if err := validate.Required("interface", "body", m.Interface); err != nil {
-		return err
+	if swag.IsZero(m.Interface) { // not required
+		return nil
 	}
 
 	if m.Interface != nil {

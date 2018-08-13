@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimPowerPortsPartialUpdateParams creates a new DcimPowerPortsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the dcim power ports partial update operation typically these are written to
 type DcimPowerPortsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritablePowerPort
+	Data *models.PowerPort
 	/*ID
 	  A unique integer value identifying this power port.
 
@@ -126,13 +126,13 @@ func (o *DcimPowerPortsPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim power ports partial update params
-func (o *DcimPowerPortsPartialUpdateParams) WithData(data *models.WritablePowerPort) *DcimPowerPortsPartialUpdateParams {
+func (o *DcimPowerPortsPartialUpdateParams) WithData(data *models.PowerPort) *DcimPowerPortsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim power ports partial update params
-func (o *DcimPowerPortsPartialUpdateParams) SetData(data *models.WritablePowerPort) {
+func (o *DcimPowerPortsPartialUpdateParams) SetData(data *models.PowerPort) {
 	o.Data = data
 }
 

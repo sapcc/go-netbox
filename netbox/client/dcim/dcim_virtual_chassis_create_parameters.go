@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimVirtualChassisCreateParams creates a new DcimVirtualChassisCreateParams object
@@ -79,7 +79,7 @@ for the dcim virtual chassis create operation typically these are written to a h
 type DcimVirtualChassisCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableVirtualChassis
+	Data *models.VirtualChassis
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *DcimVirtualChassisCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim virtual chassis create params
-func (o *DcimVirtualChassisCreateParams) WithData(data *models.WritableVirtualChassis) *DcimVirtualChassisCreateParams {
+func (o *DcimVirtualChassisCreateParams) WithData(data *models.VirtualChassis) *DcimVirtualChassisCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim virtual chassis create params
-func (o *DcimVirtualChassisCreateParams) SetData(data *models.WritableVirtualChassis) {
+func (o *DcimVirtualChassisCreateParams) SetData(data *models.VirtualChassis) {
 	o.Data = data
 }
 

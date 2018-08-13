@@ -47,11 +47,14 @@ type PowerPort struct {
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// power outlet
-	// Required: true
-	PowerOutlet *PowerOutlet `json:"power_outlet"`
+	PowerOutlet *NestedPowerOutlet `json:"power_outlet,omitempty"`
+
+	// Tags
+	Tags []string `json:"tags"`
 }
 
 // Validate validates this power port
@@ -74,6 +77,11 @@ func (m *PowerPort) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePowerOutlet(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -144,6 +152,10 @@ func (m *PowerPort) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
 	}
@@ -153,8 +165,8 @@ func (m *PowerPort) validateName(formats strfmt.Registry) error {
 
 func (m *PowerPort) validatePowerOutlet(formats strfmt.Registry) error {
 
-	if err := validate.Required("power_outlet", "body", m.PowerOutlet); err != nil {
-		return err
+	if swag.IsZero(m.PowerOutlet) { // not required
+		return nil
 	}
 
 	if m.PowerOutlet != nil {
@@ -166,6 +178,15 @@ func (m *PowerPort) validatePowerOutlet(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *PowerPort) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
 	}
 
 	return nil

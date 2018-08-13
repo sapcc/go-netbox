@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewExtrasImageAttachmentsPartialUpdateParams creates a new ExtrasImageAttachmentsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the extras image attachments partial update operation typically these are wr
 type ExtrasImageAttachmentsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableImageAttachment
+	Data *models.ImageAttachment
 	/*ID
 	  A unique integer value identifying this image attachment.
 
@@ -126,13 +126,13 @@ func (o *ExtrasImageAttachmentsPartialUpdateParams) SetHTTPClient(client *http.C
 }
 
 // WithData adds the data to the extras image attachments partial update params
-func (o *ExtrasImageAttachmentsPartialUpdateParams) WithData(data *models.WritableImageAttachment) *ExtrasImageAttachmentsPartialUpdateParams {
+func (o *ExtrasImageAttachmentsPartialUpdateParams) WithData(data *models.ImageAttachment) *ExtrasImageAttachmentsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the extras image attachments partial update params
-func (o *ExtrasImageAttachmentsPartialUpdateParams) SetData(data *models.WritableImageAttachment) {
+func (o *ExtrasImageAttachmentsPartialUpdateParams) SetData(data *models.ImageAttachment) {
 	o.Data = data
 }
 

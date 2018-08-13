@@ -106,6 +106,8 @@ type CircuitsProvidersListParams struct {
 	SiteID *int64
 	/*Slug*/
 	Slug *string
+	/*Tag*/
+	Tag *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -253,6 +255,17 @@ func (o *CircuitsProvidersListParams) WithSlug(slug *string) *CircuitsProvidersL
 // SetSlug adds the slug to the circuits providers list params
 func (o *CircuitsProvidersListParams) SetSlug(slug *string) {
 	o.Slug = slug
+}
+
+// WithTag adds the tag to the circuits providers list params
+func (o *CircuitsProvidersListParams) WithTag(tag *string) *CircuitsProvidersListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the circuits providers list params
+func (o *CircuitsProvidersListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -417,6 +430,22 @@ func (o *CircuitsProvidersListParams) WriteToRequest(r runtime.ClientRequest, re
 		qSlug := qrSlug
 		if qSlug != "" {
 			if err := r.SetQueryParam("slug", qSlug); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

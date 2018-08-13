@@ -42,8 +42,7 @@ type Cluster struct {
 	CustomFields interface{} `json:"custom_fields,omitempty"`
 
 	// group
-	// Required: true
-	Group *NestedClusterGroup `json:"group"`
+	Group *NestedClusterGroup `json:"group,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -56,11 +55,14 @@ type Cluster struct {
 	// Name
 	// Required: true
 	// Max Length: 100
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// site
-	// Required: true
-	Site *NestedSite `json:"site"`
+	Site *NestedSite `json:"site,omitempty"`
+
+	// Tags
+	Tags []string `json:"tags"`
 
 	// type
 	// Required: true
@@ -96,6 +98,11 @@ func (m *Cluster) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateType(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -122,8 +129,8 @@ func (m *Cluster) validateCreated(formats strfmt.Registry) error {
 
 func (m *Cluster) validateGroup(formats strfmt.Registry) error {
 
-	if err := validate.Required("group", "body", m.Group); err != nil {
-		return err
+	if swag.IsZero(m.Group) { // not required
+		return nil
 	}
 
 	if m.Group != nil {
@@ -159,6 +166,10 @@ func (m *Cluster) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 100); err != nil {
 		return err
 	}
@@ -168,8 +179,8 @@ func (m *Cluster) validateName(formats strfmt.Registry) error {
 
 func (m *Cluster) validateSite(formats strfmt.Registry) error {
 
-	if err := validate.Required("site", "body", m.Site); err != nil {
-		return err
+	if swag.IsZero(m.Site) { // not required
+		return nil
 	}
 
 	if m.Site != nil {
@@ -181,6 +192,15 @@ func (m *Cluster) validateSite(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Cluster) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
 	}
 
 	return nil

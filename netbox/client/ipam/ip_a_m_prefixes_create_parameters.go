@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMPrefixesCreateParams creates a new IPAMPrefixesCreateParams object
@@ -79,7 +79,7 @@ for the ipam prefixes create operation typically these are written to a http.Req
 type IPAMPrefixesCreateParams struct {
 
 	/*Data*/
-	Data *models.WritablePrefix
+	Data *models.Prefix
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *IPAMPrefixesCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam prefixes create params
-func (o *IPAMPrefixesCreateParams) WithData(data *models.WritablePrefix) *IPAMPrefixesCreateParams {
+func (o *IPAMPrefixesCreateParams) WithData(data *models.Prefix) *IPAMPrefixesCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam prefixes create params
-func (o *IPAMPrefixesCreateParams) SetData(data *models.WritablePrefix) {
+func (o *IPAMPrefixesCreateParams) SetData(data *models.Prefix) {
 	o.Data = data
 }
 

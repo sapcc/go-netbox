@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimRacksUpdateParams creates a new DcimRacksUpdateParams object
@@ -80,7 +80,7 @@ for the dcim racks update operation typically these are written to a http.Reques
 type DcimRacksUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableRack
+	Data *models.Rack
 	/*ID
 	  A unique integer value identifying this rack.
 
@@ -126,13 +126,13 @@ func (o *DcimRacksUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim racks update params
-func (o *DcimRacksUpdateParams) WithData(data *models.WritableRack) *DcimRacksUpdateParams {
+func (o *DcimRacksUpdateParams) WithData(data *models.Rack) *DcimRacksUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim racks update params
-func (o *DcimRacksUpdateParams) SetData(data *models.WritableRack) {
+func (o *DcimRacksUpdateParams) SetData(data *models.Rack) {
 	o.Data = data
 }
 

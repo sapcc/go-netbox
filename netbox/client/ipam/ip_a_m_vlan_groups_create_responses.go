@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMVlanGroupsCreateReader is a Reader for the IPAMVlanGroupsCreate structure.
@@ -61,7 +61,7 @@ func NewIPAMVlanGroupsCreateCreated() *IPAMVlanGroupsCreateCreated {
 IPAMVlanGroupsCreateCreated ipam vlan groups create created
 */
 type IPAMVlanGroupsCreateCreated struct {
-	Payload *models.WritableVLANGroup
+	Payload *models.VLANGroup
 }
 
 func (o *IPAMVlanGroupsCreateCreated) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMVlanGroupsCreateCreated) Error() string {
 
 func (o *IPAMVlanGroupsCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableVLANGroup)
+	o.Payload = new(models.VLANGroup)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

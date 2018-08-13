@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewExtrasTopologyMapsUpdateParams creates a new ExtrasTopologyMapsUpdateParams object
@@ -80,7 +80,7 @@ for the extras topology maps update operation typically these are written to a h
 type ExtrasTopologyMapsUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableTopologyMap
+	Data *models.TopologyMap
 	/*ID
 	  A unique integer value identifying this topology map.
 
@@ -126,13 +126,13 @@ func (o *ExtrasTopologyMapsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the extras topology maps update params
-func (o *ExtrasTopologyMapsUpdateParams) WithData(data *models.WritableTopologyMap) *ExtrasTopologyMapsUpdateParams {
+func (o *ExtrasTopologyMapsUpdateParams) WithData(data *models.TopologyMap) *ExtrasTopologyMapsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the extras topology maps update params
-func (o *ExtrasTopologyMapsUpdateParams) SetData(data *models.WritableTopologyMap) {
+func (o *ExtrasTopologyMapsUpdateParams) SetData(data *models.TopologyMap) {
 	o.Data = data
 }
 

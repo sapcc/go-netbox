@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimRackGroupsPartialUpdateParams creates a new DcimRackGroupsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the dcim rack groups partial update operation typically these are written to
 type DcimRackGroupsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableRackGroup
+	Data *models.RackGroup
 	/*ID
 	  A unique integer value identifying this rack group.
 
@@ -126,13 +126,13 @@ func (o *DcimRackGroupsPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim rack groups partial update params
-func (o *DcimRackGroupsPartialUpdateParams) WithData(data *models.WritableRackGroup) *DcimRackGroupsPartialUpdateParams {
+func (o *DcimRackGroupsPartialUpdateParams) WithData(data *models.RackGroup) *DcimRackGroupsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim rack groups partial update params
-func (o *DcimRackGroupsPartialUpdateParams) SetData(data *models.WritableRackGroup) {
+func (o *DcimRackGroupsPartialUpdateParams) SetData(data *models.RackGroup) {
 	o.Data = data
 }
 

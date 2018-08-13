@@ -42,6 +42,7 @@ type InterfaceVLAN struct {
 	// Name
 	// Required: true
 	// Max Length: 64
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Url
@@ -83,6 +84,10 @@ func (m *InterfaceVLAN) Validate(formats strfmt.Registry) error {
 func (m *InterfaceVLAN) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
 		return err
 	}
 

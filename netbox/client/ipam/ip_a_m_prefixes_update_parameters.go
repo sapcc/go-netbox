@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMPrefixesUpdateParams creates a new IPAMPrefixesUpdateParams object
@@ -80,7 +80,7 @@ for the ipam prefixes update operation typically these are written to a http.Req
 type IPAMPrefixesUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritablePrefix
+	Data *models.Prefix
 	/*ID
 	  A unique integer value identifying this prefix.
 
@@ -126,13 +126,13 @@ func (o *IPAMPrefixesUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam prefixes update params
-func (o *IPAMPrefixesUpdateParams) WithData(data *models.WritablePrefix) *IPAMPrefixesUpdateParams {
+func (o *IPAMPrefixesUpdateParams) WithData(data *models.Prefix) *IPAMPrefixesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam prefixes update params
-func (o *IPAMPrefixesUpdateParams) SetData(data *models.WritablePrefix) {
+func (o *IPAMPrefixesUpdateParams) SetData(data *models.Prefix) {
 	o.Data = data
 }
 

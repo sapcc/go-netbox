@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewSecretsSecretsUpdateParams creates a new SecretsSecretsUpdateParams object
@@ -80,7 +80,7 @@ for the secrets secrets update operation typically these are written to a http.R
 type SecretsSecretsUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableSecret
+	Data *models.Secret
 	/*ID
 	  A unique integer value identifying this secret.
 
@@ -126,13 +126,13 @@ func (o *SecretsSecretsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the secrets secrets update params
-func (o *SecretsSecretsUpdateParams) WithData(data *models.WritableSecret) *SecretsSecretsUpdateParams {
+func (o *SecretsSecretsUpdateParams) WithData(data *models.Secret) *SecretsSecretsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the secrets secrets update params
-func (o *SecretsSecretsUpdateParams) SetData(data *models.WritableSecret) {
+func (o *SecretsSecretsUpdateParams) SetData(data *models.Secret) {
 	o.Data = data
 }
 

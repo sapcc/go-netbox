@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimRegionsUpdateParams creates a new DcimRegionsUpdateParams object
@@ -80,7 +80,7 @@ for the dcim regions update operation typically these are written to a http.Requ
 type DcimRegionsUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableRegion
+	Data *models.Region
 	/*ID
 	  A unique integer value identifying this region.
 
@@ -126,13 +126,13 @@ func (o *DcimRegionsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim regions update params
-func (o *DcimRegionsUpdateParams) WithData(data *models.WritableRegion) *DcimRegionsUpdateParams {
+func (o *DcimRegionsUpdateParams) WithData(data *models.Region) *DcimRegionsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim regions update params
-func (o *DcimRegionsUpdateParams) SetData(data *models.WritableRegion) {
+func (o *DcimRegionsUpdateParams) SetData(data *models.Region) {
 	o.Data = data
 }
 

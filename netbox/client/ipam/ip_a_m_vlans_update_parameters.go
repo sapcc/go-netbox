@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMVlansUpdateParams creates a new IPAMVlansUpdateParams object
@@ -80,7 +80,7 @@ for the ipam vlans update operation typically these are written to a http.Reques
 type IPAMVlansUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableVLAN
+	Data *models.VLAN
 	/*ID
 	  A unique integer value identifying this VLAN.
 
@@ -126,13 +126,13 @@ func (o *IPAMVlansUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam vlans update params
-func (o *IPAMVlansUpdateParams) WithData(data *models.WritableVLAN) *IPAMVlansUpdateParams {
+func (o *IPAMVlansUpdateParams) WithData(data *models.VLAN) *IPAMVlansUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam vlans update params
-func (o *IPAMVlansUpdateParams) SetData(data *models.WritableVLAN) {
+func (o *IPAMVlansUpdateParams) SetData(data *models.VLAN) {
 	o.Data = data
 }
 

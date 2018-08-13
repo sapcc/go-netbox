@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMVlanGroupsPartialUpdateReader is a Reader for the IPAMVlanGroupsPartialUpdate structure.
@@ -61,7 +61,7 @@ func NewIPAMVlanGroupsPartialUpdateOK() *IPAMVlanGroupsPartialUpdateOK {
 IPAMVlanGroupsPartialUpdateOK ipam vlan groups partial update o k
 */
 type IPAMVlanGroupsPartialUpdateOK struct {
-	Payload *models.WritableVLANGroup
+	Payload *models.VLANGroup
 }
 
 func (o *IPAMVlanGroupsPartialUpdateOK) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMVlanGroupsPartialUpdateOK) Error() string {
 
 func (o *IPAMVlanGroupsPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableVLANGroup)
+	o.Payload = new(models.VLANGroup)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

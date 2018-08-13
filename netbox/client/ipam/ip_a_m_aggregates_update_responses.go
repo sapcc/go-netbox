@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMAggregatesUpdateReader is a Reader for the IPAMAggregatesUpdate structure.
@@ -61,7 +61,7 @@ func NewIPAMAggregatesUpdateOK() *IPAMAggregatesUpdateOK {
 IPAMAggregatesUpdateOK ipam aggregates update o k
 */
 type IPAMAggregatesUpdateOK struct {
-	Payload *models.WritableAggregate
+	Payload *models.Aggregate
 }
 
 func (o *IPAMAggregatesUpdateOK) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMAggregatesUpdateOK) Error() string {
 
 func (o *IPAMAggregatesUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableAggregate)
+	o.Payload = new(models.Aggregate)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

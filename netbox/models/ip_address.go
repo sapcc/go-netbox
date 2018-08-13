@@ -57,36 +57,32 @@ type IPAddress struct {
 	ID int64 `json:"id,omitempty"`
 
 	// interface
-	// Required: true
-	Interface *IPAddressInterface `json:"interface"`
+	Interface *IPAddressInterface `json:"interface,omitempty"`
 
 	// Last updated
 	// Read Only: true
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
 	// nat inside
-	// Required: true
-	NatInside *NestedIPAddress `json:"nat_inside"`
+	NatInside *NestedIPAddress `json:"nat_inside,omitempty"`
 
 	// nat outside
-	// Required: true
-	NatOutside *NestedIPAddress `json:"nat_outside"`
+	NatOutside *NestedIPAddress `json:"nat_outside,omitempty"`
 
 	// role
-	// Required: true
-	Role *IPAddressRole `json:"role"`
+	Role *IPAddressRole `json:"role,omitempty"`
 
 	// status
-	// Required: true
-	Status *IPAddressStatus `json:"status"`
+	Status *IPAddressStatus `json:"status,omitempty"`
+
+	// Tags
+	Tags []string `json:"tags"`
 
 	// tenant
-	// Required: true
-	Tenant *NestedTenant `json:"tenant"`
+	Tenant *NestedTenant `json:"tenant,omitempty"`
 
 	// vrf
-	// Required: true
-	Vrf *NestedVRF `json:"vrf"`
+	Vrf *NestedVRF `json:"vrf,omitempty"`
 }
 
 // Validate validates this IP address
@@ -134,6 +130,11 @@ func (m *IPAddress) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -191,8 +192,8 @@ func (m *IPAddress) validateDescription(formats strfmt.Registry) error {
 
 func (m *IPAddress) validateInterface(formats strfmt.Registry) error {
 
-	if err := validate.Required("interface", "body", m.Interface); err != nil {
-		return err
+	if swag.IsZero(m.Interface) { // not required
+		return nil
 	}
 
 	if m.Interface != nil {
@@ -224,8 +225,8 @@ func (m *IPAddress) validateLastUpdated(formats strfmt.Registry) error {
 
 func (m *IPAddress) validateNatInside(formats strfmt.Registry) error {
 
-	if err := validate.Required("nat_inside", "body", m.NatInside); err != nil {
-		return err
+	if swag.IsZero(m.NatInside) { // not required
+		return nil
 	}
 
 	if m.NatInside != nil {
@@ -244,8 +245,8 @@ func (m *IPAddress) validateNatInside(formats strfmt.Registry) error {
 
 func (m *IPAddress) validateNatOutside(formats strfmt.Registry) error {
 
-	if err := validate.Required("nat_outside", "body", m.NatOutside); err != nil {
-		return err
+	if swag.IsZero(m.NatOutside) { // not required
+		return nil
 	}
 
 	if m.NatOutside != nil {
@@ -264,8 +265,8 @@ func (m *IPAddress) validateNatOutside(formats strfmt.Registry) error {
 
 func (m *IPAddress) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.Required("role", "body", m.Role); err != nil {
-		return err
+	if swag.IsZero(m.Role) { // not required
+		return nil
 	}
 
 	if m.Role != nil {
@@ -284,8 +285,8 @@ func (m *IPAddress) validateRole(formats strfmt.Registry) error {
 
 func (m *IPAddress) validateStatus(formats strfmt.Registry) error {
 
-	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	if m.Status != nil {
@@ -302,10 +303,19 @@ func (m *IPAddress) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IPAddress) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *IPAddress) validateTenant(formats strfmt.Registry) error {
 
-	if err := validate.Required("tenant", "body", m.Tenant); err != nil {
-		return err
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
 	}
 
 	if m.Tenant != nil {
@@ -324,8 +334,8 @@ func (m *IPAddress) validateTenant(formats strfmt.Registry) error {
 
 func (m *IPAddress) validateVrf(formats strfmt.Registry) error {
 
-	if err := validate.Required("vrf", "body", m.Vrf); err != nil {
-		return err
+	if swag.IsZero(m.Vrf) { // not required
+		return nil
 	}
 
 	if m.Vrf != nil {

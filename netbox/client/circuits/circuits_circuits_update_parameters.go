@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewCircuitsCircuitsUpdateParams creates a new CircuitsCircuitsUpdateParams object
@@ -80,7 +80,7 @@ for the circuits circuits update operation typically these are written to a http
 type CircuitsCircuitsUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableCircuit
+	Data *models.Circuit
 	/*ID
 	  A unique integer value identifying this circuit.
 
@@ -126,13 +126,13 @@ func (o *CircuitsCircuitsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the circuits circuits update params
-func (o *CircuitsCircuitsUpdateParams) WithData(data *models.WritableCircuit) *CircuitsCircuitsUpdateParams {
+func (o *CircuitsCircuitsUpdateParams) WithData(data *models.Circuit) *CircuitsCircuitsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the circuits circuits update params
-func (o *CircuitsCircuitsUpdateParams) SetData(data *models.WritableCircuit) {
+func (o *CircuitsCircuitsUpdateParams) SetData(data *models.Circuit) {
 	o.Data = data
 }
 

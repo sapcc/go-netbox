@@ -104,6 +104,8 @@ type VirtualizationClustersListParams struct {
 	Site *string
 	/*SiteID*/
 	SiteID *int64
+	/*Tag*/
+	Tag *string
 	/*Type*/
 	Type *string
 	/*TypeID*/
@@ -244,6 +246,17 @@ func (o *VirtualizationClustersListParams) WithSiteID(siteID *int64) *Virtualiza
 // SetSiteID adds the siteId to the virtualization clusters list params
 func (o *VirtualizationClustersListParams) SetSiteID(siteID *int64) {
 	o.SiteID = siteID
+}
+
+// WithTag adds the tag to the virtualization clusters list params
+func (o *VirtualizationClustersListParams) WithTag(tag *string) *VirtualizationClustersListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the virtualization clusters list params
+func (o *VirtualizationClustersListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WithType adds the typeVar to the virtualization clusters list params
@@ -414,6 +427,22 @@ func (o *VirtualizationClustersListParams) WriteToRequest(r runtime.ClientReques
 		qSiteID := swag.FormatInt64(qrSiteID)
 		if qSiteID != "" {
 			if err := r.SetQueryParam("site_id", qSiteID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

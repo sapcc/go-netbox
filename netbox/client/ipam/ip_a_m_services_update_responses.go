@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMServicesUpdateReader is a Reader for the IPAMServicesUpdate structure.
@@ -61,7 +61,7 @@ func NewIPAMServicesUpdateOK() *IPAMServicesUpdateOK {
 IPAMServicesUpdateOK ipam services update o k
 */
 type IPAMServicesUpdateOK struct {
-	Payload *models.WritableService
+	Payload *models.Service
 }
 
 func (o *IPAMServicesUpdateOK) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMServicesUpdateOK) Error() string {
 
 func (o *IPAMServicesUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableService)
+	o.Payload = new(models.Service)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewVirtualizationClustersUpdateParams creates a new VirtualizationClustersUpdateParams object
@@ -80,7 +80,7 @@ for the virtualization clusters update operation typically these are written to 
 type VirtualizationClustersUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableCluster
+	Data *models.Cluster
 	/*ID
 	  A unique integer value identifying this cluster.
 
@@ -126,13 +126,13 @@ func (o *VirtualizationClustersUpdateParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithData adds the data to the virtualization clusters update params
-func (o *VirtualizationClustersUpdateParams) WithData(data *models.WritableCluster) *VirtualizationClustersUpdateParams {
+func (o *VirtualizationClustersUpdateParams) WithData(data *models.Cluster) *VirtualizationClustersUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the virtualization clusters update params
-func (o *VirtualizationClustersUpdateParams) SetData(data *models.WritableCluster) {
+func (o *VirtualizationClustersUpdateParams) SetData(data *models.Cluster) {
 	o.Data = data
 }
 

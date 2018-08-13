@@ -37,8 +37,7 @@ type ConsolePort struct {
 	ConnectionStatus bool `json:"connection_status,omitempty"`
 
 	// cs port
-	// Required: true
-	CsPort *ConsoleServerPort `json:"cs_port"`
+	CsPort *NestedConsoleServerPort `json:"cs_port,omitempty"`
 
 	// device
 	// Required: true
@@ -51,7 +50,11 @@ type ConsolePort struct {
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
+
+	// Tags
+	Tags []string `json:"tags"`
 }
 
 // Validate validates this console port
@@ -74,6 +77,11 @@ func (m *ConsolePort) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -120,8 +128,8 @@ func (m *ConsolePort) validateConnectionStatus(formats strfmt.Registry) error {
 
 func (m *ConsolePort) validateCsPort(formats strfmt.Registry) error {
 
-	if err := validate.Required("cs_port", "body", m.CsPort); err != nil {
-		return err
+	if swag.IsZero(m.CsPort) { // not required
+		return nil
 	}
 
 	if m.CsPort != nil {
@@ -164,8 +172,21 @@ func (m *ConsolePort) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ConsolePort) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
 	}
 
 	return nil

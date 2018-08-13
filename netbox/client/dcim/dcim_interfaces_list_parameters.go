@@ -105,6 +105,8 @@ type DcimInterfacesListParams struct {
 
 	*/
 	Offset *int64
+	/*Tag*/
+	Tag *string
 	/*Type*/
 	Type *string
 
@@ -265,6 +267,17 @@ func (o *DcimInterfacesListParams) WithOffset(offset *int64) *DcimInterfacesList
 // SetOffset adds the offset to the dcim interfaces list params
 func (o *DcimInterfacesListParams) SetOffset(offset *int64) {
 	o.Offset = offset
+}
+
+// WithTag adds the tag to the dcim interfaces list params
+func (o *DcimInterfacesListParams) WithTag(tag *string) *DcimInterfacesListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the dcim interfaces list params
+func (o *DcimInterfacesListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WithType adds the typeVar to the dcim interfaces list params
@@ -456,6 +469,22 @@ func (o *DcimInterfacesListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

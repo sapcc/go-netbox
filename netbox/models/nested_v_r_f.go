@@ -38,11 +38,13 @@ type NestedVRF struct {
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Route distinguisher
 	// Required: true
 	// Max Length: 21
+	// Min Length: 1
 	Rd *string `json:"rd"`
 
 	// Url
@@ -81,6 +83,10 @@ func (m *NestedVRF) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
 	}
@@ -91,6 +97,10 @@ func (m *NestedVRF) validateName(formats strfmt.Registry) error {
 func (m *NestedVRF) validateRd(formats strfmt.Registry) error {
 
 	if err := validate.Required("rd", "body", m.Rd); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("rd", "body", string(*m.Rd), 1); err != nil {
 		return err
 	}
 

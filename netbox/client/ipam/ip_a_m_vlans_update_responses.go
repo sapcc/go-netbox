@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMVlansUpdateReader is a Reader for the IPAMVlansUpdate structure.
@@ -61,7 +61,7 @@ func NewIPAMVlansUpdateOK() *IPAMVlansUpdateOK {
 IPAMVlansUpdateOK ipam vlans update o k
 */
 type IPAMVlansUpdateOK struct {
-	Payload *models.WritableVLAN
+	Payload *models.VLAN
 }
 
 func (o *IPAMVlansUpdateOK) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMVlansUpdateOK) Error() string {
 
 func (o *IPAMVlansUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableVLAN)
+	o.Payload = new(models.VLAN)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

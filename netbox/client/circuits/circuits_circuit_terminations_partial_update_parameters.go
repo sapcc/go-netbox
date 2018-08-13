@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewCircuitsCircuitTerminationsPartialUpdateParams creates a new CircuitsCircuitTerminationsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the circuits circuit terminations partial update operation typically these a
 type CircuitsCircuitTerminationsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableCircuitTermination
+	Data *models.CircuitTermination
 	/*ID
 	  A unique integer value identifying this circuit termination.
 
@@ -126,13 +126,13 @@ func (o *CircuitsCircuitTerminationsPartialUpdateParams) SetHTTPClient(client *h
 }
 
 // WithData adds the data to the circuits circuit terminations partial update params
-func (o *CircuitsCircuitTerminationsPartialUpdateParams) WithData(data *models.WritableCircuitTermination) *CircuitsCircuitTerminationsPartialUpdateParams {
+func (o *CircuitsCircuitTerminationsPartialUpdateParams) WithData(data *models.CircuitTermination) *CircuitsCircuitTerminationsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the circuits circuit terminations partial update params
-func (o *CircuitsCircuitTerminationsPartialUpdateParams) SetData(data *models.WritableCircuitTermination) {
+func (o *CircuitsCircuitTerminationsPartialUpdateParams) SetData(data *models.CircuitTermination) {
 	o.Data = data
 }
 

@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimConsoleServerPortsCreateParams creates a new DcimConsoleServerPortsCreateParams object
@@ -79,7 +79,7 @@ for the dcim console server ports create operation typically these are written t
 type DcimConsoleServerPortsCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableConsoleServerPort
+	Data *models.ConsoleServerPort
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *DcimConsoleServerPortsCreateParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithData adds the data to the dcim console server ports create params
-func (o *DcimConsoleServerPortsCreateParams) WithData(data *models.WritableConsoleServerPort) *DcimConsoleServerPortsCreateParams {
+func (o *DcimConsoleServerPortsCreateParams) WithData(data *models.ConsoleServerPort) *DcimConsoleServerPortsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim console server ports create params
-func (o *DcimConsoleServerPortsCreateParams) SetData(data *models.WritableConsoleServerPort) {
+func (o *DcimConsoleServerPortsCreateParams) SetData(data *models.ConsoleServerPort) {
 	o.Data = data
 }
 

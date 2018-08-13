@@ -20,8 +20,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
-
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -33,9 +31,8 @@ import (
 // swagger:model WritableVirtualMachine
 type WritableVirtualMachine struct {
 
-	// Cluster
-	// Required: true
-	Cluster *int64 `json:"cluster"`
+	// cluster
+	Cluster int64 `json:"cluster,omitempty"`
 
 	// Comments
 	Comments string `json:"comments,omitempty"`
@@ -68,25 +65,33 @@ type WritableVirtualMachine struct {
 	// Name
 	// Required: true
 	// Max Length: 64
+	// Min Length: 1
 	Name *string `json:"name"`
 
-	// Platform
-	Platform int64 `json:"platform,omitempty"`
+	// platform
+	Platform *NestedPlatform `json:"platform,omitempty"`
 
-	// Primary IPv4
+	// primary ip
+	PrimaryIP *VirtualMachineIPAddress `json:"primary_ip,omitempty"`
+
+	// primary ip4
 	PrimaryIp4 int64 `json:"primary_ip4,omitempty"`
 
-	// Primary IPv6
+	// primary ip6
 	PrimaryIp6 int64 `json:"primary_ip6,omitempty"`
 
-	// Role
-	Role int64 `json:"role,omitempty"`
+	// role
+	Role *NestedDeviceRole `json:"role,omitempty"`
 
-	// Status
-	Status int64 `json:"status,omitempty"`
+	// status
+	Status *WritableVirtualMachineStatus `json:"status,omitempty"`
 
-	// Tenant
-	Tenant int64 `json:"tenant,omitempty"`
+	// Tags
+	// Required: true
+	Tags []string `json:"tags"`
+
+	// tenant
+	Tenant *NestedTenant `json:"tenant,omitempty"`
 
 	// VCPUs
 	// Maximum: 32767
@@ -97,11 +102,6 @@ type WritableVirtualMachine struct {
 // Validate validates this writable virtual machine
 func (m *WritableVirtualMachine) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateCluster(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
 
 	if err := m.validateCreated(formats); err != nil {
 		// prop
@@ -128,7 +128,32 @@ func (m *WritableVirtualMachine) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePlatform(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validatePrimaryIP(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateRole(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateStatus(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTenant(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -141,15 +166,6 @@ func (m *WritableVirtualMachine) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *WritableVirtualMachine) validateCluster(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -219,6 +235,10 @@ func (m *WritableVirtualMachine) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 64); err != nil {
 		return err
 	}
@@ -226,23 +246,63 @@ func (m *WritableVirtualMachine) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-var writableVirtualMachineTypeStatusPropEnum []interface{}
+func (m *WritableVirtualMachine) validatePlatform(formats strfmt.Registry) error {
 
-func init() {
-	var res []int64
-	if err := json.Unmarshal([]byte(`[1,0,3]`), &res); err != nil {
-		panic(err)
+	if swag.IsZero(m.Platform) { // not required
+		return nil
 	}
-	for _, v := range res {
-		writableVirtualMachineTypeStatusPropEnum = append(writableVirtualMachineTypeStatusPropEnum, v)
+
+	if m.Platform != nil {
+
+		if err := m.Platform.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("platform")
+			}
+			return err
+		}
+
 	}
+
+	return nil
 }
 
-// prop value enum
-func (m *WritableVirtualMachine) validateStatusEnum(path, location string, value int64) error {
-	if err := validate.Enum(path, location, value, writableVirtualMachineTypeStatusPropEnum); err != nil {
-		return err
+func (m *WritableVirtualMachine) validatePrimaryIP(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.PrimaryIP) { // not required
+		return nil
 	}
+
+	if m.PrimaryIP != nil {
+
+		if err := m.PrimaryIP.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("primary_ip")
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *WritableVirtualMachine) validateRole(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Role) { // not required
+		return nil
+	}
+
+	if m.Role != nil {
+
+		if err := m.Role.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("role")
+			}
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -252,9 +312,44 @@ func (m *WritableVirtualMachine) validateStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
-	// value enum
-	if err := m.validateStatusEnum("status", "body", m.Status); err != nil {
+	if m.Status != nil {
+
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *WritableVirtualMachine) validateTags(formats strfmt.Registry) error {
+
+	if err := validate.Required("tags", "body", m.Tags); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *WritableVirtualMachine) validateTenant(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
+	}
+
+	if m.Tenant != nil {
+
+		if err := m.Tenant.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("tenant")
+			}
+			return err
+		}
+
 	}
 
 	return nil

@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMVlanGroupsUpdateParams creates a new IPAMVlanGroupsUpdateParams object
@@ -80,7 +80,7 @@ for the ipam vlan groups update operation typically these are written to a http.
 type IPAMVlanGroupsUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableVLANGroup
+	Data *models.VLANGroup
 	/*ID
 	  A unique integer value identifying this VLAN group.
 
@@ -126,13 +126,13 @@ func (o *IPAMVlanGroupsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam vlan groups update params
-func (o *IPAMVlanGroupsUpdateParams) WithData(data *models.WritableVLANGroup) *IPAMVlanGroupsUpdateParams {
+func (o *IPAMVlanGroupsUpdateParams) WithData(data *models.VLANGroup) *IPAMVlanGroupsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam vlan groups update params
-func (o *IPAMVlanGroupsUpdateParams) SetData(data *models.WritableVLANGroup) {
+func (o *IPAMVlanGroupsUpdateParams) SetData(data *models.VLANGroup) {
 	o.Data = data
 }
 

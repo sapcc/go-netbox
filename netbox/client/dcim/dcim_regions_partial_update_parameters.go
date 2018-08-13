@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimRegionsPartialUpdateParams creates a new DcimRegionsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the dcim regions partial update operation typically these are written to a h
 type DcimRegionsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableRegion
+	Data *models.Region
 	/*ID
 	  A unique integer value identifying this region.
 
@@ -126,13 +126,13 @@ func (o *DcimRegionsPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim regions partial update params
-func (o *DcimRegionsPartialUpdateParams) WithData(data *models.WritableRegion) *DcimRegionsPartialUpdateParams {
+func (o *DcimRegionsPartialUpdateParams) WithData(data *models.Region) *DcimRegionsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim regions partial update params
-func (o *DcimRegionsPartialUpdateParams) SetData(data *models.WritableRegion) {
+func (o *DcimRegionsPartialUpdateParams) SetData(data *models.Region) {
 	o.Data = data
 }
 

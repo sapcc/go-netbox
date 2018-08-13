@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewCircuitsCircuitTerminationsUpdateParams creates a new CircuitsCircuitTerminationsUpdateParams object
@@ -80,7 +80,7 @@ for the circuits circuit terminations update operation typically these are writt
 type CircuitsCircuitTerminationsUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableCircuitTermination
+	Data *models.CircuitTermination
 	/*ID
 	  A unique integer value identifying this circuit termination.
 
@@ -126,13 +126,13 @@ func (o *CircuitsCircuitTerminationsUpdateParams) SetHTTPClient(client *http.Cli
 }
 
 // WithData adds the data to the circuits circuit terminations update params
-func (o *CircuitsCircuitTerminationsUpdateParams) WithData(data *models.WritableCircuitTermination) *CircuitsCircuitTerminationsUpdateParams {
+func (o *CircuitsCircuitTerminationsUpdateParams) WithData(data *models.CircuitTermination) *CircuitsCircuitTerminationsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the circuits circuit terminations update params
-func (o *CircuitsCircuitTerminationsUpdateParams) SetData(data *models.WritableCircuitTermination) {
+func (o *CircuitsCircuitTerminationsUpdateParams) SetData(data *models.CircuitTermination) {
 	o.Data = data
 }
 

@@ -34,8 +34,7 @@ import (
 type InterfaceCircuitTermination struct {
 
 	// circuit
-	// Required: true
-	Circuit *InterfaceNestedCircuit `json:"circuit"`
+	Circuit *InterfaceNestedCircuit `json:"circuit,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -64,7 +63,7 @@ type InterfaceCircuitTermination struct {
 
 	// Cross-connect ID
 	// Max Length: 50
-	XconnectID int64 `json:"xconnect_id,omitempty"`
+	XconnectID string `json:"xconnect_id,omitempty"`
 }
 
 // Validate validates this interface circuit termination
@@ -109,8 +108,8 @@ func (m *InterfaceCircuitTermination) Validate(formats strfmt.Registry) error {
 
 func (m *InterfaceCircuitTermination) validateCircuit(formats strfmt.Registry) error {
 
-	if err := validate.Required("circuit", "body", m.Circuit); err != nil {
-		return err
+	if swag.IsZero(m.Circuit) { // not required
+		return nil
 	}
 
 	if m.Circuit != nil {

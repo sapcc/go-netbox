@@ -36,17 +36,18 @@ type NestedDeviceType struct {
 	ID int64 `json:"id,omitempty"`
 
 	// manufacturer
-	// Required: true
-	Manufacturer *NestedManufacturer `json:"manufacturer"`
+	Manufacturer *NestedManufacturer `json:"manufacturer,omitempty"`
 
 	// Model
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Model *string `json:"model"`
 
 	// Slug
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
 
@@ -87,8 +88,8 @@ func (m *NestedDeviceType) Validate(formats strfmt.Registry) error {
 
 func (m *NestedDeviceType) validateManufacturer(formats strfmt.Registry) error {
 
-	if err := validate.Required("manufacturer", "body", m.Manufacturer); err != nil {
-		return err
+	if swag.IsZero(m.Manufacturer) { // not required
+		return nil
 	}
 
 	if m.Manufacturer != nil {
@@ -111,6 +112,10 @@ func (m *NestedDeviceType) validateModel(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("model", "body", string(*m.Model), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("model", "body", string(*m.Model), 50); err != nil {
 		return err
 	}
@@ -121,6 +126,10 @@ func (m *NestedDeviceType) validateModel(formats strfmt.Registry) error {
 func (m *NestedDeviceType) validateSlug(formats strfmt.Registry) error {
 
 	if err := validate.Required("slug", "body", m.Slug); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("slug", "body", string(*m.Slug), 1); err != nil {
 		return err
 	}
 

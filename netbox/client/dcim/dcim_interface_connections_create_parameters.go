@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimInterfaceConnectionsCreateParams creates a new DcimInterfaceConnectionsCreateParams object
@@ -79,7 +79,7 @@ for the dcim interface connections create operation typically these are written 
 type DcimInterfaceConnectionsCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableInterfaceConnection
+	Data *models.InterfaceConnection
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *DcimInterfaceConnectionsCreateParams) SetHTTPClient(client *http.Client
 }
 
 // WithData adds the data to the dcim interface connections create params
-func (o *DcimInterfaceConnectionsCreateParams) WithData(data *models.WritableInterfaceConnection) *DcimInterfaceConnectionsCreateParams {
+func (o *DcimInterfaceConnectionsCreateParams) WithData(data *models.InterfaceConnection) *DcimInterfaceConnectionsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim interface connections create params
-func (o *DcimInterfaceConnectionsCreateParams) SetData(data *models.WritableInterfaceConnection) {
+func (o *DcimInterfaceConnectionsCreateParams) SetData(data *models.InterfaceConnection) {
 	o.Data = data
 }
 

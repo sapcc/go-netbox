@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMServicesUpdateParams creates a new IPAMServicesUpdateParams object
@@ -80,7 +80,7 @@ for the ipam services update operation typically these are written to a http.Req
 type IPAMServicesUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableService
+	Data *models.Service
 	/*ID
 	  A unique integer value identifying this service.
 
@@ -126,13 +126,13 @@ func (o *IPAMServicesUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam services update params
-func (o *IPAMServicesUpdateParams) WithData(data *models.WritableService) *IPAMServicesUpdateParams {
+func (o *IPAMServicesUpdateParams) WithData(data *models.Service) *IPAMServicesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam services update params
-func (o *IPAMServicesUpdateParams) SetData(data *models.WritableService) {
+func (o *IPAMServicesUpdateParams) SetData(data *models.Service) {
 	o.Data = data
 }
 

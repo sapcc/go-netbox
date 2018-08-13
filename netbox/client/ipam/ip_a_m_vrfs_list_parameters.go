@@ -100,6 +100,8 @@ type IPAMVrfsListParams struct {
 	Q *string
 	/*Rd*/
 	Rd *string
+	/*Tag*/
+	Tag *string
 	/*Tenant*/
 	Tenant *string
 	/*TenantID*/
@@ -218,6 +220,17 @@ func (o *IPAMVrfsListParams) WithRd(rd *string) *IPAMVrfsListParams {
 // SetRd adds the rd to the ipam vrfs list params
 func (o *IPAMVrfsListParams) SetRd(rd *string) {
 	o.Rd = rd
+}
+
+// WithTag adds the tag to the ipam vrfs list params
+func (o *IPAMVrfsListParams) WithTag(tag *string) *IPAMVrfsListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the ipam vrfs list params
+func (o *IPAMVrfsListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WithTenant adds the tenant to the ipam vrfs list params
@@ -356,6 +369,22 @@ func (o *IPAMVrfsListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		qRd := qrRd
 		if qRd != "" {
 			if err := r.SetQueryParam("rd", qRd); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

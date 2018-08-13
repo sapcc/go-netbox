@@ -142,6 +142,8 @@ type DcimDevicesListParams struct {
 	SiteID *int64
 	/*Status*/
 	Status *string
+	/*Tag*/
+	Tag *string
 	/*Tenant*/
 	Tenant *string
 	/*TenantID*/
@@ -493,6 +495,17 @@ func (o *DcimDevicesListParams) WithStatus(status *string) *DcimDevicesListParam
 // SetStatus adds the status to the dcim devices list params
 func (o *DcimDevicesListParams) SetStatus(status *string) {
 	o.Status = status
+}
+
+// WithTag adds the tag to the dcim devices list params
+func (o *DcimDevicesListParams) WithTag(tag *string) *DcimDevicesListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the dcim devices list params
+func (o *DcimDevicesListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WithTenant adds the tenant to the dcim devices list params
@@ -978,6 +991,22 @@ func (o *DcimDevicesListParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		qStatus := qrStatus
 		if qStatus != "" {
 			if err := r.SetQueryParam("status", qStatus); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

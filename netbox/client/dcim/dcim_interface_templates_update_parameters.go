@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimInterfaceTemplatesUpdateParams creates a new DcimInterfaceTemplatesUpdateParams object
@@ -80,7 +80,7 @@ for the dcim interface templates update operation typically these are written to
 type DcimInterfaceTemplatesUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableInterfaceTemplate
+	Data *models.InterfaceTemplate
 	/*ID
 	  A unique integer value identifying this interface template.
 
@@ -126,13 +126,13 @@ func (o *DcimInterfaceTemplatesUpdateParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithData adds the data to the dcim interface templates update params
-func (o *DcimInterfaceTemplatesUpdateParams) WithData(data *models.WritableInterfaceTemplate) *DcimInterfaceTemplatesUpdateParams {
+func (o *DcimInterfaceTemplatesUpdateParams) WithData(data *models.InterfaceTemplate) *DcimInterfaceTemplatesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim interface templates update params
-func (o *DcimInterfaceTemplatesUpdateParams) SetData(data *models.WritableInterfaceTemplate) {
+func (o *DcimInterfaceTemplatesUpdateParams) SetData(data *models.InterfaceTemplate) {
 	o.Data = data
 }
 

@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewExtrasTopologyMapsCreateParams creates a new ExtrasTopologyMapsCreateParams object
@@ -79,7 +79,7 @@ for the extras topology maps create operation typically these are written to a h
 type ExtrasTopologyMapsCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableTopologyMap
+	Data *models.TopologyMap
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *ExtrasTopologyMapsCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the extras topology maps create params
-func (o *ExtrasTopologyMapsCreateParams) WithData(data *models.WritableTopologyMap) *ExtrasTopologyMapsCreateParams {
+func (o *ExtrasTopologyMapsCreateParams) WithData(data *models.TopologyMap) *ExtrasTopologyMapsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the extras topology maps create params
-func (o *ExtrasTopologyMapsCreateParams) SetData(data *models.WritableTopologyMap) {
+func (o *ExtrasTopologyMapsCreateParams) SetData(data *models.TopologyMap) {
 	o.Data = data
 }
 

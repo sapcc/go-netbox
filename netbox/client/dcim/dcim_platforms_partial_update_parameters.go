@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimPlatformsPartialUpdateParams creates a new DcimPlatformsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the dcim platforms partial update operation typically these are written to a
 type DcimPlatformsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritablePlatform
+	Data *models.Platform
 	/*ID
 	  A unique integer value identifying this platform.
 
@@ -126,13 +126,13 @@ func (o *DcimPlatformsPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim platforms partial update params
-func (o *DcimPlatformsPartialUpdateParams) WithData(data *models.WritablePlatform) *DcimPlatformsPartialUpdateParams {
+func (o *DcimPlatformsPartialUpdateParams) WithData(data *models.Platform) *DcimPlatformsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim platforms partial update params
-func (o *DcimPlatformsPartialUpdateParams) SetData(data *models.WritablePlatform) {
+func (o *DcimPlatformsPartialUpdateParams) SetData(data *models.Platform) {
 	o.Data = data
 }
 

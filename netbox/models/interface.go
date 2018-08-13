@@ -20,8 +20,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"strconv"
-
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -34,8 +32,7 @@ import (
 type Interface struct {
 
 	// circuit termination
-	// Required: true
-	CircuitTermination *InterfaceCircuitTermination `json:"circuit_termination"`
+	CircuitTermination *InterfaceCircuitTermination `json:"circuit_termination,omitempty"`
 
 	// Description
 	// Max Length: 100
@@ -49,14 +46,14 @@ type Interface struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// form factor
-	// Required: true
-	FormFactor *InterfaceFormFactor `json:"form_factor"`
+	FormFactor *InterfaceFormFactor `json:"form_factor,omitempty"`
 
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
 
 	// interface connection
+	// Read Only: true
 	InterfaceConnection *InterfaceConnection `json:"interface_connection,omitempty"`
 
 	// Is connected
@@ -64,8 +61,7 @@ type Interface struct {
 	IsConnected *bool `json:"is_connected,omitempty"`
 
 	// lag
-	// Required: true
-	Lag *NestedInterface `json:"lag"`
+	Lag *NestedInterface `json:"lag,omitempty"`
 
 	// MAC Address
 	MacAddress string `json:"mac_address,omitempty"`
@@ -76,8 +72,7 @@ type Interface struct {
 	MgmtOnly bool `json:"mgmt_only,omitempty"`
 
 	// mode
-	// Required: true
-	Mode *InterfaceMode `json:"mode"`
+	Mode *InterfaceMode `json:"mode,omitempty"`
 
 	// MTU
 	// Maximum: 32767
@@ -87,15 +82,18 @@ type Interface struct {
 	// Name
 	// Required: true
 	// Max Length: 64
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// tagged vlans
-	// Required: true
-	TaggedVlans []*InterfaceVLAN `json:"tagged_vlans"`
+	// Unique: true
+	TaggedVlans []int64 `json:"tagged_vlans"`
+
+	// Tags
+	Tags []string `json:"tags"`
 
 	// untagged vlan
-	// Required: true
-	UntaggedVlan *InterfaceVLAN `json:"untagged_vlan"`
+	UntaggedVlan *InterfaceVLAN `json:"untagged_vlan,omitempty"`
 }
 
 // Validate validates this interface
@@ -152,6 +150,11 @@ func (m *Interface) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateUntaggedVlan(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -165,8 +168,8 @@ func (m *Interface) Validate(formats strfmt.Registry) error {
 
 func (m *Interface) validateCircuitTermination(formats strfmt.Registry) error {
 
-	if err := validate.Required("circuit_termination", "body", m.CircuitTermination); err != nil {
-		return err
+	if swag.IsZero(m.CircuitTermination) { // not required
+		return nil
 	}
 
 	if m.CircuitTermination != nil {
@@ -218,8 +221,8 @@ func (m *Interface) validateDevice(formats strfmt.Registry) error {
 
 func (m *Interface) validateFormFactor(formats strfmt.Registry) error {
 
-	if err := validate.Required("form_factor", "body", m.FormFactor); err != nil {
-		return err
+	if swag.IsZero(m.FormFactor) { // not required
+		return nil
 	}
 
 	if m.FormFactor != nil {
@@ -258,8 +261,8 @@ func (m *Interface) validateInterfaceConnection(formats strfmt.Registry) error {
 
 func (m *Interface) validateLag(formats strfmt.Registry) error {
 
-	if err := validate.Required("lag", "body", m.Lag); err != nil {
-		return err
+	if swag.IsZero(m.Lag) { // not required
+		return nil
 	}
 
 	if m.Lag != nil {
@@ -278,8 +281,8 @@ func (m *Interface) validateLag(formats strfmt.Registry) error {
 
 func (m *Interface) validateMode(formats strfmt.Registry) error {
 
-	if err := validate.Required("mode", "body", m.Mode); err != nil {
-		return err
+	if swag.IsZero(m.Mode) { // not required
+		return nil
 	}
 
 	if m.Mode != nil {
@@ -319,6 +322,10 @@ func (m *Interface) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 64); err != nil {
 		return err
 	}
@@ -328,27 +335,21 @@ func (m *Interface) validateName(formats strfmt.Registry) error {
 
 func (m *Interface) validateTaggedVlans(formats strfmt.Registry) error {
 
-	if err := validate.Required("tagged_vlans", "body", m.TaggedVlans); err != nil {
+	if swag.IsZero(m.TaggedVlans) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("tagged_vlans", "body", m.TaggedVlans); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.TaggedVlans); i++ {
+	return nil
+}
 
-		if swag.IsZero(m.TaggedVlans[i]) { // not required
-			continue
-		}
+func (m *Interface) validateTags(formats strfmt.Registry) error {
 
-		if m.TaggedVlans[i] != nil {
-
-			if err := m.TaggedVlans[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("tagged_vlans" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-
-		}
-
+	if swag.IsZero(m.Tags) { // not required
+		return nil
 	}
 
 	return nil
@@ -356,8 +357,8 @@ func (m *Interface) validateTaggedVlans(formats strfmt.Registry) error {
 
 func (m *Interface) validateUntaggedVlan(formats strfmt.Registry) error {
 
-	if err := validate.Required("untagged_vlan", "body", m.UntaggedVlan); err != nil {
-		return err
+	if swag.IsZero(m.UntaggedVlan) { // not required
+		return nil
 	}
 
 	if m.UntaggedVlan != nil {

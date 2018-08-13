@@ -35,12 +35,16 @@ type Secret struct {
 	// Read Only: true
 	Created strfmt.Date `json:"created,omitempty"`
 
+	// Custom fields
+	CustomFields interface{} `json:"custom_fields,omitempty"`
+
 	// device
 	// Required: true
 	Device *NestedDevice `json:"device"`
 
 	// Hash
 	// Read Only: true
+	// Min Length: 1
 	Hash string `json:"hash,omitempty"`
 
 	// ID
@@ -52,17 +56,20 @@ type Secret struct {
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
 	// Name
-	// Required: true
 	// Max Length: 100
-	Name *string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// Plaintext
-	// Read Only: true
-	Plaintext string `json:"plaintext,omitempty"`
+	// Required: true
+	// Min Length: 1
+	Plaintext *string `json:"plaintext"`
 
 	// role
 	// Required: true
 	Role *NestedSecretRole `json:"role"`
+
+	// Tags
+	Tags []string `json:"tags"`
 }
 
 // Validate validates this secret
@@ -79,6 +86,11 @@ func (m *Secret) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateHash(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateLastUpdated(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -89,7 +101,17 @@ func (m *Secret) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePlaintext(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateRole(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -133,6 +155,19 @@ func (m *Secret) validateDevice(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Secret) validateHash(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Hash) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("hash", "body", string(m.Hash), 1); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Secret) validateLastUpdated(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.LastUpdated) { // not required
@@ -148,11 +183,24 @@ func (m *Secret) validateLastUpdated(formats strfmt.Registry) error {
 
 func (m *Secret) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", m.Name); err != nil {
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
+
+	if err := validate.MaxLength("name", "body", string(m.Name), 100); err != nil {
 		return err
 	}
 
-	if err := validate.MaxLength("name", "body", string(*m.Name), 100); err != nil {
+	return nil
+}
+
+func (m *Secret) validatePlaintext(formats strfmt.Registry) error {
+
+	if err := validate.Required("plaintext", "body", m.Plaintext); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("plaintext", "body", string(*m.Plaintext), 1); err != nil {
 		return err
 	}
 
@@ -174,6 +222,15 @@ func (m *Secret) validateRole(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Secret) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
 	}
 
 	return nil

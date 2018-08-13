@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimInventoryItemsCreateParams creates a new DcimInventoryItemsCreateParams object
@@ -79,7 +79,7 @@ for the dcim inventory items create operation typically these are written to a h
 type DcimInventoryItemsCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableInventoryItem
+	Data *models.InventoryItem
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *DcimInventoryItemsCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim inventory items create params
-func (o *DcimInventoryItemsCreateParams) WithData(data *models.WritableInventoryItem) *DcimInventoryItemsCreateParams {
+func (o *DcimInventoryItemsCreateParams) WithData(data *models.InventoryItem) *DcimInventoryItemsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim inventory items create params
-func (o *DcimInventoryItemsCreateParams) SetData(data *models.WritableInventoryItem) {
+func (o *DcimInventoryItemsCreateParams) SetData(data *models.InventoryItem) {
 	o.Data = data
 }
 

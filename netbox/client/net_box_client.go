@@ -25,13 +25,13 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/digitalocean/go-netbox/netbox/client/circuits"
-	"github.com/digitalocean/go-netbox/netbox/client/dcim"
-	"github.com/digitalocean/go-netbox/netbox/client/extras"
-	"github.com/digitalocean/go-netbox/netbox/client/ipam"
-	"github.com/digitalocean/go-netbox/netbox/client/secrets"
-	"github.com/digitalocean/go-netbox/netbox/client/tenancy"
-	"github.com/digitalocean/go-netbox/netbox/client/virtualization"
+	"github.com/hosting-de-labs/go-netbox/netbox/client/circuits"
+	"github.com/hosting-de-labs/go-netbox/netbox/client/dcim"
+	"github.com/hosting-de-labs/go-netbox/netbox/client/extras"
+	"github.com/hosting-de-labs/go-netbox/netbox/client/ipam"
+	"github.com/hosting-de-labs/go-netbox/netbox/client/secrets"
+	"github.com/hosting-de-labs/go-netbox/netbox/client/tenancy"
+	"github.com/hosting-de-labs/go-netbox/netbox/client/virtualization"
 )
 
 // Default net box HTTP client.

@@ -38,8 +38,7 @@ type Device struct {
 	AssetTag string `json:"asset_tag,omitempty"`
 
 	// cluster
-	// Required: true
-	Cluster *NestedCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster,omitempty"`
 
 	// Comments
 	Comments string `json:"comments,omitempty"`
@@ -64,8 +63,7 @@ type Device struct {
 	DisplayName string `json:"display_name,omitempty"`
 
 	// face
-	// Required: true
-	Face *DeviceFace `json:"face"`
+	Face *DeviceFace `json:"face,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -80,35 +78,30 @@ type Device struct {
 	Name string `json:"name,omitempty"`
 
 	// parent device
-	ParentDevice *NestedParentDevice `json:"parent_device,omitempty"`
+	// Read Only: true
+	ParentDevice *NestedDevice `json:"parent_device,omitempty"`
 
 	// platform
-	// Required: true
-	Platform *NestedPlatform `json:"platform"`
+	Platform *NestedPlatform `json:"platform,omitempty"`
 
 	// Position (U)
 	//
 	// The lowest-numbered unit occupied by the device
-	// Required: true
 	// Maximum: 32767
 	// Minimum: 1
-	Position *int64 `json:"position"`
+	Position int64 `json:"position,omitempty"`
 
 	// primary ip
-	// Required: true
-	PrimaryIP *DeviceIPAddress `json:"primary_ip"`
+	PrimaryIP *DeviceIPAddress `json:"primary_ip,omitempty"`
 
 	// primary ip4
-	// Required: true
-	PrimaryIp4 *DeviceIPAddress `json:"primary_ip4"`
+	PrimaryIp4 *DeviceIPAddress `json:"primary_ip4,omitempty"`
 
 	// primary ip6
-	// Required: true
-	PrimaryIp6 *DeviceIPAddress `json:"primary_ip6"`
+	PrimaryIp6 *DeviceIPAddress `json:"primary_ip6,omitempty"`
 
 	// rack
-	// Required: true
-	Rack *NestedRack `json:"rack"`
+	Rack *NestedRack `json:"rack,omitempty"`
 
 	// Serial number
 	// Max Length: 50
@@ -119,18 +112,18 @@ type Device struct {
 	Site *NestedSite `json:"site"`
 
 	// status
-	// Required: true
-	Status *DeviceStatus `json:"status"`
+	Status *DeviceStatus `json:"status,omitempty"`
+
+	// Tags
+	Tags []string `json:"tags"`
 
 	// tenant
-	// Required: true
-	Tenant *NestedTenant `json:"tenant"`
+	Tenant *NestedTenant `json:"tenant,omitempty"`
 
 	// Vc position
-	// Required: true
 	// Maximum: 255
 	// Minimum: 0
-	VcPosition *int64 `json:"vc_position"`
+	VcPosition *int64 `json:"vc_position,omitempty"`
 
 	// Vc priority
 	// Maximum: 255
@@ -138,8 +131,7 @@ type Device struct {
 	VcPriority *int64 `json:"vc_priority,omitempty"`
 
 	// virtual chassis
-	// Required: true
-	VirtualChassis *DeviceVirtualChassis `json:"virtual_chassis"`
+	VirtualChassis *DeviceVirtualChassis `json:"virtual_chassis,omitempty"`
 }
 
 // Validate validates this device
@@ -236,6 +228,11 @@ func (m *Device) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateTenant(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -277,8 +274,8 @@ func (m *Device) validateAssetTag(formats strfmt.Registry) error {
 
 func (m *Device) validateCluster(formats strfmt.Registry) error {
 
-	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
-		return err
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
 	}
 
 	if m.Cluster != nil {
@@ -350,8 +347,8 @@ func (m *Device) validateDeviceType(formats strfmt.Registry) error {
 
 func (m *Device) validateFace(formats strfmt.Registry) error {
 
-	if err := validate.Required("face", "body", m.Face); err != nil {
-		return err
+	if swag.IsZero(m.Face) { // not required
+		return nil
 	}
 
 	if m.Face != nil {
@@ -416,8 +413,8 @@ func (m *Device) validateParentDevice(formats strfmt.Registry) error {
 
 func (m *Device) validatePlatform(formats strfmt.Registry) error {
 
-	if err := validate.Required("platform", "body", m.Platform); err != nil {
-		return err
+	if swag.IsZero(m.Platform) { // not required
+		return nil
 	}
 
 	if m.Platform != nil {
@@ -436,15 +433,15 @@ func (m *Device) validatePlatform(formats strfmt.Registry) error {
 
 func (m *Device) validatePosition(formats strfmt.Registry) error {
 
-	if err := validate.Required("position", "body", m.Position); err != nil {
+	if swag.IsZero(m.Position) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("position", "body", int64(m.Position), 1, false); err != nil {
 		return err
 	}
 
-	if err := validate.MinimumInt("position", "body", int64(*m.Position), 1, false); err != nil {
-		return err
-	}
-
-	if err := validate.MaximumInt("position", "body", int64(*m.Position), 32767, false); err != nil {
+	if err := validate.MaximumInt("position", "body", int64(m.Position), 32767, false); err != nil {
 		return err
 	}
 
@@ -453,8 +450,8 @@ func (m *Device) validatePosition(formats strfmt.Registry) error {
 
 func (m *Device) validatePrimaryIP(formats strfmt.Registry) error {
 
-	if err := validate.Required("primary_ip", "body", m.PrimaryIP); err != nil {
-		return err
+	if swag.IsZero(m.PrimaryIP) { // not required
+		return nil
 	}
 
 	if m.PrimaryIP != nil {
@@ -473,8 +470,8 @@ func (m *Device) validatePrimaryIP(formats strfmt.Registry) error {
 
 func (m *Device) validatePrimaryIp4(formats strfmt.Registry) error {
 
-	if err := validate.Required("primary_ip4", "body", m.PrimaryIp4); err != nil {
-		return err
+	if swag.IsZero(m.PrimaryIp4) { // not required
+		return nil
 	}
 
 	if m.PrimaryIp4 != nil {
@@ -493,8 +490,8 @@ func (m *Device) validatePrimaryIp4(formats strfmt.Registry) error {
 
 func (m *Device) validatePrimaryIp6(formats strfmt.Registry) error {
 
-	if err := validate.Required("primary_ip6", "body", m.PrimaryIp6); err != nil {
-		return err
+	if swag.IsZero(m.PrimaryIp6) { // not required
+		return nil
 	}
 
 	if m.PrimaryIp6 != nil {
@@ -513,8 +510,8 @@ func (m *Device) validatePrimaryIp6(formats strfmt.Registry) error {
 
 func (m *Device) validateRack(formats strfmt.Registry) error {
 
-	if err := validate.Required("rack", "body", m.Rack); err != nil {
-		return err
+	if swag.IsZero(m.Rack) { // not required
+		return nil
 	}
 
 	if m.Rack != nil {
@@ -566,8 +563,8 @@ func (m *Device) validateSite(formats strfmt.Registry) error {
 
 func (m *Device) validateStatus(formats strfmt.Registry) error {
 
-	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	if m.Status != nil {
@@ -584,10 +581,19 @@ func (m *Device) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Device) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *Device) validateTenant(formats strfmt.Registry) error {
 
-	if err := validate.Required("tenant", "body", m.Tenant); err != nil {
-		return err
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
 	}
 
 	if m.Tenant != nil {
@@ -606,8 +612,8 @@ func (m *Device) validateTenant(formats strfmt.Registry) error {
 
 func (m *Device) validateVcPosition(formats strfmt.Registry) error {
 
-	if err := validate.Required("vc_position", "body", m.VcPosition); err != nil {
-		return err
+	if swag.IsZero(m.VcPosition) { // not required
+		return nil
 	}
 
 	if err := validate.MinimumInt("vc_position", "body", int64(*m.VcPosition), 0, false); err != nil {
@@ -640,8 +646,8 @@ func (m *Device) validateVcPriority(formats strfmt.Registry) error {
 
 func (m *Device) validateVirtualChassis(formats strfmt.Registry) error {
 
-	if err := validate.Required("virtual_chassis", "body", m.VirtualChassis); err != nil {
-		return err
+	if swag.IsZero(m.VirtualChassis) { // not required
+		return nil
 	}
 
 	if m.VirtualChassis != nil {

@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewCircuitsCircuitsPartialUpdateParams creates a new CircuitsCircuitsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the circuits circuits partial update operation typically these are written t
 type CircuitsCircuitsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableCircuit
+	Data *models.Circuit
 	/*ID
 	  A unique integer value identifying this circuit.
 
@@ -126,13 +126,13 @@ func (o *CircuitsCircuitsPartialUpdateParams) SetHTTPClient(client *http.Client)
 }
 
 // WithData adds the data to the circuits circuits partial update params
-func (o *CircuitsCircuitsPartialUpdateParams) WithData(data *models.WritableCircuit) *CircuitsCircuitsPartialUpdateParams {
+func (o *CircuitsCircuitsPartialUpdateParams) WithData(data *models.Circuit) *CircuitsCircuitsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the circuits circuits partial update params
-func (o *CircuitsCircuitsPartialUpdateParams) SetData(data *models.WritableCircuit) {
+func (o *CircuitsCircuitsPartialUpdateParams) SetData(data *models.Circuit) {
 	o.Data = data
 }
 

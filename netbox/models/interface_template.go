@@ -36,8 +36,7 @@ type InterfaceTemplate struct {
 	DeviceType *NestedDeviceType `json:"device_type"`
 
 	// form factor
-	// Required: true
-	FormFactor *InterfaceTemplateFormFactor `json:"form_factor"`
+	FormFactor *InterfaceTemplateFormFactor `json:"form_factor,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -49,6 +48,7 @@ type InterfaceTemplate struct {
 	// Name
 	// Required: true
 	// Max Length: 64
+	// Min Length: 1
 	Name *string `json:"name"`
 }
 
@@ -99,8 +99,8 @@ func (m *InterfaceTemplate) validateDeviceType(formats strfmt.Registry) error {
 
 func (m *InterfaceTemplate) validateFormFactor(formats strfmt.Registry) error {
 
-	if err := validate.Required("form_factor", "body", m.FormFactor); err != nil {
-		return err
+	if swag.IsZero(m.FormFactor) { // not required
+		return nil
 	}
 
 	if m.FormFactor != nil {
@@ -120,6 +120,10 @@ func (m *InterfaceTemplate) validateFormFactor(formats strfmt.Registry) error {
 func (m *InterfaceTemplate) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
 		return err
 	}
 

@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimVirtualChassisPartialUpdateParams creates a new DcimVirtualChassisPartialUpdateParams object
@@ -80,7 +80,7 @@ for the dcim virtual chassis partial update operation typically these are writte
 type DcimVirtualChassisPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableVirtualChassis
+	Data *models.VirtualChassis
 	/*ID
 	  A unique integer value identifying this virtual chassis.
 
@@ -126,13 +126,13 @@ func (o *DcimVirtualChassisPartialUpdateParams) SetHTTPClient(client *http.Clien
 }
 
 // WithData adds the data to the dcim virtual chassis partial update params
-func (o *DcimVirtualChassisPartialUpdateParams) WithData(data *models.WritableVirtualChassis) *DcimVirtualChassisPartialUpdateParams {
+func (o *DcimVirtualChassisPartialUpdateParams) WithData(data *models.VirtualChassis) *DcimVirtualChassisPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim virtual chassis partial update params
-func (o *DcimVirtualChassisPartialUpdateParams) SetData(data *models.WritableVirtualChassis) {
+func (o *DcimVirtualChassisPartialUpdateParams) SetData(data *models.VirtualChassis) {
 	o.Data = data
 }
 

@@ -32,8 +32,7 @@ import (
 type VirtualMachine struct {
 
 	// cluster
-	// Required: true
-	Cluster *NestedCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster,omitempty"`
 
 	// Comments
 	Comments string `json:"comments,omitempty"`
@@ -66,35 +65,33 @@ type VirtualMachine struct {
 	// Name
 	// Required: true
 	// Max Length: 64
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// platform
-	// Required: true
-	Platform *NestedPlatform `json:"platform"`
+	Platform *NestedPlatform `json:"platform,omitempty"`
 
 	// primary ip
-	// Required: true
-	PrimaryIP *VirtualMachineIPAddress `json:"primary_ip"`
+	PrimaryIP *VirtualMachineIPAddress `json:"primary_ip,omitempty"`
 
 	// primary ip4
-	// Required: true
-	PrimaryIp4 *VirtualMachineIPAddress `json:"primary_ip4"`
+	PrimaryIp4 *VirtualMachineIPAddress `json:"primary_ip4,omitempty"`
 
 	// primary ip6
-	// Required: true
-	PrimaryIp6 *VirtualMachineIPAddress `json:"primary_ip6"`
+	PrimaryIp6 *VirtualMachineIPAddress `json:"primary_ip6,omitempty"`
 
 	// role
-	// Required: true
-	Role *NestedDeviceRole `json:"role"`
+	Role *NestedDeviceRole `json:"role,omitempty"`
 
 	// status
+	Status *VirtualMachineStatus `json:"status,omitempty"`
+
+	// Tags
 	// Required: true
-	Status *VirtualMachineStatus `json:"status"`
+	Tags []string `json:"tags"`
 
 	// tenant
-	// Required: true
-	Tenant *NestedTenant `json:"tenant"`
+	Tenant *NestedTenant `json:"tenant,omitempty"`
 
 	// VCPUs
 	// Maximum: 32767
@@ -166,6 +163,11 @@ func (m *VirtualMachine) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateTenant(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -184,8 +186,8 @@ func (m *VirtualMachine) Validate(formats strfmt.Registry) error {
 
 func (m *VirtualMachine) validateCluster(formats strfmt.Registry) error {
 
-	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
-		return err
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
 	}
 
 	if m.Cluster != nil {
@@ -268,6 +270,10 @@ func (m *VirtualMachine) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 64); err != nil {
 		return err
 	}
@@ -277,8 +283,8 @@ func (m *VirtualMachine) validateName(formats strfmt.Registry) error {
 
 func (m *VirtualMachine) validatePlatform(formats strfmt.Registry) error {
 
-	if err := validate.Required("platform", "body", m.Platform); err != nil {
-		return err
+	if swag.IsZero(m.Platform) { // not required
+		return nil
 	}
 
 	if m.Platform != nil {
@@ -297,8 +303,8 @@ func (m *VirtualMachine) validatePlatform(formats strfmt.Registry) error {
 
 func (m *VirtualMachine) validatePrimaryIP(formats strfmt.Registry) error {
 
-	if err := validate.Required("primary_ip", "body", m.PrimaryIP); err != nil {
-		return err
+	if swag.IsZero(m.PrimaryIP) { // not required
+		return nil
 	}
 
 	if m.PrimaryIP != nil {
@@ -317,8 +323,8 @@ func (m *VirtualMachine) validatePrimaryIP(formats strfmt.Registry) error {
 
 func (m *VirtualMachine) validatePrimaryIp4(formats strfmt.Registry) error {
 
-	if err := validate.Required("primary_ip4", "body", m.PrimaryIp4); err != nil {
-		return err
+	if swag.IsZero(m.PrimaryIp4) { // not required
+		return nil
 	}
 
 	if m.PrimaryIp4 != nil {
@@ -337,8 +343,8 @@ func (m *VirtualMachine) validatePrimaryIp4(formats strfmt.Registry) error {
 
 func (m *VirtualMachine) validatePrimaryIp6(formats strfmt.Registry) error {
 
-	if err := validate.Required("primary_ip6", "body", m.PrimaryIp6); err != nil {
-		return err
+	if swag.IsZero(m.PrimaryIp6) { // not required
+		return nil
 	}
 
 	if m.PrimaryIp6 != nil {
@@ -357,8 +363,8 @@ func (m *VirtualMachine) validatePrimaryIp6(formats strfmt.Registry) error {
 
 func (m *VirtualMachine) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.Required("role", "body", m.Role); err != nil {
-		return err
+	if swag.IsZero(m.Role) { // not required
+		return nil
 	}
 
 	if m.Role != nil {
@@ -377,8 +383,8 @@ func (m *VirtualMachine) validateRole(formats strfmt.Registry) error {
 
 func (m *VirtualMachine) validateStatus(formats strfmt.Registry) error {
 
-	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	if m.Status != nil {
@@ -395,10 +401,19 @@ func (m *VirtualMachine) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *VirtualMachine) validateTags(formats strfmt.Registry) error {
+
+	if err := validate.Required("tags", "body", m.Tags); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *VirtualMachine) validateTenant(formats strfmt.Registry) error {
 
-	if err := validate.Required("tenant", "body", m.Tenant); err != nil {
-		return err
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
 	}
 
 	if m.Tenant != nil {

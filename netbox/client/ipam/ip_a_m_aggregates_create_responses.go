@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMAggregatesCreateReader is a Reader for the IPAMAggregatesCreate structure.
@@ -61,7 +61,7 @@ func NewIPAMAggregatesCreateCreated() *IPAMAggregatesCreateCreated {
 IPAMAggregatesCreateCreated ipam aggregates create created
 */
 type IPAMAggregatesCreateCreated struct {
-	Payload *models.WritableAggregate
+	Payload *models.Aggregate
 }
 
 func (o *IPAMAggregatesCreateCreated) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMAggregatesCreateCreated) Error() string {
 
 func (o *IPAMAggregatesCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableAggregate)
+	o.Payload = new(models.Aggregate)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -110,6 +110,8 @@ type IPAMVlansListParams struct {
 	SiteID *int64
 	/*Status*/
 	Status *string
+	/*Tag*/
+	Tag *string
 	/*Tenant*/
 	Tenant *string
 	/*TenantID*/
@@ -285,6 +287,17 @@ func (o *IPAMVlansListParams) WithStatus(status *string) *IPAMVlansListParams {
 // SetStatus adds the status to the ipam vlans list params
 func (o *IPAMVlansListParams) SetStatus(status *string) {
 	o.Status = status
+}
+
+// WithTag adds the tag to the ipam vlans list params
+func (o *IPAMVlansListParams) WithTag(tag *string) *IPAMVlansListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the ipam vlans list params
+func (o *IPAMVlansListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WithTenant adds the tenant to the ipam vlans list params
@@ -514,6 +527,22 @@ func (o *IPAMVlansListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		qStatus := qrStatus
 		if qStatus != "" {
 			if err := r.SetQueryParam("status", qStatus); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

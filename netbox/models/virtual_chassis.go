@@ -42,6 +42,9 @@ type VirtualChassis struct {
 	// master
 	// Required: true
 	Master *NestedDevice `json:"master"`
+
+	// Tags
+	Tags []string `json:"tags"`
 }
 
 // Validate validates this virtual chassis
@@ -54,6 +57,11 @@ func (m *VirtualChassis) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMaster(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -92,6 +100,15 @@ func (m *VirtualChassis) validateMaster(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VirtualChassis) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
 	}
 
 	return nil

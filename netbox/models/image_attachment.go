@@ -31,6 +31,10 @@ import (
 // swagger:model ImageAttachment
 type ImageAttachment struct {
 
+	// Content type
+	// Required: true
+	ContentType *string `json:"content_type"`
+
 	// Created
 	// Read Only: true
 	Created strfmt.DateTime `json:"created,omitempty"`
@@ -40,9 +44,8 @@ type ImageAttachment struct {
 	ID int64 `json:"id,omitempty"`
 
 	// Image
-	// Required: true
 	// Read Only: true
-	Image strfmt.URI `json:"image"`
+	Image strfmt.URI `json:"image,omitempty"`
 
 	// Image height
 	// Required: true
@@ -60,6 +63,12 @@ type ImageAttachment struct {
 	// Max Length: 50
 	Name string `json:"name,omitempty"`
 
+	// Object id
+	// Required: true
+	// Maximum: 2.147483647e+09
+	// Minimum: 0
+	ObjectID *int64 `json:"object_id"`
+
 	// Parent
 	// Read Only: true
 	Parent string `json:"parent,omitempty"`
@@ -68,6 +77,11 @@ type ImageAttachment struct {
 // Validate validates this image attachment
 func (m *ImageAttachment) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateContentType(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
 
 	if err := m.validateCreated(formats); err != nil {
 		// prop
@@ -94,9 +108,23 @@ func (m *ImageAttachment) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateObjectID(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ImageAttachment) validateContentType(formats strfmt.Registry) error {
+
+	if err := validate.Required("content_type", "body", m.ContentType); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -115,8 +143,8 @@ func (m *ImageAttachment) validateCreated(formats strfmt.Registry) error {
 
 func (m *ImageAttachment) validateImage(formats strfmt.Registry) error {
 
-	if err := validate.Required("image", "body", strfmt.URI(m.Image)); err != nil {
-		return err
+	if swag.IsZero(m.Image) { // not required
+		return nil
 	}
 
 	if err := validate.FormatOf("image", "body", "uri", m.Image.String(), formats); err != nil {
@@ -167,6 +195,23 @@ func (m *ImageAttachment) validateName(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MaxLength("name", "body", string(m.Name), 50); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ImageAttachment) validateObjectID(formats strfmt.Registry) error {
+
+	if err := validate.Required("object_id", "body", m.ObjectID); err != nil {
+		return err
+	}
+
+	if err := validate.MinimumInt("object_id", "body", int64(*m.ObjectID), 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("object_id", "body", int64(*m.ObjectID), 2.147483647e+09, false); err != nil {
 		return err
 	}
 

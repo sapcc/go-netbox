@@ -47,8 +47,7 @@ type VLAN struct {
 	DisplayName string `json:"display_name,omitempty"`
 
 	// group
-	// Required: true
-	Group *NestedVLANGroup `json:"group"`
+	Group *NestedVLANGroup `json:"group,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -61,23 +60,23 @@ type VLAN struct {
 	// Name
 	// Required: true
 	// Max Length: 64
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// role
-	// Required: true
-	Role *NestedRole `json:"role"`
+	Role *NestedRole `json:"role,omitempty"`
 
 	// site
-	// Required: true
-	Site *NestedSite `json:"site"`
+	Site *NestedSite `json:"site,omitempty"`
 
 	// status
-	// Required: true
-	Status *VLANStatus `json:"status"`
+	Status *VLANStatus `json:"status,omitempty"`
+
+	// Tags
+	Tags []string `json:"tags"`
 
 	// tenant
-	// Required: true
-	Tenant *NestedTenant `json:"tenant"`
+	Tenant *NestedTenant `json:"tenant,omitempty"`
 
 	// ID
 	// Required: true
@@ -130,6 +129,11 @@ func (m *VLAN) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateTenant(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -174,8 +178,8 @@ func (m *VLAN) validateDescription(formats strfmt.Registry) error {
 
 func (m *VLAN) validateGroup(formats strfmt.Registry) error {
 
-	if err := validate.Required("group", "body", m.Group); err != nil {
-		return err
+	if swag.IsZero(m.Group) { // not required
+		return nil
 	}
 
 	if m.Group != nil {
@@ -211,6 +215,10 @@ func (m *VLAN) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 64); err != nil {
 		return err
 	}
@@ -220,8 +228,8 @@ func (m *VLAN) validateName(formats strfmt.Registry) error {
 
 func (m *VLAN) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.Required("role", "body", m.Role); err != nil {
-		return err
+	if swag.IsZero(m.Role) { // not required
+		return nil
 	}
 
 	if m.Role != nil {
@@ -240,8 +248,8 @@ func (m *VLAN) validateRole(formats strfmt.Registry) error {
 
 func (m *VLAN) validateSite(formats strfmt.Registry) error {
 
-	if err := validate.Required("site", "body", m.Site); err != nil {
-		return err
+	if swag.IsZero(m.Site) { // not required
+		return nil
 	}
 
 	if m.Site != nil {
@@ -260,8 +268,8 @@ func (m *VLAN) validateSite(formats strfmt.Registry) error {
 
 func (m *VLAN) validateStatus(formats strfmt.Registry) error {
 
-	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	if m.Status != nil {
@@ -278,10 +286,19 @@ func (m *VLAN) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *VLAN) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *VLAN) validateTenant(formats strfmt.Registry) error {
 
-	if err := validate.Required("tenant", "body", m.Tenant); err != nil {
-		return err
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
 	}
 
 	if m.Tenant != nil {

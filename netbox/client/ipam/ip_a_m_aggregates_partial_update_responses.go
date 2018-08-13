@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMAggregatesPartialUpdateReader is a Reader for the IPAMAggregatesPartialUpdate structure.
@@ -61,7 +61,7 @@ func NewIPAMAggregatesPartialUpdateOK() *IPAMAggregatesPartialUpdateOK {
 IPAMAggregatesPartialUpdateOK ipam aggregates partial update o k
 */
 type IPAMAggregatesPartialUpdateOK struct {
-	Payload *models.WritableAggregate
+	Payload *models.Aggregate
 }
 
 func (o *IPAMAggregatesPartialUpdateOK) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMAggregatesPartialUpdateOK) Error() string {
 
 func (o *IPAMAggregatesPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableAggregate)
+	o.Payload = new(models.Aggregate)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

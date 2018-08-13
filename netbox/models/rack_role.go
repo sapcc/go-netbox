@@ -34,6 +34,7 @@ type RackRole struct {
 	// Color
 	// Required: true
 	// Max Length: 6
+	// Min Length: 1
 	// Pattern: ^[0-9a-f]{6}$
 	Color *string `json:"color"`
 
@@ -44,11 +45,13 @@ type RackRole struct {
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Slug
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
 }
@@ -84,6 +87,10 @@ func (m *RackRole) validateColor(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("color", "body", string(*m.Color), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("color", "body", string(*m.Color), 6); err != nil {
 		return err
 	}
@@ -101,6 +108,10 @@ func (m *RackRole) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
 	}
@@ -111,6 +122,10 @@ func (m *RackRole) validateName(formats strfmt.Registry) error {
 func (m *RackRole) validateSlug(formats strfmt.Registry) error {
 
 	if err := validate.Required("slug", "body", m.Slug); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("slug", "body", string(*m.Slug), 1); err != nil {
 		return err
 	}
 

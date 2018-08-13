@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimConsoleServerPortTemplatesUpdateParams creates a new DcimConsoleServerPortTemplatesUpdateParams object
@@ -80,7 +80,7 @@ for the dcim console server port templates update operation typically these are 
 type DcimConsoleServerPortTemplatesUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableConsoleServerPortTemplate
+	Data *models.ConsoleServerPortTemplate
 	/*ID
 	  A unique integer value identifying this console server port template.
 
@@ -126,13 +126,13 @@ func (o *DcimConsoleServerPortTemplatesUpdateParams) SetHTTPClient(client *http.
 }
 
 // WithData adds the data to the dcim console server port templates update params
-func (o *DcimConsoleServerPortTemplatesUpdateParams) WithData(data *models.WritableConsoleServerPortTemplate) *DcimConsoleServerPortTemplatesUpdateParams {
+func (o *DcimConsoleServerPortTemplatesUpdateParams) WithData(data *models.ConsoleServerPortTemplate) *DcimConsoleServerPortTemplatesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim console server port templates update params
-func (o *DcimConsoleServerPortTemplatesUpdateParams) SetData(data *models.WritableConsoleServerPortTemplate) {
+func (o *DcimConsoleServerPortTemplatesUpdateParams) SetData(data *models.ConsoleServerPortTemplate) {
 	o.Data = data
 }
 

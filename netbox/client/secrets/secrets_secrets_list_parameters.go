@@ -104,6 +104,8 @@ type SecretsSecretsListParams struct {
 	Role *string
 	/*RoleID*/
 	RoleID *int64
+	/*Tag*/
+	Tag *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -240,6 +242,17 @@ func (o *SecretsSecretsListParams) WithRoleID(roleID *int64) *SecretsSecretsList
 // SetRoleID adds the roleId to the secrets secrets list params
 func (o *SecretsSecretsListParams) SetRoleID(roleID *int64) {
 	o.RoleID = roleID
+}
+
+// WithTag adds the tag to the secrets secrets list params
+func (o *SecretsSecretsListParams) WithTag(tag *string) *SecretsSecretsListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the secrets secrets list params
+func (o *SecretsSecretsListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -388,6 +401,22 @@ func (o *SecretsSecretsListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qRoleID := swag.FormatInt64(qrRoleID)
 		if qRoleID != "" {
 			if err := r.SetQueryParam("role_id", qRoleID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

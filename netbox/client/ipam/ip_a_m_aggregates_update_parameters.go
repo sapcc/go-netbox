@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMAggregatesUpdateParams creates a new IPAMAggregatesUpdateParams object
@@ -80,7 +80,7 @@ for the ipam aggregates update operation typically these are written to a http.R
 type IPAMAggregatesUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableAggregate
+	Data *models.Aggregate
 	/*ID
 	  A unique integer value identifying this aggregate.
 
@@ -126,13 +126,13 @@ func (o *IPAMAggregatesUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam aggregates update params
-func (o *IPAMAggregatesUpdateParams) WithData(data *models.WritableAggregate) *IPAMAggregatesUpdateParams {
+func (o *IPAMAggregatesUpdateParams) WithData(data *models.Aggregate) *IPAMAggregatesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam aggregates update params
-func (o *IPAMAggregatesUpdateParams) SetData(data *models.WritableAggregate) {
+func (o *IPAMAggregatesUpdateParams) SetData(data *models.Aggregate) {
 	o.Data = data
 }
 

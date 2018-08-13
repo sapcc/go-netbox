@@ -38,15 +38,16 @@ type VLANGroup struct {
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// site
-	// Required: true
-	Site *NestedSite `json:"site"`
+	Site *NestedSite `json:"site,omitempty"`
 
 	// Slug
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
 }
@@ -82,6 +83,10 @@ func (m *VLANGroup) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
 	}
@@ -91,8 +96,8 @@ func (m *VLANGroup) validateName(formats strfmt.Registry) error {
 
 func (m *VLANGroup) validateSite(formats strfmt.Registry) error {
 
-	if err := validate.Required("site", "body", m.Site); err != nil {
-		return err
+	if swag.IsZero(m.Site) { // not required
+		return nil
 	}
 
 	if m.Site != nil {
@@ -112,6 +117,10 @@ func (m *VLANGroup) validateSite(formats strfmt.Registry) error {
 func (m *VLANGroup) validateSlug(formats strfmt.Registry) error {
 
 	if err := validate.Required("slug", "body", m.Slug); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("slug", "body", string(*m.Slug), 1); err != nil {
 		return err
 	}
 

@@ -34,6 +34,7 @@ type NestedCircuit struct {
 	// Circuit ID
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Cid *string `json:"cid"`
 
 	// ID
@@ -68,6 +69,10 @@ func (m *NestedCircuit) Validate(formats strfmt.Registry) error {
 func (m *NestedCircuit) validateCid(formats strfmt.Registry) error {
 
 	if err := validate.Required("cid", "body", m.Cid); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("cid", "body", string(*m.Cid), 1); err != nil {
 		return err
 	}
 

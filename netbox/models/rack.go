@@ -51,13 +51,11 @@ type Rack struct {
 	DisplayName string `json:"display_name,omitempty"`
 
 	// Facility ID
-	// Required: true
 	// Max Length: 50
-	FacilityID *int64 `json:"facility_id"`
+	FacilityID string `json:"facility_id,omitempty"`
 
 	// group
-	// Required: true
-	Group *NestedRackGroup `json:"group"`
+	Group *NestedRackGroup `json:"group,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -70,11 +68,11 @@ type Rack struct {
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// role
-	// Required: true
-	Role *NestedRackRole `json:"role"`
+	Role *NestedRackRole `json:"role,omitempty"`
 
 	// Serial number
 	// Max Length: 50
@@ -84,13 +82,14 @@ type Rack struct {
 	// Required: true
 	Site *NestedSite `json:"site"`
 
+	// Tags
+	Tags []string `json:"tags"`
+
 	// tenant
-	// Required: true
-	Tenant *NestedTenant `json:"tenant"`
+	Tenant *NestedTenant `json:"tenant,omitempty"`
 
 	// type
-	// Required: true
-	Type *RackType `json:"type"`
+	Type *RackType `json:"type,omitempty"`
 
 	// Height (U)
 	// Maximum: 100
@@ -98,8 +97,7 @@ type Rack struct {
 	UHeight int64 `json:"u_height,omitempty"`
 
 	// width
-	// Required: true
-	Width *RackWidth `json:"width"`
+	Width *RackWidth `json:"width,omitempty"`
 }
 
 // Validate validates this rack
@@ -146,6 +144,11 @@ func (m *Rack) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateTenant(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -187,11 +190,11 @@ func (m *Rack) validateCreated(formats strfmt.Registry) error {
 
 func (m *Rack) validateFacilityID(formats strfmt.Registry) error {
 
-	if err := validate.Required("facility_id", "body", m.FacilityID); err != nil {
-		return err
+	if swag.IsZero(m.FacilityID) { // not required
+		return nil
 	}
 
-	if err := validate.MaxLength("facility_id", "body", string(*m.FacilityID), 50); err != nil {
+	if err := validate.MaxLength("facility_id", "body", string(m.FacilityID), 50); err != nil {
 		return err
 	}
 
@@ -200,8 +203,8 @@ func (m *Rack) validateFacilityID(formats strfmt.Registry) error {
 
 func (m *Rack) validateGroup(formats strfmt.Registry) error {
 
-	if err := validate.Required("group", "body", m.Group); err != nil {
-		return err
+	if swag.IsZero(m.Group) { // not required
+		return nil
 	}
 
 	if m.Group != nil {
@@ -237,6 +240,10 @@ func (m *Rack) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
 	}
@@ -246,8 +253,8 @@ func (m *Rack) validateName(formats strfmt.Registry) error {
 
 func (m *Rack) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.Required("role", "body", m.Role); err != nil {
-		return err
+	if swag.IsZero(m.Role) { // not required
+		return nil
 	}
 
 	if m.Role != nil {
@@ -297,10 +304,19 @@ func (m *Rack) validateSite(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Rack) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *Rack) validateTenant(formats strfmt.Registry) error {
 
-	if err := validate.Required("tenant", "body", m.Tenant); err != nil {
-		return err
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
 	}
 
 	if m.Tenant != nil {
@@ -319,8 +335,8 @@ func (m *Rack) validateTenant(formats strfmt.Registry) error {
 
 func (m *Rack) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
+	if swag.IsZero(m.Type) { // not required
+		return nil
 	}
 
 	if m.Type != nil {
@@ -356,8 +372,8 @@ func (m *Rack) validateUHeight(formats strfmt.Registry) error {
 
 func (m *Rack) validateWidth(formats strfmt.Registry) error {
 
-	if err := validate.Required("width", "body", m.Width); err != nil {
-		return err
+	if swag.IsZero(m.Width) { // not required
+		return nil
 	}
 
 	if m.Width != nil {

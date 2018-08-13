@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMVrfsUpdateParams creates a new IPAMVrfsUpdateParams object
@@ -80,7 +80,7 @@ for the ipam vrfs update operation typically these are written to a http.Request
 type IPAMVrfsUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableVRF
+	Data *models.VRF
 	/*ID
 	  A unique integer value identifying this VRF.
 
@@ -126,13 +126,13 @@ func (o *IPAMVrfsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam vrfs update params
-func (o *IPAMVrfsUpdateParams) WithData(data *models.WritableVRF) *IPAMVrfsUpdateParams {
+func (o *IPAMVrfsUpdateParams) WithData(data *models.VRF) *IPAMVrfsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam vrfs update params
-func (o *IPAMVrfsUpdateParams) SetData(data *models.WritableVRF) {
+func (o *IPAMVrfsUpdateParams) SetData(data *models.VRF) {
 	o.Data = data
 }
 

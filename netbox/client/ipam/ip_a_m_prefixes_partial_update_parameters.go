@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMPrefixesPartialUpdateParams creates a new IPAMPrefixesPartialUpdateParams object
@@ -80,7 +80,7 @@ for the ipam prefixes partial update operation typically these are written to a 
 type IPAMPrefixesPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritablePrefix
+	Data *models.Prefix
 	/*ID
 	  A unique integer value identifying this prefix.
 
@@ -126,13 +126,13 @@ func (o *IPAMPrefixesPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam prefixes partial update params
-func (o *IPAMPrefixesPartialUpdateParams) WithData(data *models.WritablePrefix) *IPAMPrefixesPartialUpdateParams {
+func (o *IPAMPrefixesPartialUpdateParams) WithData(data *models.Prefix) *IPAMPrefixesPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam prefixes partial update params
-func (o *IPAMPrefixesPartialUpdateParams) SetData(data *models.WritablePrefix) {
+func (o *IPAMPrefixesPartialUpdateParams) SetData(data *models.Prefix) {
 	o.Data = data
 }
 

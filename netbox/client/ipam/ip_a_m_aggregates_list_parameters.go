@@ -102,6 +102,8 @@ type IPAMAggregatesListParams struct {
 	Rir *string
 	/*RirID*/
 	RirID *int64
+	/*Tag*/
+	Tag *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -227,6 +229,17 @@ func (o *IPAMAggregatesListParams) WithRirID(rirID *int64) *IPAMAggregatesListPa
 // SetRirID adds the rirId to the ipam aggregates list params
 func (o *IPAMAggregatesListParams) SetRirID(rirID *int64) {
 	o.RirID = rirID
+}
+
+// WithTag adds the tag to the ipam aggregates list params
+func (o *IPAMAggregatesListParams) WithTag(tag *string) *IPAMAggregatesListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the ipam aggregates list params
+func (o *IPAMAggregatesListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -359,6 +372,22 @@ func (o *IPAMAggregatesListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qRirID := swag.FormatInt64(qrRirID)
 		if qRirID != "" {
 			if err := r.SetQueryParam("rir_id", qRirID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

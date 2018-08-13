@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMVrfsUpdateReader is a Reader for the IPAMVrfsUpdate structure.
@@ -61,7 +61,7 @@ func NewIPAMVrfsUpdateOK() *IPAMVrfsUpdateOK {
 IPAMVrfsUpdateOK ipam vrfs update o k
 */
 type IPAMVrfsUpdateOK struct {
-	Payload *models.WritableVRF
+	Payload *models.VRF
 }
 
 func (o *IPAMVrfsUpdateOK) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMVrfsUpdateOK) Error() string {
 
 func (o *IPAMVrfsUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableVRF)
+	o.Payload = new(models.VRF)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

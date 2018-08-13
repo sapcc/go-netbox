@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimPowerOutletsPartialUpdateParams creates a new DcimPowerOutletsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the dcim power outlets partial update operation typically these are written 
 type DcimPowerOutletsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritablePowerOutlet
+	Data *models.PowerOutlet
 	/*ID
 	  A unique integer value identifying this power outlet.
 
@@ -126,13 +126,13 @@ func (o *DcimPowerOutletsPartialUpdateParams) SetHTTPClient(client *http.Client)
 }
 
 // WithData adds the data to the dcim power outlets partial update params
-func (o *DcimPowerOutletsPartialUpdateParams) WithData(data *models.WritablePowerOutlet) *DcimPowerOutletsPartialUpdateParams {
+func (o *DcimPowerOutletsPartialUpdateParams) WithData(data *models.PowerOutlet) *DcimPowerOutletsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim power outlets partial update params
-func (o *DcimPowerOutletsPartialUpdateParams) SetData(data *models.WritablePowerOutlet) {
+func (o *DcimPowerOutletsPartialUpdateParams) SetData(data *models.PowerOutlet) {
 	o.Data = data
 }
 

@@ -42,6 +42,7 @@ type ConsoleServerPortTemplate struct {
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
 }
 
@@ -88,6 +89,10 @@ func (m *ConsoleServerPortTemplate) validateDeviceType(formats strfmt.Registry) 
 func (m *ConsoleServerPortTemplate) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
 		return err
 	}
 

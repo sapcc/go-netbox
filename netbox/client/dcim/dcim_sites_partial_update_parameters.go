@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimSitesPartialUpdateParams creates a new DcimSitesPartialUpdateParams object
@@ -80,7 +80,7 @@ for the dcim sites partial update operation typically these are written to a htt
 type DcimSitesPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableSite
+	Data *models.Site
 	/*ID
 	  A unique integer value identifying this site.
 
@@ -126,13 +126,13 @@ func (o *DcimSitesPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim sites partial update params
-func (o *DcimSitesPartialUpdateParams) WithData(data *models.WritableSite) *DcimSitesPartialUpdateParams {
+func (o *DcimSitesPartialUpdateParams) WithData(data *models.Site) *DcimSitesPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim sites partial update params
-func (o *DcimSitesPartialUpdateParams) SetData(data *models.WritableSite) {
+func (o *DcimSitesPartialUpdateParams) SetData(data *models.Site) {
 	o.Data = data
 }
 

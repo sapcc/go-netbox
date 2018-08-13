@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewTenancyTenantsCreateParams creates a new TenancyTenantsCreateParams object
@@ -79,7 +79,7 @@ for the tenancy tenants create operation typically these are written to a http.R
 type TenancyTenantsCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableTenant
+	Data *models.Tenant
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *TenancyTenantsCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the tenancy tenants create params
-func (o *TenancyTenantsCreateParams) WithData(data *models.WritableTenant) *TenancyTenantsCreateParams {
+func (o *TenancyTenantsCreateParams) WithData(data *models.Tenant) *TenancyTenantsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the tenancy tenants create params
-func (o *TenancyTenantsCreateParams) SetData(data *models.WritableTenant) {
+func (o *TenancyTenantsCreateParams) SetData(data *models.Tenant) {
 	o.Data = data
 }
 

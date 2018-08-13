@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMVrfsPartialUpdateParams creates a new IPAMVrfsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the ipam vrfs partial update operation typically these are written to a http
 type IPAMVrfsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableVRF
+	Data *models.VRF
 	/*ID
 	  A unique integer value identifying this VRF.
 
@@ -126,13 +126,13 @@ func (o *IPAMVrfsPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam vrfs partial update params
-func (o *IPAMVrfsPartialUpdateParams) WithData(data *models.WritableVRF) *IPAMVrfsPartialUpdateParams {
+func (o *IPAMVrfsPartialUpdateParams) WithData(data *models.VRF) *IPAMVrfsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam vrfs partial update params
-func (o *IPAMVrfsPartialUpdateParams) SetData(data *models.WritableVRF) {
+func (o *IPAMVrfsPartialUpdateParams) SetData(data *models.VRF) {
 	o.Data = data
 }
 

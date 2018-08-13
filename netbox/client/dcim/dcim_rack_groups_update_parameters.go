@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimRackGroupsUpdateParams creates a new DcimRackGroupsUpdateParams object
@@ -80,7 +80,7 @@ for the dcim rack groups update operation typically these are written to a http.
 type DcimRackGroupsUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableRackGroup
+	Data *models.RackGroup
 	/*ID
 	  A unique integer value identifying this rack group.
 
@@ -126,13 +126,13 @@ func (o *DcimRackGroupsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim rack groups update params
-func (o *DcimRackGroupsUpdateParams) WithData(data *models.WritableRackGroup) *DcimRackGroupsUpdateParams {
+func (o *DcimRackGroupsUpdateParams) WithData(data *models.RackGroup) *DcimRackGroupsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim rack groups update params
-func (o *DcimRackGroupsUpdateParams) SetData(data *models.WritableRackGroup) {
+func (o *DcimRackGroupsUpdateParams) SetData(data *models.RackGroup) {
 	o.Data = data
 }
 

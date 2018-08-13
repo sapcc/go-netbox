@@ -38,13 +38,18 @@ type Platform struct {
 	ID int64 `json:"id,omitempty"`
 
 	// manufacturer
-	// Required: true
-	Manufacturer *NestedManufacturer `json:"manufacturer"`
+	Manufacturer *NestedManufacturer `json:"manufacturer,omitempty"`
 
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
+
+	// NAPALM arguments
+	//
+	// Additional arguments to pass when initiating the NAPALM driver (JSON format)
+	NapalmArgs string `json:"napalm_args,omitempty"`
 
 	// NAPALM driver
 	//
@@ -58,6 +63,7 @@ type Platform struct {
 	// Slug
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
 }
@@ -99,8 +105,8 @@ func (m *Platform) Validate(formats strfmt.Registry) error {
 
 func (m *Platform) validateManufacturer(formats strfmt.Registry) error {
 
-	if err := validate.Required("manufacturer", "body", m.Manufacturer); err != nil {
-		return err
+	if swag.IsZero(m.Manufacturer) { // not required
+		return nil
 	}
 
 	if m.Manufacturer != nil {
@@ -120,6 +126,10 @@ func (m *Platform) validateManufacturer(formats strfmt.Registry) error {
 func (m *Platform) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
 		return err
 	}
 
@@ -192,6 +202,10 @@ func (m *Platform) validateRPCClient(formats strfmt.Registry) error {
 func (m *Platform) validateSlug(formats strfmt.Registry) error {
 
 	if err := validate.Required("slug", "body", m.Slug); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("slug", "body", string(*m.Slug), 1); err != nil {
 		return err
 	}
 

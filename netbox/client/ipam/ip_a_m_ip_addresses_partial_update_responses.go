@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMIPAddressesPartialUpdateReader is a Reader for the IPAMIPAddressesPartialUpdate structure.
@@ -61,7 +61,7 @@ func NewIPAMIPAddressesPartialUpdateOK() *IPAMIPAddressesPartialUpdateOK {
 IPAMIPAddressesPartialUpdateOK ipam Ip addresses partial update o k
 */
 type IPAMIPAddressesPartialUpdateOK struct {
-	Payload *models.WritableIPAddress
+	Payload *models.IPAddress
 }
 
 func (o *IPAMIPAddressesPartialUpdateOK) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMIPAddressesPartialUpdateOK) Error() string {
 
 func (o *IPAMIPAddressesPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableIPAddress)
+	o.Payload = new(models.IPAddress)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -100,6 +100,8 @@ type TenancyTenantsListParams struct {
 	Offset *int64
 	/*Q*/
 	Q *string
+	/*Tag*/
+	Tag *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -216,6 +218,17 @@ func (o *TenancyTenantsListParams) SetQ(q *string) {
 	o.Q = q
 }
 
+// WithTag adds the tag to the tenancy tenants list params
+func (o *TenancyTenantsListParams) WithTag(tag *string) *TenancyTenantsListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the tenancy tenants list params
+func (o *TenancyTenantsListParams) SetTag(tag *string) {
+	o.Tag = tag
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *TenancyTenantsListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -330,6 +343,22 @@ func (o *TenancyTenantsListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qQ := qrQ
 		if qQ != "" {
 			if err := r.SetQueryParam("q", qQ); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

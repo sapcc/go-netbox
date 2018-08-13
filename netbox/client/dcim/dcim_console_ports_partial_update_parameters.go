@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimConsolePortsPartialUpdateParams creates a new DcimConsolePortsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the dcim console ports partial update operation typically these are written 
 type DcimConsolePortsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableConsolePort
+	Data *models.ConsolePort
 	/*ID
 	  A unique integer value identifying this console port.
 
@@ -126,13 +126,13 @@ func (o *DcimConsolePortsPartialUpdateParams) SetHTTPClient(client *http.Client)
 }
 
 // WithData adds the data to the dcim console ports partial update params
-func (o *DcimConsolePortsPartialUpdateParams) WithData(data *models.WritableConsolePort) *DcimConsolePortsPartialUpdateParams {
+func (o *DcimConsolePortsPartialUpdateParams) WithData(data *models.ConsolePort) *DcimConsolePortsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim console ports partial update params
-func (o *DcimConsolePortsPartialUpdateParams) SetData(data *models.WritableConsolePort) {
+func (o *DcimConsolePortsPartialUpdateParams) SetData(data *models.ConsolePort) {
 	o.Data = data
 }
 

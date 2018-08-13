@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMAggregatesPartialUpdateParams creates a new IPAMAggregatesPartialUpdateParams object
@@ -80,7 +80,7 @@ for the ipam aggregates partial update operation typically these are written to 
 type IPAMAggregatesPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableAggregate
+	Data *models.Aggregate
 	/*ID
 	  A unique integer value identifying this aggregate.
 
@@ -126,13 +126,13 @@ func (o *IPAMAggregatesPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam aggregates partial update params
-func (o *IPAMAggregatesPartialUpdateParams) WithData(data *models.WritableAggregate) *IPAMAggregatesPartialUpdateParams {
+func (o *IPAMAggregatesPartialUpdateParams) WithData(data *models.Aggregate) *IPAMAggregatesPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam aggregates partial update params
-func (o *IPAMAggregatesPartialUpdateParams) SetData(data *models.WritableAggregate) {
+func (o *IPAMAggregatesPartialUpdateParams) SetData(data *models.Aggregate) {
 	o.Data = data
 }
 

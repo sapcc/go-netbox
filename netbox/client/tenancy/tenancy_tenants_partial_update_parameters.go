@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewTenancyTenantsPartialUpdateParams creates a new TenancyTenantsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the tenancy tenants partial update operation typically these are written to 
 type TenancyTenantsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableTenant
+	Data *models.Tenant
 	/*ID
 	  A unique integer value identifying this tenant.
 
@@ -126,13 +126,13 @@ func (o *TenancyTenantsPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the tenancy tenants partial update params
-func (o *TenancyTenantsPartialUpdateParams) WithData(data *models.WritableTenant) *TenancyTenantsPartialUpdateParams {
+func (o *TenancyTenantsPartialUpdateParams) WithData(data *models.Tenant) *TenancyTenantsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the tenancy tenants partial update params
-func (o *TenancyTenantsPartialUpdateParams) SetData(data *models.WritableTenant) {
+func (o *TenancyTenantsPartialUpdateParams) SetData(data *models.Tenant) {
 	o.Data = data
 }
 

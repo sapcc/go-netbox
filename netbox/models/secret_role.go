@@ -38,11 +38,13 @@ type SecretRole struct {
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Slug
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
 }
@@ -73,6 +75,10 @@ func (m *SecretRole) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
 	}
@@ -83,6 +89,10 @@ func (m *SecretRole) validateName(formats strfmt.Registry) error {
 func (m *SecretRole) validateSlug(formats strfmt.Registry) error {
 
 	if err := validate.Required("slug", "body", m.Slug); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("slug", "body", string(*m.Slug), 1); err != nil {
 		return err
 	}
 

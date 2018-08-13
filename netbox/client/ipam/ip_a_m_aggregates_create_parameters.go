@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMAggregatesCreateParams creates a new IPAMAggregatesCreateParams object
@@ -79,7 +79,7 @@ for the ipam aggregates create operation typically these are written to a http.R
 type IPAMAggregatesCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableAggregate
+	Data *models.Aggregate
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *IPAMAggregatesCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam aggregates create params
-func (o *IPAMAggregatesCreateParams) WithData(data *models.WritableAggregate) *IPAMAggregatesCreateParams {
+func (o *IPAMAggregatesCreateParams) WithData(data *models.Aggregate) *IPAMAggregatesCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam aggregates create params
-func (o *IPAMAggregatesCreateParams) SetData(data *models.WritableAggregate) {
+func (o *IPAMAggregatesCreateParams) SetData(data *models.Aggregate) {
 	o.Data = data
 }
 

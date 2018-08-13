@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMServicesCreateReader is a Reader for the IPAMServicesCreate structure.
@@ -61,7 +61,7 @@ func NewIPAMServicesCreateCreated() *IPAMServicesCreateCreated {
 IPAMServicesCreateCreated ipam services create created
 */
 type IPAMServicesCreateCreated struct {
-	Payload *models.WritableService
+	Payload *models.Service
 }
 
 func (o *IPAMServicesCreateCreated) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMServicesCreateCreated) Error() string {
 
 func (o *IPAMServicesCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableService)
+	o.Payload = new(models.Service)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

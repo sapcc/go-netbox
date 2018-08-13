@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMVlanGroupsPartialUpdateParams creates a new IPAMVlanGroupsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the ipam vlan groups partial update operation typically these are written to
 type IPAMVlanGroupsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableVLANGroup
+	Data *models.VLANGroup
 	/*ID
 	  A unique integer value identifying this VLAN group.
 
@@ -126,13 +126,13 @@ func (o *IPAMVlanGroupsPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam vlan groups partial update params
-func (o *IPAMVlanGroupsPartialUpdateParams) WithData(data *models.WritableVLANGroup) *IPAMVlanGroupsPartialUpdateParams {
+func (o *IPAMVlanGroupsPartialUpdateParams) WithData(data *models.VLANGroup) *IPAMVlanGroupsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam vlan groups partial update params
-func (o *IPAMVlanGroupsPartialUpdateParams) SetData(data *models.WritableVLANGroup) {
+func (o *IPAMVlanGroupsPartialUpdateParams) SetData(data *models.VLANGroup) {
 	o.Data = data
 }
 

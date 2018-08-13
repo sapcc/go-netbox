@@ -109,6 +109,8 @@ type DcimInventoryItemsListParams struct {
 	Q *string
 	/*Serial*/
 	Serial *string
+	/*Tag*/
+	Tag *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -289,6 +291,17 @@ func (o *DcimInventoryItemsListParams) WithSerial(serial *string) *DcimInventory
 // SetSerial adds the serial to the dcim inventory items list params
 func (o *DcimInventoryItemsListParams) SetSerial(serial *string) {
 	o.Serial = serial
+}
+
+// WithTag adds the tag to the dcim inventory items list params
+func (o *DcimInventoryItemsListParams) WithTag(tag *string) *DcimInventoryItemsListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the dcim inventory items list params
+func (o *DcimInventoryItemsListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -501,6 +514,22 @@ func (o *DcimInventoryItemsListParams) WriteToRequest(r runtime.ClientRequest, r
 		qSerial := qrSerial
 		if qSerial != "" {
 			if err := r.SetQueryParam("serial", qSerial); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

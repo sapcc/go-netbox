@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewVirtualizationClustersCreateParams creates a new VirtualizationClustersCreateParams object
@@ -79,7 +79,7 @@ for the virtualization clusters create operation typically these are written to 
 type VirtualizationClustersCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableCluster
+	Data *models.Cluster
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *VirtualizationClustersCreateParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithData adds the data to the virtualization clusters create params
-func (o *VirtualizationClustersCreateParams) WithData(data *models.WritableCluster) *VirtualizationClustersCreateParams {
+func (o *VirtualizationClustersCreateParams) WithData(data *models.Cluster) *VirtualizationClustersCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the virtualization clusters create params
-func (o *VirtualizationClustersCreateParams) SetData(data *models.WritableCluster) {
+func (o *VirtualizationClustersCreateParams) SetData(data *models.Cluster) {
 	o.Data = data
 }
 

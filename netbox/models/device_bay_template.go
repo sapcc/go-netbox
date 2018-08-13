@@ -42,6 +42,7 @@ type DeviceBayTemplate struct {
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
 }
 
@@ -88,6 +89,10 @@ func (m *DeviceBayTemplate) validateDeviceType(formats strfmt.Registry) error {
 func (m *DeviceBayTemplate) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
 		return err
 	}
 

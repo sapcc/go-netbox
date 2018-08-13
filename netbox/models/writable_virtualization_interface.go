@@ -20,8 +20,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
-
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -33,6 +31,9 @@ import (
 // swagger:model WritableVirtualizationInterface
 type WritableVirtualizationInterface struct {
 
+	// circuit termination
+	CircuitTermination *InterfaceCircuitTermination `json:"circuit_termination,omitempty"`
+
 	// Description
 	// Max Length: 100
 	Description string `json:"description,omitempty"`
@@ -40,15 +41,34 @@ type WritableVirtualizationInterface struct {
 	// Enabled
 	Enabled bool `json:"enabled,omitempty"`
 
+	// form factor
+	FormFactor *WritableVirtualizationInterfaceFormFactor `json:"form_factor,omitempty"`
+
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
 
+	// interface connection
+	// Read Only: true
+	InterfaceConnection *InterfaceConnection `json:"interface_connection,omitempty"`
+
+	// Is connected
+	// Read Only: true
+	IsConnected *bool `json:"is_connected,omitempty"`
+
+	// lag
+	Lag *NestedInterface `json:"lag,omitempty"`
+
 	// MAC Address
 	MacAddress string `json:"mac_address,omitempty"`
 
-	// Mode
-	Mode int64 `json:"mode,omitempty"`
+	// OOB Management
+	//
+	// This interface is used only for out-of-band management
+	MgmtOnly bool `json:"mgmt_only,omitempty"`
+
+	// mode
+	Mode *WritableVirtualizationInterfaceMode `json:"mode,omitempty"`
 
 	// MTU
 	// Maximum: 32767
@@ -58,16 +78,20 @@ type WritableVirtualizationInterface struct {
 	// Name
 	// Required: true
 	// Max Length: 64
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// tagged vlans
 	// Unique: true
 	TaggedVlans []int64 `json:"tagged_vlans"`
 
-	// Untagged VLAN
+	// Tags
+	Tags []string `json:"tags"`
+
+	// untagged vlan
 	UntaggedVlan int64 `json:"untagged_vlan,omitempty"`
 
-	// VirtualMachine
+	// virtual machine
 	// Required: true
 	VirtualMachine *int64 `json:"virtual_machine"`
 }
@@ -76,7 +100,27 @@ type WritableVirtualizationInterface struct {
 func (m *WritableVirtualizationInterface) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCircuitTermination(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateDescription(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateFormFactor(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateInterfaceConnection(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateLag(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -101,6 +145,11 @@ func (m *WritableVirtualizationInterface) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateVirtualMachine(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -109,6 +158,26 @@ func (m *WritableVirtualizationInterface) Validate(formats strfmt.Registry) erro
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *WritableVirtualizationInterface) validateCircuitTermination(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CircuitTermination) { // not required
+		return nil
+	}
+
+	if m.CircuitTermination != nil {
+
+		if err := m.CircuitTermination.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("circuit_termination")
+			}
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -125,23 +194,63 @@ func (m *WritableVirtualizationInterface) validateDescription(formats strfmt.Reg
 	return nil
 }
 
-var writableVirtualizationInterfaceTypeModePropEnum []interface{}
+func (m *WritableVirtualizationInterface) validateFormFactor(formats strfmt.Registry) error {
 
-func init() {
-	var res []int64
-	if err := json.Unmarshal([]byte(`[100,200,300]`), &res); err != nil {
-		panic(err)
+	if swag.IsZero(m.FormFactor) { // not required
+		return nil
 	}
-	for _, v := range res {
-		writableVirtualizationInterfaceTypeModePropEnum = append(writableVirtualizationInterfaceTypeModePropEnum, v)
+
+	if m.FormFactor != nil {
+
+		if err := m.FormFactor.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("form_factor")
+			}
+			return err
+		}
+
 	}
+
+	return nil
 }
 
-// prop value enum
-func (m *WritableVirtualizationInterface) validateModeEnum(path, location string, value int64) error {
-	if err := validate.Enum(path, location, value, writableVirtualizationInterfaceTypeModePropEnum); err != nil {
-		return err
+func (m *WritableVirtualizationInterface) validateInterfaceConnection(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.InterfaceConnection) { // not required
+		return nil
 	}
+
+	if m.InterfaceConnection != nil {
+
+		if err := m.InterfaceConnection.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("interface_connection")
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *WritableVirtualizationInterface) validateLag(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Lag) { // not required
+		return nil
+	}
+
+	if m.Lag != nil {
+
+		if err := m.Lag.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("lag")
+			}
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -151,9 +260,15 @@ func (m *WritableVirtualizationInterface) validateMode(formats strfmt.Registry) 
 		return nil
 	}
 
-	// value enum
-	if err := m.validateModeEnum("mode", "body", m.Mode); err != nil {
-		return err
+	if m.Mode != nil {
+
+		if err := m.Mode.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("mode")
+			}
+			return err
+		}
+
 	}
 
 	return nil
@@ -182,6 +297,10 @@ func (m *WritableVirtualizationInterface) validateName(formats strfmt.Registry) 
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 64); err != nil {
 		return err
 	}
@@ -197,6 +316,15 @@ func (m *WritableVirtualizationInterface) validateTaggedVlans(formats strfmt.Reg
 
 	if err := validate.UniqueItems("tagged_vlans", "body", m.TaggedVlans); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *WritableVirtualizationInterface) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
 	}
 
 	return nil

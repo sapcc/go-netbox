@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimInterfaceConnectionsCreateReader is a Reader for the DcimInterfaceConnectionsCreate structure.
@@ -61,7 +61,7 @@ func NewDcimInterfaceConnectionsCreateCreated() *DcimInterfaceConnectionsCreateC
 DcimInterfaceConnectionsCreateCreated dcim interface connections create created
 */
 type DcimInterfaceConnectionsCreateCreated struct {
-	Payload *models.WritableInterfaceConnection
+	Payload *models.InterfaceConnection
 }
 
 func (o *DcimInterfaceConnectionsCreateCreated) Error() string {
@@ -70,7 +70,7 @@ func (o *DcimInterfaceConnectionsCreateCreated) Error() string {
 
 func (o *DcimInterfaceConnectionsCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableInterfaceConnection)
+	o.Payload = new(models.InterfaceConnection)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

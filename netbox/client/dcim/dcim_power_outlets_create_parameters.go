@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimPowerOutletsCreateParams creates a new DcimPowerOutletsCreateParams object
@@ -79,7 +79,7 @@ for the dcim power outlets create operation typically these are written to a htt
 type DcimPowerOutletsCreateParams struct {
 
 	/*Data*/
-	Data *models.WritablePowerOutlet
+	Data *models.PowerOutlet
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *DcimPowerOutletsCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim power outlets create params
-func (o *DcimPowerOutletsCreateParams) WithData(data *models.WritablePowerOutlet) *DcimPowerOutletsCreateParams {
+func (o *DcimPowerOutletsCreateParams) WithData(data *models.PowerOutlet) *DcimPowerOutletsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim power outlets create params
-func (o *DcimPowerOutletsCreateParams) SetData(data *models.WritablePowerOutlet) {
+func (o *DcimPowerOutletsCreateParams) SetData(data *models.PowerOutlet) {
 	o.Data = data
 }
 

@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMServicesPartialUpdateParams creates a new IPAMServicesPartialUpdateParams object
@@ -80,7 +80,7 @@ for the ipam services partial update operation typically these are written to a 
 type IPAMServicesPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableService
+	Data *models.Service
 	/*ID
 	  A unique integer value identifying this service.
 
@@ -126,13 +126,13 @@ func (o *IPAMServicesPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam services partial update params
-func (o *IPAMServicesPartialUpdateParams) WithData(data *models.WritableService) *IPAMServicesPartialUpdateParams {
+func (o *IPAMServicesPartialUpdateParams) WithData(data *models.Service) *IPAMServicesPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam services partial update params
-func (o *IPAMServicesPartialUpdateParams) SetData(data *models.WritableService) {
+func (o *IPAMServicesPartialUpdateParams) SetData(data *models.Service) {
 	o.Data = data
 }
 

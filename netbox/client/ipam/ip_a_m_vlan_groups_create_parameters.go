@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMVlanGroupsCreateParams creates a new IPAMVlanGroupsCreateParams object
@@ -79,7 +79,7 @@ for the ipam vlan groups create operation typically these are written to a http.
 type IPAMVlanGroupsCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableVLANGroup
+	Data *models.VLANGroup
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *IPAMVlanGroupsCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam vlan groups create params
-func (o *IPAMVlanGroupsCreateParams) WithData(data *models.WritableVLANGroup) *IPAMVlanGroupsCreateParams {
+func (o *IPAMVlanGroupsCreateParams) WithData(data *models.VLANGroup) *IPAMVlanGroupsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam vlan groups create params
-func (o *IPAMVlanGroupsCreateParams) SetData(data *models.WritableVLANGroup) {
+func (o *IPAMVlanGroupsCreateParams) SetData(data *models.VLANGroup) {
 	o.Data = data
 }
 

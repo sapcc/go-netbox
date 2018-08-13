@@ -59,11 +59,11 @@ type InventoryItem struct {
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Parent
-	// Required: true
-	Parent *int64 `json:"parent"`
+	Parent int64 `json:"parent,omitempty"`
 
 	// Part ID
 	// Max Length: 50
@@ -72,6 +72,9 @@ type InventoryItem struct {
 	// Serial number
 	// Max Length: 50
 	Serial string `json:"serial,omitempty"`
+
+	// Tags
+	Tags []string `json:"tags"`
 }
 
 // Validate validates this inventory item
@@ -103,17 +106,17 @@ func (m *InventoryItem) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateParent(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
 	if err := m.validatePartID(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSerial(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -196,16 +199,11 @@ func (m *InventoryItem) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
 		return err
 	}
 
-	return nil
-}
-
-func (m *InventoryItem) validateParent(formats strfmt.Registry) error {
-
-	if err := validate.Required("parent", "body", m.Parent); err != nil {
+	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
 	}
 
@@ -233,6 +231,15 @@ func (m *InventoryItem) validateSerial(formats strfmt.Registry) error {
 
 	if err := validate.MaxLength("serial", "body", string(m.Serial), 50); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *InventoryItem) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
 	}
 
 	return nil

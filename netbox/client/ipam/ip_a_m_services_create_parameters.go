@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMServicesCreateParams creates a new IPAMServicesCreateParams object
@@ -79,7 +79,7 @@ for the ipam services create operation typically these are written to a http.Req
 type IPAMServicesCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableService
+	Data *models.Service
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *IPAMServicesCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam services create params
-func (o *IPAMServicesCreateParams) WithData(data *models.WritableService) *IPAMServicesCreateParams {
+func (o *IPAMServicesCreateParams) WithData(data *models.Service) *IPAMServicesCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam services create params
-func (o *IPAMServicesCreateParams) SetData(data *models.WritableService) {
+func (o *IPAMServicesCreateParams) SetData(data *models.Service) {
 	o.Data = data
 }
 

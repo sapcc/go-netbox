@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimSitesCreateParams creates a new DcimSitesCreateParams object
@@ -79,7 +79,7 @@ for the dcim sites create operation typically these are written to a http.Reques
 type DcimSitesCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableSite
+	Data *models.Site
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *DcimSitesCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim sites create params
-func (o *DcimSitesCreateParams) WithData(data *models.WritableSite) *DcimSitesCreateParams {
+func (o *DcimSitesCreateParams) WithData(data *models.Site) *DcimSitesCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim sites create params
-func (o *DcimSitesCreateParams) SetData(data *models.WritableSite) {
+func (o *DcimSitesCreateParams) SetData(data *models.Site) {
 	o.Data = data
 }
 

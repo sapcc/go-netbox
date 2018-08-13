@@ -93,6 +93,8 @@ type DcimConsolePortsListParams struct {
 
 	*/
 	Offset *int64
+	/*Tag*/
+	Tag *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -187,6 +189,17 @@ func (o *DcimConsolePortsListParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
+// WithTag adds the tag to the dcim console ports list params
+func (o *DcimConsolePortsListParams) WithTag(tag *string) *DcimConsolePortsListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the dcim console ports list params
+func (o *DcimConsolePortsListParams) SetTag(tag *string) {
+	o.Tag = tag
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DcimConsolePortsListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -269,6 +282,22 @@ func (o *DcimConsolePortsListParams) WriteToRequest(r runtime.ClientRequest, reg
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

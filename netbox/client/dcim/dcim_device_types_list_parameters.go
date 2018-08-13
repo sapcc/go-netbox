@@ -114,6 +114,8 @@ type DcimDeviceTypesListParams struct {
 	Slug *string
 	/*SubdeviceRole*/
 	SubdeviceRole *string
+	/*Tag*/
+	Tag *string
 	/*UHeight*/
 	UHeight *int64
 
@@ -307,6 +309,17 @@ func (o *DcimDeviceTypesListParams) WithSubdeviceRole(subdeviceRole *string) *Dc
 // SetSubdeviceRole adds the subdeviceRole to the dcim device types list params
 func (o *DcimDeviceTypesListParams) SetSubdeviceRole(subdeviceRole *string) {
 	o.SubdeviceRole = subdeviceRole
+}
+
+// WithTag adds the tag to the dcim device types list params
+func (o *DcimDeviceTypesListParams) WithTag(tag *string) *DcimDeviceTypesListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the dcim device types list params
+func (o *DcimDeviceTypesListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WithUHeight adds the uHeight to the dcim device types list params
@@ -546,6 +559,22 @@ func (o *DcimDeviceTypesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 		qSubdeviceRole := qrSubdeviceRole
 		if qSubdeviceRole != "" {
 			if err := r.SetQueryParam("subdevice_role", qSubdeviceRole); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

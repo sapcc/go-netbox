@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimInventoryItemsPartialUpdateParams creates a new DcimInventoryItemsPartialUpdateParams object
@@ -80,7 +80,7 @@ for the dcim inventory items partial update operation typically these are writte
 type DcimInventoryItemsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableInventoryItem
+	Data *models.InventoryItem
 	/*ID
 	  A unique integer value identifying this inventory item.
 
@@ -126,13 +126,13 @@ func (o *DcimInventoryItemsPartialUpdateParams) SetHTTPClient(client *http.Clien
 }
 
 // WithData adds the data to the dcim inventory items partial update params
-func (o *DcimInventoryItemsPartialUpdateParams) WithData(data *models.WritableInventoryItem) *DcimInventoryItemsPartialUpdateParams {
+func (o *DcimInventoryItemsPartialUpdateParams) WithData(data *models.InventoryItem) *DcimInventoryItemsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim inventory items partial update params
-func (o *DcimInventoryItemsPartialUpdateParams) SetData(data *models.WritableInventoryItem) {
+func (o *DcimInventoryItemsPartialUpdateParams) SetData(data *models.InventoryItem) {
 	o.Data = data
 }
 

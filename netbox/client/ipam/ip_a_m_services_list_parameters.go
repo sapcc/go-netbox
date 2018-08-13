@@ -97,6 +97,10 @@ type IPAMServicesListParams struct {
 	Port *int64
 	/*Protocol*/
 	Protocol *string
+	/*Q*/
+	Q *string
+	/*Tag*/
+	Tag *string
 	/*VirtualMachine*/
 	VirtualMachine *string
 	/*VirtualMachineID*/
@@ -215,6 +219,28 @@ func (o *IPAMServicesListParams) WithProtocol(protocol *string) *IPAMServicesLis
 // SetProtocol adds the protocol to the ipam services list params
 func (o *IPAMServicesListParams) SetProtocol(protocol *string) {
 	o.Protocol = protocol
+}
+
+// WithQ adds the q to the ipam services list params
+func (o *IPAMServicesListParams) WithQ(q *string) *IPAMServicesListParams {
+	o.SetQ(q)
+	return o
+}
+
+// SetQ adds the q to the ipam services list params
+func (o *IPAMServicesListParams) SetQ(q *string) {
+	o.Q = q
+}
+
+// WithTag adds the tag to the ipam services list params
+func (o *IPAMServicesListParams) WithTag(tag *string) *IPAMServicesListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the ipam services list params
+func (o *IPAMServicesListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WithVirtualMachine adds the virtualMachine to the ipam services list params
@@ -353,6 +379,38 @@ func (o *IPAMServicesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 		qProtocol := qrProtocol
 		if qProtocol != "" {
 			if err := r.SetQueryParam("protocol", qProtocol); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Q != nil {
+
+		// query param q
+		var qrQ string
+		if o.Q != nil {
+			qrQ = *o.Q
+		}
+		qQ := qrQ
+		if qQ != "" {
+			if err := r.SetQueryParam("q", qQ); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

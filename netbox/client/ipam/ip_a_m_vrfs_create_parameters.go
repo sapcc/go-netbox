@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewIPAMVrfsCreateParams creates a new IPAMVrfsCreateParams object
@@ -79,7 +79,7 @@ for the ipam vrfs create operation typically these are written to a http.Request
 type IPAMVrfsCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableVRF
+	Data *models.VRF
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *IPAMVrfsCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam vrfs create params
-func (o *IPAMVrfsCreateParams) WithData(data *models.WritableVRF) *IPAMVrfsCreateParams {
+func (o *IPAMVrfsCreateParams) WithData(data *models.VRF) *IPAMVrfsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam vrfs create params
-func (o *IPAMVrfsCreateParams) SetData(data *models.WritableVRF) {
+func (o *IPAMVrfsCreateParams) SetData(data *models.VRF) {
 	o.Data = data
 }
 

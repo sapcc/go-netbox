@@ -35,11 +35,12 @@ type RackReservation struct {
 
 	// Created
 	// Read Only: true
-	Created strfmt.DateTime `json:"created,omitempty"`
+	Created strfmt.Date `json:"created,omitempty"`
 
 	// Description
 	// Required: true
 	// Max Length: 100
+	// Min Length: 1
 	Description *string `json:"description"`
 
 	// ID
@@ -51,8 +52,7 @@ type RackReservation struct {
 	Rack *NestedRack `json:"rack"`
 
 	// tenant
-	// Required: true
-	Tenant *NestedTenant `json:"tenant"`
+	Tenant *NestedTenant `json:"tenant,omitempty"`
 
 	// units
 	// Required: true
@@ -109,7 +109,7 @@ func (m *RackReservation) validateCreated(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := validate.FormatOf("created", "body", "date-time", m.Created.String(), formats); err != nil {
+	if err := validate.FormatOf("created", "body", "date", m.Created.String(), formats); err != nil {
 		return err
 	}
 
@@ -119,6 +119,10 @@ func (m *RackReservation) validateCreated(formats strfmt.Registry) error {
 func (m *RackReservation) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("description", "body", string(*m.Description), 1); err != nil {
 		return err
 	}
 
@@ -151,8 +155,8 @@ func (m *RackReservation) validateRack(formats strfmt.Registry) error {
 
 func (m *RackReservation) validateTenant(formats strfmt.Registry) error {
 
-	if err := validate.Required("tenant", "body", m.Tenant); err != nil {
-		return err
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
 	}
 
 	if m.Tenant != nil {

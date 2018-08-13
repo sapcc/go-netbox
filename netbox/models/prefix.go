@@ -66,28 +66,25 @@ type Prefix struct {
 	Prefix *string `json:"prefix"`
 
 	// role
-	// Required: true
-	Role *NestedRole `json:"role"`
+	Role *NestedRole `json:"role,omitempty"`
 
 	// site
-	// Required: true
-	Site *NestedSite `json:"site"`
+	Site *NestedSite `json:"site,omitempty"`
 
 	// status
-	// Required: true
-	Status *PrefixStatus `json:"status"`
+	Status *PrefixStatus `json:"status,omitempty"`
+
+	// Tags
+	Tags []string `json:"tags"`
 
 	// tenant
-	// Required: true
-	Tenant *NestedTenant `json:"tenant"`
+	Tenant *NestedTenant `json:"tenant,omitempty"`
 
 	// vlan
-	// Required: true
-	Vlan *NestedVLAN `json:"vlan"`
+	Vlan *NestedVLAN `json:"vlan,omitempty"`
 
 	// vrf
-	// Required: true
-	Vrf *NestedVRF `json:"vrf"`
+	Vrf *NestedVRF `json:"vrf,omitempty"`
 }
 
 // Validate validates this prefix
@@ -125,6 +122,11 @@ func (m *Prefix) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -200,8 +202,8 @@ func (m *Prefix) validatePrefix(formats strfmt.Registry) error {
 
 func (m *Prefix) validateRole(formats strfmt.Registry) error {
 
-	if err := validate.Required("role", "body", m.Role); err != nil {
-		return err
+	if swag.IsZero(m.Role) { // not required
+		return nil
 	}
 
 	if m.Role != nil {
@@ -220,8 +222,8 @@ func (m *Prefix) validateRole(formats strfmt.Registry) error {
 
 func (m *Prefix) validateSite(formats strfmt.Registry) error {
 
-	if err := validate.Required("site", "body", m.Site); err != nil {
-		return err
+	if swag.IsZero(m.Site) { // not required
+		return nil
 	}
 
 	if m.Site != nil {
@@ -240,8 +242,8 @@ func (m *Prefix) validateSite(formats strfmt.Registry) error {
 
 func (m *Prefix) validateStatus(formats strfmt.Registry) error {
 
-	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	if m.Status != nil {
@@ -258,10 +260,19 @@ func (m *Prefix) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Prefix) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *Prefix) validateTenant(formats strfmt.Registry) error {
 
-	if err := validate.Required("tenant", "body", m.Tenant); err != nil {
-		return err
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
 	}
 
 	if m.Tenant != nil {
@@ -280,8 +291,8 @@ func (m *Prefix) validateTenant(formats strfmt.Registry) error {
 
 func (m *Prefix) validateVlan(formats strfmt.Registry) error {
 
-	if err := validate.Required("vlan", "body", m.Vlan); err != nil {
-		return err
+	if swag.IsZero(m.Vlan) { // not required
+		return nil
 	}
 
 	if m.Vlan != nil {
@@ -300,8 +311,8 @@ func (m *Prefix) validateVlan(formats strfmt.Registry) error {
 
 func (m *Prefix) validateVrf(formats strfmt.Registry) error {
 
-	if err := validate.Required("vrf", "body", m.Vrf); err != nil {
-		return err
+	if swag.IsZero(m.Vrf) { // not required
+		return nil
 	}
 
 	if m.Vrf != nil {

@@ -77,6 +77,8 @@ for the ipam ip addresses list operation typically these are written to a http.R
 */
 type IPAMIPAddressesListParams struct {
 
+	/*Address*/
+	Address *string
 	/*Device*/
 	Device *string
 	/*DeviceID*/
@@ -110,6 +112,8 @@ type IPAMIPAddressesListParams struct {
 	Role *string
 	/*Status*/
 	Status *string
+	/*Tag*/
+	Tag *string
 	/*Tenant*/
 	Tenant *string
 	/*TenantID*/
@@ -159,6 +163,17 @@ func (o *IPAMIPAddressesListParams) WithHTTPClient(client *http.Client) *IPAMIPA
 // SetHTTPClient adds the HTTPClient to the ipam ip addresses list params
 func (o *IPAMIPAddressesListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithAddress adds the address to the ipam ip addresses list params
+func (o *IPAMIPAddressesListParams) WithAddress(address *string) *IPAMIPAddressesListParams {
+	o.SetAddress(address)
+	return o
+}
+
+// SetAddress adds the address to the ipam ip addresses list params
+func (o *IPAMIPAddressesListParams) SetAddress(address *string) {
+	o.Address = address
 }
 
 // WithDevice adds the device to the ipam ip addresses list params
@@ -293,6 +308,17 @@ func (o *IPAMIPAddressesListParams) SetStatus(status *string) {
 	o.Status = status
 }
 
+// WithTag adds the tag to the ipam ip addresses list params
+func (o *IPAMIPAddressesListParams) WithTag(tag *string) *IPAMIPAddressesListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the ipam ip addresses list params
+func (o *IPAMIPAddressesListParams) SetTag(tag *string) {
+	o.Tag = tag
+}
+
 // WithTenant adds the tenant to the ipam ip addresses list params
 func (o *IPAMIPAddressesListParams) WithTenant(tenant *string) *IPAMIPAddressesListParams {
 	o.SetTenant(tenant)
@@ -366,6 +392,22 @@ func (o *IPAMIPAddressesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
+
+	if o.Address != nil {
+
+		// query param address
+		var qrAddress string
+		if o.Address != nil {
+			qrAddress = *o.Address
+		}
+		qAddress := qrAddress
+		if qAddress != "" {
+			if err := r.SetQueryParam("address", qAddress); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Device != nil {
 
@@ -553,6 +595,22 @@ func (o *IPAMIPAddressesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 		qStatus := qrStatus
 		if qStatus != "" {
 			if err := r.SetQueryParam("status", qStatus); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

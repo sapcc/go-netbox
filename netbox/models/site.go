@@ -94,9 +94,16 @@ type Site struct {
 	// Read Only: true
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
+	// Latitude
+	Latitude string `json:"latitude,omitempty"`
+
+	// Longitude
+	Longitude string `json:"longitude,omitempty"`
+
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Physical address
@@ -104,8 +111,7 @@ type Site struct {
 	PhysicalAddress string `json:"physical_address,omitempty"`
 
 	// region
-	// Required: true
-	Region *NestedRegion `json:"region"`
+	Region *NestedRegion `json:"region,omitempty"`
 
 	// Shipping address
 	// Max Length: 200
@@ -114,16 +120,18 @@ type Site struct {
 	// Slug
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
 
 	// status
-	// Required: true
-	Status *SiteStatus `json:"status"`
+	Status *SiteStatus `json:"status,omitempty"`
+
+	// Tags
+	Tags []string `json:"tags"`
 
 	// tenant
-	// Required: true
-	Tenant *NestedTenant `json:"tenant"`
+	Tenant *NestedTenant `json:"tenant,omitempty"`
 
 	// Time zone
 	TimeZone string `json:"time_zone,omitempty"`
@@ -199,6 +207,11 @@ func (m *Site) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -332,6 +345,10 @@ func (m *Site) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
 	}
@@ -354,8 +371,8 @@ func (m *Site) validatePhysicalAddress(formats strfmt.Registry) error {
 
 func (m *Site) validateRegion(formats strfmt.Registry) error {
 
-	if err := validate.Required("region", "body", m.Region); err != nil {
-		return err
+	if swag.IsZero(m.Region) { // not required
+		return nil
 	}
 
 	if m.Region != nil {
@@ -391,6 +408,10 @@ func (m *Site) validateSlug(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("slug", "body", string(*m.Slug), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("slug", "body", string(*m.Slug), 50); err != nil {
 		return err
 	}
@@ -404,8 +425,8 @@ func (m *Site) validateSlug(formats strfmt.Registry) error {
 
 func (m *Site) validateStatus(formats strfmt.Registry) error {
 
-	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	if m.Status != nil {
@@ -422,10 +443,19 @@ func (m *Site) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Site) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *Site) validateTenant(formats strfmt.Registry) error {
 
-	if err := validate.Required("tenant", "body", m.Tenant); err != nil {
-		return err
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
 	}
 
 	if m.Tenant != nil {

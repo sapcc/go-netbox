@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMVrfsCreateReader is a Reader for the IPAMVrfsCreate structure.
@@ -61,7 +61,7 @@ func NewIPAMVrfsCreateCreated() *IPAMVrfsCreateCreated {
 IPAMVrfsCreateCreated ipam vrfs create created
 */
 type IPAMVrfsCreateCreated struct {
-	Payload *models.WritableVRF
+	Payload *models.VRF
 }
 
 func (o *IPAMVrfsCreateCreated) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMVrfsCreateCreated) Error() string {
 
 func (o *IPAMVrfsCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableVRF)
+	o.Payload = new(models.VRF)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

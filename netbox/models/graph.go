@@ -42,11 +42,13 @@ type Graph struct {
 	// Name
 	// Required: true
 	// Max Length: 100
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Source URL
 	// Required: true
 	// Max Length: 500
+	// Min Length: 1
 	Source *string `json:"source"`
 
 	// type
@@ -117,6 +119,10 @@ func (m *Graph) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 100); err != nil {
 		return err
 	}
@@ -127,6 +133,10 @@ func (m *Graph) validateName(formats strfmt.Registry) error {
 func (m *Graph) validateSource(formats strfmt.Registry) error {
 
 	if err := validate.Required("source", "body", m.Source); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("source", "body", string(*m.Source), 1); err != nil {
 		return err
 	}
 

@@ -34,6 +34,7 @@ type Circuit struct {
 	// Circuit ID
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Cid *string `json:"cid"`
 
 	// Comments
@@ -71,12 +72,13 @@ type Circuit struct {
 	Provider *NestedProvider `json:"provider"`
 
 	// status
-	// Required: true
-	Status *CircuitStatus `json:"status"`
+	Status *CircuitStatus `json:"status,omitempty"`
+
+	// Tags
+	Tags []string `json:"tags"`
 
 	// tenant
-	// Required: true
-	Tenant *NestedTenant `json:"tenant"`
+	Tenant *NestedTenant `json:"tenant,omitempty"`
 
 	// type
 	// Required: true
@@ -127,6 +129,11 @@ func (m *Circuit) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
 	if err := m.validateTenant(formats); err != nil {
 		// prop
 		res = append(res, err)
@@ -146,6 +153,10 @@ func (m *Circuit) Validate(formats strfmt.Registry) error {
 func (m *Circuit) validateCid(formats strfmt.Registry) error {
 
 	if err := validate.Required("cid", "body", m.Cid); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("cid", "body", string(*m.Cid), 1); err != nil {
 		return err
 	}
 
@@ -247,8 +258,8 @@ func (m *Circuit) validateProvider(formats strfmt.Registry) error {
 
 func (m *Circuit) validateStatus(formats strfmt.Registry) error {
 
-	if err := validate.Required("status", "body", m.Status); err != nil {
-		return err
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	if m.Status != nil {
@@ -265,10 +276,19 @@ func (m *Circuit) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Circuit) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *Circuit) validateTenant(formats strfmt.Registry) error {
 
-	if err := validate.Required("tenant", "body", m.Tenant); err != nil {
-		return err
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
 	}
 
 	if m.Tenant != nil {

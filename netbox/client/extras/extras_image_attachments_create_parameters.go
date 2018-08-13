@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewExtrasImageAttachmentsCreateParams creates a new ExtrasImageAttachmentsCreateParams object
@@ -79,7 +79,7 @@ for the extras image attachments create operation typically these are written to
 type ExtrasImageAttachmentsCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableImageAttachment
+	Data *models.ImageAttachment
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *ExtrasImageAttachmentsCreateParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithData adds the data to the extras image attachments create params
-func (o *ExtrasImageAttachmentsCreateParams) WithData(data *models.WritableImageAttachment) *ExtrasImageAttachmentsCreateParams {
+func (o *ExtrasImageAttachmentsCreateParams) WithData(data *models.ImageAttachment) *ExtrasImageAttachmentsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the extras image attachments create params
-func (o *ExtrasImageAttachmentsCreateParams) SetData(data *models.WritableImageAttachment) {
+func (o *ExtrasImageAttachmentsCreateParams) SetData(data *models.ImageAttachment) {
 	o.Data = data
 }
 

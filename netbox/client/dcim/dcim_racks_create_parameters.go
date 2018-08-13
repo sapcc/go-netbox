@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimRacksCreateParams creates a new DcimRacksCreateParams object
@@ -79,7 +79,7 @@ for the dcim racks create operation typically these are written to a http.Reques
 type DcimRacksCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableRack
+	Data *models.Rack
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *DcimRacksCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim racks create params
-func (o *DcimRacksCreateParams) WithData(data *models.WritableRack) *DcimRacksCreateParams {
+func (o *DcimRacksCreateParams) WithData(data *models.Rack) *DcimRacksCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim racks create params
-func (o *DcimRacksCreateParams) SetData(data *models.WritableRack) {
+func (o *DcimRacksCreateParams) SetData(data *models.Rack) {
 	o.Data = data
 }
 

@@ -32,8 +32,7 @@ import (
 type IPAddressInterface struct {
 
 	// device
-	// Required: true
-	Device *NestedDevice `json:"device"`
+	Device *NestedDevice `json:"device,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -42,6 +41,7 @@ type IPAddressInterface struct {
 	// Name
 	// Required: true
 	// Max Length: 64
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Url
@@ -49,8 +49,7 @@ type IPAddressInterface struct {
 	URL string `json:"url,omitempty"`
 
 	// virtual machine
-	// Required: true
-	VirtualMachine *NestedVirtualMachine `json:"virtual_machine"`
+	VirtualMachine *NestedVirtualMachine `json:"virtual_machine,omitempty"`
 }
 
 // Validate validates this IP address interface
@@ -80,8 +79,8 @@ func (m *IPAddressInterface) Validate(formats strfmt.Registry) error {
 
 func (m *IPAddressInterface) validateDevice(formats strfmt.Registry) error {
 
-	if err := validate.Required("device", "body", m.Device); err != nil {
-		return err
+	if swag.IsZero(m.Device) { // not required
+		return nil
 	}
 
 	if m.Device != nil {
@@ -104,6 +103,10 @@ func (m *IPAddressInterface) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 64); err != nil {
 		return err
 	}
@@ -113,8 +116,8 @@ func (m *IPAddressInterface) validateName(formats strfmt.Registry) error {
 
 func (m *IPAddressInterface) validateVirtualMachine(formats strfmt.Registry) error {
 
-	if err := validate.Required("virtual_machine", "body", m.VirtualMachine); err != nil {
-		return err
+	if swag.IsZero(m.VirtualMachine) { // not required
+		return nil
 	}
 
 	if m.VirtualMachine != nil {

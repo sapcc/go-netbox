@@ -32,7 +32,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewDcimPlatformsUpdateParams creates a new DcimPlatformsUpdateParams object
@@ -80,7 +80,7 @@ for the dcim platforms update operation typically these are written to a http.Re
 type DcimPlatformsUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritablePlatform
+	Data *models.Platform
 	/*ID
 	  A unique integer value identifying this platform.
 
@@ -126,13 +126,13 @@ func (o *DcimPlatformsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim platforms update params
-func (o *DcimPlatformsUpdateParams) WithData(data *models.WritablePlatform) *DcimPlatformsUpdateParams {
+func (o *DcimPlatformsUpdateParams) WithData(data *models.Platform) *DcimPlatformsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim platforms update params
-func (o *DcimPlatformsUpdateParams) SetData(data *models.WritablePlatform) {
+func (o *DcimPlatformsUpdateParams) SetData(data *models.Platform) {
 	o.Data = data
 }
 

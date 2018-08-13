@@ -40,6 +40,7 @@ type NestedUser struct {
 	// Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
 	// Required: true
 	// Max Length: 150
+	// Min Length: 1
 	// Pattern: ^[\w.@+-]+$
 	Username *string `json:"username"`
 }
@@ -62,6 +63,10 @@ func (m *NestedUser) Validate(formats strfmt.Registry) error {
 func (m *NestedUser) validateUsername(formats strfmt.Registry) error {
 
 	if err := validate.Required("username", "body", m.Username); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("username", "body", string(*m.Username), 1); err != nil {
 		return err
 	}
 

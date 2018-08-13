@@ -122,6 +122,8 @@ type VirtualizationVirtualMachinesListParams struct {
 	SiteID *int64
 	/*Status*/
 	Status *string
+	/*Tag*/
+	Tag *string
 	/*Tenant*/
 	Tenant *string
 	/*TenantID*/
@@ -361,6 +363,17 @@ func (o *VirtualizationVirtualMachinesListParams) WithStatus(status *string) *Vi
 // SetStatus adds the status to the virtualization virtual machines list params
 func (o *VirtualizationVirtualMachinesListParams) SetStatus(status *string) {
 	o.Status = status
+}
+
+// WithTag adds the tag to the virtualization virtual machines list params
+func (o *VirtualizationVirtualMachinesListParams) WithTag(tag *string) *VirtualizationVirtualMachinesListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the virtualization virtual machines list params
+func (o *VirtualizationVirtualMachinesListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WithTenant adds the tenant to the virtualization virtual machines list params
@@ -675,6 +688,22 @@ func (o *VirtualizationVirtualMachinesListParams) WriteToRequest(r runtime.Clien
 		qStatus := qrStatus
 		if qStatus != "" {
 			if err := r.SetQueryParam("status", qStatus); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

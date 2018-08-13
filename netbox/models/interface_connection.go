@@ -32,8 +32,7 @@ import (
 type InterfaceConnection struct {
 
 	// connection status
-	// Required: true
-	ConnectionStatus *InterfaceConnectionConnectionStatus `json:"connection_status"`
+	ConnectionStatus *InterfaceConnectionConnectionStatus `json:"connection_status,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -41,11 +40,11 @@ type InterfaceConnection struct {
 
 	// interface a
 	// Required: true
-	InterfaceA *PeerInterface `json:"interface_a"`
+	InterfaceA *NestedInterface `json:"interface_a"`
 
 	// interface b
 	// Required: true
-	InterfaceB *PeerInterface `json:"interface_b"`
+	InterfaceB *NestedInterface `json:"interface_b"`
 }
 
 // Validate validates this interface connection
@@ -75,8 +74,8 @@ func (m *InterfaceConnection) Validate(formats strfmt.Registry) error {
 
 func (m *InterfaceConnection) validateConnectionStatus(formats strfmt.Registry) error {
 
-	if err := validate.Required("connection_status", "body", m.ConnectionStatus); err != nil {
-		return err
+	if swag.IsZero(m.ConnectionStatus) { // not required
+		return nil
 	}
 
 	if m.ConnectionStatus != nil {

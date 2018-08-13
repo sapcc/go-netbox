@@ -62,16 +62,20 @@ type VRF struct {
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Route distinguisher
 	// Required: true
 	// Max Length: 21
+	// Min Length: 1
 	Rd *string `json:"rd"`
 
+	// Tags
+	Tags []string `json:"tags"`
+
 	// tenant
-	// Required: true
-	Tenant *NestedTenant `json:"tenant"`
+	Tenant *NestedTenant `json:"tenant,omitempty"`
 }
 
 // Validate validates this v r f
@@ -99,6 +103,11 @@ func (m *VRF) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRd(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -159,6 +168,10 @@ func (m *VRF) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
 	}
@@ -172,6 +185,10 @@ func (m *VRF) validateRd(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("rd", "body", string(*m.Rd), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("rd", "body", string(*m.Rd), 21); err != nil {
 		return err
 	}
@@ -179,10 +196,19 @@ func (m *VRF) validateRd(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *VRF) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *VRF) validateTenant(formats strfmt.Registry) error {
 
-	if err := validate.Required("tenant", "body", m.Tenant); err != nil {
-		return err
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
 	}
 
 	if m.Tenant != nil {

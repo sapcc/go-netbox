@@ -114,6 +114,8 @@ type DcimRacksListParams struct {
 	Site *string
 	/*SiteID*/
 	SiteID *int64
+	/*Tag*/
+	Tag *string
 	/*Tenant*/
 	Tenant *string
 	/*TenantID*/
@@ -315,6 +317,17 @@ func (o *DcimRacksListParams) WithSiteID(siteID *int64) *DcimRacksListParams {
 // SetSiteID adds the siteId to the dcim racks list params
 func (o *DcimRacksListParams) SetSiteID(siteID *int64) {
 	o.SiteID = siteID
+}
+
+// WithTag adds the tag to the dcim racks list params
+func (o *DcimRacksListParams) WithTag(tag *string) *DcimRacksListParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the dcim racks list params
+func (o *DcimRacksListParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WithTenant adds the tenant to the dcim racks list params
@@ -598,6 +611,22 @@ func (o *DcimRacksListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		qSiteID := swag.FormatInt64(qrSiteID)
 		if qSiteID != "" {
 			if err := r.SetQueryParam("site_id", qSiteID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tag != nil {
+
+		// query param tag
+		var qrTag string
+		if o.Tag != nil {
+			qrTag = *o.Tag
+		}
+		qTag := qrTag
+		if qTag != "" {
+			if err := r.SetQueryParam("tag", qTag); err != nil {
 				return err
 			}
 		}

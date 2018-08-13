@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMServicesPartialUpdateReader is a Reader for the IPAMServicesPartialUpdate structure.
@@ -61,7 +61,7 @@ func NewIPAMServicesPartialUpdateOK() *IPAMServicesPartialUpdateOK {
 IPAMServicesPartialUpdateOK ipam services partial update o k
 */
 type IPAMServicesPartialUpdateOK struct {
-	Payload *models.WritableService
+	Payload *models.Service
 }
 
 func (o *IPAMServicesPartialUpdateOK) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMServicesPartialUpdateOK) Error() string {
 
 func (o *IPAMServicesPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritableService)
+	o.Payload = new(models.Service)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

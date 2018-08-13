@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/digitalocean/go-netbox/netbox/models"
+	models "github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // IPAMPrefixesPartialUpdateReader is a Reader for the IPAMPrefixesPartialUpdate structure.
@@ -61,7 +61,7 @@ func NewIPAMPrefixesPartialUpdateOK() *IPAMPrefixesPartialUpdateOK {
 IPAMPrefixesPartialUpdateOK ipam prefixes partial update o k
 */
 type IPAMPrefixesPartialUpdateOK struct {
-	Payload *models.WritablePrefix
+	Payload *models.Prefix
 }
 
 func (o *IPAMPrefixesPartialUpdateOK) Error() string {
@@ -70,7 +70,7 @@ func (o *IPAMPrefixesPartialUpdateOK) Error() string {
 
 func (o *IPAMPrefixesPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.WritablePrefix)
+	o.Payload = new(models.Prefix)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

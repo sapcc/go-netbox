@@ -48,8 +48,7 @@ type Tenant struct {
 	Description string `json:"description,omitempty"`
 
 	// group
-	// Required: true
-	Group *NestedTenantGroup `json:"group"`
+	Group *NestedTenantGroup `json:"group,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -62,13 +61,18 @@ type Tenant struct {
 	// Name
 	// Required: true
 	// Max Length: 30
+	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Slug
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
+
+	// Tags
+	Tags []string `json:"tags"`
 }
 
 // Validate validates this tenant
@@ -101,6 +105,11 @@ func (m *Tenant) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSlug(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -139,8 +148,8 @@ func (m *Tenant) validateDescription(formats strfmt.Registry) error {
 
 func (m *Tenant) validateGroup(formats strfmt.Registry) error {
 
-	if err := validate.Required("group", "body", m.Group); err != nil {
-		return err
+	if swag.IsZero(m.Group) { // not required
+		return nil
 	}
 
 	if m.Group != nil {
@@ -176,6 +185,10 @@ func (m *Tenant) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 30); err != nil {
 		return err
 	}
@@ -189,12 +202,25 @@ func (m *Tenant) validateSlug(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("slug", "body", string(*m.Slug), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("slug", "body", string(*m.Slug), 50); err != nil {
 		return err
 	}
 
 	if err := validate.Pattern("slug", "body", string(*m.Slug), `^[-a-zA-Z0-9_]+$`); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *Tenant) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
 	}
 
 	return nil

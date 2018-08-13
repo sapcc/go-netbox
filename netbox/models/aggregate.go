@@ -48,8 +48,8 @@ type Aggregate struct {
 	Description string `json:"description,omitempty"`
 
 	// Family
-	// Required: true
-	Family *int64 `json:"family"`
+	// Read Only: true
+	Family int64 `json:"family,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -66,6 +66,9 @@ type Aggregate struct {
 	// rir
 	// Required: true
 	Rir *NestedRIR `json:"rir"`
+
+	// Tags
+	Tags []string `json:"tags"`
 }
 
 // Validate validates this aggregate
@@ -103,6 +106,11 @@ func (m *Aggregate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRir(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -174,12 +182,12 @@ func (m *Aggregate) validateFamilyEnum(path, location string, value int64) error
 
 func (m *Aggregate) validateFamily(formats strfmt.Registry) error {
 
-	if err := validate.Required("family", "body", m.Family); err != nil {
-		return err
+	if swag.IsZero(m.Family) { // not required
+		return nil
 	}
 
 	// value enum
-	if err := m.validateFamilyEnum("family", "body", *m.Family); err != nil {
+	if err := m.validateFamilyEnum("family", "body", m.Family); err != nil {
 		return err
 	}
 
@@ -223,6 +231,15 @@ func (m *Aggregate) validateRir(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Aggregate) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
 	}
 
 	return nil

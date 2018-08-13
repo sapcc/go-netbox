@@ -40,13 +40,16 @@ type DeviceBay struct {
 	ID int64 `json:"id,omitempty"`
 
 	// installed device
-	// Required: true
-	InstalledDevice *NestedDevice `json:"installed_device"`
+	InstalledDevice *NestedDevice `json:"installed_device,omitempty"`
 
 	// Name
 	// Required: true
 	// Max Length: 50
+	// Min Length: 1
 	Name *string `json:"name"`
+
+	// Tags
+	Tags []string `json:"tags"`
 }
 
 // Validate validates this device bay
@@ -64,6 +67,11 @@ func (m *DeviceBay) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -96,8 +104,8 @@ func (m *DeviceBay) validateDevice(formats strfmt.Registry) error {
 
 func (m *DeviceBay) validateInstalledDevice(formats strfmt.Registry) error {
 
-	if err := validate.Required("installed_device", "body", m.InstalledDevice); err != nil {
-		return err
+	if swag.IsZero(m.InstalledDevice) { // not required
+		return nil
 	}
 
 	if m.InstalledDevice != nil {
@@ -120,8 +128,21 @@ func (m *DeviceBay) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
+		return err
+	}
+
 	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceBay) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
 	}
 
 	return nil
