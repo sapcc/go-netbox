@@ -4076,7 +4076,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/InventoryItem"
+              "$ref": "#/definitions/WritableInventoryItem"
             }
           }
         ],
@@ -4120,7 +4120,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/InventoryItem"
+              "$ref": "#/definitions/WritableInventoryItem"
             }
           }
         ],
@@ -4145,7 +4145,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/InventoryItem"
+              "$ref": "#/definitions/WritableInventoryItem"
             }
           }
         ],
@@ -15091,6 +15091,70 @@
         },
         "manufacturer": {
           "$ref": "#/definitions/NestedManufacturer"
+        },
+        "part_id": {
+          "title": "Part ID",
+          "type": "string",
+          "maxLength": 50
+        },
+        "serial": {
+          "title": "Serial number",
+          "type": "string",
+          "maxLength": 50
+        },
+        "asset_tag": {
+          "title": "Asset tag",
+          "description": "A unique tag used to identify this item",
+          "type": "string",
+          "maxLength": 50
+        },
+        "discovered": {
+          "title": "Discovered",
+          "type": "boolean"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "tags": {
+          "title": "Tags",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "WritableInventoryItem": {
+      "required": [
+        "device",
+        "name",
+        "manufacturer",
+        "tags"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "type": "integer"
+        },
+        "parent": {
+          "title": "Parent",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "manufacturer": {
+          "type": "integer"
         },
         "part_id": {
           "title": "Part ID",
