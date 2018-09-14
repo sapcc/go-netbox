@@ -39,6 +39,7 @@ type IPAddress struct {
 
 	// Created
 	// Read Only: true
+	// Format: date
 	Created strfmt.Date `json:"created,omitempty"`
 
 	// Custom fields
@@ -61,6 +62,7 @@ type IPAddress struct {
 
 	// Last updated
 	// Read Only: true
+	// Format: date-time
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
 	// nat inside
@@ -90,62 +92,46 @@ func (m *IPAddress) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAddress(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCreated(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDescription(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInterface(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLastUpdated(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateNatInside(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateNatOutside(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRole(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateStatus(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateTags(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTenant(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVrf(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -197,14 +183,12 @@ func (m *IPAddress) validateInterface(formats strfmt.Registry) error {
 	}
 
 	if m.Interface != nil {
-
 		if err := m.Interface.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("interface")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -230,14 +214,12 @@ func (m *IPAddress) validateNatInside(formats strfmt.Registry) error {
 	}
 
 	if m.NatInside != nil {
-
 		if err := m.NatInside.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nat_inside")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -250,14 +232,12 @@ func (m *IPAddress) validateNatOutside(formats strfmt.Registry) error {
 	}
 
 	if m.NatOutside != nil {
-
 		if err := m.NatOutside.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nat_outside")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -270,14 +250,12 @@ func (m *IPAddress) validateRole(formats strfmt.Registry) error {
 	}
 
 	if m.Role != nil {
-
 		if err := m.Role.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("role")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -290,23 +268,12 @@ func (m *IPAddress) validateStatus(formats strfmt.Registry) error {
 	}
 
 	if m.Status != nil {
-
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
 			}
 			return err
 		}
-
-	}
-
-	return nil
-}
-
-func (m *IPAddress) validateTags(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Tags) { // not required
-		return nil
 	}
 
 	return nil
@@ -319,14 +286,12 @@ func (m *IPAddress) validateTenant(formats strfmt.Registry) error {
 	}
 
 	if m.Tenant != nil {
-
 		if err := m.Tenant.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("tenant")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -339,14 +304,12 @@ func (m *IPAddress) validateVrf(formats strfmt.Registry) error {
 	}
 
 	if m.Vrf != nil {
-
 		if err := m.Vrf.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vrf")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -363,6 +326,140 @@ func (m *IPAddress) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *IPAddress) UnmarshalBinary(b []byte) error {
 	var res IPAddress
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// IPAddressRole Role
+// swagger:model IPAddressRole
+type IPAddressRole struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this IP address role
+func (m *IPAddressRole) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IPAddressRole) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("role"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IPAddressRole) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("role"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *IPAddressRole) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *IPAddressRole) UnmarshalBinary(b []byte) error {
+	var res IPAddressRole
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// IPAddressStatus Status
+// swagger:model IPAddressStatus
+type IPAddressStatus struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this IP address status
+func (m *IPAddressStatus) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IPAddressStatus) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("status"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IPAddressStatus) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("status"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *IPAddressStatus) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *IPAddressStatus) UnmarshalBinary(b []byte) error {
+	var res IPAddressStatus
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

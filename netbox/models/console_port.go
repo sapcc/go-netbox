@@ -34,6 +34,7 @@ import (
 type ConsolePort struct {
 
 	// Connection status
+	// Enum: [false true]
 	ConnectionStatus bool `json:"connection_status,omitempty"`
 
 	// cs port
@@ -62,27 +63,18 @@ func (m *ConsolePort) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConnectionStatus(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCsPort(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDevice(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateTags(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -133,14 +125,12 @@ func (m *ConsolePort) validateCsPort(formats strfmt.Registry) error {
 	}
 
 	if m.CsPort != nil {
-
 		if err := m.CsPort.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cs_port")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -153,14 +143,12 @@ func (m *ConsolePort) validateDevice(formats strfmt.Registry) error {
 	}
 
 	if m.Device != nil {
-
 		if err := m.Device.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("device")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -178,15 +166,6 @@ func (m *ConsolePort) validateName(formats strfmt.Registry) error {
 
 	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ConsolePort) validateTags(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Tags) { // not required
-		return nil
 	}
 
 	return nil

@@ -43,6 +43,7 @@ type VirtualMachineWithConfigContext struct {
 
 	// Created
 	// Read Only: true
+	// Format: date
 	Created strfmt.Date `json:"created,omitempty"`
 
 	// Custom fields
@@ -59,6 +60,7 @@ type VirtualMachineWithConfigContext struct {
 
 	// Last updated
 	// Read Only: true
+	// Format: date-time
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
 	// Memory (MB)
@@ -107,77 +109,58 @@ func (m *VirtualMachineWithConfigContext) Validate(formats strfmt.Registry) erro
 	var res []error
 
 	if err := m.validateCluster(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateCreated(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDisk(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLastUpdated(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMemory(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePlatform(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePrimaryIP(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePrimaryIp4(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePrimaryIp6(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRole(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateStatus(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateTags(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTenant(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVcpus(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -194,14 +177,12 @@ func (m *VirtualMachineWithConfigContext) validateCluster(formats strfmt.Registr
 	}
 
 	if m.Cluster != nil {
-
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -291,14 +272,12 @@ func (m *VirtualMachineWithConfigContext) validatePlatform(formats strfmt.Regist
 	}
 
 	if m.Platform != nil {
-
 		if err := m.Platform.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("platform")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -311,14 +290,12 @@ func (m *VirtualMachineWithConfigContext) validatePrimaryIP(formats strfmt.Regis
 	}
 
 	if m.PrimaryIP != nil {
-
 		if err := m.PrimaryIP.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("primary_ip")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -331,14 +308,12 @@ func (m *VirtualMachineWithConfigContext) validatePrimaryIp4(formats strfmt.Regi
 	}
 
 	if m.PrimaryIp4 != nil {
-
 		if err := m.PrimaryIp4.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("primary_ip4")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -351,14 +326,12 @@ func (m *VirtualMachineWithConfigContext) validatePrimaryIp6(formats strfmt.Regi
 	}
 
 	if m.PrimaryIp6 != nil {
-
 		if err := m.PrimaryIp6.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("primary_ip6")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -371,14 +344,12 @@ func (m *VirtualMachineWithConfigContext) validateRole(formats strfmt.Registry) 
 	}
 
 	if m.Role != nil {
-
 		if err := m.Role.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("role")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -391,23 +362,12 @@ func (m *VirtualMachineWithConfigContext) validateStatus(formats strfmt.Registry
 	}
 
 	if m.Status != nil {
-
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
 			}
 			return err
 		}
-
-	}
-
-	return nil
-}
-
-func (m *VirtualMachineWithConfigContext) validateTags(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Tags) { // not required
-		return nil
 	}
 
 	return nil
@@ -420,14 +380,12 @@ func (m *VirtualMachineWithConfigContext) validateTenant(formats strfmt.Registry
 	}
 
 	if m.Tenant != nil {
-
 		if err := m.Tenant.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("tenant")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -461,6 +419,73 @@ func (m *VirtualMachineWithConfigContext) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VirtualMachineWithConfigContext) UnmarshalBinary(b []byte) error {
 	var res VirtualMachineWithConfigContext
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VirtualMachineWithConfigContextStatus Status
+// swagger:model VirtualMachineWithConfigContextStatus
+type VirtualMachineWithConfigContextStatus struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this virtual machine with config context status
+func (m *VirtualMachineWithConfigContextStatus) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VirtualMachineWithConfigContextStatus) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("status"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VirtualMachineWithConfigContextStatus) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("status"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VirtualMachineWithConfigContextStatus) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VirtualMachineWithConfigContextStatus) UnmarshalBinary(b []byte) error {
+	var res VirtualMachineWithConfigContextStatus
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

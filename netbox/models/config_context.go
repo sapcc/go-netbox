@@ -87,52 +87,42 @@ func (m *ConfigContext) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDescription(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePlatforms(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRegions(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRoles(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateSites(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTenantGroups(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTenants(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateWeight(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 

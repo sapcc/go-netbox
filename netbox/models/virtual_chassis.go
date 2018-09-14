@@ -52,17 +52,10 @@ func (m *VirtualChassis) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDomain(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMaster(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateTags(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -92,23 +85,12 @@ func (m *VirtualChassis) validateMaster(formats strfmt.Registry) error {
 	}
 
 	if m.Master != nil {
-
 		if err := m.Master.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("master")
 			}
 			return err
 		}
-
-	}
-
-	return nil
-}
-
-func (m *VirtualChassis) validateTags(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Tags) { // not required
-		return nil
 	}
 
 	return nil

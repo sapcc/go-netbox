@@ -101,62 +101,46 @@ func (m *Interface) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCircuitTermination(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDescription(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDevice(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFormFactor(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInterfaceConnection(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLag(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMode(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMtu(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTaggedVlans(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateTags(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUntaggedVlan(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -173,14 +157,12 @@ func (m *Interface) validateCircuitTermination(formats strfmt.Registry) error {
 	}
 
 	if m.CircuitTermination != nil {
-
 		if err := m.CircuitTermination.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("circuit_termination")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -206,14 +188,12 @@ func (m *Interface) validateDevice(formats strfmt.Registry) error {
 	}
 
 	if m.Device != nil {
-
 		if err := m.Device.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("device")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -226,14 +206,12 @@ func (m *Interface) validateFormFactor(formats strfmt.Registry) error {
 	}
 
 	if m.FormFactor != nil {
-
 		if err := m.FormFactor.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("form_factor")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -246,14 +224,12 @@ func (m *Interface) validateInterfaceConnection(formats strfmt.Registry) error {
 	}
 
 	if m.InterfaceConnection != nil {
-
 		if err := m.InterfaceConnection.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("interface_connection")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -266,14 +242,12 @@ func (m *Interface) validateLag(formats strfmt.Registry) error {
 	}
 
 	if m.Lag != nil {
-
 		if err := m.Lag.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("lag")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -286,14 +260,12 @@ func (m *Interface) validateMode(formats strfmt.Registry) error {
 	}
 
 	if m.Mode != nil {
-
 		if err := m.Mode.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -346,15 +318,6 @@ func (m *Interface) validateTaggedVlans(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateTags(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Tags) { // not required
-		return nil
-	}
-
-	return nil
-}
-
 func (m *Interface) validateUntaggedVlan(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.UntaggedVlan) { // not required
@@ -362,14 +325,12 @@ func (m *Interface) validateUntaggedVlan(formats strfmt.Registry) error {
 	}
 
 	if m.UntaggedVlan != nil {
-
 		if err := m.UntaggedVlan.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("untagged_vlan")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -386,6 +347,140 @@ func (m *Interface) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Interface) UnmarshalBinary(b []byte) error {
 	var res Interface
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// InterfaceFormFactor Form factor
+// swagger:model InterfaceFormFactor
+type InterfaceFormFactor struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this interface form factor
+func (m *InterfaceFormFactor) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InterfaceFormFactor) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("form_factor"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InterfaceFormFactor) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("form_factor"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *InterfaceFormFactor) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *InterfaceFormFactor) UnmarshalBinary(b []byte) error {
+	var res InterfaceFormFactor
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// InterfaceMode Mode
+// swagger:model InterfaceMode
+type InterfaceMode struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this interface mode
+func (m *InterfaceMode) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InterfaceMode) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("mode"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InterfaceMode) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("mode"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *InterfaceMode) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *InterfaceMode) UnmarshalBinary(b []byte) error {
+	var res InterfaceMode
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -89,6 +89,8 @@ type DcimRackGroupsListParams struct {
 
 	*/
 	Offset *int64
+	/*Q*/
+	Q *string
 	/*Site*/
 	Site *string
 	/*SiteID*/
@@ -165,6 +167,17 @@ func (o *DcimRackGroupsListParams) WithOffset(offset *int64) *DcimRackGroupsList
 // SetOffset adds the offset to the dcim rack groups list params
 func (o *DcimRackGroupsListParams) SetOffset(offset *int64) {
 	o.Offset = offset
+}
+
+// WithQ adds the q to the dcim rack groups list params
+func (o *DcimRackGroupsListParams) WithQ(q *string) *DcimRackGroupsListParams {
+	o.SetQ(q)
+	return o
+}
+
+// SetQ adds the q to the dcim rack groups list params
+func (o *DcimRackGroupsListParams) SetQ(q *string) {
+	o.Q = q
 }
 
 // WithSite adds the site to the dcim rack groups list params
@@ -250,6 +263,22 @@ func (o *DcimRackGroupsListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Q != nil {
+
+		// query param q
+		var qrQ string
+		if o.Q != nil {
+			qrQ = *o.Q
+		}
+		qQ := qrQ
+		if qQ != "" {
+			if err := r.SetQueryParam("q", qQ); err != nil {
 				return err
 			}
 		}

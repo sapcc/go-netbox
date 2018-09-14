@@ -52,6 +52,7 @@ type InterfaceCircuitTermination struct {
 
 	// Termination
 	// Required: true
+	// Enum: [A Z]
 	TermSide *string `json:"term_side"`
 
 	// Upstream speed (Kbps)
@@ -71,32 +72,26 @@ func (m *InterfaceCircuitTermination) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCircuit(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePortSpeed(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePpInfo(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTermSide(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUpstreamSpeed(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateXconnectID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -113,14 +108,12 @@ func (m *InterfaceCircuitTermination) validateCircuit(formats strfmt.Registry) e
 	}
 
 	if m.Circuit != nil {
-
 		if err := m.Circuit.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("circuit")
 			}
 			return err
 		}
-
 	}
 
 	return nil

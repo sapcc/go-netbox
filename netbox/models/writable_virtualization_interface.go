@@ -101,57 +101,42 @@ func (m *WritableVirtualizationInterface) Validate(formats strfmt.Registry) erro
 	var res []error
 
 	if err := m.validateCircuitTermination(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDescription(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFormFactor(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateInterfaceConnection(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLag(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMode(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateMtu(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTaggedVlans(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateTags(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVirtualMachine(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -168,14 +153,12 @@ func (m *WritableVirtualizationInterface) validateCircuitTermination(formats str
 	}
 
 	if m.CircuitTermination != nil {
-
 		if err := m.CircuitTermination.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("circuit_termination")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -201,14 +184,12 @@ func (m *WritableVirtualizationInterface) validateFormFactor(formats strfmt.Regi
 	}
 
 	if m.FormFactor != nil {
-
 		if err := m.FormFactor.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("form_factor")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -221,14 +202,12 @@ func (m *WritableVirtualizationInterface) validateInterfaceConnection(formats st
 	}
 
 	if m.InterfaceConnection != nil {
-
 		if err := m.InterfaceConnection.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("interface_connection")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -241,14 +220,12 @@ func (m *WritableVirtualizationInterface) validateLag(formats strfmt.Registry) e
 	}
 
 	if m.Lag != nil {
-
 		if err := m.Lag.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("lag")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -261,14 +238,12 @@ func (m *WritableVirtualizationInterface) validateMode(formats strfmt.Registry) 
 	}
 
 	if m.Mode != nil {
-
 		if err := m.Mode.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -321,15 +296,6 @@ func (m *WritableVirtualizationInterface) validateTaggedVlans(formats strfmt.Reg
 	return nil
 }
 
-func (m *WritableVirtualizationInterface) validateTags(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Tags) { // not required
-		return nil
-	}
-
-	return nil
-}
-
 func (m *WritableVirtualizationInterface) validateVirtualMachine(formats strfmt.Registry) error {
 
 	if err := validate.Required("virtual_machine", "body", m.VirtualMachine); err != nil {
@@ -350,6 +316,140 @@ func (m *WritableVirtualizationInterface) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *WritableVirtualizationInterface) UnmarshalBinary(b []byte) error {
 	var res WritableVirtualizationInterface
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// WritableVirtualizationInterfaceFormFactor Form factor
+// swagger:model WritableVirtualizationInterfaceFormFactor
+type WritableVirtualizationInterfaceFormFactor struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this writable virtualization interface form factor
+func (m *WritableVirtualizationInterfaceFormFactor) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *WritableVirtualizationInterfaceFormFactor) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("form_factor"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WritableVirtualizationInterfaceFormFactor) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("form_factor"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *WritableVirtualizationInterfaceFormFactor) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *WritableVirtualizationInterfaceFormFactor) UnmarshalBinary(b []byte) error {
+	var res WritableVirtualizationInterfaceFormFactor
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// WritableVirtualizationInterfaceMode Mode
+// swagger:model WritableVirtualizationInterfaceMode
+type WritableVirtualizationInterfaceMode struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this writable virtualization interface mode
+func (m *WritableVirtualizationInterfaceMode) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *WritableVirtualizationInterfaceMode) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("mode"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WritableVirtualizationInterfaceMode) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("mode"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *WritableVirtualizationInterfaceMode) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *WritableVirtualizationInterfaceMode) UnmarshalBinary(b []byte) error {
+	var res WritableVirtualizationInterfaceMode
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

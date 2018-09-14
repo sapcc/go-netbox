@@ -35,12 +35,14 @@ type Aggregate struct {
 
 	// Created
 	// Read Only: true
+	// Format: date
 	Created strfmt.Date `json:"created,omitempty"`
 
 	// Custom fields
 	CustomFields interface{} `json:"custom_fields,omitempty"`
 
 	// Date added
+	// Format: date
 	DateAdded strfmt.Date `json:"date_added,omitempty"`
 
 	// Description
@@ -49,6 +51,7 @@ type Aggregate struct {
 
 	// Family
 	// Read Only: true
+	// Enum: [4 6]
 	Family int64 `json:"family,omitempty"`
 
 	// ID
@@ -57,6 +60,7 @@ type Aggregate struct {
 
 	// Last updated
 	// Read Only: true
+	// Format: date-time
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
 	// Prefix
@@ -76,42 +80,30 @@ func (m *Aggregate) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreated(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDateAdded(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDescription(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateFamily(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLastUpdated(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePrefix(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRir(formats); err != nil {
-		// prop
-		res = append(res, err)
-	}
-
-	if err := m.validateTags(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -223,23 +215,12 @@ func (m *Aggregate) validateRir(formats strfmt.Registry) error {
 	}
 
 	if m.Rir != nil {
-
 		if err := m.Rir.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("rir")
 			}
 			return err
 		}
-
-	}
-
-	return nil
-}
-
-func (m *Aggregate) validateTags(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Tags) { // not required
-		return nil
 	}
 
 	return nil

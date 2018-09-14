@@ -3116,7 +3116,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Device"
+              "$ref": "#/definitions/WritableDevice"
             }
           }
         ],
@@ -3160,7 +3160,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Device"
+              "$ref": "#/definitions/WritableDevice"
             }
           }
         ],
@@ -3185,7 +3185,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PatchableDevice"
+              "$ref": "#/definitions/WritableDevice"
             }
           }
         ],
@@ -5468,6 +5468,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "site",
             "in": "query",
             "description": "",
@@ -7156,6 +7163,111 @@
         "operationId": "extras_config-contexts_list",
         "description": "",
         "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "is_active",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "region_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "site_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "site",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "role_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "platform_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenant_group_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenant_group",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenant_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenant",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "limit",
             "in": "query",
@@ -14300,7 +14412,7 @@
         }
       }
     },
-    "PatchableDevice": {
+    "WritableDevice": {
       "type": "object",
       "properties": {
         "id": {
@@ -14319,16 +14431,20 @@
           "readOnly": true
         },
         "device_type": {
-          "$ref": "#/definitions/NestedDeviceType"
+          "title": "Device type",
+          "type": "integer"
         },
         "device_role": {
-          "$ref": "#/definitions/NestedDeviceRole"
+          "title": "Device role",
+          "type": "integer"
         },
         "tenant": {
-          "$ref": "#/definitions/NestedTenant"
+          "title": "Tenant",
+          "type": "integer"
         },
         "platform": {
-          "$ref": "#/definitions/NestedPlatform"
+          "title": "Platform",
+          "type": "integer"
         },
         "serial": {
           "title": "Serial number",
@@ -14342,10 +14458,12 @@
           "maxLength": 50
         },
         "site": {
-          "$ref": "#/definitions/NestedSite"
+          "title": "Site",
+          "type": "integer"
         },
         "rack": {
-          "$ref": "#/definitions/NestedRack"
+          "title": "Rack",
+          "type": "integer"
         },
         "position": {
           "title": "Position (U)",
@@ -14372,8 +14490,8 @@
           }
         },
         "parent_device": {
-          "$ref": "#/definitions/NestedDevice",
-          "readOnly": true
+          "title": "Parent device",
+          "type": "integer"
         },
         "status": {
           "title": "Status",
@@ -14392,19 +14510,24 @@
           }
         },
         "primary_ip": {
-          "$ref": "#/definitions/DeviceIPAddress"
+          "title": "Primary IP",
+          "type": "integer"
         },
         "primary_ip4": {
-          "$ref": "#/definitions/DeviceIPAddress"
+          "title": "Primary IP4",
+          "type": "integer"
         },
         "primary_ip6": {
-          "$ref": "#/definitions/DeviceIPAddress"
+          "title": "Primary IP6",
+          "type": "integer"
         },
         "cluster": {
-          "$ref": "#/definitions/NestedCluster"
+          "title": "Cluster",
+          "type": "integer"
         },
         "virtual_chassis": {
-          "$ref": "#/definitions/DeviceVirtualChassis"
+          "title": "Virtual Chassis",
+          "type": "integer"
         },
         "vc_position": {
           "title": "Vc position",
@@ -17851,6 +17974,9 @@
             }
           }
         },
+        "site": {
+          "$ref": "#/definitions/NestedSite"
+        },
         "cluster": {
           "$ref": "#/definitions/NestedCluster"
         },
@@ -17953,17 +18079,20 @@
             }
           }
         },
+        "site": {
+          "type": "integer"
+        },
         "cluster": {
           "type": "integer"
         },
         "role": {
-          "$ref": "#/definitions/NestedDeviceRole"
+          "type": "integer"
         },
         "tenant": {
-          "$ref": "#/definitions/NestedTenant"
+          "type": "integer"
         },
         "platform": {
-          "$ref": "#/definitions/NestedPlatform"
+          "type": "integer"
         },
         "primary_ip": {
           "$ref": "#/definitions/VirtualMachineIPAddress"

@@ -51,12 +51,10 @@ func (m *PowerOutletTemplate) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDeviceType(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -73,14 +71,12 @@ func (m *PowerOutletTemplate) validateDeviceType(formats strfmt.Registry) error 
 	}
 
 	if m.DeviceType != nil {
-
 		if err := m.DeviceType.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("device_type")
 			}
 			return err
 		}
-
 	}
 
 	return nil

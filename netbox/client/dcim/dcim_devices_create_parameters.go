@@ -79,7 +79,7 @@ for the dcim devices create operation typically these are written to a http.Requ
 type DcimDevicesCreateParams struct {
 
 	/*Data*/
-	Data *models.Device
+	Data *models.WritableDevice
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *DcimDevicesCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim devices create params
-func (o *DcimDevicesCreateParams) WithData(data *models.Device) *DcimDevicesCreateParams {
+func (o *DcimDevicesCreateParams) WithData(data *models.WritableDevice) *DcimDevicesCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim devices create params
-func (o *DcimDevicesCreateParams) SetData(data *models.Device) {
+func (o *DcimDevicesCreateParams) SetData(data *models.WritableDevice) {
 	o.Data = data
 }
 

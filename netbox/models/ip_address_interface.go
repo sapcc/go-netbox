@@ -57,17 +57,14 @@ func (m *IPAddressInterface) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDevice(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVirtualMachine(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -84,14 +81,12 @@ func (m *IPAddressInterface) validateDevice(formats strfmt.Registry) error {
 	}
 
 	if m.Device != nil {
-
 		if err := m.Device.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("device")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -121,14 +116,12 @@ func (m *IPAddressInterface) validateVirtualMachine(formats strfmt.Registry) err
 	}
 
 	if m.VirtualMachine != nil {
-
 		if err := m.VirtualMachine.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("virtual_machine")
 			}
 			return err
 		}
-
 	}
 
 	return nil

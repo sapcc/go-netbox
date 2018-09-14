@@ -35,6 +35,7 @@ type ObjectChange struct {
 
 	// Action
 	// Required: true
+	// Enum: [1 2 3]
 	Action *int64 `json:"action"`
 
 	// Changed object
@@ -55,10 +56,12 @@ type ObjectChange struct {
 
 	// Request id
 	// Read Only: true
+	// Format: uuid
 	RequestID strfmt.UUID `json:"request_id,omitempty"`
 
 	// Time
 	// Read Only: true
+	// Format: date-time
 	Time strfmt.DateTime `json:"time,omitempty"`
 
 	// user
@@ -75,27 +78,22 @@ func (m *ObjectChange) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAction(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateRequestID(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateTime(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUser(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateUserName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -172,14 +170,12 @@ func (m *ObjectChange) validateUser(formats strfmt.Registry) error {
 	}
 
 	if m.User != nil {
-
 		if err := m.User.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("user")
 			}
 			return err
 		}
-
 	}
 
 	return nil

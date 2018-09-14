@@ -80,7 +80,7 @@ for the dcim devices update operation typically these are written to a http.Requ
 type DcimDevicesUpdateParams struct {
 
 	/*Data*/
-	Data *models.Device
+	Data *models.WritableDevice
 	/*ID
 	  A unique integer value identifying this device.
 
@@ -126,13 +126,13 @@ func (o *DcimDevicesUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim devices update params
-func (o *DcimDevicesUpdateParams) WithData(data *models.Device) *DcimDevicesUpdateParams {
+func (o *DcimDevicesUpdateParams) WithData(data *models.WritableDevice) *DcimDevicesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim devices update params
-func (o *DcimDevicesUpdateParams) SetData(data *models.Device) {
+func (o *DcimDevicesUpdateParams) SetData(data *models.WritableDevice) {
 	o.Data = data
 }
 

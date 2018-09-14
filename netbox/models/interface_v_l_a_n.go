@@ -47,6 +47,7 @@ type InterfaceVLAN struct {
 
 	// Url
 	// Read Only: true
+	// Format: uri
 	URL strfmt.URI `json:"url,omitempty"`
 
 	// ID
@@ -61,17 +62,14 @@ func (m *InterfaceVLAN) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateURL(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVid(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 

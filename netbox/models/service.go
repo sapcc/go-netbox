@@ -33,6 +33,7 @@ type Service struct {
 
 	// Created
 	// Read Only: true
+	// Format: date
 	Created strfmt.Date `json:"created,omitempty"`
 
 	// Custom fields
@@ -55,6 +56,7 @@ type Service struct {
 
 	// Last updated
 	// Read Only: true
+	// Format: date-time
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
 	// Name
@@ -82,47 +84,38 @@ func (m *Service) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreated(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDescription(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateDevice(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateIpaddresses(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateLastUpdated(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validatePort(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateProtocol(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
 	if err := m.validateVirtualMachine(formats); err != nil {
-		// prop
 		res = append(res, err)
 	}
 
@@ -165,14 +158,12 @@ func (m *Service) validateDevice(formats strfmt.Registry) error {
 	}
 
 	if m.Device != nil {
-
 		if err := m.Device.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("device")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -245,14 +236,12 @@ func (m *Service) validateProtocol(formats strfmt.Registry) error {
 	}
 
 	if m.Protocol != nil {
-
 		if err := m.Protocol.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protocol")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -265,14 +254,12 @@ func (m *Service) validateVirtualMachine(formats strfmt.Registry) error {
 	}
 
 	if m.VirtualMachine != nil {
-
 		if err := m.VirtualMachine.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("virtual_machine")
 			}
 			return err
 		}
-
 	}
 
 	return nil
@@ -289,6 +276,73 @@ func (m *Service) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Service) UnmarshalBinary(b []byte) error {
 	var res Service
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// ServiceProtocol Protocol
+// swagger:model ServiceProtocol
+type ServiceProtocol struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this service protocol
+func (m *ServiceProtocol) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ServiceProtocol) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("protocol"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ServiceProtocol) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("protocol"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *ServiceProtocol) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *ServiceProtocol) UnmarshalBinary(b []byte) error {
+	var res ServiceProtocol
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}
