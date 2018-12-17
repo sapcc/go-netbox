@@ -94,17 +94,17 @@ type ExtrasConfigContextsListParams struct {
 	/*Platform*/
 	Platform *string
 	/*PlatformID*/
-	PlatformID *string
+	PlatformID *int64
 	/*Q*/
 	Q *string
 	/*Region*/
 	Region *string
 	/*RegionID*/
-	RegionID *string
+	RegionID *int64
 	/*Role*/
 	Role *string
 	/*RoleID*/
-	RoleID *string
+	RoleID *int64
 	/*Site*/
 	Site *string
 	/*SiteID*/
@@ -114,7 +114,7 @@ type ExtrasConfigContextsListParams struct {
 	/*TenantGroup*/
 	TenantGroup *string
 	/*TenantGroupID*/
-	TenantGroupID *string
+	TenantGroupID *int64
 	/*TenantID*/
 	TenantID *string
 
@@ -212,13 +212,13 @@ func (o *ExtrasConfigContextsListParams) SetPlatform(platform *string) {
 }
 
 // WithPlatformID adds the platformID to the extras config contexts list params
-func (o *ExtrasConfigContextsListParams) WithPlatformID(platformID *string) *ExtrasConfigContextsListParams {
+func (o *ExtrasConfigContextsListParams) WithPlatformID(platformID *int64) *ExtrasConfigContextsListParams {
 	o.SetPlatformID(platformID)
 	return o
 }
 
 // SetPlatformID adds the platformId to the extras config contexts list params
-func (o *ExtrasConfigContextsListParams) SetPlatformID(platformID *string) {
+func (o *ExtrasConfigContextsListParams) SetPlatformID(platformID *int64) {
 	o.PlatformID = platformID
 }
 
@@ -245,13 +245,13 @@ func (o *ExtrasConfigContextsListParams) SetRegion(region *string) {
 }
 
 // WithRegionID adds the regionID to the extras config contexts list params
-func (o *ExtrasConfigContextsListParams) WithRegionID(regionID *string) *ExtrasConfigContextsListParams {
+func (o *ExtrasConfigContextsListParams) WithRegionID(regionID *int64) *ExtrasConfigContextsListParams {
 	o.SetRegionID(regionID)
 	return o
 }
 
 // SetRegionID adds the regionId to the extras config contexts list params
-func (o *ExtrasConfigContextsListParams) SetRegionID(regionID *string) {
+func (o *ExtrasConfigContextsListParams) SetRegionID(regionID *int64) {
 	o.RegionID = regionID
 }
 
@@ -267,13 +267,13 @@ func (o *ExtrasConfigContextsListParams) SetRole(role *string) {
 }
 
 // WithRoleID adds the roleID to the extras config contexts list params
-func (o *ExtrasConfigContextsListParams) WithRoleID(roleID *string) *ExtrasConfigContextsListParams {
+func (o *ExtrasConfigContextsListParams) WithRoleID(roleID *int64) *ExtrasConfigContextsListParams {
 	o.SetRoleID(roleID)
 	return o
 }
 
 // SetRoleID adds the roleId to the extras config contexts list params
-func (o *ExtrasConfigContextsListParams) SetRoleID(roleID *string) {
+func (o *ExtrasConfigContextsListParams) SetRoleID(roleID *int64) {
 	o.RoleID = roleID
 }
 
@@ -322,13 +322,13 @@ func (o *ExtrasConfigContextsListParams) SetTenantGroup(tenantGroup *string) {
 }
 
 // WithTenantGroupID adds the tenantGroupID to the extras config contexts list params
-func (o *ExtrasConfigContextsListParams) WithTenantGroupID(tenantGroupID *string) *ExtrasConfigContextsListParams {
+func (o *ExtrasConfigContextsListParams) WithTenantGroupID(tenantGroupID *int64) *ExtrasConfigContextsListParams {
 	o.SetTenantGroupID(tenantGroupID)
 	return o
 }
 
 // SetTenantGroupID adds the tenantGroupId to the extras config contexts list params
-func (o *ExtrasConfigContextsListParams) SetTenantGroupID(tenantGroupID *string) {
+func (o *ExtrasConfigContextsListParams) SetTenantGroupID(tenantGroupID *int64) {
 	o.TenantGroupID = tenantGroupID
 }
 
@@ -434,11 +434,11 @@ func (o *ExtrasConfigContextsListParams) WriteToRequest(r runtime.ClientRequest,
 	if o.PlatformID != nil {
 
 		// query param platform_id
-		var qrPlatformID string
+		var qrPlatformID int64
 		if o.PlatformID != nil {
 			qrPlatformID = *o.PlatformID
 		}
-		qPlatformID := qrPlatformID
+		qPlatformID := swag.FormatInt64(qrPlatformID)
 		if qPlatformID != "" {
 			if err := r.SetQueryParam("platform_id", qPlatformID); err != nil {
 				return err
@@ -482,11 +482,11 @@ func (o *ExtrasConfigContextsListParams) WriteToRequest(r runtime.ClientRequest,
 	if o.RegionID != nil {
 
 		// query param region_id
-		var qrRegionID string
+		var qrRegionID int64
 		if o.RegionID != nil {
 			qrRegionID = *o.RegionID
 		}
-		qRegionID := qrRegionID
+		qRegionID := swag.FormatInt64(qrRegionID)
 		if qRegionID != "" {
 			if err := r.SetQueryParam("region_id", qRegionID); err != nil {
 				return err
@@ -514,11 +514,11 @@ func (o *ExtrasConfigContextsListParams) WriteToRequest(r runtime.ClientRequest,
 	if o.RoleID != nil {
 
 		// query param role_id
-		var qrRoleID string
+		var qrRoleID int64
 		if o.RoleID != nil {
 			qrRoleID = *o.RoleID
 		}
-		qRoleID := qrRoleID
+		qRoleID := swag.FormatInt64(qrRoleID)
 		if qRoleID != "" {
 			if err := r.SetQueryParam("role_id", qRoleID); err != nil {
 				return err
@@ -594,11 +594,11 @@ func (o *ExtrasConfigContextsListParams) WriteToRequest(r runtime.ClientRequest,
 	if o.TenantGroupID != nil {
 
 		// query param tenant_group_id
-		var qrTenantGroupID string
+		var qrTenantGroupID int64
 		if o.TenantGroupID != nil {
 			qrTenantGroupID = *o.TenantGroupID
 		}
-		qTenantGroupID := qrTenantGroupID
+		qTenantGroupID := swag.FormatInt64(qrTenantGroupID)
 		if qTenantGroupID != "" {
 			if err := r.SetQueryParam("tenant_group_id", qTenantGroupID); err != nil {
 				return err

@@ -79,7 +79,7 @@ for the virtualization clusters create operation typically these are written to 
 type VirtualizationClustersCreateParams struct {
 
 	/*Data*/
-	Data *models.Cluster
+	Data *models.WritableCluster
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *VirtualizationClustersCreateParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithData adds the data to the virtualization clusters create params
-func (o *VirtualizationClustersCreateParams) WithData(data *models.Cluster) *VirtualizationClustersCreateParams {
+func (o *VirtualizationClustersCreateParams) WithData(data *models.WritableCluster) *VirtualizationClustersCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the virtualization clusters create params
-func (o *VirtualizationClustersCreateParams) SetData(data *models.Cluster) {
+func (o *VirtualizationClustersCreateParams) SetData(data *models.WritableCluster) {
 	o.Data = data
 }
 

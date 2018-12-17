@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -53,8 +55,7 @@ type InventoryItem struct {
 	ID int64 `json:"id,omitempty"`
 
 	// manufacturer
-	// Required: true
-	Manufacturer *NestedManufacturer `json:"manufacturer"`
+	Manufacturer *NestedManufacturer `json:"manufacturer,omitempty"`
 
 	// Name
 	// Required: true
@@ -73,7 +74,7 @@ type InventoryItem struct {
 	// Max Length: 50
 	Serial string `json:"serial,omitempty"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 }
 
@@ -106,6 +107,10 @@ func (m *InventoryItem) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSerial(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -161,8 +166,8 @@ func (m *InventoryItem) validateDevice(formats strfmt.Registry) error {
 
 func (m *InventoryItem) validateManufacturer(formats strfmt.Registry) error {
 
-	if err := validate.Required("manufacturer", "body", m.Manufacturer); err != nil {
-		return err
+	if swag.IsZero(m.Manufacturer) { // not required
+		return nil
 	}
 
 	if m.Manufacturer != nil {
@@ -215,6 +220,23 @@ func (m *InventoryItem) validateSerial(formats strfmt.Registry) error {
 
 	if err := validate.MaxLength("serial", "body", string(m.Serial), 50); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *InventoryItem) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

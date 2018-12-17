@@ -155,20 +155,20 @@ func (o *DcimConnectedDeviceListParams) WriteToRequest(r runtime.ClientRequest, 
 	}
 	var res []error
 
-	// query param peer-device
+	// query param peer_device
 	qrPeerDevice := o.PeerDevice
 	qPeerDevice := qrPeerDevice
 	if qPeerDevice != "" {
-		if err := r.SetQueryParam("peer-device", qPeerDevice); err != nil {
+		if err := r.SetQueryParam("peer_device", qPeerDevice); err != nil {
 			return err
 		}
 	}
 
-	// query param peer-interface
+	// query param peer_interface
 	qrPeerInterface := o.PeerInterface
 	qPeerInterface := qrPeerInterface
 	if qPeerInterface != "" {
-		if err := r.SetQueryParam("peer-interface", qPeerInterface); err != nil {
+		if err := r.SetQueryParam("peer_interface", qPeerInterface); err != nil {
 			return err
 		}
 	}

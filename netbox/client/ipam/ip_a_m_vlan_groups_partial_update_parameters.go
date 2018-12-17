@@ -80,7 +80,7 @@ for the ipam vlan groups partial update operation typically these are written to
 type IPAMVlanGroupsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.VLANGroup
+	Data *models.WritableVLANGroup
 	/*ID
 	  A unique integer value identifying this VLAN group.
 
@@ -126,13 +126,13 @@ func (o *IPAMVlanGroupsPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam vlan groups partial update params
-func (o *IPAMVlanGroupsPartialUpdateParams) WithData(data *models.VLANGroup) *IPAMVlanGroupsPartialUpdateParams {
+func (o *IPAMVlanGroupsPartialUpdateParams) WithData(data *models.WritableVLANGroup) *IPAMVlanGroupsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam vlan groups partial update params
-func (o *IPAMVlanGroupsPartialUpdateParams) SetData(data *models.VLANGroup) {
+func (o *IPAMVlanGroupsPartialUpdateParams) SetData(data *models.WritableVLANGroup) {
 	o.Data = data
 }
 

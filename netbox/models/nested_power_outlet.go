@@ -38,6 +38,10 @@ type NestedPowerOutlet struct {
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
 
+	// Is connected
+	// Read Only: true
+	IsConnected *bool `json:"is_connected,omitempty"`
+
 	// Name
 	// Required: true
 	// Max Length: 50

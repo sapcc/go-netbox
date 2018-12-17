@@ -80,7 +80,7 @@ for the extras topology maps update operation typically these are written to a h
 type ExtrasTopologyMapsUpdateParams struct {
 
 	/*Data*/
-	Data *models.TopologyMap
+	Data *models.WritableTopologyMap
 	/*ID
 	  A unique integer value identifying this topology map.
 
@@ -126,13 +126,13 @@ func (o *ExtrasTopologyMapsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the extras topology maps update params
-func (o *ExtrasTopologyMapsUpdateParams) WithData(data *models.TopologyMap) *ExtrasTopologyMapsUpdateParams {
+func (o *ExtrasTopologyMapsUpdateParams) WithData(data *models.WritableTopologyMap) *ExtrasTopologyMapsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the extras topology maps update params
-func (o *ExtrasTopologyMapsUpdateParams) SetData(data *models.TopologyMap) {
+func (o *ExtrasTopologyMapsUpdateParams) SetData(data *models.WritableTopologyMap) {
 	o.Data = data
 }
 

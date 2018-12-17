@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -75,12 +77,14 @@ type Device struct {
 	// Format: date-time
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
+	// Local context data
+	LocalContextData string `json:"local_context_data,omitempty"`
+
 	// Name
 	// Max Length: 64
 	Name string `json:"name,omitempty"`
 
 	// parent device
-	// Read Only: true
 	ParentDevice *NestedDevice `json:"parent_device,omitempty"`
 
 	// platform
@@ -116,7 +120,7 @@ type Device struct {
 	// status
 	Status *DeviceStatus `json:"status,omitempty"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 
 	// tenant
@@ -209,6 +213,10 @@ func (m *Device) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -527,6 +535,23 @@ func (m *Device) validateStatus(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Device) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

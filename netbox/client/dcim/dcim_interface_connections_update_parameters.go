@@ -80,7 +80,7 @@ for the dcim interface connections update operation typically these are written 
 type DcimInterfaceConnectionsUpdateParams struct {
 
 	/*Data*/
-	Data *models.InterfaceConnection
+	Data *models.WritableInterfaceConnection
 	/*ID
 	  A unique integer value identifying this interface connection.
 
@@ -126,13 +126,13 @@ func (o *DcimInterfaceConnectionsUpdateParams) SetHTTPClient(client *http.Client
 }
 
 // WithData adds the data to the dcim interface connections update params
-func (o *DcimInterfaceConnectionsUpdateParams) WithData(data *models.InterfaceConnection) *DcimInterfaceConnectionsUpdateParams {
+func (o *DcimInterfaceConnectionsUpdateParams) WithData(data *models.WritableInterfaceConnection) *DcimInterfaceConnectionsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim interface connections update params
-func (o *DcimInterfaceConnectionsUpdateParams) SetData(data *models.InterfaceConnection) {
+func (o *DcimInterfaceConnectionsUpdateParams) SetData(data *models.WritableInterfaceConnection) {
 	o.Data = data
 }
 

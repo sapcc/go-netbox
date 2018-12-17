@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -104,7 +106,7 @@ type DeviceType struct {
 	// subdevice role
 	SubdeviceRole *DeviceTypeSubdeviceRole `json:"subdevice_role,omitempty"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 
 	// Height (U)
@@ -146,6 +148,10 @@ func (m *DeviceType) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSubdeviceRole(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -285,6 +291,23 @@ func (m *DeviceType) validateSubdeviceRole(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *DeviceType) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

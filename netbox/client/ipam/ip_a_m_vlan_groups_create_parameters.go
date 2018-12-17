@@ -79,7 +79,7 @@ for the ipam vlan groups create operation typically these are written to a http.
 type IPAMVlanGroupsCreateParams struct {
 
 	/*Data*/
-	Data *models.VLANGroup
+	Data *models.WritableVLANGroup
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *IPAMVlanGroupsCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam vlan groups create params
-func (o *IPAMVlanGroupsCreateParams) WithData(data *models.VLANGroup) *IPAMVlanGroupsCreateParams {
+func (o *IPAMVlanGroupsCreateParams) WithData(data *models.WritableVLANGroup) *IPAMVlanGroupsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam vlan groups create params
-func (o *IPAMVlanGroupsCreateParams) SetData(data *models.VLANGroup) {
+func (o *IPAMVlanGroupsCreateParams) SetData(data *models.WritableVLANGroup) {
 	o.Data = data
 }
 

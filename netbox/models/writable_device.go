@@ -20,6 +20,9 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -61,8 +64,9 @@ type WritableDevice struct {
 	// Read Only: true
 	DisplayName string `json:"display_name,omitempty"`
 
-	// face
-	Face *WritableDeviceFace `json:"face,omitempty"`
+	// Rack face
+	// Enum: [0 1]
+	Face int64 `json:"face,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -73,12 +77,16 @@ type WritableDevice struct {
 	// Format: date-time
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
+	// Local context data
+	LocalContextData string `json:"local_context_data,omitempty"`
+
 	// Name
 	// Max Length: 64
 	Name string `json:"name,omitempty"`
 
 	// Parent device
-	ParentDevice int64 `json:"parent_device,omitempty"`
+	// Read Only: true
+	ParentDevice string `json:"parent_device,omitempty"`
 
 	// Platform
 	Platform int64 `json:"platform,omitempty"`
@@ -90,13 +98,14 @@ type WritableDevice struct {
 	// Minimum: 1
 	Position int64 `json:"position,omitempty"`
 
-	// Primary IP
-	PrimaryIP int64 `json:"primary_ip,omitempty"`
+	// Primary ip
+	// Read Only: true
+	PrimaryIP string `json:"primary_ip,omitempty"`
 
-	// Primary IP4
+	// Primary IPv4
 	PrimaryIp4 int64 `json:"primary_ip4,omitempty"`
 
-	// Primary IP6
+	// Primary IPv6
 	PrimaryIp6 int64 `json:"primary_ip6,omitempty"`
 
 	// Rack
@@ -109,10 +118,11 @@ type WritableDevice struct {
 	// Site
 	Site int64 `json:"site,omitempty"`
 
-	// status
-	Status *WritableDeviceStatus `json:"status,omitempty"`
+	// Status
+	// Enum: [1 0 2 3 4 5]
+	Status int64 `json:"status,omitempty"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 
 	// Tenant
@@ -128,7 +138,7 @@ type WritableDevice struct {
 	// Minimum: 0
 	VcPriority *int64 `json:"vc_priority,omitempty"`
 
-	// Virtual Chassis
+	// Virtual chassis
 	VirtualChassis int64 `json:"virtual_chassis,omitempty"`
 }
 
@@ -165,6 +175,10 @@ func (m *WritableDevice) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -208,19 +222,35 @@ func (m *WritableDevice) validateCreated(formats strfmt.Registry) error {
 	return nil
 }
 
+var writableDeviceTypeFacePropEnum []interface{}
+
+func init() {
+	var res []int64
+	if err := json.Unmarshal([]byte(`[0,1]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		writableDeviceTypeFacePropEnum = append(writableDeviceTypeFacePropEnum, v)
+	}
+}
+
+// prop value enum
+func (m *WritableDevice) validateFaceEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writableDeviceTypeFacePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *WritableDevice) validateFace(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Face) { // not required
 		return nil
 	}
 
-	if m.Face != nil {
-		if err := m.Face.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("face")
-			}
-			return err
-		}
+	// value enum
+	if err := m.validateFaceEnum("face", "body", m.Face); err != nil {
+		return err
 	}
 
 	return nil
@@ -282,19 +312,52 @@ func (m *WritableDevice) validateSerial(formats strfmt.Registry) error {
 	return nil
 }
 
+var writableDeviceTypeStatusPropEnum []interface{}
+
+func init() {
+	var res []int64
+	if err := json.Unmarshal([]byte(`[1,0,2,3,4,5]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		writableDeviceTypeStatusPropEnum = append(writableDeviceTypeStatusPropEnum, v)
+	}
+}
+
+// prop value enum
+func (m *WritableDevice) validateStatusEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writableDeviceTypeStatusPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *WritableDevice) validateStatus(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Status) { // not required
 		return nil
 	}
 
-	if m.Status != nil {
-		if err := m.Status.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("status")
-			}
+	// value enum
+	if err := m.validateStatusEnum("status", "body", m.Status); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WritableDevice) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
 			return err
 		}
+
 	}
 
 	return nil
@@ -345,140 +408,6 @@ func (m *WritableDevice) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *WritableDevice) UnmarshalBinary(b []byte) error {
 	var res WritableDevice
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// WritableDeviceFace Face
-// swagger:model WritableDeviceFace
-type WritableDeviceFace struct {
-
-	// label
-	// Required: true
-	Label *string `json:"label"`
-
-	// value
-	// Required: true
-	Value *int64 `json:"value"`
-}
-
-// Validate validates this writable device face
-func (m *WritableDeviceFace) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateLabel(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateValue(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *WritableDeviceFace) validateLabel(formats strfmt.Registry) error {
-
-	if err := validate.Required("face"+"."+"label", "body", m.Label); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *WritableDeviceFace) validateValue(formats strfmt.Registry) error {
-
-	if err := validate.Required("face"+"."+"value", "body", m.Value); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *WritableDeviceFace) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *WritableDeviceFace) UnmarshalBinary(b []byte) error {
-	var res WritableDeviceFace
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// WritableDeviceStatus Status
-// swagger:model WritableDeviceStatus
-type WritableDeviceStatus struct {
-
-	// label
-	// Required: true
-	Label *string `json:"label"`
-
-	// value
-	// Required: true
-	Value *int64 `json:"value"`
-}
-
-// Validate validates this writable device status
-func (m *WritableDeviceStatus) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateLabel(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateValue(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *WritableDeviceStatus) validateLabel(formats strfmt.Registry) error {
-
-	if err := validate.Required("status"+"."+"label", "body", m.Label); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *WritableDeviceStatus) validateValue(formats strfmt.Registry) error {
-
-	if err := validate.Required("status"+"."+"value", "body", m.Value); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *WritableDeviceStatus) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *WritableDeviceStatus) UnmarshalBinary(b []byte) error {
-	var res WritableDeviceStatus
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

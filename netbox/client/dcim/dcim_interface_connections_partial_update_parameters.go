@@ -80,7 +80,7 @@ for the dcim interface connections partial update operation typically these are 
 type DcimInterfaceConnectionsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.InterfaceConnection
+	Data *models.WritableInterfaceConnection
 	/*ID
 	  A unique integer value identifying this interface connection.
 
@@ -126,13 +126,13 @@ func (o *DcimInterfaceConnectionsPartialUpdateParams) SetHTTPClient(client *http
 }
 
 // WithData adds the data to the dcim interface connections partial update params
-func (o *DcimInterfaceConnectionsPartialUpdateParams) WithData(data *models.InterfaceConnection) *DcimInterfaceConnectionsPartialUpdateParams {
+func (o *DcimInterfaceConnectionsPartialUpdateParams) WithData(data *models.WritableInterfaceConnection) *DcimInterfaceConnectionsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim interface connections partial update params
-func (o *DcimInterfaceConnectionsPartialUpdateParams) SetData(data *models.InterfaceConnection) {
+func (o *DcimInterfaceConnectionsPartialUpdateParams) SetData(data *models.WritableInterfaceConnection) {
 	o.Data = data
 }
 

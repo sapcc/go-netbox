@@ -21,6 +21,7 @@ package models
 
 import (
 	"encoding/json"
+	"strconv"
 
 	strfmt "github.com/go-openapi/strfmt"
 
@@ -71,7 +72,7 @@ type Aggregate struct {
 	// Required: true
 	Rir *NestedRIR `json:"rir"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 }
 
@@ -104,6 +105,10 @@ func (m *Aggregate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRir(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -221,6 +226,23 @@ func (m *Aggregate) validateRir(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Aggregate) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

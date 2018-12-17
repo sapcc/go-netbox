@@ -197,7 +197,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CircuitTermination"
+              "$ref": "#/definitions/WritableCircuitTermination"
             }
           }
         ],
@@ -241,7 +241,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CircuitTermination"
+              "$ref": "#/definitions/WritableCircuitTermination"
             }
           }
         ],
@@ -266,7 +266,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/CircuitTermination"
+              "$ref": "#/definitions/WritableCircuitTermination"
             }
           }
         ],
@@ -664,7 +664,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Circuit"
+              "$ref": "#/definitions/WritableCircuit"
             }
           }
         ],
@@ -708,7 +708,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Circuit"
+              "$ref": "#/definitions/WritableCircuit"
             }
           }
         ],
@@ -733,7 +733,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Circuit"
+              "$ref": "#/definitions/WritableCircuit"
             }
           }
         ],
@@ -796,7 +796,7 @@
             "in": "query",
             "description": "",
             "required": false,
-            "type": "integer"
+            "type": "number"
           },
           {
             "name": "account",
@@ -1078,17 +1078,17 @@
     "/dcim/connected-device/": {
       "get": {
         "operationId": "dcim_connected-device_list",
-        "description": "This endpoint allows a user to determine what device (if any) is connected to a given peer device and peer\ninterface. This is useful in a situation where a device boots with no configuration, but can detect its neighbors\nvia a protocol such as LLDP. Two query parameters must be included in the request:\n\n* `peer-device`: The name of the peer device\n* `peer-interface`: The name of the peer interface",
+        "description": "This endpoint allows a user to determine what device (if any) is connected to a given peer device and peer\ninterface. This is useful in a situation where a device boots with no configuration, but can detect its neighbors\nvia a protocol such as LLDP. Two query parameters must be included in the request:\n\n* `peer_device`: The name of the peer device\n* `peer_interface`: The name of the peer interface",
         "parameters": [
           {
-            "name": "peer-device",
+            "name": "peer_device",
             "in": "query",
             "description": "The name of the peer device",
             "required": true,
             "type": "string"
           },
           {
-            "name": "peer-interface",
+            "name": "peer_interface",
             "in": "query",
             "description": "The name of the peer interface",
             "required": true,
@@ -1276,7 +1276,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsolePortTemplate"
+              "$ref": "#/definitions/WritableConsolePortTemplate"
             }
           }
         ],
@@ -1320,7 +1320,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsolePortTemplate"
+              "$ref": "#/definitions/WritableConsolePortTemplate"
             }
           }
         ],
@@ -1345,7 +1345,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsolePortTemplate"
+              "$ref": "#/definitions/WritableConsolePortTemplate"
             }
           }
         ],
@@ -1478,7 +1478,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsolePort"
+              "$ref": "#/definitions/WritableConsolePort"
             }
           }
         ],
@@ -1522,7 +1522,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsolePort"
+              "$ref": "#/definitions/WritableConsolePort"
             }
           }
         ],
@@ -1547,7 +1547,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsolePort"
+              "$ref": "#/definitions/WritableConsolePort"
             }
           }
         ],
@@ -1666,7 +1666,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsoleServerPortTemplate"
+              "$ref": "#/definitions/WritableConsoleServerPortTemplate"
             }
           }
         ],
@@ -1710,7 +1710,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsoleServerPortTemplate"
+              "$ref": "#/definitions/WritableConsoleServerPortTemplate"
             }
           }
         ],
@@ -1735,7 +1735,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsoleServerPortTemplate"
+              "$ref": "#/definitions/WritableConsoleServerPortTemplate"
             }
           }
         ],
@@ -1868,7 +1868,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsoleServerPort"
+              "$ref": "#/definitions/WritableConsoleServerPort"
             }
           }
         ],
@@ -1912,7 +1912,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsoleServerPort"
+              "$ref": "#/definitions/WritableConsoleServerPort"
             }
           }
         ],
@@ -1937,7 +1937,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConsoleServerPort"
+              "$ref": "#/definitions/WritableConsoleServerPort"
             }
           }
         ],
@@ -2056,7 +2056,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DeviceBayTemplate"
+              "$ref": "#/definitions/WritableDeviceBayTemplate"
             }
           }
         ],
@@ -2100,7 +2100,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DeviceBayTemplate"
+              "$ref": "#/definitions/WritableDeviceBayTemplate"
             }
           }
         ],
@@ -2125,7 +2125,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DeviceBayTemplate"
+              "$ref": "#/definitions/WritableDeviceBayTemplate"
             }
           }
         ],
@@ -2258,7 +2258,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DeviceBay"
+              "$ref": "#/definitions/WritableDeviceBay"
             }
           }
         ],
@@ -2302,7 +2302,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DeviceBay"
+              "$ref": "#/definitions/WritableDeviceBay"
             }
           }
         ],
@@ -2327,7 +2327,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DeviceBay"
+              "$ref": "#/definitions/WritableDeviceBay"
             }
           }
         ],
@@ -2599,7 +2599,7 @@
             "in": "query",
             "description": "",
             "required": false,
-            "type": "integer"
+            "type": "number"
           },
           {
             "name": "is_full_depth",
@@ -2732,7 +2732,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DeviceType"
+              "$ref": "#/definitions/WritableDeviceType"
             }
           }
         ],
@@ -2776,7 +2776,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DeviceType"
+              "$ref": "#/definitions/WritableDeviceType"
             }
           }
         ],
@@ -2801,7 +2801,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DeviceType"
+              "$ref": "#/definitions/WritableDeviceType"
             }
           }
         ],
@@ -2945,6 +2945,20 @@
           },
           {
             "name": "asset_tag",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "region_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "region",
             "in": "query",
             "description": "",
             "required": false,
@@ -3338,7 +3352,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/InterfaceConnection"
+              "$ref": "#/definitions/WritableInterfaceConnection"
             }
           }
         ],
@@ -3382,7 +3396,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/InterfaceConnection"
+              "$ref": "#/definitions/WritableInterfaceConnection"
             }
           }
         ],
@@ -3407,7 +3421,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/InterfaceConnection"
+              "$ref": "#/definitions/WritableInterfaceConnection"
             }
           }
         ],
@@ -3540,7 +3554,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/InterfaceTemplate"
+              "$ref": "#/definitions/WritableInterfaceTemplate"
             }
           }
         ],
@@ -3584,7 +3598,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/InterfaceTemplate"
+              "$ref": "#/definitions/WritableInterfaceTemplate"
             }
           }
         ],
@@ -3609,7 +3623,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/InterfaceTemplate"
+              "$ref": "#/definitions/WritableInterfaceTemplate"
             }
           }
         ],
@@ -3655,13 +3669,6 @@
         "parameters": [
           {
             "name": "name",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "form_factor",
             "in": "query",
             "description": "",
             "required": false,
@@ -3731,6 +3738,27 @@
             "type": "string"
           },
           {
+            "name": "vlan_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "vlan",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "form_factor",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Number of results to return per page.",
@@ -3791,7 +3819,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Interface"
+              "$ref": "#/definitions/WritableInterface"
             }
           }
         ],
@@ -3835,7 +3863,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Interface"
+              "$ref": "#/definitions/WritableInterface"
             }
           }
         ],
@@ -3860,7 +3888,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Interface"
+              "$ref": "#/definitions/WritableInterface"
             }
           }
         ],
@@ -4466,7 +4494,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Platform"
+              "$ref": "#/definitions/WritablePlatform"
             }
           }
         ],
@@ -4510,7 +4538,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Platform"
+              "$ref": "#/definitions/WritablePlatform"
             }
           }
         ],
@@ -4535,7 +4563,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Platform"
+              "$ref": "#/definitions/WritablePlatform"
             }
           }
         ],
@@ -4741,7 +4769,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerOutletTemplate"
+              "$ref": "#/definitions/WritablePowerOutletTemplate"
             }
           }
         ],
@@ -4785,7 +4813,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerOutletTemplate"
+              "$ref": "#/definitions/WritablePowerOutletTemplate"
             }
           }
         ],
@@ -4810,7 +4838,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerOutletTemplate"
+              "$ref": "#/definitions/WritablePowerOutletTemplate"
             }
           }
         ],
@@ -4943,7 +4971,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerOutlet"
+              "$ref": "#/definitions/WritablePowerOutlet"
             }
           }
         ],
@@ -4987,7 +5015,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerOutlet"
+              "$ref": "#/definitions/WritablePowerOutlet"
             }
           }
         ],
@@ -5012,7 +5040,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerOutlet"
+              "$ref": "#/definitions/WritablePowerOutlet"
             }
           }
         ],
@@ -5131,7 +5159,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerPortTemplate"
+              "$ref": "#/definitions/WritablePowerPortTemplate"
             }
           }
         ],
@@ -5175,7 +5203,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerPortTemplate"
+              "$ref": "#/definitions/WritablePowerPortTemplate"
             }
           }
         ],
@@ -5200,7 +5228,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerPortTemplate"
+              "$ref": "#/definitions/WritablePowerPortTemplate"
             }
           }
         ],
@@ -5333,7 +5361,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerPort"
+              "$ref": "#/definitions/WritablePowerPort"
             }
           }
         ],
@@ -5377,7 +5405,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerPort"
+              "$ref": "#/definitions/WritablePowerPort"
             }
           }
         ],
@@ -5402,7 +5430,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/PowerPort"
+              "$ref": "#/definitions/WritablePowerPort"
             }
           }
         ],
@@ -5542,7 +5570,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/RackGroup"
+              "$ref": "#/definitions/WritableRackGroup"
             }
           }
         ],
@@ -5586,7 +5614,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/RackGroup"
+              "$ref": "#/definitions/WritableRackGroup"
             }
           }
         ],
@@ -5611,7 +5639,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/RackGroup"
+              "$ref": "#/definitions/WritableRackGroup"
             }
           }
         ],
@@ -5800,7 +5828,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/RackReservation"
+              "$ref": "#/definitions/WritableRackReservation"
             }
           }
         ],
@@ -5844,7 +5872,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/RackReservation"
+              "$ref": "#/definitions/WritableRackReservation"
             }
           }
         ],
@@ -5869,7 +5897,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/RackReservation"
+              "$ref": "#/definitions/WritableRackReservation"
             }
           }
         ],
@@ -6295,7 +6323,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Rack"
+              "$ref": "#/definitions/WritableRack"
             }
           }
         ],
@@ -6339,7 +6367,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Rack"
+              "$ref": "#/definitions/WritableRack"
             }
           }
         ],
@@ -6364,7 +6392,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Rack"
+              "$ref": "#/definitions/WritableRack"
             }
           }
         ],
@@ -6531,7 +6559,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Region"
+              "$ref": "#/definitions/WritableRegion"
             }
           }
         ],
@@ -6575,7 +6603,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Region"
+              "$ref": "#/definitions/WritableRegion"
             }
           }
         ],
@@ -6600,7 +6628,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Region"
+              "$ref": "#/definitions/WritableRegion"
             }
           }
         ],
@@ -6810,7 +6838,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Site"
+              "$ref": "#/definitions/WritableSite"
             }
           }
         ],
@@ -6854,7 +6882,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Site"
+              "$ref": "#/definitions/WritableSite"
             }
           }
         ],
@@ -6879,7 +6907,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Site"
+              "$ref": "#/definitions/WritableSite"
             }
           }
         ],
@@ -7011,7 +7039,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VirtualChassis"
+              "$ref": "#/definitions/WritableVirtualChassis"
             }
           }
         ],
@@ -7055,7 +7083,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VirtualChassis"
+              "$ref": "#/definitions/WritableVirtualChassis"
             }
           }
         ],
@@ -7080,7 +7108,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VirtualChassis"
+              "$ref": "#/definitions/WritableVirtualChassis"
             }
           }
         ],
@@ -7189,7 +7217,7 @@
             "in": "query",
             "description": "",
             "required": false,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "region",
@@ -7217,7 +7245,7 @@
             "in": "query",
             "description": "",
             "required": false,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "role",
@@ -7231,7 +7259,7 @@
             "in": "query",
             "description": "",
             "required": false,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "platform",
@@ -7245,7 +7273,7 @@
             "in": "query",
             "description": "",
             "required": false,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "tenant_group",
@@ -7329,7 +7357,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConfigContext"
+              "$ref": "#/definitions/WritableConfigContext"
             }
           }
         ],
@@ -7373,7 +7401,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConfigContext"
+              "$ref": "#/definitions/WritableConfigContext"
             }
           }
         ],
@@ -7398,7 +7426,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ConfigContext"
+              "$ref": "#/definitions/WritableConfigContext"
             }
           }
         ],
@@ -7705,7 +7733,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Graph"
+              "$ref": "#/definitions/WritableGraph"
             }
           }
         ],
@@ -7749,7 +7777,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Graph"
+              "$ref": "#/definitions/WritableGraph"
             }
           }
         ],
@@ -7774,7 +7802,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Graph"
+              "$ref": "#/definitions/WritableGraph"
             }
           }
         ],
@@ -8518,7 +8546,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/TopologyMap"
+              "$ref": "#/definitions/WritableTopologyMap"
             }
           }
         ],
@@ -8562,7 +8590,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/TopologyMap"
+              "$ref": "#/definitions/WritableTopologyMap"
             }
           }
         ],
@@ -8587,7 +8615,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/TopologyMap"
+              "$ref": "#/definitions/WritableTopologyMap"
             }
           }
         ],
@@ -8807,7 +8835,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Aggregate"
+              "$ref": "#/definitions/WritableAggregate"
             }
           }
         ],
@@ -8851,7 +8879,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Aggregate"
+              "$ref": "#/definitions/WritableAggregate"
             }
           }
         ],
@@ -8876,7 +8904,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Aggregate"
+              "$ref": "#/definitions/WritableAggregate"
             }
           }
         ],
@@ -9421,7 +9449,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Prefix"
+              "$ref": "#/definitions/WritablePrefix"
             }
           }
         ],
@@ -9465,7 +9493,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Prefix"
+              "$ref": "#/definitions/WritablePrefix"
             }
           }
         ],
@@ -9490,7 +9518,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Prefix"
+              "$ref": "#/definitions/WritablePrefix"
             }
           }
         ],
@@ -9555,7 +9583,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Prefix"
+              "$ref": "#/definitions/WritablePrefix"
             }
           }
         ],
@@ -9607,7 +9635,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Prefix"
+              "$ref": "#/definitions/WritablePrefix"
             }
           }
         ],
@@ -10152,7 +10180,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Service"
+              "$ref": "#/definitions/WritableService"
             }
           }
         ],
@@ -10196,7 +10224,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Service"
+              "$ref": "#/definitions/WritableService"
             }
           }
         ],
@@ -10221,7 +10249,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Service"
+              "$ref": "#/definitions/WritableService"
             }
           }
         ],
@@ -10354,7 +10382,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VLANGroup"
+              "$ref": "#/definitions/WritableVLANGroup"
             }
           }
         ],
@@ -10398,7 +10426,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VLANGroup"
+              "$ref": "#/definitions/WritableVLANGroup"
             }
           }
         ],
@@ -10423,7 +10451,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VLANGroup"
+              "$ref": "#/definitions/WritableVLANGroup"
             }
           }
         ],
@@ -10626,7 +10654,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VLAN"
+              "$ref": "#/definitions/WritableVLAN"
             }
           }
         ],
@@ -10670,7 +10698,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VLAN"
+              "$ref": "#/definitions/WritableVLAN"
             }
           }
         ],
@@ -10695,7 +10723,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VLAN"
+              "$ref": "#/definitions/WritableVLAN"
             }
           }
         ],
@@ -10856,7 +10884,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VRF"
+              "$ref": "#/definitions/WritableVRF"
             }
           }
         ],
@@ -10900,7 +10928,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VRF"
+              "$ref": "#/definitions/WritableVRF"
             }
           }
         ],
@@ -10925,7 +10953,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VRF"
+              "$ref": "#/definitions/WritableVRF"
             }
           }
         ],
@@ -11345,7 +11373,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Secret"
+              "$ref": "#/definitions/WritableSecret"
             }
           }
         ],
@@ -11389,7 +11417,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Secret"
+              "$ref": "#/definitions/WritableSecret"
             }
           }
         ],
@@ -11414,7 +11442,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Secret"
+              "$ref": "#/definitions/WritableSecret"
             }
           }
         ],
@@ -11788,7 +11816,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Tenant"
+              "$ref": "#/definitions/WritableTenant"
             }
           }
         ],
@@ -11832,7 +11860,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Tenant"
+              "$ref": "#/definitions/WritableTenant"
             }
           }
         ],
@@ -11857,7 +11885,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Tenant"
+              "$ref": "#/definitions/WritableTenant"
             }
           }
         ],
@@ -12447,7 +12475,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Cluster"
+              "$ref": "#/definitions/WritableCluster"
             }
           }
         ],
@@ -12491,7 +12519,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Cluster"
+              "$ref": "#/definitions/WritableCluster"
             }
           }
         ],
@@ -12516,7 +12544,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Cluster"
+              "$ref": "#/definitions/WritableCluster"
             }
           }
         ],
@@ -12643,7 +12671,7 @@
                 "results": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/Interface"
+                    "$ref": "#/definitions/VirtualMachineInterface"
                   }
                 }
               }
@@ -12663,7 +12691,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WritableVirtualizationInterface"
+              "$ref": "#/definitions/WritableVirtualMachineInterface"
             }
           }
         ],
@@ -12671,7 +12699,7 @@
           "201": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/VirtualizationInterface"
+              "$ref": "#/definitions/VirtualMachineInterface"
             }
           }
         },
@@ -12690,7 +12718,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Interface"
+              "$ref": "#/definitions/VirtualMachineInterface"
             }
           }
         },
@@ -12707,7 +12735,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WritableVirtualizationInterface"
+              "$ref": "#/definitions/WritableVirtualMachineInterface"
             }
           }
         ],
@@ -12715,7 +12743,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/VirtualizationInterface"
+              "$ref": "#/definitions/VirtualMachineInterface"
             }
           }
         },
@@ -12732,7 +12760,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WritableVirtualizationInterface"
+              "$ref": "#/definitions/WritableVirtualMachineInterface"
             }
           }
         ],
@@ -12740,7 +12768,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/VirtualizationInterface"
+              "$ref": "#/definitions/VirtualMachineInterface"
             }
           }
         },
@@ -12845,6 +12873,20 @@
             "description": "",
             "required": false,
             "type": "integer"
+          },
+          {
+            "name": "region_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "site_id",
@@ -13166,156 +13208,12 @@
           "type": "string",
           "readOnly": true
         }
-      }
+      },
+      "readOnly": true
     },
     "NestedInterface": {
-      "title": "Lag",
-      "required": [
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "url": {
-          "title": "Url",
-          "type": "string",
-          "format": "uri",
-          "readOnly": true
-        },
-        "device": {
-          "$ref": "#/definitions/NestedDevice"
-        },
-        "name": {
-          "title": "Name",
-          "type": "string",
-          "maxLength": 64,
-          "minLength": 1
-        }
-      }
-    },
-    "InterfaceNestedCircuit": {
-      "title": "Circuit",
-      "required": [
-        "cid"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "url": {
-          "title": "Url",
-          "type": "string",
-          "format": "uri",
-          "readOnly": true
-        },
-        "cid": {
-          "title": "Circuit ID",
-          "type": "string",
-          "maxLength": 50,
-          "minLength": 1
-        }
-      },
-      "readOnly": true
-    },
-    "InterfaceCircuitTermination": {
-      "title": "Circuit termination",
-      "required": [
-        "term_side",
-        "port_speed"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "circuit": {
-          "$ref": "#/definitions/InterfaceNestedCircuit"
-        },
-        "term_side": {
-          "title": "Termination",
-          "type": "string",
-          "enum": [
-            "A",
-            "Z"
-          ]
-        },
-        "port_speed": {
-          "title": "Port speed (Kbps)",
-          "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
-        },
-        "upstream_speed": {
-          "title": "Upstream speed (Kbps)",
-          "description": "Upstream speed, if different from port speed",
-          "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
-        },
-        "xconnect_id": {
-          "title": "Cross-connect ID",
-          "type": "string",
-          "maxLength": 50
-        },
-        "pp_info": {
-          "title": "Patch panel/port(s)",
-          "type": "string",
-          "maxLength": 100
-        }
-      },
-      "readOnly": true
-    },
-    "InterfaceVLAN": {
-      "title": "Untagged vlan",
-      "required": [
-        "vid",
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "url": {
-          "title": "Url",
-          "type": "string",
-          "format": "uri",
-          "readOnly": true
-        },
-        "vid": {
-          "title": "ID",
-          "type": "integer",
-          "maximum": 4094,
-          "minimum": 1
-        },
-        "name": {
-          "title": "Name",
-          "type": "string",
-          "maxLength": 64,
-          "minLength": 1
-        },
-        "display_name": {
-          "title": "Display name",
-          "type": "string",
-          "readOnly": true
-        }
-      }
-    },
-    "Interface": {
       "title": "Interface",
       "required": [
-        "device",
         "name"
       ],
       "type": "object",
@@ -13323,6 +13221,12 @@
         "id": {
           "title": "ID",
           "type": "integer",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "type": "string",
+          "format": "uri",
           "readOnly": true
         },
         "device": {
@@ -13334,315 +13238,10 @@
           "maxLength": 64,
           "minLength": 1
         },
-        "form_factor": {
-          "title": "Form factor",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
-        },
-        "enabled": {
-          "title": "Enabled",
-          "type": "boolean"
-        },
-        "lag": {
-          "$ref": "#/definitions/NestedInterface"
-        },
-        "mtu": {
-          "title": "MTU",
-          "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
-        },
-        "mac_address": {
-          "title": "MAC Address",
-          "type": "string"
-        },
-        "mgmt_only": {
-          "title": "OOB Management",
-          "description": "This interface is used only for out-of-band management",
-          "type": "boolean"
-        },
-        "description": {
-          "title": "Description",
-          "type": "string",
-          "maxLength": 100
-        },
         "is_connected": {
           "title": "Is connected",
           "type": "boolean",
           "readOnly": true
-        },
-        "interface_connection": {
-          "$ref": "#/definitions/InterfaceConnection",
-          "readOnly": true
-        },
-        "circuit_termination": {
-          "$ref": "#/definitions/InterfaceCircuitTermination"
-        },
-        "mode": {
-          "title": "Mode",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
-        },
-        "untagged_vlan": {
-          "$ref": "#/definitions/InterfaceVLAN"
-        },
-        "tagged_vlans": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          },
-          "uniqueItems": true
-        },
-        "tags": {
-          "title": "Tags",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "VirtualizationInterface": {
-      "type": "object",
-      "required": [
-        "name",
-        "virtual_machine"
-      ],
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "virtual_machine": {
-          "$ref": "#/definitions/NestedVirtualMachine"
-        },
-        "name": {
-          "title": "Name",
-          "type": "string",
-          "maxLength": 64,
-          "minLength": 1
-        },
-        "form_factor": {
-          "title": "Form factor",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
-        },
-        "enabled": {
-          "title": "Enabled",
-          "type": "boolean"
-        },
-        "lag": {
-          "$ref": "#/definitions/NestedInterface"
-        },
-        "mtu": {
-          "title": "MTU",
-          "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
-        },
-        "mac_address": {
-          "title": "MAC Address",
-          "type": "string"
-        },
-        "mgmt_only": {
-          "title": "OOB Management",
-          "description": "This interface is used only for out-of-band management",
-          "type": "boolean"
-        },
-        "description": {
-          "title": "Description",
-          "type": "string",
-          "maxLength": 100
-        },
-        "is_connected": {
-          "title": "Is connected",
-          "type": "boolean",
-          "readOnly": true
-        },
-        "interface_connection": {
-          "$ref": "#/definitions/InterfaceConnection",
-          "readOnly": true
-        },
-        "circuit_termination": {
-          "$ref": "#/definitions/InterfaceCircuitTermination"
-        },
-        "mode": {
-          "title": "Mode",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
-        },
-        "untagged_vlan": {
-          "$ref": "#/definitions/InterfaceVLAN"
-        },
-        "tagged_vlans": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          },
-          "uniqueItems": true
-        },
-        "tags": {
-          "title": "Tags",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "WritableVirtualizationInterface": {
-      "type": "object",
-      "required": [
-        "name",
-        "virtual_machine"
-      ],
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "virtual_machine": {
-          "type": "integer"
-        },
-        "name": {
-          "title": "Name",
-          "type": "string",
-          "maxLength": 64,
-          "minLength": 1
-        },
-        "form_factor": {
-          "title": "Form factor",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
-        },
-        "enabled": {
-          "title": "Enabled",
-          "type": "boolean"
-        },
-        "lag": {
-          "$ref": "#/definitions/NestedInterface"
-        },
-        "mtu": {
-          "title": "MTU",
-          "type": "integer",
-          "maximum": 32767,
-          "minimum": 0
-        },
-        "mac_address": {
-          "title": "MAC Address",
-          "type": "string"
-        },
-        "mgmt_only": {
-          "title": "OOB Management",
-          "description": "This interface is used only for out-of-band management",
-          "type": "boolean"
-        },
-        "description": {
-          "title": "Description",
-          "type": "string",
-          "maxLength": 100
-        },
-        "is_connected": {
-          "title": "Is connected",
-          "type": "boolean",
-          "readOnly": true
-        },
-        "interface_connection": {
-          "$ref": "#/definitions/InterfaceConnection",
-          "readOnly": true
-        },
-        "circuit_termination": {
-          "$ref": "#/definitions/InterfaceCircuitTermination"
-        },
-        "mode": {
-          "title": "Mode",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
-        },
-        "untagged_vlan": {
-          "type": "integer"
-        },
-        "tagged_vlans": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          },
-          "uniqueItems": true
-        },
-        "tags": {
-          "title": "Tags",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         }
       }
     },
@@ -13675,7 +13274,66 @@
           "$ref": "#/definitions/NestedSite"
         },
         "interface": {
-          "$ref": "#/definitions/Interface"
+          "$ref": "#/definitions/NestedInterface"
+        },
+        "port_speed": {
+          "title": "Port speed (Kbps)",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "upstream_speed": {
+          "title": "Upstream speed (Kbps)",
+          "description": "Upstream speed, if different from port speed",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "xconnect_id": {
+          "title": "Cross-connect ID",
+          "type": "string",
+          "maxLength": 50
+        },
+        "pp_info": {
+          "title": "Patch panel/port(s)",
+          "type": "string",
+          "maxLength": 100
+        }
+      }
+    },
+    "WritableCircuitTermination": {
+      "required": [
+        "circuit",
+        "term_side",
+        "site",
+        "port_speed"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "circuit": {
+          "title": "Circuit",
+          "type": "integer"
+        },
+        "term_side": {
+          "title": "Termination",
+          "type": "string",
+          "enum": [
+            "A",
+            "Z"
+          ]
+        },
+        "site": {
+          "title": "Site",
+          "type": "integer"
+        },
+        "interface": {
+          "title": "Interface",
+          "type": "integer"
         },
         "port_speed": {
           "title": "Port speed (Kbps)",
@@ -13900,10 +13558,98 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "WritableCircuit": {
+      "required": [
+        "cid",
+        "provider",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "cid": {
+          "title": "Circuit ID",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "integer"
+        },
+        "type": {
+          "title": "Type",
+          "type": "integer"
+        },
+        "status": {
+          "title": "Status",
+          "type": "integer",
+          "enum": [
+            2,
+            3,
+            1,
+            4,
+            0,
+            5
+          ]
+        },
+        "tenant": {
+          "title": "Tenant",
+          "type": "integer"
+        },
+        "install_date": {
+          "title": "Date installed",
+          "type": "string",
+          "format": "date"
+        },
+        "commit_rate": {
+          "title": "Commit rate (Kbps)",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "comments": {
+          "title": "Comments",
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -13980,10 +13726,10 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -14336,8 +14082,7 @@
           }
         },
         "parent_device": {
-          "$ref": "#/definitions/NestedDevice",
-          "readOnly": true
+          "$ref": "#/definitions/NestedDevice"
         },
         "status": {
           "title": "Status",
@@ -14387,12 +14132,11 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
-          },
-          "default": []
+            "type": "string",
+            "minLength": 1
+          }
         },
         "custom_fields": {
           "title": "Custom fields",
@@ -14409,165 +14153,10 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
-        }
-      }
-    },
-    "WritableDevice": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
         },
-        "name": {
-          "title": "Name",
-          "type": "string",
-          "maxLength": 64
-        },
-        "display_name": {
-          "title": "Display name",
-          "type": "string",
-          "readOnly": true
-        },
-        "device_type": {
-          "title": "Device type",
-          "type": "integer"
-        },
-        "device_role": {
-          "title": "Device role",
-          "type": "integer"
-        },
-        "tenant": {
-          "title": "Tenant",
-          "type": "integer"
-        },
-        "platform": {
-          "title": "Platform",
-          "type": "integer"
-        },
-        "serial": {
-          "title": "Serial number",
-          "type": "string",
-          "maxLength": 50
-        },
-        "asset_tag": {
-          "title": "Asset tag",
-          "description": "A unique tag used to identify this device",
-          "type": "string",
-          "maxLength": 50
-        },
-        "site": {
-          "title": "Site",
-          "type": "integer"
-        },
-        "rack": {
-          "title": "Rack",
-          "type": "integer"
-        },
-        "position": {
-          "title": "Position (U)",
-          "description": "The lowest-numbered unit occupied by the device",
-          "type": "integer",
-          "maximum": 32767,
-          "minimum": 1
-        },
-        "face": {
-          "title": "Face",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer",
-              "x-nullable": true
-            }
-          }
-        },
-        "parent_device": {
-          "title": "Parent device",
-          "type": "integer"
-        },
-        "status": {
-          "title": "Status",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
-        },
-        "primary_ip": {
-          "title": "Primary IP",
-          "type": "integer"
-        },
-        "primary_ip4": {
-          "title": "Primary IP4",
-          "type": "integer"
-        },
-        "primary_ip6": {
-          "title": "Primary IP6",
-          "type": "integer"
-        },
-        "cluster": {
-          "title": "Cluster",
-          "type": "integer"
-        },
-        "virtual_chassis": {
-          "title": "Virtual Chassis",
-          "type": "integer"
-        },
-        "vc_position": {
-          "title": "Vc position",
-          "type": "integer",
-          "maximum": 255,
-          "minimum": 0
-        },
-        "vc_priority": {
-          "title": "Vc priority",
-          "type": "integer",
-          "maximum": 255,
-          "minimum": 0
-        },
-        "comments": {
-          "title": "Comments",
+        "local_context_data": {
+          "title": "Local context data",
           "type": "string"
-        },
-        "tags": {
-          "title": "Tags",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": []
-        },
-        "custom_fields": {
-          "title": "Custom fields",
-          "type": "object"
-        },
-        "created": {
-          "title": "Created",
-          "type": "string",
-          "format": "date",
-          "readOnly": true
-        },
-        "last_updated": {
-          "title": "Last updated",
-          "type": "string",
-          "format": "date-time",
-          "readOnly": true
         }
       }
     },
@@ -14597,6 +14186,11 @@
           "type": "string",
           "maxLength": 50,
           "minLength": 1
+        },
+        "is_connected": {
+          "title": "Is connected",
+          "type": "boolean",
+          "readOnly": true
         }
       }
     },
@@ -14633,10 +14227,10 @@
           ]
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         }
       }
@@ -14664,6 +14258,73 @@
         }
       }
     },
+    "WritableConsolePortTemplate": {
+      "required": [
+        "device_type",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device_type": {
+          "title": "Device type",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      }
+    },
+    "WritableConsolePort": {
+      "required": [
+        "device",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "title": "Device",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "cs_port": {
+          "title": "Console server port",
+          "type": "integer"
+        },
+        "connection_status": {
+          "title": "Connection status",
+          "type": "boolean",
+          "enum": [
+            false,
+            true
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
     "ConsoleServerPortTemplate": {
       "required": [
         "device_type",
@@ -14678,6 +14339,30 @@
         },
         "device_type": {
           "$ref": "#/definitions/NestedDeviceType"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      }
+    },
+    "WritableConsoleServerPortTemplate": {
+      "required": [
+        "device_type",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device_type": {
+          "title": "Device type",
+          "type": "integer"
         },
         "name": {
           "title": "Name",
@@ -14714,10 +14399,46 @@
           "readOnly": true
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "WritableConsoleServerPort": {
+      "required": [
+        "device",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "title": "Device",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "connected_console": {
+          "title": "Connected console",
+          "type": "string",
+          "readOnly": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }
@@ -14736,6 +14457,30 @@
         },
         "device_type": {
           "$ref": "#/definitions/NestedDeviceType"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      }
+    },
+    "WritableDeviceBayTemplate": {
+      "required": [
+        "device_type",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device_type": {
+          "title": "Device type",
+          "type": "integer"
         },
         "name": {
           "title": "Name",
@@ -14770,10 +14515,45 @@
           "$ref": "#/definitions/NestedDevice"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "WritableDeviceBay": {
+      "required": [
+        "device",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "title": "Device",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "installed_device": {
+          "title": "Installed device",
+          "type": "integer"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }
@@ -14919,10 +14699,10 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -14945,6 +14725,272 @@
           "title": "Instance count",
           "type": "integer",
           "readOnly": true
+        }
+      }
+    },
+    "WritableDeviceType": {
+      "required": [
+        "manufacturer",
+        "model",
+        "slug"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "manufacturer": {
+          "title": "Manufacturer",
+          "type": "integer"
+        },
+        "model": {
+          "title": "Model",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "part_number": {
+          "title": "Part number",
+          "description": "Discrete part number (optional)",
+          "type": "string",
+          "maxLength": 50
+        },
+        "u_height": {
+          "title": "Height (U)",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 0
+        },
+        "is_full_depth": {
+          "title": "Is full depth",
+          "description": "Device consumes both front and rear rack faces",
+          "type": "boolean"
+        },
+        "interface_ordering": {
+          "title": "Interface ordering",
+          "type": "integer",
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "is_console_server": {
+          "title": "Is a console server",
+          "description": "This type of device has console server ports",
+          "type": "boolean"
+        },
+        "is_pdu": {
+          "title": "Is a PDU",
+          "description": "This type of device has power outlets",
+          "type": "boolean"
+        },
+        "is_network_device": {
+          "title": "Is a network device",
+          "description": "This type of device has network interfaces",
+          "type": "boolean"
+        },
+        "subdevice_role": {
+          "title": "Parent/child status",
+          "description": "Parent devices house child devices in device bays. Select \"None\" if this device type is neither a parent nor a child.",
+          "type": "boolean",
+          "enum": [
+            null,
+            true,
+            false
+          ]
+        },
+        "comments": {
+          "title": "Comments",
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "instance_count": {
+          "title": "Instance count",
+          "type": "integer",
+          "readOnly": true
+        }
+      }
+    },
+    "WritableDevice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64
+        },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "readOnly": true
+        },
+        "device_type": {
+          "title": "Device type",
+          "type": "integer"
+        },
+        "device_role": {
+          "title": "Device role",
+          "type": "integer"
+        },
+        "tenant": {
+          "title": "Tenant",
+          "type": "integer"
+        },
+        "platform": {
+          "title": "Platform",
+          "type": "integer"
+        },
+        "serial": {
+          "title": "Serial number",
+          "type": "string",
+          "maxLength": 50
+        },
+        "asset_tag": {
+          "title": "Asset tag",
+          "description": "A unique tag used to identify this device",
+          "type": "string",
+          "maxLength": 50
+        },
+        "site": {
+          "title": "Site",
+          "type": "integer"
+        },
+        "rack": {
+          "title": "Rack",
+          "type": "integer"
+        },
+        "position": {
+          "title": "Position (U)",
+          "description": "The lowest-numbered unit occupied by the device",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 1
+        },
+        "face": {
+          "title": "Rack face",
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "parent_device": {
+          "title": "Parent device",
+          "type": "string",
+          "readOnly": true
+        },
+        "status": {
+          "title": "Status",
+          "type": "integer",
+          "enum": [
+            1,
+            0,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "primary_ip": {
+          "title": "Primary ip",
+          "type": "string",
+          "readOnly": true
+        },
+        "primary_ip4": {
+          "title": "Primary IPv4",
+          "type": "integer"
+        },
+        "primary_ip6": {
+          "title": "Primary IPv6",
+          "type": "integer"
+        },
+        "cluster": {
+          "title": "Cluster",
+          "type": "integer"
+        },
+        "virtual_chassis": {
+          "title": "Virtual chassis",
+          "type": "integer"
+        },
+        "vc_position": {
+          "title": "Vc position",
+          "type": "integer",
+          "maximum": 255,
+          "minimum": 0
+        },
+        "vc_priority": {
+          "title": "Vc priority",
+          "type": "integer",
+          "maximum": 255,
+          "minimum": 0
+        },
+        "comments": {
+          "title": "Comments",
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "local_context_data": {
+          "title": "Local context data",
+          "type": "string"
         }
       }
     },
@@ -15077,10 +15123,10 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -15103,6 +15149,10 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
+        },
+        "local_context_data": {
+          "title": "Local context data",
+          "type": "string"
         }
       }
     },
@@ -15140,6 +15190,36 @@
               "x-nullable": true
             }
           }
+        }
+      }
+    },
+    "WritableInterfaceConnection": {
+      "required": [
+        "interface_a",
+        "interface_b"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "interface_a": {
+          "title": "Interface a",
+          "type": "integer"
+        },
+        "interface_b": {
+          "title": "Interface b",
+          "type": "integer"
+        },
+        "connection_status": {
+          "title": "Status",
+          "type": "boolean",
+          "enum": [
+            false,
+            true
+          ]
         }
       }
     },
@@ -15186,11 +15266,474 @@
         }
       }
     },
-    "InventoryItem": {
+    "WritableInterfaceTemplate": {
+      "required": [
+        "device_type",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device_type": {
+          "title": "Device type",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "form_factor": {
+          "title": "Form factor",
+          "type": "integer",
+          "enum": [
+            0,
+            200,
+            800,
+            1000,
+            1150,
+            1170,
+            1050,
+            1100,
+            1200,
+            1300,
+            1310,
+            1320,
+            1350,
+            1400,
+            1500,
+            1510,
+            1520,
+            1550,
+            1600,
+            2600,
+            2610,
+            2620,
+            2630,
+            2640,
+            6100,
+            6200,
+            6300,
+            6400,
+            6500,
+            6600,
+            6700,
+            3010,
+            3020,
+            3040,
+            3080,
+            3160,
+            3320,
+            4000,
+            4010,
+            4040,
+            4050,
+            5000,
+            5050,
+            5100,
+            5150,
+            5200,
+            5300,
+            5310,
+            5320,
+            5330,
+            32767
+          ]
+        },
+        "mgmt_only": {
+          "title": "Management only",
+          "type": "boolean"
+        }
+      }
+    },
+    "InterfaceNestedCircuit": {
+      "title": "Circuit",
+      "required": [
+        "cid"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "cid": {
+          "title": "Circuit ID",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      },
+      "readOnly": true
+    },
+    "InterfaceCircuitTermination": {
+      "title": "Circuit termination",
+      "required": [
+        "term_side",
+        "port_speed"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "circuit": {
+          "$ref": "#/definitions/InterfaceNestedCircuit"
+        },
+        "term_side": {
+          "title": "Termination",
+          "type": "string",
+          "enum": [
+            "A",
+            "Z"
+          ]
+        },
+        "port_speed": {
+          "title": "Port speed (Kbps)",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "upstream_speed": {
+          "title": "Upstream speed (Kbps)",
+          "description": "Upstream speed, if different from port speed",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "xconnect_id": {
+          "title": "Cross-connect ID",
+          "type": "string",
+          "maxLength": 50
+        },
+        "pp_info": {
+          "title": "Patch panel/port(s)",
+          "type": "string",
+          "maxLength": 100
+        }
+      },
+      "readOnly": true
+    },
+    "InterfaceVLAN": {
+      "title": "Untagged vlan",
+      "required": [
+        "vid",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "vid": {
+          "title": "ID",
+          "type": "integer",
+          "maximum": 4094,
+          "minimum": 1
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "Interface": {
+      "required": [
+        "device",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "$ref": "#/definitions/NestedDevice"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "form_factor": {
+          "title": "Form factor",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
+        },
+        "enabled": {
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "lag": {
+          "$ref": "#/definitions/NestedInterface"
+        },
+        "mtu": {
+          "title": "MTU",
+          "type": "integer",
+          "maximum": 65536,
+          "minimum": 1
+        },
+        "mac_address": {
+          "title": "MAC Address",
+          "type": "string"
+        },
+        "mgmt_only": {
+          "title": "OOB Management",
+          "description": "This interface is used only for out-of-band management",
+          "type": "boolean"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "is_connected": {
+          "title": "Is connected",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "interface_connection": {
+          "title": "Interface connection",
+          "type": "string",
+          "readOnly": true
+        },
+        "circuit_termination": {
+          "$ref": "#/definitions/InterfaceCircuitTermination"
+        },
+        "mode": {
+          "title": "Mode",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
+        },
+        "untagged_vlan": {
+          "$ref": "#/definitions/InterfaceVLAN"
+        },
+        "tagged_vlans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InterfaceVLAN"
+          },
+          "uniqueItems": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "WritableInterface": {
       "required": [
         "device",
         "name",
-        "manufacturer"
+        "circuit_termination"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "title": "Device",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "form_factor": {
+          "title": "Form factor",
+          "type": "integer",
+          "enum": [
+            0,
+            200,
+            800,
+            1000,
+            1150,
+            1170,
+            1050,
+            1100,
+            1200,
+            1300,
+            1310,
+            1320,
+            1350,
+            1400,
+            1500,
+            1510,
+            1520,
+            1550,
+            1600,
+            2600,
+            2610,
+            2620,
+            2630,
+            2640,
+            6100,
+            6200,
+            6300,
+            6400,
+            6500,
+            6600,
+            6700,
+            3010,
+            3020,
+            3040,
+            3080,
+            3160,
+            3320,
+            4000,
+            4010,
+            4040,
+            4050,
+            5000,
+            5050,
+            5100,
+            5150,
+            5200,
+            5300,
+            5310,
+            5320,
+            5330,
+            32767
+          ]
+        },
+        "enabled": {
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "lag": {
+          "title": "Parent LAG",
+          "type": "integer"
+        },
+        "mtu": {
+          "title": "MTU",
+          "type": "integer",
+          "maximum": 65536,
+          "minimum": 1
+        },
+        "mac_address": {
+          "title": "MAC Address",
+          "type": "string"
+        },
+        "mgmt_only": {
+          "title": "OOB Management",
+          "description": "This interface is used only for out-of-band management",
+          "type": "boolean"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "is_connected": {
+          "title": "Is connected",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "interface_connection": {
+          "title": "Interface connection",
+          "type": "string",
+          "readOnly": true
+        },
+        "circuit_termination": {
+          "title": "Circuit termination",
+          "type": "integer"
+        },
+        "mode": {
+          "title": "Mode",
+          "type": "integer",
+          "enum": [
+            100,
+            200,
+            300
+          ]
+        },
+        "untagged_vlan": {
+          "title": "Untagged VLAN",
+          "type": "integer"
+        },
+        "tagged_vlans": {
+          "type": "array",
+          "items": {
+            "title": "Tagged VLANs",
+            "type": "integer"
+          },
+          "uniqueItems": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "InventoryItem": {
+      "required": [
+        "device",
+        "name"
       ],
       "type": "object",
       "properties": {
@@ -15241,10 +15784,10 @@
           "maxLength": 100
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         }
       }
@@ -15252,9 +15795,7 @@
     "WritableInventoryItem": {
       "required": [
         "device",
-        "name",
-        "manufacturer",
-        "tags"
+        "name"
       ],
       "type": "object",
       "properties": {
@@ -15264,6 +15805,7 @@
           "readOnly": true
         },
         "device": {
+          "title": "Device",
           "type": "integer"
         },
         "parent": {
@@ -15277,6 +15819,7 @@
           "minLength": 1
         },
         "manufacturer": {
+          "title": "Manufacturer",
           "type": "integer"
         },
         "part_id": {
@@ -15305,10 +15848,10 @@
           "maxLength": 100
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         }
       }
@@ -15392,6 +15935,59 @@
         }
       }
     },
+    "WritablePlatform": {
+      "required": [
+        "name",
+        "slug"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "manufacturer": {
+          "title": "Manufacturer",
+          "description": "Optionally limit this platform to devices of a certain manufacturer",
+          "type": "integer"
+        },
+        "napalm_driver": {
+          "title": "NAPALM driver",
+          "description": "The name of the NAPALM driver to use when interacting with devices",
+          "type": "string",
+          "maxLength": 50
+        },
+        "napalm_args": {
+          "title": "NAPALM arguments",
+          "description": "Additional arguments to pass when initiating the NAPALM driver (JSON format)",
+          "type": "string"
+        },
+        "rpc_client": {
+          "title": "Legacy RPC client",
+          "type": "string",
+          "enum": [
+            "juniper-junos",
+            "cisco-ios",
+            "opengear"
+          ]
+        }
+      }
+    },
     "NestedPowerOutlet": {
       "title": "Power outlet",
       "required": [
@@ -15418,6 +16014,11 @@
           "type": "string",
           "maxLength": 50,
           "minLength": 1
+        },
+        "is_connected": {
+          "title": "Is connected",
+          "type": "boolean",
+          "readOnly": true
         }
       }
     },
@@ -15454,12 +16055,11 @@
           ]
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
-          },
-          "default": []
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     },
@@ -15477,6 +16077,30 @@
         },
         "device_type": {
           "$ref": "#/definitions/NestedDeviceType"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      }
+    },
+    "WritablePowerOutletTemplate": {
+      "required": [
+        "device_type",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device_type": {
+          "title": "Device type",
+          "type": "integer"
         },
         "name": {
           "title": "Name",
@@ -15513,10 +16137,46 @@
           "readOnly": true
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "WritablePowerOutlet": {
+      "required": [
+        "device",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "title": "Device",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "connected_port": {
+          "title": "Connected port",
+          "type": "string",
+          "readOnly": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }
@@ -15541,6 +16201,73 @@
           "type": "string",
           "maxLength": 50,
           "minLength": 1
+        }
+      }
+    },
+    "WritablePowerPortTemplate": {
+      "required": [
+        "device_type",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device_type": {
+          "title": "Device type",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      }
+    },
+    "WritablePowerPort": {
+      "required": [
+        "device",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "title": "Device",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "power_outlet": {
+          "title": "Power outlet",
+          "type": "integer"
+        },
+        "connection_status": {
+          "title": "Connection status",
+          "type": "boolean",
+          "enum": [
+            false,
+            true
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     },
@@ -15573,6 +16300,39 @@
         },
         "site": {
           "$ref": "#/definitions/NestedSite"
+        }
+      }
+    },
+    "WritableRackGroup": {
+      "required": [
+        "name",
+        "slug",
+        "site"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "site": {
+          "title": "Site",
+          "type": "integer"
         }
       }
     },
@@ -15635,6 +16395,55 @@
         },
         "tenant": {
           "$ref": "#/definitions/NestedTenant"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        }
+      }
+    },
+    "WritableRackReservation": {
+      "required": [
+        "rack",
+        "units",
+        "user",
+        "description"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "rack": {
+          "title": "Rack",
+          "type": "integer"
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "title": "Units",
+            "type": "integer",
+            "maximum": 32767,
+            "minimum": 0
+          }
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "user": {
+          "title": "User",
+          "type": "integer"
+        },
+        "tenant": {
+          "title": "Tenant",
+          "type": "integer"
         },
         "description": {
           "title": "Description",
@@ -15843,10 +16652,119 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "WritableRack": {
+      "required": [
+        "name",
+        "site"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "facility_id": {
+          "title": "Facility ID",
+          "type": "string",
+          "maxLength": 50
+        },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "readOnly": true
+        },
+        "site": {
+          "title": "Site",
+          "type": "integer"
+        },
+        "group": {
+          "title": "Group",
+          "type": "integer"
+        },
+        "tenant": {
+          "title": "Tenant",
+          "type": "integer"
+        },
+        "role": {
+          "title": "Role",
+          "type": "integer"
+        },
+        "serial": {
+          "title": "Serial number",
+          "type": "string",
+          "maxLength": 50
+        },
+        "type": {
+          "title": "Type",
+          "type": "integer",
+          "enum": [
+            100,
+            200,
+            300,
+            1000,
+            1100
+          ]
+        },
+        "width": {
+          "title": "Width",
+          "description": "Rail-to-rail width",
+          "type": "integer",
+          "enum": [
+            19,
+            23
+          ]
+        },
+        "u_height": {
+          "title": "Height (U)",
+          "type": "integer",
+          "maximum": 100,
+          "minimum": 1
+        },
+        "desc_units": {
+          "title": "Descending units",
+          "description": "Units are numbered top-to-bottom",
+          "type": "boolean"
+        },
+        "comments": {
+          "title": "Comments",
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -15930,6 +16848,38 @@
         },
         "parent": {
           "$ref": "#/definitions/NestedRegion"
+        }
+      }
+    },
+    "WritableRegion": {
+      "required": [
+        "name",
+        "slug"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "parent": {
+          "title": "Parent",
+          "type": "integer"
         }
       }
     },
@@ -16042,10 +16992,10 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -16066,27 +17016,180 @@
         },
         "count_prefixes": {
           "title": "Count prefixes",
-          "type": "string",
+          "type": "integer",
           "readOnly": true
         },
         "count_vlans": {
           "title": "Count vlans",
-          "type": "string",
+          "type": "integer",
           "readOnly": true
         },
         "count_racks": {
           "title": "Count racks",
-          "type": "string",
+          "type": "integer",
           "readOnly": true
         },
         "count_devices": {
           "title": "Count devices",
-          "type": "string",
+          "type": "integer",
           "readOnly": true
         },
         "count_circuits": {
           "title": "Count circuits",
+          "type": "integer",
+          "readOnly": true
+        }
+      }
+    },
+    "WritableSite": {
+      "required": [
+        "name",
+        "slug"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
           "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "status": {
+          "title": "Status",
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            4
+          ]
+        },
+        "region": {
+          "title": "Region",
+          "type": "integer"
+        },
+        "tenant": {
+          "title": "Tenant",
+          "type": "integer"
+        },
+        "facility": {
+          "title": "Facility",
+          "type": "string",
+          "maxLength": 50
+        },
+        "asn": {
+          "title": "ASN",
+          "type": "integer",
+          "maximum": 4294967295,
+          "minimum": 1
+        },
+        "time_zone": {
+          "title": "Time zone",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "physical_address": {
+          "title": "Physical address",
+          "type": "string",
+          "maxLength": 200
+        },
+        "shipping_address": {
+          "title": "Shipping address",
+          "type": "string",
+          "maxLength": 200
+        },
+        "latitude": {
+          "title": "Latitude",
+          "type": "string",
+          "format": "decimal"
+        },
+        "longitude": {
+          "title": "Longitude",
+          "type": "string",
+          "format": "decimal"
+        },
+        "contact_name": {
+          "title": "Contact name",
+          "type": "string",
+          "maxLength": 50
+        },
+        "contact_phone": {
+          "title": "Contact phone",
+          "type": "string",
+          "maxLength": 20
+        },
+        "contact_email": {
+          "title": "Contact E-mail",
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "comments": {
+          "title": "Comments",
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "count_prefixes": {
+          "title": "Count prefixes",
+          "type": "integer",
+          "readOnly": true
+        },
+        "count_vlans": {
+          "title": "Count vlans",
+          "type": "integer",
+          "readOnly": true
+        },
+        "count_racks": {
+          "title": "Count racks",
+          "type": "integer",
+          "readOnly": true
+        },
+        "count_devices": {
+          "title": "Count devices",
+          "type": "integer",
+          "readOnly": true
+        },
+        "count_circuits": {
+          "title": "Count circuits",
+          "type": "integer",
           "readOnly": true
         }
       }
@@ -16111,15 +17214,159 @@
           "maxLength": 30
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         }
       }
     },
+    "WritableVirtualChassis": {
+      "required": [
+        "master"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "master": {
+          "title": "Master",
+          "type": "integer"
+        },
+        "domain": {
+          "title": "Domain",
+          "type": "string",
+          "maxLength": 30
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "NestedTenantGroup": {
+      "required": [
+        "name",
+        "slug"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        }
+      }
+    },
     "ConfigContext": {
+      "required": [
+        "name",
+        "data"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "weight": {
+          "title": "Weight",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 0
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "is_active": {
+          "title": "Is active",
+          "type": "boolean"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedRegion"
+          },
+          "uniqueItems": true
+        },
+        "sites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedSite"
+          },
+          "uniqueItems": true
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedDeviceRole"
+          },
+          "uniqueItems": true
+        },
+        "platforms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedPlatform"
+          },
+          "uniqueItems": true
+        },
+        "tenant_groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedTenantGroup"
+          },
+          "uniqueItems": true
+        },
+        "tenants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedTenant"
+          },
+          "uniqueItems": true
+        },
+        "data": {
+          "title": "Data",
+          "type": "string"
+        }
+      }
+    },
+    "WritableConfigContext": {
       "required": [
         "name",
         "data"
@@ -16273,6 +17520,54 @@
               "type": "integer"
             }
           }
+        },
+        "weight": {
+          "title": "Weight",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 0
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "source": {
+          "title": "Source URL",
+          "type": "string",
+          "maxLength": 500,
+          "minLength": 1
+        },
+        "link": {
+          "title": "Link URL",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200
+        }
+      }
+    },
+    "WritableGraph": {
+      "required": [
+        "type",
+        "name",
+        "source"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "type": {
+          "title": "Type",
+          "type": "integer",
+          "enum": [
+            100,
+            200,
+            300
+          ]
         },
         "weight": {
           "title": "Weight",
@@ -16538,6 +17833,50 @@
         }
       }
     },
+    "WritableTopologyMap": {
+      "required": [
+        "name",
+        "slug",
+        "device_patterns"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "site": {
+          "title": "Site",
+          "type": "integer"
+        },
+        "device_patterns": {
+          "title": "Device patterns",
+          "description": "Identify devices to include in the diagram using regular expressions, one per line. Each line will result in a new tier of the drawing. Separate multiple regexes within a line using semicolons. Devices will be rendered in the order they are defined.",
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        }
+      }
+    },
     "NestedRIR": {
       "title": "Rir",
       "required": [
@@ -16612,10 +17951,74 @@
           "maxLength": 100
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "WritableAggregate": {
+      "required": [
+        "prefix",
+        "rir"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "family": {
+          "title": "Family",
+          "type": "integer",
+          "enum": [
+            4,
+            6
+          ],
+          "readOnly": true
+        },
+        "prefix": {
+          "title": "Prefix",
+          "type": "string"
+        },
+        "rir": {
+          "title": "RIR",
+          "type": "integer"
+        },
+        "date_added": {
+          "title": "Date added",
+          "type": "string",
+          "format": "date"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -16831,10 +18234,10 @@
           "$ref": "#/definitions/NestedIPAddress"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -16857,7 +18260,8 @@
     },
     "WritableIPAddress": {
       "required": [
-        "address"
+        "address",
+        "nat_outside"
       ],
       "type": "object",
       "properties": {
@@ -16877,44 +18281,41 @@
           "type": "string"
         },
         "vrf": {
-          "$ref": "#/definitions/NestedVRF"
+          "title": "VRF",
+          "type": "integer"
         },
         "tenant": {
-          "$ref": "#/definitions/NestedTenant"
+          "title": "Tenant",
+          "type": "integer"
         },
         "status": {
           "title": "Status",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
+          "description": "The operational status of this IP",
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3,
+            5
+          ]
         },
         "role": {
           "title": "Role",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
+          "description": "The functional role of this IP",
+          "type": "integer",
+          "enum": [
+            10,
+            20,
+            30,
+            40,
+            41,
+            42,
+            43,
+            44
+          ]
         },
         "interface": {
+          "title": "Interface",
           "type": "integer"
         },
         "description": {
@@ -16923,16 +18324,19 @@
           "maxLength": 100
         },
         "nat_inside": {
-          "$ref": "#/definitions/NestedIPAddress"
+          "title": "NAT (Inside)",
+          "description": "The IP for which this address is the \"outside\" IP",
+          "type": "integer"
         },
         "nat_outside": {
-          "$ref": "#/definitions/NestedIPAddress"
+          "title": "Nat outside",
+          "type": "integer"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -17089,10 +18493,98 @@
           "maxLength": 100
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "WritablePrefix": {
+      "required": [
+        "prefix"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "family": {
+          "title": "Family",
+          "type": "integer",
+          "readOnly": true
+        },
+        "prefix": {
+          "title": "Prefix",
+          "description": "IPv4 or IPv6 network with mask",
+          "type": "string"
+        },
+        "site": {
+          "title": "Site",
+          "type": "integer"
+        },
+        "vrf": {
+          "title": "VRF",
+          "type": "integer"
+        },
+        "tenant": {
+          "title": "Tenant",
+          "type": "integer"
+        },
+        "vlan": {
+          "title": "VLAN",
+          "type": "integer"
+        },
+        "status": {
+          "title": "Status",
+          "description": "Operational status of this prefix",
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "role": {
+          "title": "Role",
+          "description": "The primary function of this prefix",
+          "type": "integer"
+        },
+        "is_pool": {
+          "title": "Is a pool",
+          "description": "All IP addresses within this prefix are considered usable",
+          "type": "boolean"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -17230,6 +18722,78 @@
         "ipaddresses": {
           "type": "array",
           "items": {
+            "$ref": "#/definitions/NestedIPAddress"
+          },
+          "uniqueItems": true
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "WritableService": {
+      "required": [
+        "name",
+        "port",
+        "protocol"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "title": "Device",
+          "type": "integer"
+        },
+        "virtual_machine": {
+          "title": "Virtual machine",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 1
+        },
+        "port": {
+          "title": "Port number",
+          "type": "integer",
+          "maximum": 65535,
+          "minimum": 1
+        },
+        "protocol": {
+          "title": "Protocol",
+          "type": "integer",
+          "enum": [
+            6,
+            17
+          ]
+        },
+        "ipaddresses": {
+          "type": "array",
+          "items": {
+            "title": "IP addresses",
             "type": "integer"
           },
           "uniqueItems": true
@@ -17285,6 +18849,38 @@
         },
         "site": {
           "$ref": "#/definitions/NestedSite"
+        }
+      }
+    },
+    "WritableVLANGroup": {
+      "required": [
+        "name",
+        "slug"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "site": {
+          "title": "Site",
+          "type": "integer"
         }
       }
     },
@@ -17381,10 +18977,94 @@
           "maxLength": 100
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "readOnly": true
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "WritableVLAN": {
+      "required": [
+        "vid",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "site": {
+          "title": "Site",
+          "type": "integer"
+        },
+        "group": {
+          "title": "Group",
+          "type": "integer"
+        },
+        "vid": {
+          "title": "ID",
+          "type": "integer",
+          "maximum": 4094,
+          "minimum": 1
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "tenant": {
+          "title": "Tenant",
+          "type": "integer"
+        },
+        "status": {
+          "title": "Status",
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3
+          ]
+        },
+        "role": {
+          "title": "Role",
+          "type": "integer"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "display_name": {
@@ -17448,10 +19128,78 @@
           "maxLength": 100
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "readOnly": true
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "WritableVRF": {
+      "required": [
+        "name",
+        "rd"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "rd": {
+          "title": "Route distinguisher",
+          "type": "string",
+          "maxLength": 21,
+          "minLength": 1
+        },
+        "tenant": {
+          "title": "Tenant",
+          "type": "integer"
+        },
+        "enforce_unique": {
+          "title": "Enforce unique space",
+          "description": "Prevent duplicate prefixes/IP addresses within this VRF",
+          "type": "boolean"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "display_name": {
@@ -17576,10 +19324,72 @@
           "minLength": 1
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "WritableSecret": {
+      "required": [
+        "device",
+        "role",
+        "plaintext"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "title": "Device",
+          "type": "integer"
+        },
+        "role": {
+          "title": "Role",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 100
+        },
+        "plaintext": {
+          "title": "Plaintext",
+          "type": "string",
+          "minLength": 1
+        },
+        "hash": {
+          "title": "Hash",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -17610,41 +19420,6 @@
         "id": {
           "title": "ID",
           "type": "integer",
-          "readOnly": true
-        },
-        "name": {
-          "title": "Name",
-          "type": "string",
-          "maxLength": 50,
-          "minLength": 1
-        },
-        "slug": {
-          "title": "Slug",
-          "type": "string",
-          "format": "slug",
-          "pattern": "^[-a-zA-Z0-9_]+$",
-          "maxLength": 50,
-          "minLength": 1
-        }
-      }
-    },
-    "NestedTenantGroup": {
-      "title": "Group",
-      "required": [
-        "name",
-        "slug"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "url": {
-          "title": "Url",
-          "type": "string",
-          "format": "uri",
           "readOnly": true
         },
         "name": {
@@ -17703,10 +19478,75 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "WritableTenant": {
+      "required": [
+        "name",
+        "slug"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "group": {
+          "title": "Group",
+          "type": "integer"
+        },
+        "description": {
+          "title": "Description",
+          "description": "Long-form name (optional)",
+          "type": "string",
+          "maxLength": 100
+        },
+        "comments": {
+          "title": "Comments",
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -17885,10 +19725,10 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -17906,6 +19746,207 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
+        }
+      }
+    },
+    "WritableCluster": {
+      "required": [
+        "name",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "type": {
+          "title": "Type",
+          "type": "integer"
+        },
+        "group": {
+          "title": "Group",
+          "type": "integer"
+        },
+        "site": {
+          "title": "Site",
+          "type": "integer"
+        },
+        "comments": {
+          "title": "Comments",
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "custom_fields": {
+          "title": "Custom fields",
+          "type": "object"
+        },
+        "created": {
+          "title": "Created",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "last_updated": {
+          "title": "Last updated",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "VirtualMachineInterface": {
+      "required": [
+        "virtual_machine",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "virtual_machine": {
+          "$ref": "#/definitions/VirtualMachine"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "enabled": {
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "mtu": {
+          "title": "MTU",
+          "type": "integer",
+          "maximum": 65536,
+          "minimum": 1
+        },
+        "mac_address": {
+          "title": "MAC Address",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "mode": {
+          "title": "Mode",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
+        },
+        "untagged_vlan": {
+          "$ref": "#/definitions/InterfaceVLAN"
+        },
+        "tagged_vlans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InterfaceVLAN"
+          },
+          "uniqueItems": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "WritableVirtualMachineInterface": {
+      "required": [
+        "virtual_machine",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "virtual_machine": {
+          "title": "Virtual machine",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "mtu": {
+          "title": "MTU",
+          "type": "integer",
+          "maximum": 65536,
+          "minimum": 1
+        },
+        "mac_address": {
+          "title": "MAC Address",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "mode": {
+          "title": "Mode",
+          "type": "integer",
+          "enum": [
+            100,
+            200,
+            300
+          ]
+        },
+        "untagged_vlan": {
+          "title": "Untagged VLAN",
+          "type": "integer"
+        },
+        "tagged_vlans": {
+          "type": "array",
+          "items": {
+            "title": "Tagged VLANs",
+            "type": "integer"
+          },
+          "uniqueItems": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     },
@@ -17943,7 +19984,7 @@
     "VirtualMachine": {
       "required": [
         "name",
-        "tags"
+        "cluster"
       ],
       "type": "object",
       "properties": {
@@ -18021,10 +20062,10 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -18042,13 +20083,17 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
+        },
+        "local_context_data": {
+          "title": "Local context data",
+          "type": "string"
         }
       }
     },
     "WritableVirtualMachine": {
       "required": [
         "name",
-        "tags"
+        "cluster"
       ],
       "type": "object",
       "properties": {
@@ -18065,42 +20110,45 @@
         },
         "status": {
           "title": "Status",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
+          "type": "integer",
+          "enum": [
+            1,
+            0,
+            3
+          ]
         },
         "site": {
-          "type": "integer"
+          "title": "Site",
+          "type": "string",
+          "readOnly": true
         },
         "cluster": {
+          "title": "Cluster",
           "type": "integer"
         },
         "role": {
+          "title": "Role",
           "type": "integer"
         },
         "tenant": {
+          "title": "Tenant",
           "type": "integer"
         },
         "platform": {
+          "title": "Platform",
           "type": "integer"
         },
         "primary_ip": {
-          "$ref": "#/definitions/VirtualMachineIPAddress"
+          "title": "Primary ip",
+          "type": "string",
+          "readOnly": true
         },
         "primary_ip4": {
+          "title": "Primary IPv4",
           "type": "integer"
         },
         "primary_ip6": {
+          "title": "Primary IPv6",
           "type": "integer"
         },
         "vcpus": {
@@ -18126,10 +20174,10 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -18147,12 +20195,17 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
+        },
+        "local_context_data": {
+          "title": "Local context data",
+          "type": "string"
         }
       }
     },
     "VirtualMachineWithConfigContext": {
       "required": [
-        "name"
+        "name",
+        "cluster"
       ],
       "type": "object",
       "properties": {
@@ -18227,10 +20280,10 @@
           "type": "string"
         },
         "tags": {
-          "title": "Tags",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "custom_fields": {
@@ -18253,6 +20306,10 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
+        },
+        "local_context_data": {
+          "title": "Local context data",
+          "type": "string"
         }
       }
     }

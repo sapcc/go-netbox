@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -54,27 +56,27 @@ type ConfigContext struct {
 
 	// platforms
 	// Unique: true
-	Platforms []int64 `json:"platforms"`
+	Platforms []*NestedPlatform `json:"platforms"`
 
 	// regions
 	// Unique: true
-	Regions []int64 `json:"regions"`
+	Regions []*NestedRegion `json:"regions"`
 
 	// roles
 	// Unique: true
-	Roles []int64 `json:"roles"`
+	Roles []*NestedDeviceRole `json:"roles"`
 
 	// sites
 	// Unique: true
-	Sites []int64 `json:"sites"`
+	Sites []*NestedSite `json:"sites"`
 
 	// tenant groups
 	// Unique: true
-	TenantGroups []int64 `json:"tenant_groups"`
+	TenantGroups []*NestedTenantGroup `json:"tenant_groups"`
 
 	// tenants
 	// Unique: true
-	Tenants []int64 `json:"tenants"`
+	Tenants []*NestedTenant `json:"tenants"`
 
 	// Weight
 	// Maximum: 32767
@@ -181,6 +183,22 @@ func (m *ConfigContext) validatePlatforms(formats strfmt.Registry) error {
 		return err
 	}
 
+	for i := 0; i < len(m.Platforms); i++ {
+		if swag.IsZero(m.Platforms[i]) { // not required
+			continue
+		}
+
+		if m.Platforms[i] != nil {
+			if err := m.Platforms[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("platforms" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -192,6 +210,22 @@ func (m *ConfigContext) validateRegions(formats strfmt.Registry) error {
 
 	if err := validate.UniqueItems("regions", "body", m.Regions); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Regions); i++ {
+		if swag.IsZero(m.Regions[i]) { // not required
+			continue
+		}
+
+		if m.Regions[i] != nil {
+			if err := m.Regions[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("regions" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -207,6 +241,22 @@ func (m *ConfigContext) validateRoles(formats strfmt.Registry) error {
 		return err
 	}
 
+	for i := 0; i < len(m.Roles); i++ {
+		if swag.IsZero(m.Roles[i]) { // not required
+			continue
+		}
+
+		if m.Roles[i] != nil {
+			if err := m.Roles[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("roles" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -218,6 +268,22 @@ func (m *ConfigContext) validateSites(formats strfmt.Registry) error {
 
 	if err := validate.UniqueItems("sites", "body", m.Sites); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Sites); i++ {
+		if swag.IsZero(m.Sites[i]) { // not required
+			continue
+		}
+
+		if m.Sites[i] != nil {
+			if err := m.Sites[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("sites" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -233,6 +299,22 @@ func (m *ConfigContext) validateTenantGroups(formats strfmt.Registry) error {
 		return err
 	}
 
+	for i := 0; i < len(m.TenantGroups); i++ {
+		if swag.IsZero(m.TenantGroups[i]) { // not required
+			continue
+		}
+
+		if m.TenantGroups[i] != nil {
+			if err := m.TenantGroups[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("tenant_groups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -244,6 +326,22 @@ func (m *ConfigContext) validateTenants(formats strfmt.Registry) error {
 
 	if err := validate.UniqueItems("tenants", "body", m.Tenants); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Tenants); i++ {
+		if swag.IsZero(m.Tenants[i]) { // not required
+			continue
+		}
+
+		if m.Tenants[i] != nil {
+			if err := m.Tenants[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("tenants" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

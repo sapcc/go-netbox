@@ -130,6 +130,10 @@ type DcimDevicesListParams struct {
 	RackGroupID *int64
 	/*RackID*/
 	RackID *int64
+	/*Region*/
+	Region *string
+	/*RegionID*/
+	RegionID *int64
 	/*Role*/
 	Role *string
 	/*RoleID*/
@@ -429,6 +433,28 @@ func (o *DcimDevicesListParams) WithRackID(rackID *int64) *DcimDevicesListParams
 // SetRackID adds the rackId to the dcim devices list params
 func (o *DcimDevicesListParams) SetRackID(rackID *int64) {
 	o.RackID = rackID
+}
+
+// WithRegion adds the region to the dcim devices list params
+func (o *DcimDevicesListParams) WithRegion(region *string) *DcimDevicesListParams {
+	o.SetRegion(region)
+	return o
+}
+
+// SetRegion adds the region to the dcim devices list params
+func (o *DcimDevicesListParams) SetRegion(region *string) {
+	o.Region = region
+}
+
+// WithRegionID adds the regionID to the dcim devices list params
+func (o *DcimDevicesListParams) WithRegionID(regionID *int64) *DcimDevicesListParams {
+	o.SetRegionID(regionID)
+	return o
+}
+
+// SetRegionID adds the regionId to the dcim devices list params
+func (o *DcimDevicesListParams) SetRegionID(regionID *int64) {
+	o.RegionID = regionID
 }
 
 // WithRole adds the role to the dcim devices list params
@@ -895,6 +921,38 @@ func (o *DcimDevicesListParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		qRackID := swag.FormatInt64(qrRackID)
 		if qRackID != "" {
 			if err := r.SetQueryParam("rack_id", qRackID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Region != nil {
+
+		// query param region
+		var qrRegion string
+		if o.Region != nil {
+			qrRegion = *o.Region
+		}
+		qRegion := qrRegion
+		if qRegion != "" {
+			if err := r.SetQueryParam("region", qRegion); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.RegionID != nil {
+
+		// query param region_id
+		var qrRegionID int64
+		if o.RegionID != nil {
+			qrRegionID = *o.RegionID
+		}
+		qRegionID := swag.FormatInt64(qrRegionID)
+		if qRegionID != "" {
+			if err := r.SetQueryParam("region_id", qRegionID); err != nil {
 				return err
 			}
 		}

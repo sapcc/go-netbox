@@ -80,7 +80,7 @@ for the dcim console ports partial update operation typically these are written 
 type DcimConsolePortsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.ConsolePort
+	Data *models.WritableConsolePort
 	/*ID
 	  A unique integer value identifying this console port.
 
@@ -126,13 +126,13 @@ func (o *DcimConsolePortsPartialUpdateParams) SetHTTPClient(client *http.Client)
 }
 
 // WithData adds the data to the dcim console ports partial update params
-func (o *DcimConsolePortsPartialUpdateParams) WithData(data *models.ConsolePort) *DcimConsolePortsPartialUpdateParams {
+func (o *DcimConsolePortsPartialUpdateParams) WithData(data *models.WritableConsolePort) *DcimConsolePortsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim console ports partial update params
-func (o *DcimConsolePortsPartialUpdateParams) SetData(data *models.ConsolePort) {
+func (o *DcimConsolePortsPartialUpdateParams) SetData(data *models.WritableConsolePort) {
 	o.Data = data
 }
 

@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -32,7 +34,8 @@ import (
 type VirtualMachineWithConfigContext struct {
 
 	// cluster
-	Cluster *NestedCluster `json:"cluster,omitempty"`
+	// Required: true
+	Cluster *NestedCluster `json:"cluster"`
 
 	// Comments
 	Comments string `json:"comments,omitempty"`
@@ -63,6 +66,9 @@ type VirtualMachineWithConfigContext struct {
 	// Format: date-time
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
+	// Local context data
+	LocalContextData string `json:"local_context_data,omitempty"`
+
 	// Memory (MB)
 	// Maximum: 2.147483647e+09
 	// Minimum: 0
@@ -92,7 +98,7 @@ type VirtualMachineWithConfigContext struct {
 	// status
 	Status *VirtualMachineWithConfigContextStatus `json:"status,omitempty"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 
 	// tenant
@@ -156,6 +162,10 @@ func (m *VirtualMachineWithConfigContext) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTenant(formats); err != nil {
 		res = append(res, err)
 	}
@@ -172,8 +182,8 @@ func (m *VirtualMachineWithConfigContext) Validate(formats strfmt.Registry) erro
 
 func (m *VirtualMachineWithConfigContext) validateCluster(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Cluster) { // not required
-		return nil
+	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
+		return err
 	}
 
 	if m.Cluster != nil {
@@ -368,6 +378,23 @@ func (m *VirtualMachineWithConfigContext) validateStatus(formats strfmt.Registry
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *VirtualMachineWithConfigContext) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

@@ -80,7 +80,7 @@ for the dcim power ports update operation typically these are written to a http.
 type DcimPowerPortsUpdateParams struct {
 
 	/*Data*/
-	Data *models.PowerPort
+	Data *models.WritablePowerPort
 	/*ID
 	  A unique integer value identifying this power port.
 
@@ -126,13 +126,13 @@ func (o *DcimPowerPortsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim power ports update params
-func (o *DcimPowerPortsUpdateParams) WithData(data *models.PowerPort) *DcimPowerPortsUpdateParams {
+func (o *DcimPowerPortsUpdateParams) WithData(data *models.WritablePowerPort) *DcimPowerPortsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim power ports update params
-func (o *DcimPowerPortsUpdateParams) SetData(data *models.PowerPort) {
+func (o *DcimPowerPortsUpdateParams) SetData(data *models.WritablePowerPort) {
 	o.Data = data
 }
 

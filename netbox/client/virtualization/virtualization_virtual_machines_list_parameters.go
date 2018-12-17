@@ -112,6 +112,10 @@ type VirtualizationVirtualMachinesListParams struct {
 	PlatformID *int64
 	/*Q*/
 	Q *string
+	/*Region*/
+	Region *string
+	/*RegionID*/
+	RegionID *int64
 	/*Role*/
 	Role *string
 	/*RoleID*/
@@ -308,6 +312,28 @@ func (o *VirtualizationVirtualMachinesListParams) WithQ(q *string) *Virtualizati
 // SetQ adds the q to the virtualization virtual machines list params
 func (o *VirtualizationVirtualMachinesListParams) SetQ(q *string) {
 	o.Q = q
+}
+
+// WithRegion adds the region to the virtualization virtual machines list params
+func (o *VirtualizationVirtualMachinesListParams) WithRegion(region *string) *VirtualizationVirtualMachinesListParams {
+	o.SetRegion(region)
+	return o
+}
+
+// SetRegion adds the region to the virtualization virtual machines list params
+func (o *VirtualizationVirtualMachinesListParams) SetRegion(region *string) {
+	o.Region = region
+}
+
+// WithRegionID adds the regionID to the virtualization virtual machines list params
+func (o *VirtualizationVirtualMachinesListParams) WithRegionID(regionID *int64) *VirtualizationVirtualMachinesListParams {
+	o.SetRegionID(regionID)
+	return o
+}
+
+// SetRegionID adds the regionId to the virtualization virtual machines list params
+func (o *VirtualizationVirtualMachinesListParams) SetRegionID(regionID *int64) {
+	o.RegionID = regionID
 }
 
 // WithRole adds the role to the virtualization virtual machines list params
@@ -608,6 +634,38 @@ func (o *VirtualizationVirtualMachinesListParams) WriteToRequest(r runtime.Clien
 		qQ := qrQ
 		if qQ != "" {
 			if err := r.SetQueryParam("q", qQ); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Region != nil {
+
+		// query param region
+		var qrRegion string
+		if o.Region != nil {
+			qrRegion = *o.Region
+		}
+		qRegion := qrRegion
+		if qRegion != "" {
+			if err := r.SetQueryParam("region", qRegion); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.RegionID != nil {
+
+		// query param region_id
+		var qrRegionID int64
+		if o.RegionID != nil {
+			qrRegionID = *o.RegionID
+		}
+		qRegionID := swag.FormatInt64(qrRegionID)
+		if qRegionID != "" {
+			if err := r.SetQueryParam("region_id", qRegionID); err != nil {
 				return err
 			}
 		}

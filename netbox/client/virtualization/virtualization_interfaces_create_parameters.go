@@ -79,7 +79,7 @@ for the virtualization interfaces create operation typically these are written t
 type VirtualizationInterfacesCreateParams struct {
 
 	/*Data*/
-	Data *models.WritableVirtualizationInterface
+	Data *models.WritableVirtualMachineInterface
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +120,13 @@ func (o *VirtualizationInterfacesCreateParams) SetHTTPClient(client *http.Client
 }
 
 // WithData adds the data to the virtualization interfaces create params
-func (o *VirtualizationInterfacesCreateParams) WithData(data *models.WritableVirtualizationInterface) *VirtualizationInterfacesCreateParams {
+func (o *VirtualizationInterfacesCreateParams) WithData(data *models.WritableVirtualMachineInterface) *VirtualizationInterfacesCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the virtualization interfaces create params
-func (o *VirtualizationInterfacesCreateParams) SetData(data *models.WritableVirtualizationInterface) {
+func (o *VirtualizationInterfacesCreateParams) SetData(data *models.WritableVirtualMachineInterface) {
 	o.Data = data
 }
 

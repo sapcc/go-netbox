@@ -80,7 +80,7 @@ for the tenancy tenants partial update operation typically these are written to 
 type TenancyTenantsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.Tenant
+	Data *models.WritableTenant
 	/*ID
 	  A unique integer value identifying this tenant.
 
@@ -126,13 +126,13 @@ func (o *TenancyTenantsPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the tenancy tenants partial update params
-func (o *TenancyTenantsPartialUpdateParams) WithData(data *models.Tenant) *TenancyTenantsPartialUpdateParams {
+func (o *TenancyTenantsPartialUpdateParams) WithData(data *models.WritableTenant) *TenancyTenantsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the tenancy tenants partial update params
-func (o *TenancyTenantsPartialUpdateParams) SetData(data *models.Tenant) {
+func (o *TenancyTenantsPartialUpdateParams) SetData(data *models.WritableTenant) {
 	o.Data = data
 }
 

@@ -101,8 +101,8 @@ DcimConnectedDeviceList This endpoint allows a user to determine what device (if
 interface. This is useful in a situation where a device boots with no configuration, but can detect its neighbors
 via a protocol such as LLDP. Two query parameters must be included in the request:
 
-* `peer-device`: The name of the peer device
-* `peer-interface`: The name of the peer interface
+* `peer_device`: The name of the peer device
+* `peer_interface`: The name of the peer interface
 */
 func (a *Client) DcimConnectedDeviceList(params *DcimConnectedDeviceListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimConnectedDeviceListOK, error) {
 	// TODO: Validate the params before sending

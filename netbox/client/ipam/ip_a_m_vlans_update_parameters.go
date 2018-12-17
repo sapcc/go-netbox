@@ -80,7 +80,7 @@ for the ipam vlans update operation typically these are written to a http.Reques
 type IPAMVlansUpdateParams struct {
 
 	/*Data*/
-	Data *models.VLAN
+	Data *models.WritableVLAN
 	/*ID
 	  A unique integer value identifying this VLAN.
 
@@ -126,13 +126,13 @@ func (o *IPAMVlansUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam vlans update params
-func (o *IPAMVlansUpdateParams) WithData(data *models.VLAN) *IPAMVlansUpdateParams {
+func (o *IPAMVlansUpdateParams) WithData(data *models.WritableVLAN) *IPAMVlansUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam vlans update params
-func (o *IPAMVlansUpdateParams) SetData(data *models.VLAN) {
+func (o *IPAMVlansUpdateParams) SetData(data *models.WritableVLAN) {
 	o.Data = data
 }
 

@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -52,7 +54,7 @@ type Service struct {
 
 	// ipaddresses
 	// Unique: true
-	Ipaddresses []int64 `json:"ipaddresses"`
+	Ipaddresses []*NestedIPAddress `json:"ipaddresses"`
 
 	// Last updated
 	// Read Only: true
@@ -177,6 +179,22 @@ func (m *Service) validateIpaddresses(formats strfmt.Registry) error {
 
 	if err := validate.UniqueItems("ipaddresses", "body", m.Ipaddresses); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Ipaddresses); i++ {
+		if swag.IsZero(m.Ipaddresses[i]) { // not required
+			continue
+		}
+
+		if m.Ipaddresses[i] != nil {
+			if err := m.Ipaddresses[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("ipaddresses" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

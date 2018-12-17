@@ -21,6 +21,7 @@ package models
 
 import (
 	"encoding/json"
+	"strconv"
 
 	strfmt "github.com/go-openapi/strfmt"
 
@@ -54,7 +55,7 @@ type PowerPort struct {
 	// power outlet
 	PowerOutlet *NestedPowerOutlet `json:"power_outlet,omitempty"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 }
 
@@ -75,6 +76,10 @@ func (m *PowerPort) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePowerOutlet(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -166,6 +171,23 @@ func (m *PowerPort) validatePowerOutlet(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *PowerPort) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

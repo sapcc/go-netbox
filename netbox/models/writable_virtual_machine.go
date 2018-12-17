@@ -20,6 +20,9 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -31,8 +34,9 @@ import (
 // swagger:model WritableVirtualMachine
 type WritableVirtualMachine struct {
 
-	// cluster
-	Cluster int64 `json:"cluster,omitempty"`
+	// Cluster
+	// Required: true
+	Cluster *int64 `json:"cluster"`
 
 	// Comments
 	Comments string `json:"comments,omitempty"`
@@ -59,6 +63,9 @@ type WritableVirtualMachine struct {
 	// Format: date-time
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
+	// Local context data
+	LocalContextData string `json:"local_context_data,omitempty"`
+
 	// Memory (MB)
 	// Maximum: 2.147483647e+09
 	// Minimum: 0
@@ -70,32 +77,34 @@ type WritableVirtualMachine struct {
 	// Min Length: 1
 	Name *string `json:"name"`
 
-	// platform
+	// Platform
 	Platform int64 `json:"platform,omitempty"`
 
-	// primary ip
-	PrimaryIP *VirtualMachineIPAddress `json:"primary_ip,omitempty"`
+	// Primary ip
+	// Read Only: true
+	PrimaryIP string `json:"primary_ip,omitempty"`
 
-	// primary ip4
+	// Primary IPv4
 	PrimaryIp4 int64 `json:"primary_ip4,omitempty"`
 
-	// primary ip6
+	// Primary IPv6
 	PrimaryIp6 int64 `json:"primary_ip6,omitempty"`
 
-	// role
+	// Role
 	Role int64 `json:"role,omitempty"`
 
-	// site
-	Site int64 `json:"site,omitempty"`
+	// Site
+	// Read Only: true
+	Site string `json:"site,omitempty"`
 
-	// status
-	Status *WritableVirtualMachineStatus `json:"status,omitempty"`
+	// Status
+	// Enum: [1 0 3]
+	Status int64 `json:"status,omitempty"`
 
-	// Tags
-	// Required: true
+	// tags
 	Tags []string `json:"tags"`
 
-	// tenant
+	// Tenant
 	Tenant int64 `json:"tenant,omitempty"`
 
 	// VCPUs
@@ -107,6 +116,10 @@ type WritableVirtualMachine struct {
 // Validate validates this writable virtual machine
 func (m *WritableVirtualMachine) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateCreated(formats); err != nil {
 		res = append(res, err)
@@ -128,10 +141,6 @@ func (m *WritableVirtualMachine) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validatePrimaryIP(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
@@ -147,6 +156,15 @@ func (m *WritableVirtualMachine) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *WritableVirtualMachine) validateCluster(formats strfmt.Registry) error {
+
+	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -227,21 +245,23 @@ func (m *WritableVirtualMachine) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableVirtualMachine) validatePrimaryIP(formats strfmt.Registry) error {
+var writableVirtualMachineTypeStatusPropEnum []interface{}
 
-	if swag.IsZero(m.PrimaryIP) { // not required
-		return nil
+func init() {
+	var res []int64
+	if err := json.Unmarshal([]byte(`[1,0,3]`), &res); err != nil {
+		panic(err)
 	}
-
-	if m.PrimaryIP != nil {
-		if err := m.PrimaryIP.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("primary_ip")
-			}
-			return err
-		}
+	for _, v := range res {
+		writableVirtualMachineTypeStatusPropEnum = append(writableVirtualMachineTypeStatusPropEnum, v)
 	}
+}
 
+// prop value enum
+func (m *WritableVirtualMachine) validateStatusEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writableVirtualMachineTypeStatusPropEnum); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -251,13 +271,9 @@ func (m *WritableVirtualMachine) validateStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.Status != nil {
-		if err := m.Status.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("status")
-			}
-			return err
-		}
+	// value enum
+	if err := m.validateStatusEnum("status", "body", m.Status); err != nil {
+		return err
 	}
 
 	return nil
@@ -265,8 +281,16 @@ func (m *WritableVirtualMachine) validateStatus(formats strfmt.Registry) error {
 
 func (m *WritableVirtualMachine) validateTags(formats strfmt.Registry) error {
 
-	if err := validate.Required("tags", "body", m.Tags); err != nil {
-		return err
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil
@@ -300,73 +324,6 @@ func (m *WritableVirtualMachine) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *WritableVirtualMachine) UnmarshalBinary(b []byte) error {
 	var res WritableVirtualMachine
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// WritableVirtualMachineStatus Status
-// swagger:model WritableVirtualMachineStatus
-type WritableVirtualMachineStatus struct {
-
-	// label
-	// Required: true
-	Label *string `json:"label"`
-
-	// value
-	// Required: true
-	Value *int64 `json:"value"`
-}
-
-// Validate validates this writable virtual machine status
-func (m *WritableVirtualMachineStatus) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateLabel(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateValue(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *WritableVirtualMachineStatus) validateLabel(formats strfmt.Registry) error {
-
-	if err := validate.Required("status"+"."+"label", "body", m.Label); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *WritableVirtualMachineStatus) validateValue(formats strfmt.Registry) error {
-
-	if err := validate.Required("status"+"."+"value", "body", m.Value); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *WritableVirtualMachineStatus) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *WritableVirtualMachineStatus) UnmarshalBinary(b []byte) error {
-	var res WritableVirtualMachineStatus
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -42,7 +42,7 @@ type CircuitTermination struct {
 	ID int64 `json:"id,omitempty"`
 
 	// interface
-	Interface *Interface `json:"interface,omitempty"`
+	Interface *NestedInterface `json:"interface,omitempty"`
 
 	// Port speed (Kbps)
 	// Required: true

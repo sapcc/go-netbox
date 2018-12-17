@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -27,7 +29,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Interface Interface
+// Interface interface
 // swagger:model Interface
 type Interface struct {
 
@@ -52,9 +54,9 @@ type Interface struct {
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
 
-	// interface connection
+	// Interface connection
 	// Read Only: true
-	InterfaceConnection *InterfaceConnection `json:"interface_connection,omitempty"`
+	InterfaceConnection string `json:"interface_connection,omitempty"`
 
 	// Is connected
 	// Read Only: true
@@ -75,9 +77,9 @@ type Interface struct {
 	Mode *InterfaceMode `json:"mode,omitempty"`
 
 	// MTU
-	// Maximum: 32767
-	// Minimum: 0
-	Mtu *int64 `json:"mtu,omitempty"`
+	// Maximum: 65536
+	// Minimum: 1
+	Mtu int64 `json:"mtu,omitempty"`
 
 	// Name
 	// Required: true
@@ -87,9 +89,9 @@ type Interface struct {
 
 	// tagged vlans
 	// Unique: true
-	TaggedVlans []int64 `json:"tagged_vlans"`
+	TaggedVlans []*InterfaceVLAN `json:"tagged_vlans"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 
 	// untagged vlan
@@ -116,10 +118,6 @@ func (m *Interface) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateInterfaceConnection(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateLag(formats); err != nil {
 		res = append(res, err)
 	}
@@ -137,6 +135,10 @@ func (m *Interface) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateTaggedVlans(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -217,24 +219,6 @@ func (m *Interface) validateFormFactor(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateInterfaceConnection(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.InterfaceConnection) { // not required
-		return nil
-	}
-
-	if m.InterfaceConnection != nil {
-		if err := m.InterfaceConnection.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("interface_connection")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *Interface) validateLag(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Lag) { // not required
@@ -277,11 +261,11 @@ func (m *Interface) validateMtu(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := validate.MinimumInt("mtu", "body", int64(*m.Mtu), 0, false); err != nil {
+	if err := validate.MinimumInt("mtu", "body", int64(m.Mtu), 1, false); err != nil {
 		return err
 	}
 
-	if err := validate.MaximumInt("mtu", "body", int64(*m.Mtu), 32767, false); err != nil {
+	if err := validate.MaximumInt("mtu", "body", int64(m.Mtu), 65536, false); err != nil {
 		return err
 	}
 
@@ -313,6 +297,39 @@ func (m *Interface) validateTaggedVlans(formats strfmt.Registry) error {
 
 	if err := validate.UniqueItems("tagged_vlans", "body", m.TaggedVlans); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.TaggedVlans); i++ {
+		if swag.IsZero(m.TaggedVlans[i]) { // not required
+			continue
+		}
+
+		if m.TaggedVlans[i] != nil {
+			if err := m.TaggedVlans[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("tagged_vlans" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Interface) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

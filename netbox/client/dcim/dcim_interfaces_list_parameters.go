@@ -109,6 +109,10 @@ type DcimInterfacesListParams struct {
 	Tag *string
 	/*Type*/
 	Type *string
+	/*Vlan*/
+	Vlan *string
+	/*VlanID*/
+	VlanID *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -289,6 +293,28 @@ func (o *DcimInterfacesListParams) WithType(typeVar *string) *DcimInterfacesList
 // SetType adds the type to the dcim interfaces list params
 func (o *DcimInterfacesListParams) SetType(typeVar *string) {
 	o.Type = typeVar
+}
+
+// WithVlan adds the vlan to the dcim interfaces list params
+func (o *DcimInterfacesListParams) WithVlan(vlan *string) *DcimInterfacesListParams {
+	o.SetVlan(vlan)
+	return o
+}
+
+// SetVlan adds the vlan to the dcim interfaces list params
+func (o *DcimInterfacesListParams) SetVlan(vlan *string) {
+	o.Vlan = vlan
+}
+
+// WithVlanID adds the vlanID to the dcim interfaces list params
+func (o *DcimInterfacesListParams) WithVlanID(vlanID *int64) *DcimInterfacesListParams {
+	o.SetVlanID(vlanID)
+	return o
+}
+
+// SetVlanID adds the vlanId to the dcim interfaces list params
+func (o *DcimInterfacesListParams) SetVlanID(vlanID *int64) {
+	o.VlanID = vlanID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -501,6 +527,38 @@ func (o *DcimInterfacesListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qType := qrType
 		if qType != "" {
 			if err := r.SetQueryParam("type", qType); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Vlan != nil {
+
+		// query param vlan
+		var qrVlan string
+		if o.Vlan != nil {
+			qrVlan = *o.Vlan
+		}
+		qVlan := qrVlan
+		if qVlan != "" {
+			if err := r.SetQueryParam("vlan", qVlan); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.VlanID != nil {
+
+		// query param vlan_id
+		var qrVlanID int64
+		if o.VlanID != nil {
+			qrVlanID = *o.VlanID
+		}
+		qVlanID := swag.FormatInt64(qrVlanID)
+		if qVlanID != "" {
+			if err := r.SetQueryParam("vlan_id", qVlanID); err != nil {
 				return err
 			}
 		}

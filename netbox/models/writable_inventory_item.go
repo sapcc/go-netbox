@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -41,7 +43,7 @@ type WritableInventoryItem struct {
 	// Max Length: 100
 	Description string `json:"description,omitempty"`
 
-	// device
+	// Device
 	// Required: true
 	Device *int64 `json:"device"`
 
@@ -52,9 +54,8 @@ type WritableInventoryItem struct {
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
 
-	// manufacturer
-	// Required: true
-	Manufacturer *int64 `json:"manufacturer"`
+	// Manufacturer
+	Manufacturer int64 `json:"manufacturer,omitempty"`
 
 	// Name
 	// Required: true
@@ -73,8 +74,7 @@ type WritableInventoryItem struct {
 	// Max Length: 50
 	Serial string `json:"serial,omitempty"`
 
-	// Tags
-	// Required: true
+	// tags
 	Tags []string `json:"tags"`
 }
 
@@ -91,10 +91,6 @@ func (m *WritableInventoryItem) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDevice(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateManufacturer(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -155,15 +151,6 @@ func (m *WritableInventoryItem) validateDevice(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableInventoryItem) validateManufacturer(formats strfmt.Registry) error {
-
-	if err := validate.Required("manufacturer", "body", m.Manufacturer); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *WritableInventoryItem) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
@@ -209,8 +196,16 @@ func (m *WritableInventoryItem) validateSerial(formats strfmt.Registry) error {
 
 func (m *WritableInventoryItem) validateTags(formats strfmt.Registry) error {
 
-	if err := validate.Required("tags", "body", m.Tags); err != nil {
-		return err
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

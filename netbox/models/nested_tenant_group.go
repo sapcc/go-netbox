@@ -27,7 +27,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// NestedTenantGroup Group
+// NestedTenantGroup nested tenant group
 // swagger:model NestedTenantGroup
 type NestedTenantGroup struct {
 

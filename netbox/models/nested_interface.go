@@ -27,7 +27,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// NestedInterface Lag
+// NestedInterface Interface
 // swagger:model NestedInterface
 type NestedInterface struct {
 
@@ -37,6 +37,10 @@ type NestedInterface struct {
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
+
+	// Is connected
+	// Read Only: true
+	IsConnected *bool `json:"is_connected,omitempty"`
 
 	// Name
 	// Required: true

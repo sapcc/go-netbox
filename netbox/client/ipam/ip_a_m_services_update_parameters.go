@@ -80,7 +80,7 @@ for the ipam services update operation typically these are written to a http.Req
 type IPAMServicesUpdateParams struct {
 
 	/*Data*/
-	Data *models.Service
+	Data *models.WritableService
 	/*ID
 	  A unique integer value identifying this service.
 
@@ -126,13 +126,13 @@ func (o *IPAMServicesUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the ipam services update params
-func (o *IPAMServicesUpdateParams) WithData(data *models.Service) *IPAMServicesUpdateParams {
+func (o *IPAMServicesUpdateParams) WithData(data *models.WritableService) *IPAMServicesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the ipam services update params
-func (o *IPAMServicesUpdateParams) SetData(data *models.Service) {
+func (o *IPAMServicesUpdateParams) SetData(data *models.WritableService) {
 	o.Data = data
 }
 
