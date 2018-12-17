@@ -38,10 +38,10 @@ type WritableDevice struct {
 	//
 	// A unique tag used to identify this device
 	// Max Length: 50
-	AssetTag string `json:"asset_tag,omitempty"`
+	AssetTag *string `json:"asset_tag,omitempty"`
 
 	// Cluster
-	Cluster int64 `json:"cluster,omitempty"`
+	Cluster *int64 `json:"cluster,omitempty"`
 
 	// Comments
 	Comments string `json:"comments,omitempty"`
@@ -66,7 +66,7 @@ type WritableDevice struct {
 
 	// Rack face
 	// Enum: [0 1]
-	Face int64 `json:"face,omitempty"`
+	Face *int64 `json:"face,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -78,38 +78,38 @@ type WritableDevice struct {
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
 	// Local context data
-	LocalContextData string `json:"local_context_data,omitempty"`
+	LocalContextData *string `json:"local_context_data,omitempty"`
 
 	// Name
 	// Max Length: 64
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 
 	// Parent device
 	// Read Only: true
 	ParentDevice string `json:"parent_device,omitempty"`
 
 	// Platform
-	Platform int64 `json:"platform,omitempty"`
+	Platform *int64 `json:"platform,omitempty"`
 
 	// Position (U)
 	//
 	// The lowest-numbered unit occupied by the device
 	// Maximum: 32767
 	// Minimum: 1
-	Position int64 `json:"position,omitempty"`
+	Position *int64 `json:"position,omitempty"`
 
 	// Primary ip
 	// Read Only: true
 	PrimaryIP string `json:"primary_ip,omitempty"`
 
 	// Primary IPv4
-	PrimaryIp4 int64 `json:"primary_ip4,omitempty"`
+	PrimaryIp4 *int64 `json:"primary_ip4,omitempty"`
 
 	// Primary IPv6
-	PrimaryIp6 int64 `json:"primary_ip6,omitempty"`
+	PrimaryIp6 *int64 `json:"primary_ip6,omitempty"`
 
 	// Rack
-	Rack int64 `json:"rack,omitempty"`
+	Rack *int64 `json:"rack,omitempty"`
 
 	// Serial number
 	// Max Length: 50
@@ -126,7 +126,7 @@ type WritableDevice struct {
 	Tags []string `json:"tags"`
 
 	// Tenant
-	Tenant int64 `json:"tenant,omitempty"`
+	Tenant *int64 `json:"tenant,omitempty"`
 
 	// Vc position
 	// Maximum: 255
@@ -139,7 +139,7 @@ type WritableDevice struct {
 	VcPriority *int64 `json:"vc_priority,omitempty"`
 
 	// Virtual chassis
-	VirtualChassis int64 `json:"virtual_chassis,omitempty"`
+	VirtualChassis *int64 `json:"virtual_chassis,omitempty"`
 }
 
 // Validate validates this writable device
@@ -202,7 +202,7 @@ func (m *WritableDevice) validateAssetTag(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := validate.MaxLength("asset_tag", "body", string(m.AssetTag), 50); err != nil {
+	if err := validate.MaxLength("asset_tag", "body", string(*m.AssetTag), 50); err != nil {
 		return err
 	}
 
@@ -249,7 +249,7 @@ func (m *WritableDevice) validateFace(formats strfmt.Registry) error {
 	}
 
 	// value enum
-	if err := m.validateFaceEnum("face", "body", m.Face); err != nil {
+	if err := m.validateFaceEnum("face", "body", *m.Face); err != nil {
 		return err
 	}
 
@@ -275,7 +275,7 @@ func (m *WritableDevice) validateName(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := validate.MaxLength("name", "body", string(m.Name), 64); err != nil {
+	if err := validate.MaxLength("name", "body", string(*m.Name), 64); err != nil {
 		return err
 	}
 
@@ -288,11 +288,11 @@ func (m *WritableDevice) validatePosition(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := validate.MinimumInt("position", "body", int64(m.Position), 1, false); err != nil {
+	if err := validate.MinimumInt("position", "body", int64(*m.Position), 1, false); err != nil {
 		return err
 	}
 
-	if err := validate.MaximumInt("position", "body", int64(m.Position), 32767, false); err != nil {
+	if err := validate.MaximumInt("position", "body", int64(*m.Position), 32767, false); err != nil {
 		return err
 	}
 

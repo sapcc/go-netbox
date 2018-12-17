@@ -63,13 +63,13 @@ type VirtualMachineInterface struct {
 
 	// tagged vlans
 	// Unique: true
-	TaggedVlans []*InterfaceVLAN `json:"tagged_vlans"`
+	TaggedVlans []*NestedVLAN `json:"tagged_vlans"`
 
 	// tags
 	Tags []string `json:"tags"`
 
 	// untagged vlan
-	UntaggedVlan *InterfaceVLAN `json:"untagged_vlan,omitempty"`
+	UntaggedVlan *NestedVLAN `json:"untagged_vlan,omitempty"`
 
 	// virtual machine
 	// Required: true

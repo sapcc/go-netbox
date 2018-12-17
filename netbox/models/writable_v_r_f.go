@@ -79,7 +79,7 @@ type WritableVRF struct {
 	Tags []string `json:"tags"`
 
 	// Tenant
-	Tenant int64 `json:"tenant,omitempty"`
+	Tenant *int64 `json:"tenant,omitempty"`
 }
 
 // Validate validates this writable v r f

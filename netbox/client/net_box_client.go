@@ -25,6 +25,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
+	"github.com/hosting-de-labs/go-netbox/netbox/client/api"
 	"github.com/hosting-de-labs/go-netbox/netbox/client/circuits"
 	"github.com/hosting-de-labs/go-netbox/netbox/client/dcim"
 	"github.com/hosting-de-labs/go-netbox/netbox/client/extras"
@@ -76,6 +77,8 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *NetBox {
 
 	cli := new(NetBox)
 	cli.Transport = transport
+
+	cli.API = api.New(transport, formats)
 
 	cli.Circuits = circuits.New(transport, formats)
 
@@ -135,6 +138,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // NetBox is a client for net box
 type NetBox struct {
+	API *api.Client
+
 	Circuits *circuits.Client
 
 	Dcim *dcim.Client
@@ -155,6 +160,8 @@ type NetBox struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *NetBox) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+
+	c.API.SetTransport(transport)
 
 	c.Circuits.SetTransport(transport)
 

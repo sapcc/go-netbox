@@ -77,6 +77,10 @@ for the dcim console server ports list operation typically these are written to 
 */
 type DcimConsoleServerPortsListParams struct {
 
+	/*Cabled*/
+	Cabled *string
+	/*ConnectionStatus*/
+	ConnectionStatus *string
 	/*Device*/
 	Device *string
 	/*DeviceID*/
@@ -132,6 +136,28 @@ func (o *DcimConsoleServerPortsListParams) WithHTTPClient(client *http.Client) *
 // SetHTTPClient adds the HTTPClient to the dcim console server ports list params
 func (o *DcimConsoleServerPortsListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithCabled adds the cabled to the dcim console server ports list params
+func (o *DcimConsoleServerPortsListParams) WithCabled(cabled *string) *DcimConsoleServerPortsListParams {
+	o.SetCabled(cabled)
+	return o
+}
+
+// SetCabled adds the cabled to the dcim console server ports list params
+func (o *DcimConsoleServerPortsListParams) SetCabled(cabled *string) {
+	o.Cabled = cabled
+}
+
+// WithConnectionStatus adds the connectionStatus to the dcim console server ports list params
+func (o *DcimConsoleServerPortsListParams) WithConnectionStatus(connectionStatus *string) *DcimConsoleServerPortsListParams {
+	o.SetConnectionStatus(connectionStatus)
+	return o
+}
+
+// SetConnectionStatus adds the connectionStatus to the dcim console server ports list params
+func (o *DcimConsoleServerPortsListParams) SetConnectionStatus(connectionStatus *string) {
+	o.ConnectionStatus = connectionStatus
 }
 
 // WithDevice adds the device to the dcim console server ports list params
@@ -207,6 +233,38 @@ func (o *DcimConsoleServerPortsListParams) WriteToRequest(r runtime.ClientReques
 		return err
 	}
 	var res []error
+
+	if o.Cabled != nil {
+
+		// query param cabled
+		var qrCabled string
+		if o.Cabled != nil {
+			qrCabled = *o.Cabled
+		}
+		qCabled := qrCabled
+		if qCabled != "" {
+			if err := r.SetQueryParam("cabled", qCabled); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ConnectionStatus != nil {
+
+		// query param connection_status
+		var qrConnectionStatus string
+		if o.ConnectionStatus != nil {
+			qrConnectionStatus = *o.ConnectionStatus
+		}
+		qConnectionStatus := qrConnectionStatus
+		if qConnectionStatus != "" {
+			if err := r.SetQueryParam("connection_status", qConnectionStatus); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Device != nil {
 

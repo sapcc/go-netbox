@@ -33,8 +33,23 @@ import (
 // swagger:model Interface
 type Interface struct {
 
-	// circuit termination
-	CircuitTermination *InterfaceCircuitTermination `json:"circuit_termination,omitempty"`
+	// cable
+	Cable *NestedCable `json:"cable,omitempty"`
+
+	// Connected endpoint
+	// Read Only: true
+	ConnectedEndpoint string `json:"connected_endpoint,omitempty"`
+
+	// Connected endpoint type
+	// Read Only: true
+	ConnectedEndpointType string `json:"connected_endpoint_type,omitempty"`
+
+	// connection status
+	ConnectionStatus *InterfaceConnectionStatus `json:"connection_status,omitempty"`
+
+	// Count ipaddresses
+	// Read Only: true
+	CountIpaddresses string `json:"count_ipaddresses,omitempty"`
 
 	// Description
 	// Max Length: 100
@@ -54,19 +69,11 @@ type Interface struct {
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
 
-	// Interface connection
-	// Read Only: true
-	InterfaceConnection string `json:"interface_connection,omitempty"`
-
-	// Is connected
-	// Read Only: true
-	IsConnected *bool `json:"is_connected,omitempty"`
-
 	// lag
 	Lag *NestedInterface `json:"lag,omitempty"`
 
 	// MAC Address
-	MacAddress string `json:"mac_address,omitempty"`
+	MacAddress *string `json:"mac_address,omitempty"`
 
 	// OOB Management
 	//
@@ -79,7 +86,7 @@ type Interface struct {
 	// MTU
 	// Maximum: 65536
 	// Minimum: 1
-	Mtu int64 `json:"mtu,omitempty"`
+	Mtu *int64 `json:"mtu,omitempty"`
 
 	// Name
 	// Required: true
@@ -89,20 +96,24 @@ type Interface struct {
 
 	// tagged vlans
 	// Unique: true
-	TaggedVlans []*InterfaceVLAN `json:"tagged_vlans"`
+	TaggedVlans []*NestedVLAN `json:"tagged_vlans"`
 
 	// tags
 	Tags []string `json:"tags"`
 
 	// untagged vlan
-	UntaggedVlan *InterfaceVLAN `json:"untagged_vlan,omitempty"`
+	UntaggedVlan *NestedVLAN `json:"untagged_vlan,omitempty"`
 }
 
 // Validate validates this interface
 func (m *Interface) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCircuitTermination(formats); err != nil {
+	if err := m.validateCable(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConnectionStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -152,16 +163,34 @@ func (m *Interface) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateCircuitTermination(formats strfmt.Registry) error {
+func (m *Interface) validateCable(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.CircuitTermination) { // not required
+	if swag.IsZero(m.Cable) { // not required
 		return nil
 	}
 
-	if m.CircuitTermination != nil {
-		if err := m.CircuitTermination.Validate(formats); err != nil {
+	if m.Cable != nil {
+		if err := m.Cable.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("circuit_termination")
+				return ve.ValidateName("cable")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Interface) validateConnectionStatus(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ConnectionStatus) { // not required
+		return nil
+	}
+
+	if m.ConnectionStatus != nil {
+		if err := m.ConnectionStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("connection_status")
 			}
 			return err
 		}
@@ -261,11 +290,11 @@ func (m *Interface) validateMtu(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := validate.MinimumInt("mtu", "body", int64(m.Mtu), 1, false); err != nil {
+	if err := validate.MinimumInt("mtu", "body", int64(*m.Mtu), 1, false); err != nil {
 		return err
 	}
 
-	if err := validate.MaximumInt("mtu", "body", int64(m.Mtu), 65536, false); err != nil {
+	if err := validate.MaximumInt("mtu", "body", int64(*m.Mtu), 65536, false); err != nil {
 		return err
 	}
 
@@ -364,6 +393,73 @@ func (m *Interface) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Interface) UnmarshalBinary(b []byte) error {
 	var res Interface
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// InterfaceConnectionStatus Connection status
+// swagger:model InterfaceConnectionStatus
+type InterfaceConnectionStatus struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *bool `json:"value"`
+}
+
+// Validate validates this interface connection status
+func (m *InterfaceConnectionStatus) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InterfaceConnectionStatus) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("connection_status"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InterfaceConnectionStatus) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("connection_status"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *InterfaceConnectionStatus) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *InterfaceConnectionStatus) UnmarshalBinary(b []byte) error {
+	var res InterfaceConnectionStatus
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

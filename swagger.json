@@ -10,7 +10,7 @@
     "license": {
       "name": "Apache v2 License"
     },
-    "version": "2.4"
+    "version": "2.5"
   },
   "host": "localhost:8000",
   "schemes": [
@@ -1075,6 +1075,222 @@
         }
       ]
     },
+    "/dcim/cables/": {
+      "get": {
+        "operationId": "dcim_cables_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "color",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "length",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "length_unit",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Cable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "post": {
+        "operationId": "dcim_cables_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableCable"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Cable"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": []
+    },
+    "/dcim/cables/{id}/": {
+      "get": {
+        "operationId": "dcim_cables_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Cable"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "put": {
+        "operationId": "dcim_cables_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableCable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Cable"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "patch": {
+        "operationId": "dcim_cables_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableCable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Cable"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "delete": {
+        "operationId": "dcim_cables_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this cable.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
     "/dcim/connected-device/": {
       "get": {
         "operationId": "dcim_connected-device_list",
@@ -1397,6 +1613,13 @@
             "type": "string"
           },
           {
+            "name": "connection_status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "device_id",
             "in": "query",
             "description": "",
@@ -1412,6 +1635,13 @@
           },
           {
             "name": "tag",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cabled",
             "in": "query",
             "description": "",
             "required": false,
@@ -1570,6 +1800,33 @@
         "responses": {
           "204": {
             "description": ""
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this console port.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/dcim/console-server-port-templates/": {
+      "get": {
+        "operationId": "dcim_console-ports_trace",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ConsolePort"
+            }
           }
         },
         "tags": [
@@ -1787,6 +2044,13 @@
             "type": "string"
           },
           {
+            "name": "connection_status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "device_id",
             "in": "query",
             "description": "",
@@ -1802,6 +2066,13 @@
           },
           {
             "name": "tag",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cabled",
             "in": "query",
             "description": "",
             "required": false,
@@ -1960,6 +2231,33 @@
         "responses": {
           "204": {
             "description": ""
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this console server port.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/dcim/console-server-ports/{id}/trace/": {
+      "get": {
+        "operationId": "dcim_console-server-ports_trace",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ConsoleServerPort"
+            }
           }
         },
         "tags": [
@@ -2609,27 +2907,6 @@
             "type": "string"
           },
           {
-            "name": "is_console_server",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "is_pdu",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "is_network_device",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "subdevice_role",
             "in": "query",
             "description": "",
@@ -2655,10 +2932,52 @@
             "in": "query",
             "description": "",
             "required": false,
-            "type": "integer"
+            "type": "string"
           },
           {
             "name": "manufacturer",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "console_ports",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "console_server_ports",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "power_ports",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "power_outlets",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interfaces",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pass_through_ports",
             "in": "query",
             "description": "",
             "required": false,
@@ -3021,27 +3340,6 @@
             "type": "string"
           },
           {
-            "name": "is_console_server",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "is_pdu",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "is_network_device",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "mac_address",
             "in": "query",
             "description": "",
@@ -3060,7 +3358,49 @@
             "in": "query",
             "description": "",
             "required": false,
-            "type": "integer"
+            "type": "string"
+          },
+          {
+            "name": "console_ports",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "console_server_ports",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "power_ports",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "power_outlets",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "interfaces",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pass_through_ports",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "tag",
@@ -3265,9 +3605,420 @@
         }
       ]
     },
+    "/dcim/front-port-templates/": {
+      "get": {
+        "operationId": "dcim_front-port-templates_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "devicetype_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/FrontPortTemplate"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "post": {
+        "operationId": "dcim_front-port-templates_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableFrontPortTemplate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/FrontPortTemplate"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": []
+    },
+    "/dcim/front-port-templates/{id}/": {
+      "get": {
+        "operationId": "dcim_front-port-templates_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/FrontPortTemplate"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "put": {
+        "operationId": "dcim_front-port-templates_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableFrontPortTemplate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/FrontPortTemplate"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "patch": {
+        "operationId": "dcim_front-port-templates_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableFrontPortTemplate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/FrontPortTemplate"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "delete": {
+        "operationId": "dcim_front-port-templates_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this front port template.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/dcim/front-ports/": {
+      "get": {
+        "operationId": "dcim_front-ports_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "device",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cabled",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/FrontPort"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "post": {
+        "operationId": "dcim_front-ports_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableFrontPort"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/FrontPort"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": []
+    },
+    "/api/dcim/front-ports/{id}/": {
+      "get": {
+        "operationId": "dcim_front-ports_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/FrontPort"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "put": {
+        "operationId": "dcim_front-ports_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableFrontPort"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/FrontPort"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "patch": {
+        "operationId": "dcim_front-ports_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableFrontPort"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/FrontPort"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "delete": {
+        "operationId": "dcim_front-ports_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this front port.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
     "/dcim/interface-connections/": {
       "get": {
-        "operationId": "dcim_interface-connections_list",
+        "operationId": "_dcim_interface-connections_list",
         "description": "",
         "parameters": [
           {
@@ -3343,122 +4094,7 @@
           "dcim"
         ]
       },
-      "post": {
-        "operationId": "dcim_interface-connections_create",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/WritableInterfaceConnection"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/InterfaceConnection"
-            }
-          }
-        },
-        "tags": [
-          "dcim"
-        ]
-      },
       "parameters": []
-    },
-    "/dcim/interface-connections/{id}/": {
-      "get": {
-        "operationId": "dcim_interface-connections_read",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/InterfaceConnection"
-            }
-          }
-        },
-        "tags": [
-          "dcim"
-        ]
-      },
-      "put": {
-        "operationId": "dcim_interface-connections_update",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/WritableInterfaceConnection"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/InterfaceConnection"
-            }
-          }
-        },
-        "tags": [
-          "dcim"
-        ]
-      },
-      "patch": {
-        "operationId": "dcim_interface-connections_partial_update",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/WritableInterfaceConnection"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/InterfaceConnection"
-            }
-          }
-        },
-        "tags": [
-          "dcim"
-        ]
-      },
-      "delete": {
-        "operationId": "dcim_interface-connections_delete",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "dcim"
-        ]
-      },
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "description": "A unique integer value identifying this interface connection.",
-          "required": true,
-          "type": "integer"
-        }
-      ]
     },
     "/dcim/interface-templates/": {
       "get": {
@@ -3675,6 +4311,20 @@
             "type": "string"
           },
           {
+            "name": "connection_status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "form_factor",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "enabled",
             "in": "query",
             "description": "",
@@ -3708,6 +4358,13 @@
             "description": "",
             "required": false,
             "type": "integer"
+          },
+          {
+            "name": "cabled",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "type",
@@ -3746,13 +4403,6 @@
           },
           {
             "name": "vlan",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "form_factor",
             "in": "query",
             "description": "",
             "required": false,
@@ -3931,6 +4581,33 @@
       "get": {
         "operationId": "dcim_interfaces_graphs",
         "description": "A convenience method for rendering graphs for a particular interface.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Interface"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this interface.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/dcim/interfaces/{id}/trace/": {
+      "get": {
+        "operationId": "dcim_interfaces_trace",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
         "parameters": [],
         "responses": {
           "200": {
@@ -4890,6 +5567,13 @@
             "type": "string"
           },
           {
+            "name": "connection_status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "device_id",
             "in": "query",
             "description": "",
@@ -4905,6 +5589,13 @@
           },
           {
             "name": "tag",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cabled",
             "in": "query",
             "description": "",
             "required": false,
@@ -5063,6 +5754,33 @@
         "responses": {
           "204": {
             "description": ""
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this power outlet.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/dcim/power-outlets/{id}/trace/": {
+      "get": {
+        "operationId": "dcim_power-outlets_trace",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PowerOutlet"
+            }
           }
         },
         "tags": [
@@ -5280,6 +5998,13 @@
             "type": "string"
           },
           {
+            "name": "connection_status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "device_id",
             "in": "query",
             "description": "",
@@ -5295,6 +6020,13 @@
           },
           {
             "name": "tag",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cabled",
             "in": "query",
             "description": "",
             "required": false,
@@ -5457,6 +6189,33 @@
         },
         "tags": [
           "dcim"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this power port.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/dcim/rack-groups/": {
+      "get": {
+        "operationId": "dcim_power-ports_trace",
+        "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PowerPort"
+            }
+          }
+        },
+        "tags": [
+          "api"
         ]
       },
       "parameters": [
@@ -6151,6 +6910,13 @@
             "type": "string"
           },
           {
+            "name": "asset_tag",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "type",
             "in": "query",
             "description": "",
@@ -6173,6 +6939,27 @@
           },
           {
             "name": "desc_units",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "outer_width",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "outer_depth",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "outer_unit",
             "in": "query",
             "description": "",
             "required": false,
@@ -6236,6 +7023,13 @@
           },
           {
             "name": "tenant",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
             "in": "query",
             "description": "",
             "required": false,
@@ -6453,6 +7247,417 @@
           "name": "id",
           "in": "path",
           "description": "A unique integer value identifying this rack.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/dcim/rear-port-templates/": {
+      "get": {
+        "operationId": "dcim_rear-port-templates_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "devicetype_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/RearPortTemplate"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "post": {
+        "operationId": "dcim_rear-port-templates_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableRearPortTemplate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RearPortTemplate"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": []
+    },
+    "/dcim/rear-port-templates/{id}/": {
+      "get": {
+        "operationId": "dcim_rear-port-templates_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RearPortTemplate"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "put": {
+        "operationId": "dcim_rear-port-templates_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableRearPortTemplate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RearPortTemplate"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "patch": {
+        "operationId": "dcim_rear-port-templates_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableRearPortTemplate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RearPortTemplate"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "delete": {
+        "operationId": "dcim_rear-port-templates_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this rear port template.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/dcim/rear-ports/": {
+      "get": {
+        "operationId": "dcim_rear-ports_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "device",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cabled",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/RearPort"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "post": {
+        "operationId": "dcim_rear-ports_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableRearPort"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RearPort"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": []
+    },
+    "/dcim/rear-ports/{id}/": {
+      "get": {
+        "operationId": "dcim_rear-ports_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RearPort"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "put": {
+        "operationId": "dcim_rear-ports_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableRearPort"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RearPort"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "patch": {
+        "operationId": "dcim_rear-ports_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WritableRearPort"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RearPort"
+            }
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "delete": {
+        "operationId": "dcim_rear-ports_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "dcim"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this rear port.",
           "required": true,
           "type": "integer"
         }
@@ -8157,71 +9362,14 @@
         }
       ]
     },
-    "/extras/recent-activity/": {
+    "/extras/reports/": {
       "get": {
-        "operationId": "extras_recent-activity_list",
-        "description": "",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "username",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "The initial index from which to return the results.",
-            "required": false,
-            "type": "integer"
-          }
-        ],
+        "operationId": "extras_reports_list",
+        "description": "Compile all reports and their related results (if any). Result data is deferred in the list view.",
+        "parameters": [],
         "responses": {
           "200": {
-            "description": "",
-            "schema": {
-              "required": [
-                "count",
-                "results"
-              ],
-              "type": "object",
-              "properties": {
-                "count": {
-                  "type": "integer"
-                },
-                "next": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "previous": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "results": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/UserAction"
-                  }
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -8230,17 +9378,14 @@
       },
       "parameters": []
     },
-    "/extras/recent-activity/{id}/": {
+    "/extras/reports/{id}/": {
       "get": {
-        "operationId": "extras_recent-activity_read",
-        "description": "",
+        "operationId": "extras_reports_read",
+        "description": "Retrieve a single Report identified as \"<module>.<report>\".",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/UserAction"
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -8251,7 +9396,29 @@
         {
           "name": "id",
           "in": "path",
-          "description": "A unique integer value identifying this user action.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/extras/reports/{id}/run/": {
+      "post": {
+        "operationId": "api_extras_reports_run",
+        "description": "Run a Report and create a new ReportResult, overwriting any previous result for the Report.",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "extras"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
           "required": true,
           "type": "integer"
         }
@@ -11034,7 +12201,8 @@
     "/secrets/generate-rsa-key-pair/": {
       "get": {
         "operationId": "secrets_generate-rsa-key-pair_list",
-        "description": "This endpoint can be used to generate a new RSA key pair. The keys are returned in PEM format.\n\n    {\n        \"public_key\": \"<public key>\",\n        \"private_key\": \"<private key>\"\n    }",
+        "summary": "This endpoint can be used to generate a new RSA key pair. The keys are returned in PEM format.",
+        "description": "    {\n        \"public_key\": \"<public key>\",\n        \"private_key\": \"<private key>\"\n    }",
         "parameters": [],
         "responses": {
           "200": {
@@ -13183,8 +14351,8 @@
         }
       }
     },
-    "NestedDevice": {
-      "title": "Device",
+    "NestedCable": {
+      "title": "Cable",
       "type": "object",
       "properties": {
         "id": {
@@ -13198,50 +14366,10 @@
           "format": "uri",
           "readOnly": true
         },
-        "name": {
-          "title": "Name",
+        "label": {
+          "title": "Label",
           "type": "string",
-          "maxLength": 64
-        },
-        "display_name": {
-          "title": "Display name",
-          "type": "string",
-          "readOnly": true
-        }
-      },
-      "readOnly": true
-    },
-    "NestedInterface": {
-      "title": "Interface",
-      "required": [
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "url": {
-          "title": "Url",
-          "type": "string",
-          "format": "uri",
-          "readOnly": true
-        },
-        "device": {
-          "$ref": "#/definitions/NestedDevice"
-        },
-        "name": {
-          "title": "Name",
-          "type": "string",
-          "maxLength": 64,
-          "minLength": 1
-        },
-        "is_connected": {
-          "title": "Is connected",
-          "type": "boolean",
-          "readOnly": true
+          "maxLength": 100
         }
       }
     },
@@ -13273,9 +14401,6 @@
         "site": {
           "$ref": "#/definitions/NestedSite"
         },
-        "interface": {
-          "$ref": "#/definitions/NestedInterface"
-        },
         "port_speed": {
           "title": "Port speed (Kbps)",
           "type": "integer",
@@ -13287,7 +14412,8 @@
           "description": "Upstream speed, if different from port speed",
           "type": "integer",
           "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "xconnect_id": {
           "title": "Cross-connect ID",
@@ -13298,6 +14424,42 @@
           "title": "Patch panel/port(s)",
           "type": "string",
           "maxLength": 100
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
+          "type": "string",
+          "readOnly": true
+        },
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
+        },
+        "connection_status": {
+          "title": "Connection status",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "boolean",
+              "x-nullable": true
+            }
+          },
+          "readOnly": true
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         }
       }
     },
@@ -13331,10 +14493,6 @@
           "title": "Site",
           "type": "integer"
         },
-        "interface": {
-          "title": "Interface",
-          "type": "integer"
-        },
         "port_speed": {
           "title": "Port speed (Kbps)",
           "type": "integer",
@@ -13346,7 +14504,8 @@
           "description": "Upstream speed, if different from port speed",
           "type": "integer",
           "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "xconnect_id": {
           "title": "Cross-connect ID",
@@ -13357,6 +14516,32 @@
           "title": "Patch panel/port(s)",
           "type": "string",
           "maxLength": 100
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
+          "type": "string",
+          "readOnly": true
+        },
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
+        },
+        "connection_status": {
+          "title": "Connection status",
+          "type": "boolean",
+          "enum": [
+            false,
+            true
+          ]
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         }
       }
     },
@@ -13540,13 +14725,15 @@
         "install_date": {
           "title": "Date installed",
           "type": "string",
-          "format": "date"
+          "format": "date",
+          "x-nullable": true
         },
         "commit_rate": {
           "title": "Commit rate (Kbps)",
           "type": "integer",
           "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "description": {
           "title": "Description",
@@ -13623,18 +14810,21 @@
         },
         "tenant": {
           "title": "Tenant",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "install_date": {
           "title": "Date installed",
           "type": "string",
-          "format": "date"
+          "format": "date",
+          "x-nullable": true
         },
         "commit_rate": {
           "title": "Commit rate (Kbps)",
           "type": "integer",
           "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "description": {
           "title": "Description",
@@ -13700,7 +14890,8 @@
           "title": "ASN",
           "type": "integer",
           "maximum": 4294967295,
-          "minimum": 1
+          "minimum": 1,
+          "x-nullable": true
         },
         "account": {
           "title": "Account number",
@@ -13750,6 +14941,224 @@
         }
       }
     },
+    "Cable": {
+      "required": [
+        "termination_a_type",
+        "termination_a_id",
+        "termination_b_type",
+        "termination_b_id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "termination_a_type": {
+          "title": "Termination a type",
+          "type": "string"
+        },
+        "termination_a_id": {
+          "title": "Termination a id",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "termination_a": {
+          "title": "Termination a",
+          "type": "string",
+          "readOnly": true
+        },
+        "termination_b_type": {
+          "title": "Termination b type",
+          "type": "string"
+        },
+        "termination_b_id": {
+          "title": "Termination b id",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "termination_b": {
+          "title": "Termination b",
+          "type": "string",
+          "readOnly": true
+        },
+        "type": {
+          "title": "Type",
+          "type": "integer",
+          "enum": [
+            1300,
+            1500,
+            1510,
+            1600,
+            1610,
+            1700,
+            3010,
+            3020,
+            3030,
+            3040,
+            3500,
+            5000
+          ],
+          "x-nullable": true
+        },
+        "status": {
+          "title": "Status",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "boolean",
+              "x-nullable": true
+            }
+          }
+        },
+        "label": {
+          "title": "Label",
+          "type": "string",
+          "maxLength": 100
+        },
+        "color": {
+          "title": "Color",
+          "type": "string",
+          "pattern": "^[0-9a-f]{6}$",
+          "maxLength": 6
+        },
+        "length": {
+          "title": "Length",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 0,
+          "x-nullable": true
+        },
+        "length_unit": {
+          "title": "Length unit",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "WritableCable": {
+      "required": [
+        "termination_a_type",
+        "termination_a_id",
+        "termination_b_type",
+        "termination_b_id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "termination_a_type": {
+          "title": "Termination a type",
+          "type": "string"
+        },
+        "termination_a_id": {
+          "title": "Termination a id",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "termination_a": {
+          "title": "Termination a",
+          "type": "string",
+          "readOnly": true
+        },
+        "termination_b_type": {
+          "title": "Termination b type",
+          "type": "string"
+        },
+        "termination_b_id": {
+          "title": "Termination b id",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "termination_b": {
+          "title": "Termination b",
+          "type": "string",
+          "readOnly": true
+        },
+        "type": {
+          "title": "Type",
+          "type": "integer",
+          "enum": [
+            1300,
+            1500,
+            1510,
+            1600,
+            1610,
+            1700,
+            3010,
+            3020,
+            3030,
+            3040,
+            3500,
+            5000
+          ],
+          "x-nullable": true
+        },
+        "status": {
+          "title": "Status",
+          "type": "boolean",
+          "enum": [
+            false,
+            true
+          ]
+        },
+        "label": {
+          "title": "Label",
+          "type": "string",
+          "maxLength": 100
+        },
+        "color": {
+          "title": "Color",
+          "type": "string",
+          "pattern": "^[0-9a-f]{6}$",
+          "maxLength": 6
+        },
+        "length": {
+          "title": "Length",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 0,
+          "x-nullable": true
+        },
+        "length_unit": {
+          "title": "Length unit",
+          "type": "integer",
+          "enum": [
+            1200,
+            1100,
+            2100,
+            2000
+          ],
+          "x-nullable": true
+        }
+      }
+    },
     "NestedManufacturer": {
       "title": "Manufacturer",
       "required": [
@@ -13783,8 +15192,7 @@
           "maxLength": 50,
           "minLength": 1
         }
-      },
-      "readOnly": true
+      }
     },
     "NestedDeviceType": {
       "title": "Device type",
@@ -13925,7 +15333,7 @@
         }
       }
     },
-    "DeviceIPAddress": {
+    "NestedIPAddress": {
       "title": "Primary ip",
       "required": [
         "address"
@@ -13953,8 +15361,7 @@
           "description": "IPv4 or IPv6 address (with mask)",
           "type": "string"
         }
-      },
-      "readOnly": true
+      }
     },
     "NestedCluster": {
       "title": "Cluster",
@@ -13982,7 +15389,35 @@
         }
       }
     },
-    "DeviceVirtualChassis": {
+    "NestedDevice": {
+      "title": "Master",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "x-nullable": true
+        },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "NestedVirtualChassis": {
       "title": "Virtual chassis",
       "required": [
         "master"
@@ -14021,7 +15456,8 @@
         "name": {
           "title": "Name",
           "type": "string",
-          "maxLength": 64
+          "maxLength": 64,
+          "x-nullable": true
         },
         "display_name": {
           "title": "Display name",
@@ -14049,7 +15485,8 @@
           "title": "Asset tag",
           "description": "A unique tag used to identify this device",
           "type": "string",
-          "maxLength": 50
+          "maxLength": 50,
+          "x-nullable": true
         },
         "site": {
           "$ref": "#/definitions/NestedSite"
@@ -14062,7 +15499,8 @@
           "description": "The lowest-numbered unit occupied by the device",
           "type": "integer",
           "maximum": 32767,
-          "minimum": 1
+          "minimum": 1,
+          "x-nullable": true
         },
         "face": {
           "title": "Face",
@@ -14101,35 +15539,42 @@
           }
         },
         "primary_ip": {
-          "$ref": "#/definitions/DeviceIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "primary_ip4": {
-          "$ref": "#/definitions/DeviceIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "primary_ip6": {
-          "$ref": "#/definitions/DeviceIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "cluster": {
           "$ref": "#/definitions/NestedCluster"
         },
         "virtual_chassis": {
-          "$ref": "#/definitions/DeviceVirtualChassis"
+          "$ref": "#/definitions/NestedVirtualChassis"
         },
         "vc_position": {
           "title": "Vc position",
           "type": "integer",
           "maximum": 255,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "vc_priority": {
           "title": "Vc priority",
           "type": "integer",
           "maximum": 255,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "comments": {
           "title": "Comments",
           "type": "string"
+        },
+        "local_context_data": {
+          "title": "Local context data",
+          "type": "string",
+          "x-nullable": true
         },
         "tags": {
           "type": "array",
@@ -14152,44 +15597,6 @@
           "title": "Last updated",
           "type": "string",
           "format": "date-time",
-          "readOnly": true
-        },
-        "local_context_data": {
-          "title": "Local context data",
-          "type": "string"
-        }
-      }
-    },
-    "NestedConsoleServerPort": {
-      "title": "Cs port",
-      "required": [
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "url": {
-          "title": "Url",
-          "type": "string",
-          "format": "uri",
-          "readOnly": true
-        },
-        "device": {
-          "$ref": "#/definitions/NestedDevice"
-        },
-        "name": {
-          "title": "Name",
-          "type": "string",
-          "maxLength": 50,
-          "minLength": 1
-        },
-        "is_connected": {
-          "title": "Is connected",
-          "type": "boolean",
           "readOnly": true
         }
       }
@@ -14215,16 +15622,36 @@
           "maxLength": 50,
           "minLength": 1
         },
-        "cs_port": {
-          "$ref": "#/definitions/NestedConsoleServerPort"
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
+          "type": "string",
+          "readOnly": true
+        },
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
         },
         "connection_status": {
           "title": "Connection status",
-          "type": "boolean",
-          "enum": [
-            false,
-            true
-          ]
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "boolean",
+              "x-nullable": true
+            }
+          },
+          "readOnly": true
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         },
         "tags": {
           "type": "array",
@@ -14304,9 +15731,15 @@
           "maxLength": 50,
           "minLength": 1
         },
-        "cs_port": {
-          "title": "Console server port",
-          "type": "integer"
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
+          "type": "string",
+          "readOnly": true
+        },
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
         },
         "connection_status": {
           "title": "Connection status",
@@ -14315,6 +15748,9 @@
             false,
             true
           ]
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         },
         "tags": {
           "type": "array",
@@ -14393,10 +15829,36 @@
           "maxLength": 50,
           "minLength": 1
         },
-        "connected_console": {
-          "title": "Connected console",
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
           "type": "string",
           "readOnly": true
+        },
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
+        },
+        "connection_status": {
+          "title": "Connection status",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "boolean",
+              "x-nullable": true
+            }
+          },
+          "readOnly": true
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         },
         "tags": {
           "type": "array",
@@ -14429,10 +15891,26 @@
           "maxLength": 50,
           "minLength": 1
         },
-        "connected_console": {
-          "title": "Connected console",
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
           "type": "string",
           "readOnly": true
+        },
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
+        },
+        "connection_status": {
+          "title": "Connection status",
+          "type": "boolean",
+          "enum": [
+            false,
+            true
+          ]
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         },
         "tags": {
           "type": "array",
@@ -14547,7 +16025,8 @@
         },
         "installed_device": {
           "title": "Installed device",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "tags": {
           "type": "array",
@@ -14644,37 +16123,6 @@
         "is_full_depth": {
           "title": "Is full depth",
           "description": "Device consumes both front and rear rack faces",
-          "type": "boolean"
-        },
-        "interface_ordering": {
-          "title": "Interface ordering",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
-        },
-        "is_console_server": {
-          "title": "Is a console server",
-          "description": "This type of device has console server ports",
-          "type": "boolean"
-        },
-        "is_pdu": {
-          "title": "Is a PDU",
-          "description": "This type of device has power outlets",
-          "type": "boolean"
-        },
-        "is_network_device": {
-          "title": "Is a network device",
-          "description": "This type of device has network interfaces",
           "type": "boolean"
         },
         "subdevice_role": {
@@ -14776,29 +16224,6 @@
           "description": "Device consumes both front and rear rack faces",
           "type": "boolean"
         },
-        "interface_ordering": {
-          "title": "Interface ordering",
-          "type": "integer",
-          "enum": [
-            1,
-            2
-          ]
-        },
-        "is_console_server": {
-          "title": "Is a console server",
-          "description": "This type of device has console server ports",
-          "type": "boolean"
-        },
-        "is_pdu": {
-          "title": "Is a PDU",
-          "description": "This type of device has power outlets",
-          "type": "boolean"
-        },
-        "is_network_device": {
-          "title": "Is a network device",
-          "description": "This type of device has network interfaces",
-          "type": "boolean"
-        },
         "subdevice_role": {
           "title": "Parent/child status",
           "description": "Parent devices house child devices in device bays. Select \"None\" if this device type is neither a parent nor a child.",
@@ -14854,7 +16279,8 @@
         "name": {
           "title": "Name",
           "type": "string",
-          "maxLength": 64
+          "maxLength": 64,
+          "x-nullable": true
         },
         "display_name": {
           "title": "Display name",
@@ -14871,11 +16297,13 @@
         },
         "tenant": {
           "title": "Tenant",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "platform": {
           "title": "Platform",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "serial": {
           "title": "Serial number",
@@ -14886,7 +16314,8 @@
           "title": "Asset tag",
           "description": "A unique tag used to identify this device",
           "type": "string",
-          "maxLength": 50
+          "maxLength": 50,
+          "x-nullable": true
         },
         "site": {
           "title": "Site",
@@ -14894,14 +16323,16 @@
         },
         "rack": {
           "title": "Rack",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "position": {
           "title": "Position (U)",
           "description": "The lowest-numbered unit occupied by the device",
           "type": "integer",
           "maximum": 32767,
-          "minimum": 1
+          "minimum": 1,
+          "x-nullable": true
         },
         "face": {
           "title": "Rack face",
@@ -14909,7 +16340,8 @@
           "enum": [
             0,
             1
-          ]
+          ],
+          "x-nullable": true
         },
         "parent_device": {
           "title": "Parent device",
@@ -14935,35 +16367,46 @@
         },
         "primary_ip4": {
           "title": "Primary IPv4",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "primary_ip6": {
           "title": "Primary IPv6",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "cluster": {
           "title": "Cluster",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "virtual_chassis": {
           "title": "Virtual chassis",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "vc_position": {
           "title": "Vc position",
           "type": "integer",
           "maximum": 255,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "vc_priority": {
           "title": "Vc priority",
           "type": "integer",
           "maximum": 255,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "comments": {
           "title": "Comments",
           "type": "string"
+        },
+        "local_context_data": {
+          "title": "Local context data",
+          "type": "string",
+          "x-nullable": true
         },
         "tags": {
           "type": "array",
@@ -14987,10 +16430,6 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
-        },
-        "local_context_data": {
-          "title": "Local context data",
-          "type": "string"
         }
       }
     },
@@ -15010,7 +16449,8 @@
         "name": {
           "title": "Name",
           "type": "string",
-          "maxLength": 64
+          "maxLength": 64,
+          "x-nullable": true
         },
         "display_name": {
           "title": "Display name",
@@ -15038,7 +16478,8 @@
           "title": "Asset tag",
           "description": "A unique tag used to identify this device",
           "type": "string",
-          "maxLength": 50
+          "maxLength": 50,
+          "x-nullable": true
         },
         "site": {
           "$ref": "#/definitions/NestedSite"
@@ -15051,7 +16492,8 @@
           "description": "The lowest-numbered unit occupied by the device",
           "type": "integer",
           "maximum": 32767,
-          "minimum": 1
+          "minimum": 1,
+          "x-nullable": true
         },
         "face": {
           "title": "Face",
@@ -15092,35 +16534,42 @@
           }
         },
         "primary_ip": {
-          "$ref": "#/definitions/DeviceIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "primary_ip4": {
-          "$ref": "#/definitions/DeviceIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "primary_ip6": {
-          "$ref": "#/definitions/DeviceIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "cluster": {
           "$ref": "#/definitions/NestedCluster"
         },
         "virtual_chassis": {
-          "$ref": "#/definitions/DeviceVirtualChassis"
+          "$ref": "#/definitions/NestedVirtualChassis"
         },
         "vc_position": {
           "title": "Vc position",
           "type": "integer",
           "maximum": 255,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "vc_priority": {
           "title": "Vc priority",
           "type": "integer",
           "maximum": 255,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "comments": {
           "title": "Comments",
           "type": "string"
+        },
+        "local_context_data": {
+          "title": "Local context data",
+          "type": "string",
+          "x-nullable": true
         },
         "tags": {
           "type": "array",
@@ -15149,17 +16598,13 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
-        },
-        "local_context_data": {
-          "title": "Local context data",
-          "type": "string"
         }
       }
     },
-    "InterfaceConnection": {
+    "NestedRearPortTemplate": {
+      "title": "Rear port",
       "required": [
-        "interface_a",
-        "interface_b"
+        "name"
       ],
       "type": "object",
       "properties": {
@@ -15168,8 +16613,342 @@
           "type": "integer",
           "readOnly": true
         },
+        "url": {
+          "title": "Url",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        }
+      }
+    },
+    "FrontPortTemplate": {
+      "required": [
+        "device_type",
+        "name",
+        "type",
+        "rear_port"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device_type": {
+          "$ref": "#/definitions/NestedDeviceType"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "type": {
+          "title": "Type",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
+        },
+        "rear_port": {
+          "$ref": "#/definitions/NestedRearPortTemplate"
+        },
+        "rear_port_position": {
+          "title": "Rear port position",
+          "type": "integer",
+          "default": 1,
+          "maximum": 64,
+          "minimum": 1
+        }
+      }
+    },
+    "WritableFrontPortTemplate": {
+      "required": [
+        "device_type",
+        "name",
+        "type",
+        "rear_port"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device_type": {
+          "title": "Device type",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "type": {
+          "title": "Type",
+          "type": "integer",
+          "enum": [
+            1000,
+            2200,
+            2300,
+            2600,
+            2500,
+            2400,
+            2100,
+            2000
+          ]
+        },
+        "rear_port": {
+          "title": "Rear port",
+          "type": "integer"
+        },
+        "rear_port_position": {
+          "title": "Rear port position",
+          "type": "integer",
+          "default": 1,
+          "maximum": 64,
+          "minimum": 1
+        }
+      }
+    },
+    "FrontPortRearPort": {
+      "title": "Rear port",
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        }
+      }
+    },
+    "FrontPort": {
+      "required": [
+        "device",
+        "name",
+        "type",
+        "rear_port"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "$ref": "#/definitions/NestedDevice"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "type": {
+          "title": "Type",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
+        },
+        "rear_port": {
+          "$ref": "#/definitions/FrontPortRearPort"
+        },
+        "rear_port_position": {
+          "title": "Rear port position",
+          "type": "integer",
+          "default": 1,
+          "maximum": 64,
+          "minimum": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "WritableFrontPort": {
+      "required": [
+        "device",
+        "name",
+        "type",
+        "rear_port"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "title": "Device",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "type": {
+          "title": "Type",
+          "type": "integer",
+          "enum": [
+            1000,
+            2200,
+            2300,
+            2600,
+            2500,
+            2400,
+            2100,
+            2000
+          ]
+        },
+        "rear_port": {
+          "title": "Rear port",
+          "type": "integer"
+        },
+        "rear_port_position": {
+          "title": "Rear port position",
+          "type": "integer",
+          "default": 1,
+          "maximum": 64,
+          "minimum": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "NestedInterface": {
+      "title": "Interface b",
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "url": {
+          "title": "Url",
+          "type": "string",
+          "format": "uri",
+          "readOnly": true
+        },
+        "device": {
+          "$ref": "#/definitions/NestedDevice"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "cable": {
+          "title": "Cable",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "connection_status": {
+          "title": "Connection status",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "boolean",
+              "x-nullable": true
+            }
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "InterfaceConnection": {
+      "required": [
+        "interface_b"
+      ],
+      "type": "object",
+      "properties": {
         "interface_a": {
-          "$ref": "#/definitions/NestedInterface"
+          "title": "Interface a",
+          "type": "string",
+          "readOnly": true
         },
         "interface_b": {
           "$ref": "#/definitions/NestedInterface"
@@ -15190,36 +16969,6 @@
               "x-nullable": true
             }
           }
-        }
-      }
-    },
-    "WritableInterfaceConnection": {
-      "required": [
-        "interface_a",
-        "interface_b"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "interface_a": {
-          "title": "Interface a",
-          "type": "integer"
-        },
-        "interface_b": {
-          "title": "Interface b",
-          "type": "integer"
-        },
-        "connection_status": {
-          "title": "Status",
-          "type": "boolean",
-          "enum": [
-            false,
-            true
-          ]
         }
       }
     },
@@ -15329,6 +17078,7 @@
             3080,
             3160,
             3320,
+            3400,
             4000,
             4010,
             4040,
@@ -15351,84 +17101,7 @@
         }
       }
     },
-    "InterfaceNestedCircuit": {
-      "title": "Circuit",
-      "required": [
-        "cid"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "url": {
-          "title": "Url",
-          "type": "string",
-          "format": "uri",
-          "readOnly": true
-        },
-        "cid": {
-          "title": "Circuit ID",
-          "type": "string",
-          "maxLength": 50,
-          "minLength": 1
-        }
-      },
-      "readOnly": true
-    },
-    "InterfaceCircuitTermination": {
-      "title": "Circuit termination",
-      "required": [
-        "term_side",
-        "port_speed"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "circuit": {
-          "$ref": "#/definitions/InterfaceNestedCircuit"
-        },
-        "term_side": {
-          "title": "Termination",
-          "type": "string",
-          "enum": [
-            "A",
-            "Z"
-          ]
-        },
-        "port_speed": {
-          "title": "Port speed (Kbps)",
-          "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
-        },
-        "upstream_speed": {
-          "title": "Upstream speed (Kbps)",
-          "description": "Upstream speed, if different from port speed",
-          "type": "integer",
-          "maximum": 2147483647,
-          "minimum": 0
-        },
-        "xconnect_id": {
-          "title": "Cross-connect ID",
-          "type": "string",
-          "maxLength": 50
-        },
-        "pp_info": {
-          "title": "Patch panel/port(s)",
-          "type": "string",
-          "maxLength": 100
-        }
-      },
-      "readOnly": true
-    },
-    "InterfaceVLAN": {
+    "NestedVLAN": {
       "title": "Untagged vlan",
       "required": [
         "vid",
@@ -15514,11 +17187,13 @@
           "title": "MTU",
           "type": "integer",
           "maximum": 65536,
-          "minimum": 1
+          "minimum": 1,
+          "x-nullable": true
         },
         "mac_address": {
           "title": "MAC Address",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "mgmt_only": {
           "title": "OOB Management",
@@ -15530,18 +17205,36 @@
           "type": "string",
           "maxLength": 100
         },
-        "is_connected": {
-          "title": "Is connected",
-          "type": "boolean",
-          "readOnly": true
-        },
-        "interface_connection": {
-          "title": "Interface connection",
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
           "type": "string",
           "readOnly": true
         },
-        "circuit_termination": {
-          "$ref": "#/definitions/InterfaceCircuitTermination"
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
+        },
+        "connection_status": {
+          "title": "Connection status",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "boolean",
+              "x-nullable": true
+            }
+          },
+          "readOnly": true
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         },
         "mode": {
           "title": "Mode",
@@ -15560,12 +17253,12 @@
           }
         },
         "untagged_vlan": {
-          "$ref": "#/definitions/InterfaceVLAN"
+          "$ref": "#/definitions/NestedVLAN"
         },
         "tagged_vlans": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/InterfaceVLAN"
+            "$ref": "#/definitions/NestedVLAN"
           },
           "uniqueItems": true
         },
@@ -15575,14 +17268,18 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "count_ipaddresses": {
+          "title": "Count ipaddresses",
+          "type": "string",
+          "readOnly": true
         }
       }
     },
     "WritableInterface": {
       "required": [
         "device",
-        "name",
-        "circuit_termination"
+        "name"
       ],
       "type": "object",
       "properties": {
@@ -15642,6 +17339,7 @@
             3080,
             3160,
             3320,
+            3400,
             4000,
             4010,
             4040,
@@ -15664,17 +17362,20 @@
         },
         "lag": {
           "title": "Parent LAG",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "mtu": {
           "title": "MTU",
           "type": "integer",
           "maximum": 65536,
-          "minimum": 1
+          "minimum": 1,
+          "x-nullable": true
         },
         "mac_address": {
           "title": "MAC Address",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "mgmt_only": {
           "title": "OOB Management",
@@ -15686,19 +17387,26 @@
           "type": "string",
           "maxLength": 100
         },
-        "is_connected": {
-          "title": "Is connected",
-          "type": "boolean",
-          "readOnly": true
-        },
-        "interface_connection": {
-          "title": "Interface connection",
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
           "type": "string",
           "readOnly": true
         },
-        "circuit_termination": {
-          "title": "Circuit termination",
-          "type": "integer"
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
+        },
+        "connection_status": {
+          "title": "Connection status",
+          "type": "boolean",
+          "enum": [
+            false,
+            true
+          ]
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         },
         "mode": {
           "title": "Mode",
@@ -15707,11 +17415,13 @@
             100,
             200,
             300
-          ]
+          ],
+          "x-nullable": true
         },
         "untagged_vlan": {
           "title": "Untagged VLAN",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "tagged_vlans": {
           "type": "array",
@@ -15727,6 +17437,11 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "count_ipaddresses": {
+          "title": "Count ipaddresses",
+          "type": "string",
+          "readOnly": true
         }
       }
     },
@@ -15747,7 +17462,8 @@
         },
         "parent": {
           "title": "Parent",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "name": {
           "title": "Name",
@@ -15772,7 +17488,8 @@
           "title": "Asset tag",
           "description": "A unique tag used to identify this item",
           "type": "string",
-          "maxLength": 50
+          "maxLength": 50,
+          "x-nullable": true
         },
         "discovered": {
           "title": "Discovered",
@@ -15810,7 +17527,8 @@
         },
         "parent": {
           "title": "Parent",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "name": {
           "title": "Name",
@@ -15820,7 +17538,8 @@
         },
         "manufacturer": {
           "title": "Manufacturer",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "part_id": {
           "title": "Part ID",
@@ -15836,7 +17555,8 @@
           "title": "Asset tag",
           "description": "A unique tag used to identify this item",
           "type": "string",
-          "maxLength": 50
+          "maxLength": 50,
+          "x-nullable": true
         },
         "discovered": {
           "title": "Discovered",
@@ -15922,16 +17642,8 @@
         "napalm_args": {
           "title": "NAPALM arguments",
           "description": "Additional arguments to pass when initiating the NAPALM driver (JSON format)",
-          "type": "string"
-        },
-        "rpc_client": {
-          "title": "Legacy RPC client",
           "type": "string",
-          "enum": [
-            "juniper-junos",
-            "cisco-ios",
-            "opengear"
-          ]
+          "x-nullable": true
         }
       }
     },
@@ -15964,7 +17676,8 @@
         "manufacturer": {
           "title": "Manufacturer",
           "description": "Optionally limit this platform to devices of a certain manufacturer",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "napalm_driver": {
           "title": "NAPALM driver",
@@ -15975,50 +17688,8 @@
         "napalm_args": {
           "title": "NAPALM arguments",
           "description": "Additional arguments to pass when initiating the NAPALM driver (JSON format)",
-          "type": "string"
-        },
-        "rpc_client": {
-          "title": "Legacy RPC client",
           "type": "string",
-          "enum": [
-            "juniper-junos",
-            "cisco-ios",
-            "opengear"
-          ]
-        }
-      }
-    },
-    "NestedPowerOutlet": {
-      "title": "Power outlet",
-      "required": [
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "url": {
-          "title": "Url",
-          "type": "string",
-          "format": "uri",
-          "readOnly": true
-        },
-        "device": {
-          "$ref": "#/definitions/NestedDevice"
-        },
-        "name": {
-          "title": "Name",
-          "type": "string",
-          "maxLength": 50,
-          "minLength": 1
-        },
-        "is_connected": {
-          "title": "Is connected",
-          "type": "boolean",
-          "readOnly": true
+          "x-nullable": true
         }
       }
     },
@@ -16043,16 +17714,36 @@
           "maxLength": 50,
           "minLength": 1
         },
-        "power_outlet": {
-          "$ref": "#/definitions/NestedPowerOutlet"
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
+          "type": "string",
+          "readOnly": true
+        },
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
         },
         "connection_status": {
           "title": "Connection status",
-          "type": "boolean",
-          "enum": [
-            false,
-            true
-          ]
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "boolean",
+              "x-nullable": true
+            }
+          },
+          "readOnly": true
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         },
         "tags": {
           "type": "array",
@@ -16131,10 +17822,36 @@
           "maxLength": 50,
           "minLength": 1
         },
-        "connected_port": {
-          "title": "Connected port",
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
           "type": "string",
           "readOnly": true
+        },
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
+        },
+        "connection_status": {
+          "title": "Connection status",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "boolean",
+              "x-nullable": true
+            }
+          },
+          "readOnly": true
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         },
         "tags": {
           "type": "array",
@@ -16167,10 +17884,26 @@
           "maxLength": 50,
           "minLength": 1
         },
-        "connected_port": {
-          "title": "Connected port",
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
           "type": "string",
           "readOnly": true
+        },
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
+        },
+        "connection_status": {
+          "title": "Connection status",
+          "type": "boolean",
+          "enum": [
+            false,
+            true
+          ]
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         },
         "tags": {
           "type": "array",
@@ -16250,9 +17983,15 @@
           "maxLength": 50,
           "minLength": 1
         },
-        "power_outlet": {
-          "title": "Power outlet",
-          "type": "integer"
+        "connected_endpoint_type": {
+          "title": "Connected endpoint type",
+          "type": "string",
+          "readOnly": true
+        },
+        "connected_endpoint": {
+          "title": "Connected endpoint",
+          "type": "string",
+          "readOnly": true
         },
         "connection_status": {
           "title": "Connection status",
@@ -16261,6 +18000,9 @@
             false,
             true
           ]
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
         },
         "tags": {
           "type": "array",
@@ -16443,7 +18185,8 @@
         },
         "tenant": {
           "title": "Tenant",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "description": {
           "title": "Description",
@@ -16580,7 +18323,8 @@
         "facility_id": {
           "title": "Facility ID",
           "type": "string",
-          "maxLength": 50
+          "maxLength": 50,
+          "x-nullable": true
         },
         "display_name": {
           "title": "Display name",
@@ -16596,6 +18340,22 @@
         "tenant": {
           "$ref": "#/definitions/NestedTenant"
         },
+        "status": {
+          "title": "Status",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
+        },
         "role": {
           "$ref": "#/definitions/NestedRackRole"
         },
@@ -16603,6 +18363,13 @@
           "title": "Serial number",
           "type": "string",
           "maxLength": 50
+        },
+        "asset_tag": {
+          "title": "Asset tag",
+          "description": "A unique tag used to identify this rack",
+          "type": "string",
+          "maxLength": 50,
+          "x-nullable": true
         },
         "type": {
           "title": "Type",
@@ -16646,6 +18413,36 @@
           "title": "Descending units",
           "description": "Units are numbered top-to-bottom",
           "type": "boolean"
+        },
+        "outer_width": {
+          "title": "Outer width",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 0,
+          "x-nullable": true
+        },
+        "outer_depth": {
+          "title": "Outer depth",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 0,
+          "x-nullable": true
+        },
+        "outer_unit": {
+          "title": "Outer unit",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
         },
         "comments": {
           "title": "Comments",
@@ -16697,7 +18494,8 @@
         "facility_id": {
           "title": "Facility ID",
           "type": "string",
-          "maxLength": 50
+          "maxLength": 50,
+          "x-nullable": true
         },
         "display_name": {
           "title": "Display name",
@@ -16710,20 +18508,41 @@
         },
         "group": {
           "title": "Group",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "tenant": {
           "title": "Tenant",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
+        },
+        "status": {
+          "title": "Status",
+          "type": "integer",
+          "enum": [
+            3,
+            2,
+            0,
+            1,
+            4
+          ]
         },
         "role": {
           "title": "Role",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "serial": {
           "title": "Serial number",
           "type": "string",
           "maxLength": 50
+        },
+        "asset_tag": {
+          "title": "Asset tag",
+          "description": "A unique tag used to identify this rack",
+          "type": "string",
+          "maxLength": 50,
+          "x-nullable": true
         },
         "type": {
           "title": "Type",
@@ -16734,7 +18553,8 @@
             300,
             1000,
             1100
-          ]
+          ],
+          "x-nullable": true
         },
         "width": {
           "title": "Width",
@@ -16755,6 +18575,29 @@
           "title": "Descending units",
           "description": "Units are numbered top-to-bottom",
           "type": "boolean"
+        },
+        "outer_width": {
+          "title": "Outer width",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 0,
+          "x-nullable": true
+        },
+        "outer_depth": {
+          "title": "Outer depth",
+          "type": "integer",
+          "maximum": 32767,
+          "minimum": 0,
+          "x-nullable": true
+        },
+        "outer_unit": {
+          "title": "Outer unit",
+          "type": "integer",
+          "enum": [
+            1000,
+            2000
+          ],
+          "x-nullable": true
         },
         "comments": {
           "title": "Comments",
@@ -16782,6 +18625,218 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
+        }
+      }
+    },
+    "RearPortTemplate": {
+      "required": [
+        "device_type",
+        "name",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device_type": {
+          "$ref": "#/definitions/NestedDeviceType"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "type": {
+          "title": "Type",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
+        },
+        "positions": {
+          "title": "Positions",
+          "type": "integer",
+          "maximum": 64,
+          "minimum": 1
+        }
+      }
+    },
+    "WritableRearPortTemplate": {
+      "required": [
+        "device_type",
+        "name",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device_type": {
+          "title": "Device type",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "type": {
+          "title": "Type",
+          "type": "integer",
+          "enum": [
+            1000,
+            2200,
+            2300,
+            2600,
+            2500,
+            2400,
+            2100,
+            2000
+          ]
+        },
+        "positions": {
+          "title": "Positions",
+          "type": "integer",
+          "maximum": 64,
+          "minimum": 1
+        }
+      }
+    },
+    "RearPort": {
+      "required": [
+        "device",
+        "name",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "$ref": "#/definitions/NestedDevice"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "type": {
+          "title": "Type",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
+        },
+        "positions": {
+          "title": "Positions",
+          "type": "integer",
+          "maximum": 64,
+          "minimum": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "WritableRearPort": {
+      "required": [
+        "device",
+        "name",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "device": {
+          "title": "Device",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1
+        },
+        "type": {
+          "title": "Type",
+          "type": "integer",
+          "enum": [
+            1000,
+            2200,
+            2300,
+            2600,
+            2500,
+            2400,
+            2100,
+            2000
+          ]
+        },
+        "positions": {
+          "title": "Positions",
+          "type": "integer",
+          "maximum": 64,
+          "minimum": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 100
+        },
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     },
@@ -16879,7 +18934,8 @@
         },
         "parent": {
           "title": "Parent",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         }
       }
     },
@@ -16940,7 +18996,8 @@
           "title": "ASN",
           "type": "integer",
           "maximum": 4294967295,
-          "minimum": 1
+          "minimum": 1,
+          "x-nullable": true
         },
         "time_zone": {
           "title": "Time zone",
@@ -16964,12 +19021,14 @@
         "latitude": {
           "title": "Latitude",
           "type": "string",
-          "format": "decimal"
+          "format": "decimal",
+          "x-nullable": true
         },
         "longitude": {
           "title": "Longitude",
           "type": "string",
-          "format": "decimal"
+          "format": "decimal",
+          "x-nullable": true
         },
         "contact_name": {
           "title": "Contact name",
@@ -17078,11 +19137,13 @@
         },
         "region": {
           "title": "Region",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "tenant": {
           "title": "Tenant",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "facility": {
           "title": "Facility",
@@ -17093,7 +19154,8 @@
           "title": "ASN",
           "type": "integer",
           "maximum": 4294967295,
-          "minimum": 1
+          "minimum": 1,
+          "x-nullable": true
         },
         "time_zone": {
           "title": "Time zone",
@@ -17117,12 +19179,14 @@
         "latitude": {
           "title": "Latitude",
           "type": "string",
-          "format": "decimal"
+          "format": "decimal",
+          "x-nullable": true
         },
         "longitude": {
           "title": "Longitude",
           "type": "string",
-          "format": "decimal"
+          "format": "decimal",
+          "x-nullable": true
         },
         "contact_name": {
           "title": "Contact name",
@@ -17713,49 +19777,6 @@
         }
       }
     },
-    "UserAction": {
-      "required": [
-        "user",
-        "action"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "time": {
-          "title": "Time",
-          "type": "string",
-          "format": "date-time",
-          "readOnly": true
-        },
-        "user": {
-          "$ref": "#/definitions/NestedUser"
-        },
-        "action": {
-          "title": "Action",
-          "required": [
-            "label",
-            "value"
-          ],
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": "string"
-            },
-            "value": {
-              "type": "integer"
-            }
-          }
-        },
-        "message": {
-          "title": "Message",
-          "type": "string"
-        }
-      }
-    },
     "Tag": {
       "required": [
         "name",
@@ -17862,7 +19883,8 @@
         },
         "site": {
           "title": "Site",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "device_patterns": {
           "title": "Device patterns",
@@ -17943,7 +19965,8 @@
         "date_added": {
           "title": "Date added",
           "type": "string",
-          "format": "date"
+          "format": "date",
+          "x-nullable": true
         },
         "description": {
           "title": "Description",
@@ -18007,7 +20030,8 @@
         "date_added": {
           "title": "Date added",
           "type": "string",
-          "format": "date"
+          "format": "date",
+          "x-nullable": true
         },
         "description": {
           "title": "Description",
@@ -18096,8 +20120,7 @@
           "maxLength": 64,
           "minLength": 1
         }
-      },
-      "readOnly": true
+      }
     },
     "IPAddressInterface": {
       "title": "Interface",
@@ -18127,36 +20150,6 @@
           "type": "string",
           "maxLength": 64,
           "minLength": 1
-        }
-      }
-    },
-    "NestedIPAddress": {
-      "title": "Nat inside",
-      "required": [
-        "address"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "url": {
-          "title": "Url",
-          "type": "string",
-          "format": "uri",
-          "readOnly": true
-        },
-        "family": {
-          "title": "Family",
-          "type": "integer",
-          "readOnly": true
-        },
-        "address": {
-          "title": "Address",
-          "description": "IPv4 or IPv6 address (with mask)",
-          "type": "string"
         }
       }
     },
@@ -18282,11 +20275,13 @@
         },
         "vrf": {
           "title": "VRF",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "tenant": {
           "title": "Tenant",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "status": {
           "title": "Status",
@@ -18312,11 +20307,13 @@
             42,
             43,
             44
-          ]
+          ],
+          "x-nullable": true
         },
         "interface": {
           "title": "Interface",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "description": {
           "title": "Description",
@@ -18326,7 +20323,8 @@
         "nat_inside": {
           "title": "NAT (Inside)",
           "description": "The IP for which this address is the \"outside\" IP",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "nat_outside": {
           "title": "Nat outside",
@@ -18353,44 +20351,6 @@
           "title": "Last updated",
           "type": "string",
           "format": "date-time",
-          "readOnly": true
-        }
-      }
-    },
-    "NestedVLAN": {
-      "title": "Vlan",
-      "required": [
-        "vid",
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "url": {
-          "title": "Url",
-          "type": "string",
-          "format": "uri",
-          "readOnly": true
-        },
-        "vid": {
-          "title": "ID",
-          "type": "integer",
-          "maximum": 4094,
-          "minimum": 1
-        },
-        "name": {
-          "title": "Name",
-          "type": "string",
-          "maxLength": 64,
-          "minLength": 1
-        },
-        "display_name": {
-          "title": "Display name",
-          "type": "string",
           "readOnly": true
         }
       }
@@ -18540,19 +20500,23 @@
         },
         "site": {
           "title": "Site",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "vrf": {
           "title": "VRF",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "tenant": {
           "title": "Tenant",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "vlan": {
           "title": "VLAN",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "status": {
           "title": "Status",
@@ -18568,7 +20532,8 @@
         "role": {
           "title": "Role",
           "description": "The primary function of this prefix",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "is_pool": {
           "title": "Is a pool",
@@ -18764,11 +20729,13 @@
         },
         "device": {
           "title": "Device",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "virtual_machine": {
           "title": "Virtual machine",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "name": {
           "title": "Name",
@@ -18880,7 +20847,8 @@
         },
         "site": {
           "title": "Site",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         }
       }
     },
@@ -19020,11 +20988,13 @@
         },
         "site": {
           "title": "Site",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "group": {
           "title": "Group",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "vid": {
           "title": "ID",
@@ -19040,7 +21010,8 @@
         },
         "tenant": {
           "title": "Tenant",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "status": {
           "title": "Status",
@@ -19053,7 +21024,8 @@
         },
         "role": {
           "title": "Role",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "description": {
           "title": "Description",
@@ -19183,7 +21155,8 @@
         },
         "tenant": {
           "title": "Tenant",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "enforce_unique": {
           "title": "Enforce unique space",
@@ -19530,7 +21503,8 @@
         },
         "group": {
           "title": "Group",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "description": {
           "title": "Description",
@@ -19773,11 +21747,13 @@
         },
         "group": {
           "title": "Group",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "site": {
           "title": "Site",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "comments": {
           "title": "Comments",
@@ -19865,12 +21841,12 @@
           }
         },
         "untagged_vlan": {
-          "$ref": "#/definitions/InterfaceVLAN"
+          "$ref": "#/definitions/NestedVLAN"
         },
         "tagged_vlans": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/InterfaceVLAN"
+            "$ref": "#/definitions/NestedVLAN"
           },
           "uniqueItems": true
         },
@@ -19950,37 +21926,6 @@
         }
       }
     },
-    "VirtualMachineIPAddress": {
-      "title": "Primary ip",
-      "required": [
-        "address"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "ID",
-          "type": "integer",
-          "readOnly": true
-        },
-        "url": {
-          "title": "Url",
-          "type": "string",
-          "format": "uri",
-          "readOnly": true
-        },
-        "family": {
-          "title": "Family",
-          "type": "integer",
-          "readOnly": true
-        },
-        "address": {
-          "title": "Address",
-          "description": "IPv4 or IPv6 address (with mask)",
-          "type": "string"
-        }
-      },
-      "readOnly": true
-    },
     "VirtualMachine": {
       "required": [
         "name",
@@ -20031,35 +21976,43 @@
           "$ref": "#/definitions/NestedPlatform"
         },
         "primary_ip": {
-          "$ref": "#/definitions/VirtualMachineIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "primary_ip4": {
-          "$ref": "#/definitions/VirtualMachineIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "primary_ip6": {
-          "$ref": "#/definitions/VirtualMachineIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "vcpus": {
           "title": "VCPUs",
           "type": "integer",
           "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "memory": {
           "title": "Memory (MB)",
           "type": "integer",
           "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "disk": {
           "title": "Disk (GB)",
           "type": "integer",
           "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "comments": {
           "title": "Comments",
           "type": "string"
+        },
+        "local_context_data": {
+          "title": "Local context data",
+          "type": "string",
+          "x-nullable": true
         },
         "tags": {
           "type": "array",
@@ -20083,10 +22036,6 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
-        },
-        "local_context_data": {
-          "title": "Local context data",
-          "type": "string"
         }
       }
     },
@@ -20128,15 +22077,18 @@
         },
         "role": {
           "title": "Role",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "tenant": {
           "title": "Tenant",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "platform": {
           "title": "Platform",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "primary_ip": {
           "title": "Primary ip",
@@ -20145,33 +22097,43 @@
         },
         "primary_ip4": {
           "title": "Primary IPv4",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "primary_ip6": {
           "title": "Primary IPv6",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "vcpus": {
           "title": "VCPUs",
           "type": "integer",
           "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "memory": {
           "title": "Memory (MB)",
           "type": "integer",
           "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "disk": {
           "title": "Disk (GB)",
           "type": "integer",
           "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "comments": {
           "title": "Comments",
           "type": "string"
+        },
+        "local_context_data": {
+          "title": "Local context data",
+          "type": "string",
+          "x-nullable": true
         },
         "tags": {
           "type": "array",
@@ -20195,10 +22157,6 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
-        },
-        "local_context_data": {
-          "title": "Local context data",
-          "type": "string"
         }
       }
     },
@@ -20236,6 +22194,9 @@
             }
           }
         },
+        "site": {
+          "$ref": "#/definitions/NestedSite"
+        },
         "cluster": {
           "$ref": "#/definitions/NestedCluster"
         },
@@ -20249,35 +22210,43 @@
           "$ref": "#/definitions/NestedPlatform"
         },
         "primary_ip": {
-          "$ref": "#/definitions/VirtualMachineIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "primary_ip4": {
-          "$ref": "#/definitions/VirtualMachineIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "primary_ip6": {
-          "$ref": "#/definitions/VirtualMachineIPAddress"
+          "$ref": "#/definitions/NestedIPAddress"
         },
         "vcpus": {
           "title": "VCPUs",
           "type": "integer",
           "maximum": 32767,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "memory": {
           "title": "Memory (MB)",
           "type": "integer",
           "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "disk": {
           "title": "Disk (GB)",
           "type": "integer",
           "maximum": 2147483647,
-          "minimum": 0
+          "minimum": 0,
+          "x-nullable": true
         },
         "comments": {
           "title": "Comments",
           "type": "string"
+        },
+        "local_context_data": {
+          "title": "Local context data",
+          "type": "string",
+          "x-nullable": true
         },
         "tags": {
           "type": "array",
@@ -20306,10 +22275,6 @@
           "type": "string",
           "format": "date-time",
           "readOnly": true
-        },
-        "local_context_data": {
-          "title": "Local context data",
-          "type": "string"
         }
       }
     }
