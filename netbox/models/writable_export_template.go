@@ -29,9 +29,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ExportTemplate export template
-// swagger:model ExportTemplate
-type ExportTemplate struct {
+// WritableExportTemplate writable export template
+// swagger:model WritableExportTemplate
+type WritableExportTemplate struct {
 
 	// Content type
 	// Required: true
@@ -64,12 +64,13 @@ type ExportTemplate struct {
 	// Min Length: 1
 	TemplateCode *string `json:"template_code"`
 
-	// template language
-	TemplateLanguage *ExportTemplateTemplateLanguage `json:"template_language,omitempty"`
+	// Template language
+	// Enum: [10 20]
+	TemplateLanguage int64 `json:"template_language,omitempty"`
 }
 
-// Validate validates this export template
-func (m *ExportTemplate) Validate(formats strfmt.Registry) error {
+// Validate validates this writable export template
+func (m *WritableExportTemplate) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateContentType(formats); err != nil {
@@ -106,7 +107,7 @@ func (m *ExportTemplate) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ExportTemplate) validateContentType(formats strfmt.Registry) error {
+func (m *WritableExportTemplate) validateContentType(formats strfmt.Registry) error {
 
 	if err := validate.Required("content_type", "body", m.ContentType); err != nil {
 		return err
@@ -115,7 +116,7 @@ func (m *ExportTemplate) validateContentType(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ExportTemplate) validateDescription(formats strfmt.Registry) error {
+func (m *WritableExportTemplate) validateDescription(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Description) { // not required
 		return nil
@@ -128,7 +129,7 @@ func (m *ExportTemplate) validateDescription(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ExportTemplate) validateFileExtension(formats strfmt.Registry) error {
+func (m *WritableExportTemplate) validateFileExtension(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.FileExtension) { // not required
 		return nil
@@ -141,7 +142,7 @@ func (m *ExportTemplate) validateFileExtension(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ExportTemplate) validateMimeType(formats strfmt.Registry) error {
+func (m *WritableExportTemplate) validateMimeType(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.MimeType) { // not required
 		return nil
@@ -154,7 +155,7 @@ func (m *ExportTemplate) validateMimeType(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ExportTemplate) validateName(formats strfmt.Registry) error {
+func (m *WritableExportTemplate) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -171,7 +172,7 @@ func (m *ExportTemplate) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ExportTemplate) validateTemplateCode(formats strfmt.Registry) error {
+func (m *WritableExportTemplate) validateTemplateCode(formats strfmt.Registry) error {
 
 	if err := validate.Required("template_code", "body", m.TemplateCode); err != nil {
 		return err
@@ -184,98 +185,34 @@ func (m *ExportTemplate) validateTemplateCode(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ExportTemplate) validateTemplateLanguage(formats strfmt.Registry) error {
+var writableExportTemplateTypeTemplateLanguagePropEnum []interface{}
+
+func init() {
+	var res []int64
+	if err := json.Unmarshal([]byte(`[10,20]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		writableExportTemplateTypeTemplateLanguagePropEnum = append(writableExportTemplateTypeTemplateLanguagePropEnum, v)
+	}
+}
+
+// prop value enum
+func (m *WritableExportTemplate) validateTemplateLanguageEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writableExportTemplateTypeTemplateLanguagePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *WritableExportTemplate) validateTemplateLanguage(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.TemplateLanguage) { // not required
 		return nil
 	}
 
-	if m.TemplateLanguage != nil {
-		if err := m.TemplateLanguage.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("template_language")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ExportTemplate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ExportTemplate) UnmarshalBinary(b []byte) error {
-	var res ExportTemplate
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ExportTemplateTemplateLanguage Template language
-// swagger:model ExportTemplateTemplateLanguage
-type ExportTemplateTemplateLanguage struct {
-
-	// label
-	// Required: true
-	Label *string `json:"label"`
-
-	// value
-	// Required: true
-	Value *int64 `json:"value"`
-}
-
-func (m *ExportTemplateTemplateLanguage) UnmarshalJSON(b []byte) error {
-	type ExportTemplateTemplateLanguageAlias ExportTemplateTemplateLanguage
-	var t ExportTemplateTemplateLanguageAlias
-	if err := json.Unmarshal([]byte("{\"label\":\"Jinja2\",\"value\":20}"), &t); err != nil {
-		return err
-	}
-	if err := json.Unmarshal(b, &t); err != nil {
-		return err
-	}
-	*m = ExportTemplateTemplateLanguage(t)
-	return nil
-}
-
-// Validate validates this export template template language
-func (m *ExportTemplateTemplateLanguage) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateLabel(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateValue(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ExportTemplateTemplateLanguage) validateLabel(formats strfmt.Registry) error {
-
-	if err := validate.Required("template_language"+"."+"label", "body", m.Label); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ExportTemplateTemplateLanguage) validateValue(formats strfmt.Registry) error {
-
-	if err := validate.Required("template_language"+"."+"value", "body", m.Value); err != nil {
+	// value enum
+	if err := m.validateTemplateLanguageEnum("template_language", "body", m.TemplateLanguage); err != nil {
 		return err
 	}
 
@@ -283,7 +220,7 @@ func (m *ExportTemplateTemplateLanguage) validateValue(formats strfmt.Registry) 
 }
 
 // MarshalBinary interface implementation
-func (m *ExportTemplateTemplateLanguage) MarshalBinary() ([]byte, error) {
+func (m *WritableExportTemplate) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -291,8 +228,8 @@ func (m *ExportTemplateTemplateLanguage) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ExportTemplateTemplateLanguage) UnmarshalBinary(b []byte) error {
-	var res ExportTemplateTemplateLanguage
+func (m *WritableExportTemplate) UnmarshalBinary(b []byte) error {
+	var res WritableExportTemplate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -44,6 +44,10 @@ type DeviceType struct {
 	// Custom fields
 	CustomFields interface{} `json:"custom_fields,omitempty"`
 
+	// Display name
+	// Read Only: true
+	DisplayName string `json:"display_name,omitempty"`
+
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`

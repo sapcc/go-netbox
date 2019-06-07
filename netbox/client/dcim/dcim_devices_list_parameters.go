@@ -125,7 +125,7 @@ type DcimDevicesListParams struct {
 	/*PlatformID*/
 	PlatformID *int64
 	/*Position*/
-	Position *float64
+	Position *int64
 	/*PowerOutlets*/
 	PowerOutlets *string
 	/*PowerPorts*/
@@ -409,13 +409,13 @@ func (o *DcimDevicesListParams) SetPlatformID(platformID *int64) {
 }
 
 // WithPosition adds the position to the dcim devices list params
-func (o *DcimDevicesListParams) WithPosition(position *float64) *DcimDevicesListParams {
+func (o *DcimDevicesListParams) WithPosition(position *int64) *DcimDevicesListParams {
 	o.SetPosition(position)
 	return o
 }
 
 // SetPosition adds the position to the dcim devices list params
-func (o *DcimDevicesListParams) SetPosition(position *float64) {
+func (o *DcimDevicesListParams) SetPosition(position *int64) {
 	o.Position = position
 }
 
@@ -921,11 +921,11 @@ func (o *DcimDevicesListParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	if o.Position != nil {
 
 		// query param position
-		var qrPosition float64
+		var qrPosition int64
 		if o.Position != nil {
 			qrPosition = *o.Position
 		}
-		qPosition := swag.FormatFloat64(qrPosition)
+		qPosition := swag.FormatInt64(qrPosition)
 		if qPosition != "" {
 			if err := r.SetQueryParam("position", qPosition); err != nil {
 				return err

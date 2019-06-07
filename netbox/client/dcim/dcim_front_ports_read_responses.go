@@ -65,7 +65,7 @@ type DcimFrontPortsReadOK struct {
 }
 
 func (o *DcimFrontPortsReadOK) Error() string {
-	return fmt.Sprintf("[GET /api/dcim/front-ports/{id}/][%d] dcimFrontPortsReadOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dcim/front-ports/{id}/][%d] dcimFrontPortsReadOK  %+v", 200, o.Payload)
 }
 
 func (o *DcimFrontPortsReadOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

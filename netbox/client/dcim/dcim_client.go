@@ -39,35 +39,6 @@ type Client struct {
 }
 
 /*
-DcimInterfaceConnectionsList dcim interface connections list API
-*/
-func (a *Client) DcimInterfaceConnectionsList(params *DcimInterfaceConnectionsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimInterfaceConnectionsListOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDcimInterfaceConnectionsListParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "_dcim_interface-connections_list",
-		Method:             "GET",
-		PathPattern:        "/dcim/interface-connections/",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &DcimInterfaceConnectionsListReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*DcimInterfaceConnectionsListOK), nil
-
-}
-
-/*
 DcimChoicesList dcim choices list API
 */
 func (a *Client) DcimChoicesList(params *DcimChoicesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimChoicesListOK, error) {
@@ -2045,6 +2016,35 @@ func (a *Client) DcimFrontPortTemplatesDelete(params *DcimFrontPortTemplatesDele
 }
 
 /*
+DcimFrontPortTemplatesList dcim front port templates list API
+*/
+func (a *Client) DcimFrontPortTemplatesList(params *DcimFrontPortTemplatesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimFrontPortTemplatesListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimFrontPortTemplatesListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_front-port-templates_list",
+		Method:             "GET",
+		PathPattern:        "/dcim/front-port-templates/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimFrontPortTemplatesListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DcimFrontPortTemplatesListOK), nil
+
+}
+
+/*
 DcimFrontPortTemplatesPartialUpdate dcim front port templates partial update API
 */
 func (a *Client) DcimFrontPortTemplatesPartialUpdate(params *DcimFrontPortTemplatesPartialUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*DcimFrontPortTemplatesPartialUpdateOK, error) {
@@ -2172,7 +2172,7 @@ func (a *Client) DcimFrontPortsDelete(params *DcimFrontPortsDeleteParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "dcim_front-ports_delete",
 		Method:             "DELETE",
-		PathPattern:        "/api/dcim/front-ports/{id}/",
+		PathPattern:        "/dcim/front-ports/{id}/",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -2230,7 +2230,7 @@ func (a *Client) DcimFrontPortsPartialUpdate(params *DcimFrontPortsPartialUpdate
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "dcim_front-ports_partial_update",
 		Method:             "PATCH",
-		PathPattern:        "/api/dcim/front-ports/{id}/",
+		PathPattern:        "/dcim/front-ports/{id}/",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -2259,7 +2259,7 @@ func (a *Client) DcimFrontPortsRead(params *DcimFrontPortsReadParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "dcim_front-ports_read",
 		Method:             "GET",
-		PathPattern:        "/api/dcim/front-ports/{id}/",
+		PathPattern:        "/dcim/front-ports/{id}/",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -2288,7 +2288,7 @@ func (a *Client) DcimFrontPortsUpdate(params *DcimFrontPortsUpdateParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "dcim_front-ports_update",
 		Method:             "PUT",
-		PathPattern:        "/api/dcim/front-ports/{id}/",
+		PathPattern:        "/dcim/front-ports/{id}/",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
@@ -2302,6 +2302,35 @@ func (a *Client) DcimFrontPortsUpdate(params *DcimFrontPortsUpdateParams, authIn
 		return nil, err
 	}
 	return result.(*DcimFrontPortsUpdateOK), nil
+
+}
+
+/*
+DcimInterfaceConnectionsList dcim interface connections list API
+*/
+func (a *Client) DcimInterfaceConnectionsList(params *DcimInterfaceConnectionsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimInterfaceConnectionsListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimInterfaceConnectionsListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_interface-connections_list",
+		Method:             "GET",
+		PathPattern:        "/dcim/interface-connections/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimInterfaceConnectionsListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DcimInterfaceConnectionsListOK), nil
 
 }
 
@@ -3955,6 +3984,35 @@ func (a *Client) DcimPowerPortsRead(params *DcimPowerPortsReadParams, authInfo r
 		return nil, err
 	}
 	return result.(*DcimPowerPortsReadOK), nil
+
+}
+
+/*
+DcimPowerPortsTrace Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).
+*/
+func (a *Client) DcimPowerPortsTrace(params *DcimPowerPortsTraceParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPortsTraceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerPortsTraceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-ports_trace",
+		Method:             "GET",
+		PathPattern:        "/dcim/power-ports/{id}/trace/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerPortsTraceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DcimPowerPortsTraceOK), nil
 
 }
 

@@ -325,6 +325,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Number of results to return per page.",
@@ -796,7 +803,7 @@
             "in": "query",
             "description": "",
             "required": false,
-            "type": "number"
+            "type": "integer"
           },
           {
             "name": "account",
@@ -1123,6 +1130,20 @@
             "type": "string"
           },
           {
+            "name": "device",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer"
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Number of results to return per page.",
@@ -1425,6 +1446,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "devicetype_id",
             "in": "query",
             "description": "",
@@ -1614,6 +1642,13 @@
           },
           {
             "name": "connection_status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -1856,6 +1891,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "devicetype_id",
             "in": "query",
             "description": "",
@@ -2045,6 +2087,13 @@
           },
           {
             "name": "connection_status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -2287,6 +2336,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "devicetype_id",
             "in": "query",
             "description": "",
@@ -2469,6 +2525,13 @@
         "parameters": [
           {
             "name": "name",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -2692,6 +2755,13 @@
           },
           {
             "name": "vm_role",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -3176,7 +3246,7 @@
             "in": "query",
             "description": "",
             "required": false,
-            "type": "number"
+            "type": "integer"
           },
           {
             "name": "id__in",
@@ -3625,6 +3695,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "devicetype_id",
             "in": "query",
             "description": "",
@@ -3680,7 +3757,7 @@
           }
         },
         "tags": [
-          "api"
+          "dcim"
         ]
       },
       "post": {
@@ -3820,6 +3897,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "device_id",
             "in": "query",
             "description": "",
@@ -3926,7 +4010,7 @@
       },
       "parameters": []
     },
-    "/api/dcim/front-ports/{id}/": {
+    "/dcim/front-ports/{id}/": {
       "get": {
         "operationId": "dcim_front-ports_read",
         "description": "",
@@ -4018,7 +4102,7 @@
     },
     "/dcim/interface-connections/": {
       "get": {
-        "operationId": "_dcim_interface-connections_list",
+        "operationId": "dcim_interface-connections_list",
         "description": "",
         "parameters": [
           {
@@ -4117,6 +4201,13 @@
           },
           {
             "name": "mgmt_only",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -4346,6 +4437,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "device",
             "in": "query",
             "description": "",
@@ -4449,7 +4547,7 @@
                 "results": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/Interface"
+                    "$ref": "#/definitions/DeviceInterface"
                   }
                 }
               }
@@ -4469,7 +4567,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WritableInterface"
+              "$ref": "#/definitions/WritableDeviceInterface"
             }
           }
         ],
@@ -4477,7 +4575,7 @@
           "201": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Interface"
+              "$ref": "#/definitions/DeviceInterface"
             }
           }
         },
@@ -4496,7 +4594,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Interface"
+              "$ref": "#/definitions/DeviceInterface"
             }
           }
         },
@@ -4513,7 +4611,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WritableInterface"
+              "$ref": "#/definitions/WritableDeviceInterface"
             }
           }
         ],
@@ -4521,7 +4619,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Interface"
+              "$ref": "#/definitions/DeviceInterface"
             }
           }
         },
@@ -4538,7 +4636,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WritableInterface"
+              "$ref": "#/definitions/WritableDeviceInterface"
             }
           }
         ],
@@ -4546,7 +4644,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Interface"
+              "$ref": "#/definitions/DeviceInterface"
             }
           }
         },
@@ -4586,7 +4684,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Interface"
+              "$ref": "#/definitions/DeviceInterface"
             }
           }
         },
@@ -4613,7 +4711,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Interface"
+              "$ref": "#/definitions/DeviceInterface"
             }
           }
         },
@@ -4672,6 +4770,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer"
+          },
+          {
             "name": "device_id",
             "in": "query",
             "description": "",
@@ -4687,13 +4792,6 @@
           },
           {
             "name": "tag",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -4909,6 +5007,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Number of results to return per page.",
@@ -5091,6 +5196,13 @@
           },
           {
             "name": "slug",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -5379,6 +5491,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "devicetype_id",
             "in": "query",
             "description": "",
@@ -5568,6 +5687,13 @@
           },
           {
             "name": "connection_status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -5810,6 +5936,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "devicetype_id",
             "in": "query",
             "description": "",
@@ -5999,6 +6132,13 @@
           },
           {
             "name": "connection_status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -6201,7 +6341,7 @@
         }
       ]
     },
-    "/dcim/rack-groups/": {
+    "/dcim/power-ports/{id}/trace/": {
       "get": {
         "operationId": "dcim_power-ports_trace",
         "description": "Trace a complete cable path and return each segment as a three-tuple of (termination, cable, termination).",
@@ -6215,7 +6355,7 @@
           }
         },
         "tags": [
-          "api"
+          "dcim"
         ]
       },
       "parameters": [
@@ -6722,6 +6862,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Number of results to return per page.",
@@ -6935,7 +7082,7 @@
             "in": "query",
             "description": "",
             "required": false,
-            "type": "integer"
+            "type": "number"
           },
           {
             "name": "desc_units",
@@ -7272,6 +7419,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "devicetype_id",
             "in": "query",
             "description": "",
@@ -7461,6 +7615,13 @@
           },
           {
             "name": "type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -8690,6 +8851,13 @@
             "type": "string"
           },
           {
+            "name": "template_language",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Number of results to return per page.",
@@ -8750,7 +8918,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ExportTemplate"
+              "$ref": "#/definitions/WritableExportTemplate"
             }
           }
         ],
@@ -8794,7 +8962,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ExportTemplate"
+              "$ref": "#/definitions/WritableExportTemplate"
             }
           }
         ],
@@ -8819,7 +8987,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ExportTemplate"
+              "$ref": "#/definitions/WritableExportTemplate"
             }
           }
         ],
@@ -9403,7 +9571,7 @@
     },
     "/extras/reports/{id}/run/": {
       "post": {
-        "operationId": "api_extras_reports_run",
+        "operationId": "extras_reports_run",
         "description": "Run a Report and create a new ReportResult, overwriting any previous result for the Report.",
         "parameters": [],
         "responses": {
@@ -10444,6 +10612,13 @@
             "type": "string"
           },
           {
+            "name": "prefix",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "within",
             "in": "query",
             "description": "",
@@ -10855,6 +11030,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "id__in",
             "in": "query",
             "description": "Multiple values may be separated by commas.",
@@ -11044,6 +11226,13 @@
           },
           {
             "name": "slug",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -11469,6 +11658,13 @@
           },
           {
             "name": "slug",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -12202,7 +12398,7 @@
       "get": {
         "operationId": "secrets_generate-rsa-key-pair_list",
         "summary": "This endpoint can be used to generate a new RSA key pair. The keys are returned in PEM format.",
-        "description": "    {\n        \"public_key\": \"<public key>\",\n        \"private_key\": \"<private key>\"\n    }",
+        "description": "{\n        \"public_key\": \"<public key>\",\n        \"private_key\": \"<private key>\"\n    }",
         "parameters": [],
         "responses": {
           "200": {
@@ -12245,6 +12441,13 @@
           },
           {
             "name": "slug",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -12708,6 +12911,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Number of results to return per page.",
@@ -12883,6 +13093,13 @@
         "parameters": [
           {
             "name": "name",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "slug",
             "in": "query",
             "description": "",
             "required": false,
@@ -13151,6 +13368,13 @@
             "type": "string"
           },
           {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Number of results to return per page.",
@@ -13333,6 +13557,13 @@
           },
           {
             "name": "slug",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "q",
             "in": "query",
             "description": "",
             "required": false,
@@ -13776,6 +14007,13 @@
             "description": "",
             "required": false,
             "type": "integer"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "string"
           },
           {
             "name": "virtual_machine_id",
@@ -14995,11 +15233,17 @@
             1600,
             1610,
             1700,
+            1800,
+            1810,
+            3000,
             3010,
             3020,
             3030,
             3040,
             3500,
+            3510,
+            3520,
+            3800,
             5000
           ],
           "x-nullable": true
@@ -15111,11 +15355,17 @@
             1600,
             1610,
             1700,
+            1800,
+            1810,
+            3000,
             3010,
             3020,
             3030,
             3040,
             3500,
+            3510,
+            3520,
+            3800,
             5000
           ],
           "x-nullable": true
@@ -15229,6 +15479,11 @@
           "pattern": "^[-a-zA-Z0-9_]+$",
           "maxLength": 50,
           "minLength": 1
+        },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "readOnly": true
         }
       }
     },
@@ -15520,7 +15775,9 @@
           }
         },
         "parent_device": {
-          "$ref": "#/definitions/NestedDevice"
+          "title": "Parent device",
+          "type": "string",
+          "readOnly": true
         },
         "status": {
           "title": "Status",
@@ -16108,6 +16365,11 @@
           "maxLength": 50,
           "minLength": 1
         },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "readOnly": true
+        },
         "part_number": {
           "title": "Part number",
           "description": "Discrete part number (optional)",
@@ -16207,6 +16469,11 @@
           "maxLength": 50,
           "minLength": 1
         },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "readOnly": true
+        },
         "part_number": {
           "title": "Part number",
           "description": "Discrete part number (optional)",
@@ -16269,6 +16536,11 @@
       }
     },
     "WritableDevice": {
+      "required": [
+        "device_type",
+        "device_role",
+        "site"
+      ],
       "type": "object",
       "properties": {
         "id": {
@@ -16357,7 +16629,8 @@
             2,
             3,
             4,
-            5
+            5,
+            6
           ]
         },
         "primary_ip": {
@@ -16707,12 +16980,16 @@
           "type": "integer",
           "enum": [
             1000,
+            1100,
             2200,
             2300,
+            2310,
             2600,
+            2610,
             2500,
             2400,
             2100,
+            2110,
             2000
           ]
         },
@@ -16850,12 +17127,16 @@
           "type": "integer",
           "enum": [
             1000,
+            1100,
             2200,
             2300,
+            2310,
             2600,
+            2610,
             2500,
             2400,
             2100,
+            2110,
             2000
           ]
         },
@@ -17055,16 +17336,23 @@
             1320,
             1350,
             1400,
+            1420,
             1500,
             1510,
+            1650,
             1520,
             1550,
             1600,
+            1700,
+            1750,
             2600,
             2610,
             2620,
             2630,
             2640,
+            2810,
+            2820,
+            2830,
             6100,
             6200,
             6300,
@@ -17139,7 +17427,7 @@
         }
       }
     },
-    "Interface": {
+    "DeviceInterface": {
       "required": [
         "device",
         "name"
@@ -17276,7 +17564,7 @@
         }
       }
     },
-    "WritableInterface": {
+    "WritableDeviceInterface": {
       "required": [
         "device",
         "name"
@@ -17316,16 +17604,23 @@
             1320,
             1350,
             1400,
+            1420,
             1500,
             1510,
+            1650,
             1520,
             1550,
             1600,
+            1700,
+            1750,
             2600,
             2610,
             2620,
             2630,
             2640,
+            2810,
+            2820,
+            2830,
             6100,
             6200,
             6300,
@@ -18702,12 +18997,16 @@
           "type": "integer",
           "enum": [
             1000,
+            1100,
             2200,
             2300,
+            2310,
             2600,
+            2610,
             2500,
             2400,
             2100,
+            2110,
             2000
           ]
         },
@@ -18808,12 +19107,16 @@
           "type": "integer",
           "enum": [
             1000,
+            1100,
             2200,
             2300,
+            2310,
             2600,
+            2610,
             2500,
             2400,
             2100,
+            2110,
             2000
           ]
         },
@@ -19539,6 +19842,26 @@
           "type": "string",
           "maxLength": 200
         },
+        "template_language": {
+          "title": "Template language",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          },
+          "default": {
+            "label": "Jinja2",
+            "value": 20
+          }
+        },
         "template_code": {
           "title": "Template code",
           "type": "string",
@@ -19547,7 +19870,60 @@
         "mime_type": {
           "title": "Mime type",
           "type": "string",
+          "maxLength": 50
+        },
+        "file_extension": {
+          "title": "File extension",
+          "type": "string",
           "maxLength": 15
+        }
+      }
+    },
+    "WritableExportTemplate": {
+      "required": [
+        "content_type",
+        "name",
+        "template_code"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "content_type": {
+          "title": "Content type",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 200
+        },
+        "template_language": {
+          "title": "Template language",
+          "type": "integer",
+          "enum": [
+            10,
+            20
+          ]
+        },
+        "template_code": {
+          "title": "Template code",
+          "type": "string",
+          "minLength": 1
+        },
+        "mime_type": {
+          "title": "Mime type",
+          "type": "string",
+          "maxLength": 50
         },
         "file_extension": {
           "title": "File extension",
@@ -19720,9 +20096,6 @@
       }
     },
     "ObjectChange": {
-      "required": [
-        "action"
-      ],
       "type": "object",
       "properties": {
         "id": {
@@ -19753,15 +20126,23 @@
         },
         "action": {
           "title": "Action",
-          "type": "integer",
-          "enum": [
-            1,
-            2,
-            3
-          ]
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          },
+          "readOnly": true
         },
-        "content_type": {
-          "title": "Content type",
+        "changed_object_type": {
+          "title": "Changed object type",
           "type": "string",
           "readOnly": true
         },
@@ -20066,8 +20447,7 @@
     "NestedVRF": {
       "title": "Vrf",
       "required": [
-        "name",
-        "rd"
+        "name"
       ],
       "type": "object",
       "properties": {
@@ -20092,7 +20472,7 @@
           "title": "Route distinguisher",
           "type": "string",
           "maxLength": 21,
-          "minLength": 1
+          "x-nullable": true
         }
       }
     },
@@ -20166,7 +20546,19 @@
         },
         "family": {
           "title": "Family",
-          "type": "integer",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          },
           "readOnly": true
         },
         "address": {
@@ -20403,7 +20795,19 @@
         },
         "family": {
           "title": "Family",
-          "type": "integer",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          },
           "readOnly": true
         },
         "prefix": {
@@ -21064,8 +21468,7 @@
     },
     "VRF": {
       "required": [
-        "name",
-        "rd"
+        "name"
       ],
       "type": "object",
       "properties": {
@@ -21084,7 +21487,7 @@
           "title": "Route distinguisher",
           "type": "string",
           "maxLength": 21,
-          "minLength": 1
+          "x-nullable": true
         },
         "tenant": {
           "$ref": "#/definitions/NestedTenant"
@@ -21131,8 +21534,7 @@
     },
     "WritableVRF": {
       "required": [
-        "name",
-        "rd"
+        "name"
       ],
       "type": "object",
       "properties": {
@@ -21151,7 +21553,7 @@
           "title": "Route distinguisher",
           "type": "string",
           "maxLength": 21,
-          "minLength": 1
+          "x-nullable": true
         },
         "tenant": {
           "title": "Tenant",
@@ -21797,13 +22199,33 @@
           "readOnly": true
         },
         "virtual_machine": {
-          "$ref": "#/definitions/VirtualMachine"
+          "$ref": "#/definitions/NestedVirtualMachine"
         },
         "name": {
           "title": "Name",
           "type": "string",
           "maxLength": 64,
           "minLength": 1
+        },
+        "form_factor": {
+          "title": "Form factor",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          },
+          "default": {
+            "label": "Virtual",
+            "value": 0
+          }
         },
         "enabled": {
           "title": "Enabled",
@@ -21813,11 +22235,13 @@
           "title": "MTU",
           "type": "integer",
           "maximum": 65536,
-          "minimum": 1
+          "minimum": 1,
+          "x-nullable": true
         },
         "mac_address": {
           "title": "MAC Address",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "title": "Description",
@@ -21861,7 +22285,6 @@
     },
     "WritableVirtualMachineInterface": {
       "required": [
-        "virtual_machine",
         "name"
       ],
       "type": "object",
@@ -21873,7 +22296,8 @@
         },
         "virtual_machine": {
           "title": "Virtual machine",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "name": {
           "title": "Name",
@@ -21881,15 +22305,86 @@
           "maxLength": 64,
           "minLength": 1
         },
+        "form_factor": {
+          "title": "Form factor",
+          "type": "integer",
+          "enum": [
+            0,
+            200,
+            800,
+            1000,
+            1150,
+            1170,
+            1050,
+            1100,
+            1200,
+            1300,
+            1310,
+            1320,
+            1350,
+            1400,
+            1420,
+            1500,
+            1510,
+            1650,
+            1520,
+            1550,
+            1600,
+            1700,
+            1750,
+            2600,
+            2610,
+            2620,
+            2630,
+            2640,
+            2810,
+            2820,
+            2830,
+            6100,
+            6200,
+            6300,
+            6400,
+            6500,
+            6600,
+            6700,
+            3010,
+            3020,
+            3040,
+            3080,
+            3160,
+            3320,
+            3400,
+            4000,
+            4010,
+            4040,
+            4050,
+            5000,
+            5050,
+            5100,
+            5150,
+            5200,
+            5300,
+            5310,
+            5320,
+            5330,
+            32767
+          ]
+        },
+        "enabled": {
+          "title": "Enabled",
+          "type": "boolean"
+        },
         "mtu": {
           "title": "MTU",
           "type": "integer",
           "maximum": 65536,
-          "minimum": 1
+          "minimum": 1,
+          "x-nullable": true
         },
         "mac_address": {
           "title": "MAC Address",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "title": "Description",
@@ -21903,11 +22398,13 @@
             100,
             200,
             300
-          ]
+          ],
+          "x-nullable": true
         },
         "untagged_vlan": {
           "title": "Untagged VLAN",
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "tagged_vlans": {
           "type": "array",

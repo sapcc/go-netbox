@@ -65,7 +65,7 @@ type DcimFrontPortsUpdateOK struct {
 }
 
 func (o *DcimFrontPortsUpdateOK) Error() string {
-	return fmt.Sprintf("[PUT /api/dcim/front-ports/{id}/][%d] dcimFrontPortsUpdateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /dcim/front-ports/{id}/][%d] dcimFrontPortsUpdateOK  %+v", 200, o.Payload)
 }
 
 func (o *DcimFrontPortsUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

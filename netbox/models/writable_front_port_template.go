@@ -58,7 +58,7 @@ type WritableFrontPortTemplate struct {
 
 	// Type
 	// Required: true
-	// Enum: [1000 2200 2300 2600 2500 2400 2100 2000]
+	// Enum: [1000 1100 2200 2300 2310 2600 2610 2500 2400 2100 2110 2000]
 	Type *int64 `json:"type"`
 }
 
@@ -148,7 +148,7 @@ var writableFrontPortTemplateTypeTypePropEnum []interface{}
 
 func init() {
 	var res []int64
-	if err := json.Unmarshal([]byte(`[1000,2200,2300,2600,2500,2400,2100,2000]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`[1000,1100,2200,2300,2310,2600,2610,2500,2400,2100,2110,2000]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

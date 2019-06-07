@@ -133,7 +133,7 @@ type DcimRacksListParams struct {
 	/*Type*/
 	Type *string
 	/*UHeight*/
-	UHeight *int64
+	UHeight *float64
 	/*Width*/
 	Width *string
 
@@ -429,13 +429,13 @@ func (o *DcimRacksListParams) SetType(typeVar *string) {
 }
 
 // WithUHeight adds the uHeight to the dcim racks list params
-func (o *DcimRacksListParams) WithUHeight(uHeight *int64) *DcimRacksListParams {
+func (o *DcimRacksListParams) WithUHeight(uHeight *float64) *DcimRacksListParams {
 	o.SetUHeight(uHeight)
 	return o
 }
 
 // SetUHeight adds the uHeight to the dcim racks list params
-func (o *DcimRacksListParams) SetUHeight(uHeight *int64) {
+func (o *DcimRacksListParams) SetUHeight(uHeight *float64) {
 	o.UHeight = uHeight
 }
 
@@ -829,11 +829,11 @@ func (o *DcimRacksListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if o.UHeight != nil {
 
 		// query param u_height
-		var qrUHeight int64
+		var qrUHeight float64
 		if o.UHeight != nil {
 			qrUHeight = *o.UHeight
 		}
-		qUHeight := swag.FormatInt64(qrUHeight)
+		qUHeight := swag.FormatFloat64(qrUHeight)
 		if qUHeight != "" {
 			if err := r.SetQueryParam("u_height", qUHeight); err != nil {
 				return err

@@ -61,7 +61,7 @@ type DcimFrontPortsDeleteNoContent struct {
 }
 
 func (o *DcimFrontPortsDeleteNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /api/dcim/front-ports/{id}/][%d] dcimFrontPortsDeleteNoContent ", 204)
+	return fmt.Sprintf("[DELETE /dcim/front-ports/{id}/][%d] dcimFrontPortsDeleteNoContent ", 204)
 }
 
 func (o *DcimFrontPortsDeleteNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

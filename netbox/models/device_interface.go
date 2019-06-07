@@ -29,9 +29,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Interface interface
-// swagger:model Interface
-type Interface struct {
+// DeviceInterface device interface
+// swagger:model DeviceInterface
+type DeviceInterface struct {
 
 	// cable
 	Cable *NestedCable `json:"cable,omitempty"`
@@ -45,7 +45,7 @@ type Interface struct {
 	ConnectedEndpointType string `json:"connected_endpoint_type,omitempty"`
 
 	// connection status
-	ConnectionStatus *InterfaceConnectionStatus `json:"connection_status,omitempty"`
+	ConnectionStatus *DeviceInterfaceConnectionStatus `json:"connection_status,omitempty"`
 
 	// Count ipaddresses
 	// Read Only: true
@@ -63,7 +63,7 @@ type Interface struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// form factor
-	FormFactor *InterfaceFormFactor `json:"form_factor,omitempty"`
+	FormFactor *DeviceInterfaceFormFactor `json:"form_factor,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -81,7 +81,7 @@ type Interface struct {
 	MgmtOnly bool `json:"mgmt_only,omitempty"`
 
 	// mode
-	Mode *InterfaceMode `json:"mode,omitempty"`
+	Mode *DeviceInterfaceMode `json:"mode,omitempty"`
 
 	// MTU
 	// Maximum: 65536
@@ -105,8 +105,8 @@ type Interface struct {
 	UntaggedVlan *NestedVLAN `json:"untagged_vlan,omitempty"`
 }
 
-// Validate validates this interface
-func (m *Interface) Validate(formats strfmt.Registry) error {
+// Validate validates this device interface
+func (m *DeviceInterface) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCable(formats); err != nil {
@@ -163,7 +163,7 @@ func (m *Interface) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateCable(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateCable(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Cable) { // not required
 		return nil
@@ -181,7 +181,7 @@ func (m *Interface) validateCable(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateConnectionStatus(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateConnectionStatus(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.ConnectionStatus) { // not required
 		return nil
@@ -199,7 +199,7 @@ func (m *Interface) validateConnectionStatus(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateDescription(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateDescription(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Description) { // not required
 		return nil
@@ -212,7 +212,7 @@ func (m *Interface) validateDescription(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateDevice(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateDevice(formats strfmt.Registry) error {
 
 	if err := validate.Required("device", "body", m.Device); err != nil {
 		return err
@@ -230,7 +230,7 @@ func (m *Interface) validateDevice(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateFormFactor(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateFormFactor(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.FormFactor) { // not required
 		return nil
@@ -248,7 +248,7 @@ func (m *Interface) validateFormFactor(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateLag(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateLag(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Lag) { // not required
 		return nil
@@ -266,7 +266,7 @@ func (m *Interface) validateLag(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateMode(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateMode(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Mode) { // not required
 		return nil
@@ -284,7 +284,7 @@ func (m *Interface) validateMode(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateMtu(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateMtu(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Mtu) { // not required
 		return nil
@@ -301,7 +301,7 @@ func (m *Interface) validateMtu(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateName(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -318,7 +318,7 @@ func (m *Interface) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateTaggedVlans(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateTaggedVlans(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.TaggedVlans) { // not required
 		return nil
@@ -347,7 +347,7 @@ func (m *Interface) validateTaggedVlans(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateTags(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateTags(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Tags) { // not required
 		return nil
@@ -364,7 +364,7 @@ func (m *Interface) validateTags(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Interface) validateUntaggedVlan(formats strfmt.Registry) error {
+func (m *DeviceInterface) validateUntaggedVlan(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.UntaggedVlan) { // not required
 		return nil
@@ -383,7 +383,7 @@ func (m *Interface) validateUntaggedVlan(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *Interface) MarshalBinary() ([]byte, error) {
+func (m *DeviceInterface) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -391,8 +391,8 @@ func (m *Interface) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *Interface) UnmarshalBinary(b []byte) error {
-	var res Interface
+func (m *DeviceInterface) UnmarshalBinary(b []byte) error {
+	var res DeviceInterface
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}
@@ -400,9 +400,9 @@ func (m *Interface) UnmarshalBinary(b []byte) error {
 	return nil
 }
 
-// InterfaceConnectionStatus Connection status
-// swagger:model InterfaceConnectionStatus
-type InterfaceConnectionStatus struct {
+// DeviceInterfaceConnectionStatus Connection status
+// swagger:model DeviceInterfaceConnectionStatus
+type DeviceInterfaceConnectionStatus struct {
 
 	// label
 	// Required: true
@@ -413,8 +413,8 @@ type InterfaceConnectionStatus struct {
 	Value *bool `json:"value"`
 }
 
-// Validate validates this interface connection status
-func (m *InterfaceConnectionStatus) Validate(formats strfmt.Registry) error {
+// Validate validates this device interface connection status
+func (m *DeviceInterfaceConnectionStatus) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateLabel(formats); err != nil {
@@ -431,7 +431,7 @@ func (m *InterfaceConnectionStatus) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InterfaceConnectionStatus) validateLabel(formats strfmt.Registry) error {
+func (m *DeviceInterfaceConnectionStatus) validateLabel(formats strfmt.Registry) error {
 
 	if err := validate.Required("connection_status"+"."+"label", "body", m.Label); err != nil {
 		return err
@@ -440,7 +440,7 @@ func (m *InterfaceConnectionStatus) validateLabel(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *InterfaceConnectionStatus) validateValue(formats strfmt.Registry) error {
+func (m *DeviceInterfaceConnectionStatus) validateValue(formats strfmt.Registry) error {
 
 	if err := validate.Required("connection_status"+"."+"value", "body", m.Value); err != nil {
 		return err
@@ -450,7 +450,7 @@ func (m *InterfaceConnectionStatus) validateValue(formats strfmt.Registry) error
 }
 
 // MarshalBinary interface implementation
-func (m *InterfaceConnectionStatus) MarshalBinary() ([]byte, error) {
+func (m *DeviceInterfaceConnectionStatus) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -458,8 +458,8 @@ func (m *InterfaceConnectionStatus) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *InterfaceConnectionStatus) UnmarshalBinary(b []byte) error {
-	var res InterfaceConnectionStatus
+func (m *DeviceInterfaceConnectionStatus) UnmarshalBinary(b []byte) error {
+	var res DeviceInterfaceConnectionStatus
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}
@@ -467,9 +467,9 @@ func (m *InterfaceConnectionStatus) UnmarshalBinary(b []byte) error {
 	return nil
 }
 
-// InterfaceFormFactor Form factor
-// swagger:model InterfaceFormFactor
-type InterfaceFormFactor struct {
+// DeviceInterfaceFormFactor Form factor
+// swagger:model DeviceInterfaceFormFactor
+type DeviceInterfaceFormFactor struct {
 
 	// label
 	// Required: true
@@ -480,8 +480,8 @@ type InterfaceFormFactor struct {
 	Value *int64 `json:"value"`
 }
 
-// Validate validates this interface form factor
-func (m *InterfaceFormFactor) Validate(formats strfmt.Registry) error {
+// Validate validates this device interface form factor
+func (m *DeviceInterfaceFormFactor) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateLabel(formats); err != nil {
@@ -498,7 +498,7 @@ func (m *InterfaceFormFactor) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InterfaceFormFactor) validateLabel(formats strfmt.Registry) error {
+func (m *DeviceInterfaceFormFactor) validateLabel(formats strfmt.Registry) error {
 
 	if err := validate.Required("form_factor"+"."+"label", "body", m.Label); err != nil {
 		return err
@@ -507,7 +507,7 @@ func (m *InterfaceFormFactor) validateLabel(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InterfaceFormFactor) validateValue(formats strfmt.Registry) error {
+func (m *DeviceInterfaceFormFactor) validateValue(formats strfmt.Registry) error {
 
 	if err := validate.Required("form_factor"+"."+"value", "body", m.Value); err != nil {
 		return err
@@ -517,7 +517,7 @@ func (m *InterfaceFormFactor) validateValue(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *InterfaceFormFactor) MarshalBinary() ([]byte, error) {
+func (m *DeviceInterfaceFormFactor) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -525,8 +525,8 @@ func (m *InterfaceFormFactor) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *InterfaceFormFactor) UnmarshalBinary(b []byte) error {
-	var res InterfaceFormFactor
+func (m *DeviceInterfaceFormFactor) UnmarshalBinary(b []byte) error {
+	var res DeviceInterfaceFormFactor
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}
@@ -534,9 +534,9 @@ func (m *InterfaceFormFactor) UnmarshalBinary(b []byte) error {
 	return nil
 }
 
-// InterfaceMode Mode
-// swagger:model InterfaceMode
-type InterfaceMode struct {
+// DeviceInterfaceMode Mode
+// swagger:model DeviceInterfaceMode
+type DeviceInterfaceMode struct {
 
 	// label
 	// Required: true
@@ -547,8 +547,8 @@ type InterfaceMode struct {
 	Value *int64 `json:"value"`
 }
 
-// Validate validates this interface mode
-func (m *InterfaceMode) Validate(formats strfmt.Registry) error {
+// Validate validates this device interface mode
+func (m *DeviceInterfaceMode) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateLabel(formats); err != nil {
@@ -565,7 +565,7 @@ func (m *InterfaceMode) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InterfaceMode) validateLabel(formats strfmt.Registry) error {
+func (m *DeviceInterfaceMode) validateLabel(formats strfmt.Registry) error {
 
 	if err := validate.Required("mode"+"."+"label", "body", m.Label); err != nil {
 		return err
@@ -574,7 +574,7 @@ func (m *InterfaceMode) validateLabel(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InterfaceMode) validateValue(formats strfmt.Registry) error {
+func (m *DeviceInterfaceMode) validateValue(formats strfmt.Registry) error {
 
 	if err := validate.Required("mode"+"."+"value", "body", m.Value); err != nil {
 		return err
@@ -584,7 +584,7 @@ func (m *InterfaceMode) validateValue(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *InterfaceMode) MarshalBinary() ([]byte, error) {
+func (m *DeviceInterfaceMode) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -592,8 +592,8 @@ func (m *InterfaceMode) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *InterfaceMode) UnmarshalBinary(b []byte) error {
-	var res InterfaceMode
+func (m *DeviceInterfaceMode) UnmarshalBinary(b []byte) error {
+	var res DeviceInterfaceMode
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

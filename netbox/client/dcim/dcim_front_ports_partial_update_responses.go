@@ -65,7 +65,7 @@ type DcimFrontPortsPartialUpdateOK struct {
 }
 
 func (o *DcimFrontPortsPartialUpdateOK) Error() string {
-	return fmt.Sprintf("[PATCH /api/dcim/front-ports/{id}/][%d] dcimFrontPortsPartialUpdateOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /dcim/front-ports/{id}/][%d] dcimFrontPortsPartialUpdateOK  %+v", 200, o.Payload)
 }
 
 func (o *DcimFrontPortsPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

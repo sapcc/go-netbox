@@ -99,7 +99,7 @@ func (a *Client) SecretsChoicesRead(params *SecretsChoicesReadParams, authInfo r
 /*
 SecretsGenerateRsaKeyPairList this endpoint can be used to generate a new r s a key pair the keys are returned in p e m format
 
-    {
+{
         "public_key": "<public key>",
         "private_key": "<private key>"
     }

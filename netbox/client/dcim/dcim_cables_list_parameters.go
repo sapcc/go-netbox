@@ -79,6 +79,10 @@ type DcimCablesListParams struct {
 
 	/*Color*/
 	Color *string
+	/*Device*/
+	Device *string
+	/*DeviceID*/
+	DeviceID *int64
 	/*Length*/
 	Length *float64
 	/*LengthUnit*/
@@ -147,6 +151,28 @@ func (o *DcimCablesListParams) WithColor(color *string) *DcimCablesListParams {
 // SetColor adds the color to the dcim cables list params
 func (o *DcimCablesListParams) SetColor(color *string) {
 	o.Color = color
+}
+
+// WithDevice adds the device to the dcim cables list params
+func (o *DcimCablesListParams) WithDevice(device *string) *DcimCablesListParams {
+	o.SetDevice(device)
+	return o
+}
+
+// SetDevice adds the device to the dcim cables list params
+func (o *DcimCablesListParams) SetDevice(device *string) {
+	o.Device = device
+}
+
+// WithDeviceID adds the deviceID to the dcim cables list params
+func (o *DcimCablesListParams) WithDeviceID(deviceID *int64) *DcimCablesListParams {
+	o.SetDeviceID(deviceID)
+	return o
+}
+
+// SetDeviceID adds the deviceId to the dcim cables list params
+func (o *DcimCablesListParams) SetDeviceID(deviceID *int64) {
+	o.DeviceID = deviceID
 }
 
 // WithLength adds the length to the dcim cables list params
@@ -244,6 +270,38 @@ func (o *DcimCablesListParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		qColor := qrColor
 		if qColor != "" {
 			if err := r.SetQueryParam("color", qColor); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Device != nil {
+
+		// query param device
+		var qrDevice string
+		if o.Device != nil {
+			qrDevice = *o.Device
+		}
+		qDevice := qrDevice
+		if qDevice != "" {
+			if err := r.SetQueryParam("device", qDevice); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.DeviceID != nil {
+
+		// query param device_id
+		var qrDeviceID int64
+		if o.DeviceID != nil {
+			qrDeviceID = *o.DeviceID
+		}
+		qDeviceID := swag.FormatInt64(qrDeviceID)
+		if qDeviceID != "" {
+			if err := r.SetQueryParam("device_id", qDeviceID); err != nil {
 				return err
 			}
 		}

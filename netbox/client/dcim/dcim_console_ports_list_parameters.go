@@ -97,6 +97,8 @@ type DcimConsolePortsListParams struct {
 
 	*/
 	Offset *int64
+	/*Q*/
+	Q *string
 	/*Tag*/
 	Tag *string
 
@@ -213,6 +215,17 @@ func (o *DcimConsolePortsListParams) WithOffset(offset *int64) *DcimConsolePorts
 // SetOffset adds the offset to the dcim console ports list params
 func (o *DcimConsolePortsListParams) SetOffset(offset *int64) {
 	o.Offset = offset
+}
+
+// WithQ adds the q to the dcim console ports list params
+func (o *DcimConsolePortsListParams) WithQ(q *string) *DcimConsolePortsListParams {
+	o.SetQ(q)
+	return o
+}
+
+// SetQ adds the q to the dcim console ports list params
+func (o *DcimConsolePortsListParams) SetQ(q *string) {
+	o.Q = q
 }
 
 // WithTag adds the tag to the dcim console ports list params
@@ -340,6 +353,22 @@ func (o *DcimConsolePortsListParams) WriteToRequest(r runtime.ClientRequest, reg
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Q != nil {
+
+		// query param q
+		var qrQ string
+		if o.Q != nil {
+			qrQ = *o.Q
+		}
+		qQ := qrQ
+		if qQ != "" {
+			if err := r.SetQueryParam("q", qQ); err != nil {
 				return err
 			}
 		}

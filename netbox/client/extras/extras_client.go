@@ -39,35 +39,6 @@ type Client struct {
 }
 
 /*
-APIExtrasReportsRun Run a Report and create a new ReportResult, overwriting any previous result for the Report.
-*/
-func (a *Client) APIExtrasReportsRun(params *APIExtrasReportsRunParams, authInfo runtime.ClientAuthInfoWriter) (*APIExtrasReportsRunCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAPIExtrasReportsRunParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "api_extras_reports_run",
-		Method:             "POST",
-		PathPattern:        "/extras/reports/{id}/run/",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &APIExtrasReportsRunReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*APIExtrasReportsRunCreated), nil
-
-}
-
-/*
 ExtrasChoicesList extras choices list API
 */
 func (a *Client) ExtrasChoicesList(params *ExtrasChoicesListParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasChoicesListOK, error) {
@@ -934,6 +905,35 @@ func (a *Client) ExtrasReportsRead(params *ExtrasReportsReadParams, authInfo run
 		return nil, err
 	}
 	return result.(*ExtrasReportsReadOK), nil
+
+}
+
+/*
+ExtrasReportsRun Run a Report and create a new ReportResult, overwriting any previous result for the Report.
+*/
+func (a *Client) ExtrasReportsRun(params *ExtrasReportsRunParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasReportsRunCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExtrasReportsRunParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "extras_reports_run",
+		Method:             "POST",
+		PathPattern:        "/extras/reports/{id}/run/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &ExtrasReportsRunReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ExtrasReportsRunCreated), nil
 
 }
 

@@ -30,9 +30,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WritableInterface writable interface
-// swagger:model WritableInterface
-type WritableInterface struct {
+// WritableDeviceInterface writable device interface
+// swagger:model WritableDeviceInterface
+type WritableDeviceInterface struct {
 
 	// cable
 	Cable *NestedCable `json:"cable,omitempty"`
@@ -65,7 +65,7 @@ type WritableInterface struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// Form factor
-	// Enum: [0 200 800 1000 1150 1170 1050 1100 1200 1300 1310 1320 1350 1400 1500 1510 1520 1550 1600 2600 2610 2620 2630 2640 6100 6200 6300 6400 6500 6600 6700 3010 3020 3040 3080 3160 3320 3400 4000 4010 4040 4050 5000 5050 5100 5150 5200 5300 5310 5320 5330 32767]
+	// Enum: [0 200 800 1000 1150 1170 1050 1100 1200 1300 1310 1320 1350 1400 1420 1500 1510 1650 1520 1550 1600 1700 1750 2600 2610 2620 2630 2640 2810 2820 2830 6100 6200 6300 6400 6500 6600 6700 3010 3020 3040 3080 3160 3320 3400 4000 4010 4040 4050 5000 5050 5100 5150 5200 5300 5310 5320 5330 32767]
 	FormFactor int64 `json:"form_factor,omitempty"`
 
 	// ID
@@ -109,8 +109,8 @@ type WritableInterface struct {
 	UntaggedVlan *int64 `json:"untagged_vlan,omitempty"`
 }
 
-// Validate validates this writable interface
-func (m *WritableInterface) Validate(formats strfmt.Registry) error {
+// Validate validates this writable device interface
+func (m *WritableDeviceInterface) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCable(formats); err != nil {
@@ -159,7 +159,7 @@ func (m *WritableInterface) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableInterface) validateCable(formats strfmt.Registry) error {
+func (m *WritableDeviceInterface) validateCable(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Cable) { // not required
 		return nil
@@ -177,7 +177,7 @@ func (m *WritableInterface) validateCable(formats strfmt.Registry) error {
 	return nil
 }
 
-var writableInterfaceTypeConnectionStatusPropEnum []interface{}
+var writableDeviceInterfaceTypeConnectionStatusPropEnum []interface{}
 
 func init() {
 	var res []bool
@@ -185,19 +185,19 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		writableInterfaceTypeConnectionStatusPropEnum = append(writableInterfaceTypeConnectionStatusPropEnum, v)
+		writableDeviceInterfaceTypeConnectionStatusPropEnum = append(writableDeviceInterfaceTypeConnectionStatusPropEnum, v)
 	}
 }
 
 // prop value enum
-func (m *WritableInterface) validateConnectionStatusEnum(path, location string, value bool) error {
-	if err := validate.Enum(path, location, value, writableInterfaceTypeConnectionStatusPropEnum); err != nil {
+func (m *WritableDeviceInterface) validateConnectionStatusEnum(path, location string, value bool) error {
+	if err := validate.Enum(path, location, value, writableDeviceInterfaceTypeConnectionStatusPropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *WritableInterface) validateConnectionStatus(formats strfmt.Registry) error {
+func (m *WritableDeviceInterface) validateConnectionStatus(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.ConnectionStatus) { // not required
 		return nil
@@ -211,7 +211,7 @@ func (m *WritableInterface) validateConnectionStatus(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *WritableInterface) validateDescription(formats strfmt.Registry) error {
+func (m *WritableDeviceInterface) validateDescription(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Description) { // not required
 		return nil
@@ -224,7 +224,7 @@ func (m *WritableInterface) validateDescription(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableInterface) validateDevice(formats strfmt.Registry) error {
+func (m *WritableDeviceInterface) validateDevice(formats strfmt.Registry) error {
 
 	if err := validate.Required("device", "body", m.Device); err != nil {
 		return err
@@ -233,27 +233,27 @@ func (m *WritableInterface) validateDevice(formats strfmt.Registry) error {
 	return nil
 }
 
-var writableInterfaceTypeFormFactorPropEnum []interface{}
+var writableDeviceInterfaceTypeFormFactorPropEnum []interface{}
 
 func init() {
 	var res []int64
-	if err := json.Unmarshal([]byte(`[0,200,800,1000,1150,1170,1050,1100,1200,1300,1310,1320,1350,1400,1500,1510,1520,1550,1600,2600,2610,2620,2630,2640,6100,6200,6300,6400,6500,6600,6700,3010,3020,3040,3080,3160,3320,3400,4000,4010,4040,4050,5000,5050,5100,5150,5200,5300,5310,5320,5330,32767]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`[0,200,800,1000,1150,1170,1050,1100,1200,1300,1310,1320,1350,1400,1420,1500,1510,1650,1520,1550,1600,1700,1750,2600,2610,2620,2630,2640,2810,2820,2830,6100,6200,6300,6400,6500,6600,6700,3010,3020,3040,3080,3160,3320,3400,4000,4010,4040,4050,5000,5050,5100,5150,5200,5300,5310,5320,5330,32767]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
-		writableInterfaceTypeFormFactorPropEnum = append(writableInterfaceTypeFormFactorPropEnum, v)
+		writableDeviceInterfaceTypeFormFactorPropEnum = append(writableDeviceInterfaceTypeFormFactorPropEnum, v)
 	}
 }
 
 // prop value enum
-func (m *WritableInterface) validateFormFactorEnum(path, location string, value int64) error {
-	if err := validate.Enum(path, location, value, writableInterfaceTypeFormFactorPropEnum); err != nil {
+func (m *WritableDeviceInterface) validateFormFactorEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writableDeviceInterfaceTypeFormFactorPropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *WritableInterface) validateFormFactor(formats strfmt.Registry) error {
+func (m *WritableDeviceInterface) validateFormFactor(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.FormFactor) { // not required
 		return nil
@@ -267,7 +267,7 @@ func (m *WritableInterface) validateFormFactor(formats strfmt.Registry) error {
 	return nil
 }
 
-var writableInterfaceTypeModePropEnum []interface{}
+var writableDeviceInterfaceTypeModePropEnum []interface{}
 
 func init() {
 	var res []int64
@@ -275,19 +275,19 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		writableInterfaceTypeModePropEnum = append(writableInterfaceTypeModePropEnum, v)
+		writableDeviceInterfaceTypeModePropEnum = append(writableDeviceInterfaceTypeModePropEnum, v)
 	}
 }
 
 // prop value enum
-func (m *WritableInterface) validateModeEnum(path, location string, value int64) error {
-	if err := validate.Enum(path, location, value, writableInterfaceTypeModePropEnum); err != nil {
+func (m *WritableDeviceInterface) validateModeEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writableDeviceInterfaceTypeModePropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *WritableInterface) validateMode(formats strfmt.Registry) error {
+func (m *WritableDeviceInterface) validateMode(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Mode) { // not required
 		return nil
@@ -301,7 +301,7 @@ func (m *WritableInterface) validateMode(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableInterface) validateMtu(formats strfmt.Registry) error {
+func (m *WritableDeviceInterface) validateMtu(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Mtu) { // not required
 		return nil
@@ -318,7 +318,7 @@ func (m *WritableInterface) validateMtu(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableInterface) validateName(formats strfmt.Registry) error {
+func (m *WritableDeviceInterface) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -335,7 +335,7 @@ func (m *WritableInterface) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableInterface) validateTaggedVlans(formats strfmt.Registry) error {
+func (m *WritableDeviceInterface) validateTaggedVlans(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.TaggedVlans) { // not required
 		return nil
@@ -348,7 +348,7 @@ func (m *WritableInterface) validateTaggedVlans(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableInterface) validateTags(formats strfmt.Registry) error {
+func (m *WritableDeviceInterface) validateTags(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Tags) { // not required
 		return nil
@@ -366,7 +366,7 @@ func (m *WritableInterface) validateTags(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *WritableInterface) MarshalBinary() ([]byte, error) {
+func (m *WritableDeviceInterface) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -374,8 +374,8 @@ func (m *WritableInterface) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *WritableInterface) UnmarshalBinary(b []byte) error {
-	var res WritableInterface
+func (m *WritableDeviceInterface) UnmarshalBinary(b []byte) error {
+	var res WritableDeviceInterface
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

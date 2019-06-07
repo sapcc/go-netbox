@@ -55,10 +55,12 @@ type WritableDevice struct {
 	CustomFields interface{} `json:"custom_fields,omitempty"`
 
 	// Device role
-	DeviceRole int64 `json:"device_role,omitempty"`
+	// Required: true
+	DeviceRole *int64 `json:"device_role"`
 
 	// Device type
-	DeviceType int64 `json:"device_type,omitempty"`
+	// Required: true
+	DeviceType *int64 `json:"device_type"`
 
 	// Display name
 	// Read Only: true
@@ -116,10 +118,11 @@ type WritableDevice struct {
 	Serial string `json:"serial,omitempty"`
 
 	// Site
-	Site int64 `json:"site,omitempty"`
+	// Required: true
+	Site *int64 `json:"site"`
 
 	// Status
-	// Enum: [1 0 2 3 4 5]
+	// Enum: [1 0 2 3 4 5 6]
 	Status int64 `json:"status,omitempty"`
 
 	// tags
@@ -154,6 +157,14 @@ func (m *WritableDevice) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDeviceRole(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDeviceType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFace(formats); err != nil {
 		res = append(res, err)
 	}
@@ -171,6 +182,10 @@ func (m *WritableDevice) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSerial(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSite(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -216,6 +231,24 @@ func (m *WritableDevice) validateCreated(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("created", "body", "date", m.Created.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WritableDevice) validateDeviceRole(formats strfmt.Registry) error {
+
+	if err := validate.Required("device_role", "body", m.DeviceRole); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WritableDevice) validateDeviceType(formats strfmt.Registry) error {
+
+	if err := validate.Required("device_type", "body", m.DeviceType); err != nil {
 		return err
 	}
 
@@ -312,11 +345,20 @@ func (m *WritableDevice) validateSerial(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *WritableDevice) validateSite(formats strfmt.Registry) error {
+
+	if err := validate.Required("site", "body", m.Site); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var writableDeviceTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []int64
-	if err := json.Unmarshal([]byte(`[1,0,2,3,4,5]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`[1,0,2,3,4,5,6]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

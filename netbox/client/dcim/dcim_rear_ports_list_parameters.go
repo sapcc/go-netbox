@@ -95,6 +95,8 @@ type DcimRearPortsListParams struct {
 
 	*/
 	Offset *int64
+	/*Q*/
+	Q *string
 	/*Tag*/
 	Tag *string
 	/*Type*/
@@ -202,6 +204,17 @@ func (o *DcimRearPortsListParams) WithOffset(offset *int64) *DcimRearPortsListPa
 // SetOffset adds the offset to the dcim rear ports list params
 func (o *DcimRearPortsListParams) SetOffset(offset *int64) {
 	o.Offset = offset
+}
+
+// WithQ adds the q to the dcim rear ports list params
+func (o *DcimRearPortsListParams) WithQ(q *string) *DcimRearPortsListParams {
+	o.SetQ(q)
+	return o
+}
+
+// SetQ adds the q to the dcim rear ports list params
+func (o *DcimRearPortsListParams) SetQ(q *string) {
+	o.Q = q
 }
 
 // WithTag adds the tag to the dcim rear ports list params
@@ -324,6 +337,22 @@ func (o *DcimRearPortsListParams) WriteToRequest(r runtime.ClientRequest, reg st
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Q != nil {
+
+		// query param q
+		var qrQ string
+		if o.Q != nil {
+			qrQ = *o.Q
+		}
+		qQ := qrQ
+		if qQ != "" {
+			if err := r.SetQueryParam("q", qQ); err != nil {
 				return err
 			}
 		}

@@ -86,7 +86,7 @@ type Cable struct {
 	TerminationBType *string `json:"termination_b_type"`
 
 	// Type
-	// Enum: [1300 1500 1510 1600 1610 1700 3010 3020 3030 3040 3500 5000]
+	// Enum: [1300 1500 1510 1600 1610 1700 1800 1810 3000 3010 3020 3030 3040 3500 3510 3520 3800 5000]
 	Type *int64 `json:"type,omitempty"`
 }
 
@@ -279,7 +279,7 @@ var cableTypeTypePropEnum []interface{}
 
 func init() {
 	var res []int64
-	if err := json.Unmarshal([]byte(`[1300,1500,1510,1600,1610,1700,3010,3020,3030,3040,3500,5000]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`[1300,1500,1510,1600,1610,1700,1800,1810,3000,3010,3020,3030,3040,3500,3510,3520,3800,5000]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
