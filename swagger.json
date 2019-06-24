@@ -15775,9 +15775,7 @@
           }
         },
         "parent_device": {
-          "title": "Parent device",
-          "type": "string",
-          "readOnly": true
+          "$ref": "#/definitions/NestedDevice"
         },
         "status": {
           "title": "Status",
