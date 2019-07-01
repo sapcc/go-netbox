@@ -16851,7 +16851,7 @@
         },
         "config_context": {
           "title": "Config context",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "created": {
@@ -22752,7 +22752,7 @@
         },
         "config_context": {
           "title": "Config context",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "created": {
