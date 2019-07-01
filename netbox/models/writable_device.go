@@ -86,9 +86,8 @@ type WritableDevice struct {
 	// Max Length: 64
 	Name *string `json:"name,omitempty"`
 
-	// Parent device
-	// Read Only: true
-	ParentDevice string `json:"parent_device,omitempty"`
+	// parent device
+	ParentDevice *NestedDevice `json:"parent_device,omitempty"`
 
 	// Platform
 	Platform *int64 `json:"platform,omitempty"`
@@ -174,6 +173,10 @@ func (m *WritableDevice) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateParentDevice(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -310,6 +313,24 @@ func (m *WritableDevice) validateName(formats strfmt.Registry) error {
 
 	if err := validate.MaxLength("name", "body", string(*m.Name), 64); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *WritableDevice) validateParentDevice(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ParentDevice) { // not required
+		return nil
+	}
+
+	if m.ParentDevice != nil {
+		if err := m.ParentDevice.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("parent_device")
+			}
+			return err
+		}
 	}
 
 	return nil
