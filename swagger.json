@@ -14675,7 +14675,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
@@ -14767,7 +14767,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
@@ -15884,7 +15884,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
@@ -15993,7 +15993,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
@@ -16091,7 +16091,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
@@ -16153,7 +16153,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
@@ -17498,7 +17498,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
@@ -17687,7 +17687,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
@@ -18014,7 +18014,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
@@ -18122,7 +18122,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
@@ -18184,7 +18184,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
@@ -18283,7 +18283,7 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "type": "string",
+          "type": "object",
           "readOnly": true
         },
         "connection_status": {
