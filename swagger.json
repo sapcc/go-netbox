@@ -17557,7 +17557,7 @@
         },
         "count_ipaddresses": {
           "title": "Count ipaddresses",
-          "type": "string",
+          "type": "integer",
           "readOnly": true
         }
       }
@@ -17733,7 +17733,7 @@
         },
         "count_ipaddresses": {
           "title": "Count ipaddresses",
-          "type": "string",
+          "type": "integer",
           "readOnly": true
         }
       }
