@@ -1,7 +1,7 @@
-netbox [![GoDoc](http://godoc.org/github.com/digitalocean/go-netbox?status.svg)](http://godoc.org/github.com/digitalocean/go-netbox) [![Build Status](https://travis-ci.org/digitalocean/go-netbox.svg?branch=master)](https://travis-ci.org/digitalocean/go-netbox) [![Report Card](https://goreportcard.com/badge/github.com/digitalocean/go-netbox)](https://goreportcard.com/report/github.com/digitalocean/go-netbox)
+netbox [![GoDoc](http://godoc.org/github.com/hosting-de-labs/go-netbox?status.svg)](http://godoc.org/github.com/hosting-de-labs/go-netbox) [![Build Status](https://travis-ci.com/hosting-de-labs/go-netbox.svg?branch=master)](https://travis-ci.com/hosting-de-labs/go-netbox) [![Report Card](https://goreportcard.com/badge/github.com/hosting-de-labs/go-netbox)](https://goreportcard.com/report/github.com/hosting-de-labs/go-netbox)
 ======
 
-Package `netbox` provides an API 2.0 client for [DigitalOcean's NetBox](https://github.com/digitalocean/netbox)
+Package `netbox` provides an API 2.0 client for [DigitalOcean's NetBox](https://github.com/netbox-community/netbox)
 IPAM and DCIM service.
 
 This package assumes you are using NetBox 2.0, as the NetBox 1.0 API no longer exists.
@@ -14,7 +14,7 @@ configurations you are likely to need while connecting to NetBox. `NewNetboxAt` 
 (including port, if you need it), and `NewNetboxWithAPIKey` allows you to specify both a hostname:port and API token.
 ```golang
 import (
-    "github.com/digitalocean/go-netbox/netbox"
+    "github.com/hosting-de-labs/go-netbox/netbox"
 )
 ...
     c := netbox.NewNetboxAt("your.netbox.host:8000")
