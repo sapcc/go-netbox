@@ -10908,7 +10908,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Prefix"
+              "$ref": "#/definitions/IPAddressEnumeration"
             }
           }
         },
@@ -20524,6 +20524,25 @@
           "type": "string",
           "maxLength": 64,
           "minLength": 1
+        }
+      }
+    },
+    "IPAddressEnumeration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "family": {
+            "type": "integer"
+          },
+          "address":  {
+            "title": "Address",
+            "description": "IPv4 or IPv6 address (with mask)",
+            "type": "string"
+          },
+          "vrf": {
+            "$ref": "#/definitions/NestedVRF"
+          }
         }
       }
     },
