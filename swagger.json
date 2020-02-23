@@ -10908,7 +10908,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Prefix"
+              "$ref": "#/definitions/IPAddressEnumeration"
             }
           }
         },
@@ -15828,7 +15828,7 @@
         },
         "local_context_data": {
           "title": "Local context data",
-          "type": "string",
+          "type": "object",
           "x-nullable": true
         },
         "tags": {
@@ -16674,7 +16674,7 @@
         },
         "local_context_data": {
           "title": "Local context data",
-          "type": "string",
+          "type": "object",
           "x-nullable": true
         },
         "tags": {
@@ -16835,7 +16835,7 @@
         },
         "local_context_data": {
           "title": "Local context data",
-          "type": "string",
+          "type": "object",
           "x-nullable": true
         },
         "tags": {
@@ -20527,6 +20527,25 @@
         }
       }
     },
+    "IPAddressEnumeration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "family": {
+            "type": "integer"
+          },
+          "address":  {
+            "title": "Address",
+            "description": "IPv4 or IPv6 address (with mask)",
+            "type": "string"
+          },
+          "vrf": {
+            "$ref": "#/definitions/NestedVRF"
+          }
+        }
+      }
+    },
     "IPAddress": {
       "required": [
         "address"
@@ -22502,7 +22521,7 @@
         },
         "local_context_data": {
           "title": "Local context data",
-          "type": "string",
+          "type": "object",
           "x-nullable": true
         },
         "tags": {
@@ -22623,7 +22642,7 @@
         },
         "local_context_data": {
           "title": "Local context data",
-          "type": "string",
+          "type": "object",
           "x-nullable": true
         },
         "tags": {
@@ -22736,7 +22755,7 @@
         },
         "local_context_data": {
           "title": "Local context data",
-          "type": "string",
+          "type": "object",
           "x-nullable": true
         },
         "tags": {
