@@ -15769,7 +15769,7 @@
               "type": "string"
             },
             "value": {
-              "type": "integer",
+              "type": "string",
               "x-nullable": true
             }
           }
@@ -15789,7 +15789,7 @@
               "type": "string"
             },
             "value": {
-              "type": "integer"
+              "type": "string"
             }
           }
         },
