@@ -351,7 +351,7 @@ type VLANStatus struct {
 
 	// value
 	// Required: true
-	Value *int64 `json:"value"`
+	Value *string `json:"value"`
 }
 
 // Validate validates this v l a n status

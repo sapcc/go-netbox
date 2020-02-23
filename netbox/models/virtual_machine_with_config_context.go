@@ -488,7 +488,7 @@ type VirtualMachineWithConfigContextStatus struct {
 
 	// value
 	// Required: true
-	Value *int64 `json:"value"`
+	Value *string `json:"value"`
 }
 
 // Validate validates this virtual machine with config context status
