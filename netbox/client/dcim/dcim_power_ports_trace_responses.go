@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimPowerPortsTraceReader is a Reader for the DcimPowerPortsTrace structure.
@@ -38,7 +38,6 @@ type DcimPowerPortsTraceReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimPowerPortsTraceReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimPowerPortsTraceOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimPowerPortsTraceOK struct {
 
 func (o *DcimPowerPortsTraceOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/power-ports/{id}/trace/][%d] dcimPowerPortsTraceOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimPowerPortsTraceOK) GetPayload() *models.PowerPort {
+	return o.Payload
 }
 
 func (o *DcimPowerPortsTraceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

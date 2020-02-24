@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -30,6 +29,10 @@ import (
 // NestedRack Rack
 // swagger:model NestedRack
 type NestedRack struct {
+
+	// Device count
+	// Read Only: true
+	DeviceCount int64 `json:"device_count,omitempty"`
 
 	// Display name
 	// Read Only: true

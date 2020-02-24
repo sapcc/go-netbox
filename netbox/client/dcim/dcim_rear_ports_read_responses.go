@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimRearPortsReadReader is a Reader for the DcimRearPortsRead structure.
@@ -38,7 +38,6 @@ type DcimRearPortsReadReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimRearPortsReadReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimRearPortsReadOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimRearPortsReadOK struct {
 
 func (o *DcimRearPortsReadOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/rear-ports/{id}/][%d] dcimRearPortsReadOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimRearPortsReadOK) GetPayload() *models.RearPort {
+	return o.Payload
 }
 
 func (o *DcimRearPortsReadOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

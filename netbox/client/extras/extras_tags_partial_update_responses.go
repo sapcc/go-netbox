@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // ExtrasTagsPartialUpdateReader is a Reader for the ExtrasTagsPartialUpdate structure.
@@ -38,7 +38,6 @@ type ExtrasTagsPartialUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExtrasTagsPartialUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewExtrasTagsPartialUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type ExtrasTagsPartialUpdateOK struct {
 
 func (o *ExtrasTagsPartialUpdateOK) Error() string {
 	return fmt.Sprintf("[PATCH /extras/tags/{id}/][%d] extrasTagsPartialUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *ExtrasTagsPartialUpdateOK) GetPayload() *models.Tag {
+	return o.Payload
 }
 
 func (o *ExtrasTagsPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

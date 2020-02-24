@@ -22,9 +22,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -78,7 +77,7 @@ type Device struct {
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
 	// Local context data
-	LocalContextData interface{} `json:"local_context_data,omitempty"`
+	LocalContextData *string `json:"local_context_data,omitempty"`
 
 	// Name
 	// Max Length: 64
@@ -655,7 +654,7 @@ type DeviceFace struct {
 
 	// value
 	// Required: true
-	Value *int64 `json:"value"`
+	Value *string `json:"value"`
 }
 
 // Validate validates this device face
@@ -722,7 +721,7 @@ type DeviceStatus struct {
 
 	// value
 	// Required: true
-	Value *int64 `json:"value"`
+	Value *string `json:"value"`
 }
 
 // Validate validates this device status

@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -45,6 +44,10 @@ type NestedCluster struct {
 	// Read Only: true
 	// Format: uri
 	URL strfmt.URI `json:"url,omitempty"`
+
+	// Virtualmachine count
+	// Read Only: true
+	VirtualmachineCount int64 `json:"virtualmachine_count,omitempty"`
 }
 
 // Validate validates this nested cluster

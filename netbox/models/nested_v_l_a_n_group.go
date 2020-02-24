@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -52,6 +51,10 @@ type NestedVLANGroup struct {
 	// Read Only: true
 	// Format: uri
 	URL strfmt.URI `json:"url,omitempty"`
+
+	// Vlan count
+	// Read Only: true
+	VlanCount int64 `json:"vlan_count,omitempty"`
 }
 
 // Validate validates this nested v l a n group

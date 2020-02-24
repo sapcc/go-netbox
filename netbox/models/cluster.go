@@ -22,9 +22,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -43,6 +42,10 @@ type Cluster struct {
 
 	// Custom fields
 	CustomFields interface{} `json:"custom_fields,omitempty"`
+
+	// Device count
+	// Read Only: true
+	DeviceCount int64 `json:"device_count,omitempty"`
 
 	// group
 	Group *NestedClusterGroup `json:"group,omitempty"`
@@ -68,9 +71,16 @@ type Cluster struct {
 	// tags
 	Tags []string `json:"tags"`
 
+	// tenant
+	Tenant *NestedTenant `json:"tenant,omitempty"`
+
 	// type
 	// Required: true
 	Type *NestedClusterType `json:"type"`
+
+	// Virtualmachine count
+	// Read Only: true
+	VirtualmachineCount int64 `json:"virtualmachine_count,omitempty"`
 }
 
 // Validate validates this cluster
@@ -98,6 +108,10 @@ func (m *Cluster) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateTags(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTenant(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -202,6 +216,24 @@ func (m *Cluster) validateTags(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Cluster) validateTenant(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tenant) { // not required
+		return nil
+	}
+
+	if m.Tenant != nil {
+		if err := m.Tenant.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("tenant")
+			}
+			return err
+		}
 	}
 
 	return nil

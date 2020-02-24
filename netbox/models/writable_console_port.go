@@ -23,9 +23,8 @@ import (
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -39,7 +38,7 @@ type WritableConsolePort struct {
 
 	// Connected endpoint
 	// Read Only: true
-	ConnectedEndpoint interface{} `json:"connected_endpoint,omitempty"`
+	ConnectedEndpoint map[string]string `json:"connected_endpoint,omitempty"`
 
 	// Connected endpoint type
 	// Read Only: true
@@ -48,6 +47,10 @@ type WritableConsolePort struct {
 	// Connection status
 	// Enum: [false true]
 	ConnectionStatus bool `json:"connection_status,omitempty"`
+
+	// Description
+	// Max Length: 100
+	Description string `json:"description,omitempty"`
 
 	// Device
 	// Required: true
@@ -65,6 +68,10 @@ type WritableConsolePort struct {
 
 	// tags
 	Tags []string `json:"tags"`
+
+	// Type
+	// Enum: [de-9 db-25 rj-12 rj-45 usb-a usb-b usb-c usb-mini-a usb-mini-b usb-micro-a usb-micro-b other]
+	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this writable console port
@@ -79,6 +86,10 @@ func (m *WritableConsolePort) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDevice(formats); err != nil {
 		res = append(res, err)
 	}
@@ -88,6 +99,10 @@ func (m *WritableConsolePort) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateTags(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -149,6 +164,19 @@ func (m *WritableConsolePort) validateConnectionStatus(formats strfmt.Registry) 
 	return nil
 }
 
+func (m *WritableConsolePort) validateDescription(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Description) { // not required
+		return nil
+	}
+
+	if err := validate.MaxLength("description", "body", string(m.Description), 100); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *WritableConsolePort) validateDevice(formats strfmt.Registry) error {
 
 	if err := validate.Required("device", "body", m.Device); err != nil {
@@ -187,6 +215,79 @@ func (m *WritableConsolePort) validateTags(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+var writableConsolePortTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["de-9","db-25","rj-12","rj-45","usb-a","usb-b","usb-c","usb-mini-a","usb-mini-b","usb-micro-a","usb-micro-b","other"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		writableConsolePortTypeTypePropEnum = append(writableConsolePortTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// WritableConsolePortTypeDe9 captures enum value "de-9"
+	WritableConsolePortTypeDe9 string = "de-9"
+
+	// WritableConsolePortTypeDb25 captures enum value "db-25"
+	WritableConsolePortTypeDb25 string = "db-25"
+
+	// WritableConsolePortTypeRj12 captures enum value "rj-12"
+	WritableConsolePortTypeRj12 string = "rj-12"
+
+	// WritableConsolePortTypeRj45 captures enum value "rj-45"
+	WritableConsolePortTypeRj45 string = "rj-45"
+
+	// WritableConsolePortTypeUsba captures enum value "usb-a"
+	WritableConsolePortTypeUsba string = "usb-a"
+
+	// WritableConsolePortTypeUsbb captures enum value "usb-b"
+	WritableConsolePortTypeUsbb string = "usb-b"
+
+	// WritableConsolePortTypeUsbc captures enum value "usb-c"
+	WritableConsolePortTypeUsbc string = "usb-c"
+
+	// WritableConsolePortTypeUsbMinia captures enum value "usb-mini-a"
+	WritableConsolePortTypeUsbMinia string = "usb-mini-a"
+
+	// WritableConsolePortTypeUsbMinib captures enum value "usb-mini-b"
+	WritableConsolePortTypeUsbMinib string = "usb-mini-b"
+
+	// WritableConsolePortTypeUsbMicroa captures enum value "usb-micro-a"
+	WritableConsolePortTypeUsbMicroa string = "usb-micro-a"
+
+	// WritableConsolePortTypeUsbMicrob captures enum value "usb-micro-b"
+	WritableConsolePortTypeUsbMicrob string = "usb-micro-b"
+
+	// WritableConsolePortTypeOther captures enum value "other"
+	WritableConsolePortTypeOther string = "other"
+)
+
+// prop value enum
+func (m *WritableConsolePort) validateTypeEnum(path, location string, value string) error {
+	if err := validate.Enum(path, location, value, writableConsolePortTypeTypePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *WritableConsolePort) validateType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

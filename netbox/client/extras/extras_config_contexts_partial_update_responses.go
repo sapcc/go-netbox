@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // ExtrasConfigContextsPartialUpdateReader is a Reader for the ExtrasConfigContextsPartialUpdate structure.
@@ -38,7 +38,6 @@ type ExtrasConfigContextsPartialUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExtrasConfigContextsPartialUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewExtrasConfigContextsPartialUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type ExtrasConfigContextsPartialUpdateOK struct {
 
 func (o *ExtrasConfigContextsPartialUpdateOK) Error() string {
 	return fmt.Sprintf("[PATCH /extras/config-contexts/{id}/][%d] extrasConfigContextsPartialUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *ExtrasConfigContextsPartialUpdateOK) GetPayload() *models.ConfigContext {
+	return o.Payload
 }
 
 func (o *ExtrasConfigContextsPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

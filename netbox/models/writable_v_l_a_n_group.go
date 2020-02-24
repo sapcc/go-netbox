@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -50,6 +49,10 @@ type WritableVLANGroup struct {
 	// Min Length: 1
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
+
+	// Vlan count
+	// Read Only: true
+	VlanCount int64 `json:"vlan_count,omitempty"`
 }
 
 // Validate validates this writable v l a n group

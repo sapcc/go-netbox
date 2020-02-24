@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -38,6 +37,10 @@ type RackRole struct {
 	// Pattern: ^[0-9a-f]{6}$
 	Color *string `json:"color"`
 
+	// Description
+	// Max Length: 100
+	Description string `json:"description,omitempty"`
+
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
@@ -47,6 +50,10 @@ type RackRole struct {
 	// Max Length: 50
 	// Min Length: 1
 	Name *string `json:"name"`
+
+	// Rack count
+	// Read Only: true
+	RackCount int64 `json:"rack_count,omitempty"`
 
 	// Slug
 	// Required: true
@@ -61,6 +68,10 @@ func (m *RackRole) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateColor(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -93,6 +104,19 @@ func (m *RackRole) validateColor(formats strfmt.Registry) error {
 	}
 
 	if err := validate.Pattern("color", "body", string(*m.Color), `^[0-9a-f]{6}$`); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *RackRole) validateDescription(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Description) { // not required
+		return nil
+	}
+
+	if err := validate.MaxLength("description", "body", string(m.Description), 100); err != nil {
 		return err
 	}
 

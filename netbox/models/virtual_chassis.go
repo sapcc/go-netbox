@@ -22,9 +22,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -44,6 +43,10 @@ type VirtualChassis struct {
 	// master
 	// Required: true
 	Master *NestedDevice `json:"master"`
+
+	// Member count
+	// Read Only: true
+	MemberCount int64 `json:"member_count,omitempty"`
 
 	// tags
 	Tags []string `json:"tags"`

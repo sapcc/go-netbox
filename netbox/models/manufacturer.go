@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -31,15 +30,27 @@ import (
 // swagger:model Manufacturer
 type Manufacturer struct {
 
+	// Devicetype count
+	// Read Only: true
+	DevicetypeCount int64 `json:"devicetype_count,omitempty"`
+
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
+
+	// Inventoryitem count
+	// Read Only: true
+	InventoryitemCount int64 `json:"inventoryitem_count,omitempty"`
 
 	// Name
 	// Required: true
 	// Max Length: 50
 	// Min Length: 1
 	Name *string `json:"name"`
+
+	// Platform count
+	// Read Only: true
+	PlatformCount int64 `json:"platform_count,omitempty"`
 
 	// Slug
 	// Required: true

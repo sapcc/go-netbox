@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // CircuitsCircuitTypesListReader is a Reader for the CircuitsCircuitTypesList structure.
@@ -42,7 +42,6 @@ type CircuitsCircuitTypesListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CircuitsCircuitTypesListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewCircuitsCircuitTypesListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type CircuitsCircuitTypesListOK struct {
 
 func (o *CircuitsCircuitTypesListOK) Error() string {
 	return fmt.Sprintf("[GET /circuits/circuit-types/][%d] circuitsCircuitTypesListOK  %+v", 200, o.Payload)
+}
+
+func (o *CircuitsCircuitTypesListOK) GetPayload() *CircuitsCircuitTypesListOKBody {
+	return o.Payload
 }
 
 func (o *CircuitsCircuitTypesListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

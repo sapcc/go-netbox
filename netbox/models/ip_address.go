@@ -22,9 +22,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -50,6 +49,13 @@ type IPAddress struct {
 	// Description
 	// Max Length: 100
 	Description string `json:"description,omitempty"`
+
+	// DNS Name
+	//
+	// Hostname or FQDN (not case-sensitive)
+	// Max Length: 255
+	// Pattern: ^[0-9A-Za-z._-]+$
+	DNSName string `json:"dns_name,omitempty"`
 
 	// family
 	Family *IPAddressFamily `json:"family,omitempty"`
@@ -101,6 +107,10 @@ func (m *IPAddress) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDNSName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -179,6 +189,23 @@ func (m *IPAddress) validateDescription(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MaxLength("description", "body", string(m.Description), 100); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IPAddress) validateDNSName(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DNSName) { // not required
+		return nil
+	}
+
+	if err := validate.MaxLength("dns_name", "body", string(m.DNSName), 255); err != nil {
+		return err
+	}
+
+	if err := validate.Pattern("dns_name", "body", string(m.DNSName), `^[0-9A-Za-z._-]+$`); err != nil {
 		return err
 	}
 
@@ -387,7 +414,7 @@ type IPAddressFamily struct {
 
 	// value
 	// Required: true
-	Value *int64 `json:"value"`
+	Value *string `json:"value"`
 }
 
 // Validate validates this IP address family
@@ -454,7 +481,7 @@ type IPAddressRole struct {
 
 	// value
 	// Required: true
-	Value *int64 `json:"value"`
+	Value *string `json:"value"`
 }
 
 // Validate validates this IP address role
@@ -521,7 +548,7 @@ type IPAddressStatus struct {
 
 	// value
 	// Required: true
-	Value *int64 `json:"value"`
+	Value *string `json:"value"`
 }
 
 // Validate validates this IP address status

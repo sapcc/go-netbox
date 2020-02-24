@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -30,6 +29,15 @@ import (
 // Tag tag
 // swagger:model Tag
 type Tag struct {
+
+	// Color
+	// Max Length: 6
+	// Min Length: 1
+	// Pattern: ^[0-9a-f]{6}$
+	Color string `json:"color,omitempty"`
+
+	// Comments
+	Comments string `json:"comments,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -57,6 +65,10 @@ type Tag struct {
 func (m *Tag) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateColor(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -68,6 +80,27 @@ func (m *Tag) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Tag) validateColor(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Color) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("color", "body", string(m.Color), 1); err != nil {
+		return err
+	}
+
+	if err := validate.MaxLength("color", "body", string(m.Color), 6); err != nil {
+		return err
+	}
+
+	if err := validate.Pattern("color", "body", string(m.Color), `^[0-9a-f]{6}$`); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // VirtualizationVirtualMachinesListReader is a Reader for the VirtualizationVirtualMachinesList structure.
@@ -42,7 +42,6 @@ type VirtualizationVirtualMachinesListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *VirtualizationVirtualMachinesListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewVirtualizationVirtualMachinesListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type VirtualizationVirtualMachinesListOK struct {
 
 func (o *VirtualizationVirtualMachinesListOK) Error() string {
 	return fmt.Sprintf("[GET /virtualization/virtual-machines/][%d] virtualizationVirtualMachinesListOK  %+v", 200, o.Payload)
+}
+
+func (o *VirtualizationVirtualMachinesListOK) GetPayload() *VirtualizationVirtualMachinesListOKBody {
+	return o.Payload
 }
 
 func (o *VirtualizationVirtualMachinesListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -103,7 +106,7 @@ type VirtualizationVirtualMachinesListOKBody struct {
 
 	// results
 	// Required: true
-	Results []*models.VirtualMachine `json:"results"`
+	Results []*models.VirtualMachineWithConfigContext `json:"results"`
 }
 
 // Validate validates this virtualization virtual machines list o k body

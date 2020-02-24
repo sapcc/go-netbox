@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -40,6 +39,10 @@ type NestedSecretRole struct {
 	// Max Length: 50
 	// Min Length: 1
 	Name *string `json:"name"`
+
+	// Secret count
+	// Read Only: true
+	SecretCount int64 `json:"secret_count,omitempty"`
 
 	// Slug
 	// Required: true

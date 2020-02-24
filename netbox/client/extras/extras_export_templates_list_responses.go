@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // ExtrasExportTemplatesListReader is a Reader for the ExtrasExportTemplatesList structure.
@@ -42,7 +42,6 @@ type ExtrasExportTemplatesListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExtrasExportTemplatesListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewExtrasExportTemplatesListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type ExtrasExportTemplatesListOK struct {
 
 func (o *ExtrasExportTemplatesListOK) Error() string {
 	return fmt.Sprintf("[GET /extras/export-templates/][%d] extrasExportTemplatesListOK  %+v", 200, o.Payload)
+}
+
+func (o *ExtrasExportTemplatesListOK) GetPayload() *ExtrasExportTemplatesListOKBody {
+	return o.Payload
 }
 
 func (o *ExtrasExportTemplatesListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -30,6 +29,10 @@ import (
 // NestedManufacturer Manufacturer
 // swagger:model NestedManufacturer
 type NestedManufacturer struct {
+
+	// Devicetype count
+	// Read Only: true
+	DevicetypeCount int64 `json:"devicetype_count,omitempty"`
 
 	// ID
 	// Read Only: true

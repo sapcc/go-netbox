@@ -22,9 +22,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -66,6 +65,10 @@ type VLAN struct {
 	// Max Length: 64
 	// Min Length: 1
 	Name *string `json:"name"`
+
+	// Prefix count
+	// Read Only: true
+	PrefixCount int64 `json:"prefix_count,omitempty"`
 
 	// role
 	Role *NestedRole `json:"role,omitempty"`
@@ -351,7 +354,7 @@ type VLANStatus struct {
 
 	// value
 	// Required: true
-	Value *int64 `json:"value"`
+	Value *string `json:"value"`
 }
 
 // Validate validates this v l a n status

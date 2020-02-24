@@ -22,9 +22,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -42,7 +41,7 @@ type VirtualMachineWithConfigContext struct {
 
 	// Config context
 	// Read Only: true
-	ConfigContext interface{} `json:"config_context,omitempty"`
+	ConfigContext map[string]string `json:"config_context,omitempty"`
 
 	// Created
 	// Read Only: true
@@ -67,7 +66,7 @@ type VirtualMachineWithConfigContext struct {
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
 	// Local context data
-	LocalContextData interface{} `json:"local_context_data,omitempty"`
+	LocalContextData *string `json:"local_context_data,omitempty"`
 
 	// Memory (MB)
 	// Maximum: 2.147483647e+09
@@ -488,7 +487,7 @@ type VirtualMachineWithConfigContextStatus struct {
 
 	// value
 	// Required: true
-	Value *int64 `json:"value"`
+	Value *string `json:"value"`
 }
 
 // Validate validates this virtual machine with config context status

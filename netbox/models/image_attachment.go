@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -73,7 +72,7 @@ type ImageAttachment struct {
 
 	// Parent
 	// Read Only: true
-	Parent string `json:"parent,omitempty"`
+	Parent map[string]string `json:"parent,omitempty"`
 }
 
 // Validate validates this image attachment

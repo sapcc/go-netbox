@@ -22,9 +22,8 @@ package models
 import (
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -42,7 +41,7 @@ type WritableCircuitTermination struct {
 
 	// Connected endpoint
 	// Read Only: true
-	ConnectedEndpoint interface{} `json:"connected_endpoint,omitempty"`
+	ConnectedEndpoint map[string]string `json:"connected_endpoint,omitempty"`
 
 	// Connected endpoint type
 	// Read Only: true

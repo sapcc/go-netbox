@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimFrontPortsListReader is a Reader for the DcimFrontPortsList structure.
@@ -42,7 +42,6 @@ type DcimFrontPortsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimFrontPortsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimFrontPortsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type DcimFrontPortsListOK struct {
 
 func (o *DcimFrontPortsListOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/front-ports/][%d] dcimFrontPortsListOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimFrontPortsListOK) GetPayload() *DcimFrontPortsListOKBody {
+	return o.Payload
 }
 
 func (o *DcimFrontPortsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimRegionsListReader is a Reader for the DcimRegionsList structure.
@@ -42,7 +42,6 @@ type DcimRegionsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimRegionsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimRegionsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type DcimRegionsListOK struct {
 
 func (o *DcimRegionsListOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/regions/][%d] dcimRegionsListOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimRegionsListOK) GetPayload() *DcimRegionsListOKBody {
+	return o.Payload
 }
 
 func (o *DcimRegionsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

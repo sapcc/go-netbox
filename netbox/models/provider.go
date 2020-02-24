@@ -22,9 +22,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -44,6 +43,10 @@ type Provider struct {
 	// Maximum: 4.294967295e+09
 	// Minimum: 1
 	Asn *int64 `json:"asn,omitempty"`
+
+	// Circuit count
+	// Read Only: true
+	CircuitCount int64 `json:"circuit_count,omitempty"`
 
 	// Comments
 	Comments string `json:"comments,omitempty"`

@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimManufacturersListReader is a Reader for the DcimManufacturersList structure.
@@ -42,7 +42,6 @@ type DcimManufacturersListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimManufacturersListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimManufacturersListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type DcimManufacturersListOK struct {
 
 func (o *DcimManufacturersListOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/manufacturers/][%d] dcimManufacturersListOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimManufacturersListOK) GetPayload() *DcimManufacturersListOKBody {
+	return o.Payload
 }
 
 func (o *DcimManufacturersListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

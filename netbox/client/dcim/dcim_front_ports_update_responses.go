@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimFrontPortsUpdateReader is a Reader for the DcimFrontPortsUpdate structure.
@@ -38,7 +38,6 @@ type DcimFrontPortsUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimFrontPortsUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimFrontPortsUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimFrontPortsUpdateOK struct {
 
 func (o *DcimFrontPortsUpdateOK) Error() string {
 	return fmt.Sprintf("[PUT /dcim/front-ports/{id}/][%d] dcimFrontPortsUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimFrontPortsUpdateOK) GetPayload() *models.FrontPort {
+	return o.Payload
 }
 
 func (o *DcimFrontPortsUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

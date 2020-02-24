@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimDeviceBaysListReader is a Reader for the DcimDeviceBaysList structure.
@@ -42,7 +42,6 @@ type DcimDeviceBaysListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimDeviceBaysListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimDeviceBaysListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type DcimDeviceBaysListOK struct {
 
 func (o *DcimDeviceBaysListOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/device-bays/][%d] dcimDeviceBaysListOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimDeviceBaysListOK) GetPayload() *DcimDeviceBaysListOKBody {
+	return o.Payload
 }
 
 func (o *DcimDeviceBaysListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

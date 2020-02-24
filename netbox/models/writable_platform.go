@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -30,6 +29,10 @@ import (
 // WritablePlatform writable platform
 // swagger:model WritablePlatform
 type WritablePlatform struct {
+
+	// Device count
+	// Read Only: true
+	DeviceCount int64 `json:"device_count,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -42,7 +45,7 @@ type WritablePlatform struct {
 
 	// Name
 	// Required: true
-	// Max Length: 50
+	// Max Length: 100
 	// Min Length: 1
 	Name *string `json:"name"`
 
@@ -59,10 +62,14 @@ type WritablePlatform struct {
 
 	// Slug
 	// Required: true
-	// Max Length: 50
+	// Max Length: 100
 	// Min Length: 1
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
+
+	// Virtualmachine count
+	// Read Only: true
+	VirtualmachineCount int64 `json:"virtualmachine_count,omitempty"`
 }
 
 // Validate validates this writable platform
@@ -97,7 +104,7 @@ func (m *WritablePlatform) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
+	if err := validate.MaxLength("name", "body", string(*m.Name), 100); err != nil {
 		return err
 	}
 
@@ -127,7 +134,7 @@ func (m *WritablePlatform) validateSlug(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := validate.MaxLength("slug", "body", string(*m.Slug), 50); err != nil {
+	if err := validate.MaxLength("slug", "body", string(*m.Slug), 100); err != nil {
 		return err
 	}
 

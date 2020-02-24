@@ -22,9 +22,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -32,6 +31,10 @@ import (
 // WritableDeviceBay writable device bay
 // swagger:model WritableDeviceBay
 type WritableDeviceBay struct {
+
+	// Description
+	// Max Length: 100
+	Description string `json:"description,omitempty"`
 
 	// Device
 	// Required: true
@@ -58,6 +61,10 @@ type WritableDeviceBay struct {
 func (m *WritableDeviceBay) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDevice(formats); err != nil {
 		res = append(res, err)
 	}
@@ -73,6 +80,19 @@ func (m *WritableDeviceBay) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *WritableDeviceBay) validateDescription(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Description) { // not required
+		return nil
+	}
+
+	if err := validate.MaxLength("description", "body", string(m.Description), 100); err != nil {
+		return err
+	}
+
 	return nil
 }
 

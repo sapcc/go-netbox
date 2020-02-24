@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // VirtualizationInterfacesPartialUpdateReader is a Reader for the VirtualizationInterfacesPartialUpdate structure.
@@ -38,7 +38,6 @@ type VirtualizationInterfacesPartialUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *VirtualizationInterfacesPartialUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewVirtualizationInterfacesPartialUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type VirtualizationInterfacesPartialUpdateOK struct {
 
 func (o *VirtualizationInterfacesPartialUpdateOK) Error() string {
 	return fmt.Sprintf("[PATCH /virtualization/interfaces/{id}/][%d] virtualizationInterfacesPartialUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *VirtualizationInterfacesPartialUpdateOK) GetPayload() *models.VirtualMachineInterface {
+	return o.Payload
 }
 
 func (o *VirtualizationInterfacesPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

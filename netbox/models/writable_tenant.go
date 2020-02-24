@@ -22,9 +22,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -32,6 +31,14 @@ import (
 // WritableTenant writable tenant
 // swagger:model WritableTenant
 type WritableTenant struct {
+
+	// Circuit count
+	// Read Only: true
+	CircuitCount int64 `json:"circuit_count,omitempty"`
+
+	// Cluster count
+	// Read Only: true
+	ClusterCount int64 `json:"cluster_count,omitempty"`
 
 	// Comments
 	Comments string `json:"comments,omitempty"`
@@ -50,12 +57,20 @@ type WritableTenant struct {
 	// Max Length: 100
 	Description string `json:"description,omitempty"`
 
+	// Device count
+	// Read Only: true
+	DeviceCount int64 `json:"device_count,omitempty"`
+
 	// Group
 	Group *int64 `json:"group,omitempty"`
 
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
+
+	// Ipaddress count
+	// Read Only: true
+	IpaddressCount int64 `json:"ipaddress_count,omitempty"`
 
 	// Last updated
 	// Read Only: true
@@ -68,6 +83,18 @@ type WritableTenant struct {
 	// Min Length: 1
 	Name *string `json:"name"`
 
+	// Prefix count
+	// Read Only: true
+	PrefixCount int64 `json:"prefix_count,omitempty"`
+
+	// Rack count
+	// Read Only: true
+	RackCount int64 `json:"rack_count,omitempty"`
+
+	// Site count
+	// Read Only: true
+	SiteCount int64 `json:"site_count,omitempty"`
+
 	// Slug
 	// Required: true
 	// Max Length: 50
@@ -77,6 +104,18 @@ type WritableTenant struct {
 
 	// tags
 	Tags []string `json:"tags"`
+
+	// Virtualmachine count
+	// Read Only: true
+	VirtualmachineCount int64 `json:"virtualmachine_count,omitempty"`
+
+	// Vlan count
+	// Read Only: true
+	VlanCount int64 `json:"vlan_count,omitempty"`
+
+	// Vrf count
+	// Read Only: true
+	VrfCount int64 `json:"vrf_count,omitempty"`
 }
 
 // Validate validates this writable tenant

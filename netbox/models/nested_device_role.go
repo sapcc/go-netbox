@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -30,6 +29,10 @@ import (
 // NestedDeviceRole Device role
 // swagger:model NestedDeviceRole
 type NestedDeviceRole struct {
+
+	// Device count
+	// Read Only: true
+	DeviceCount int64 `json:"device_count,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -52,6 +55,10 @@ type NestedDeviceRole struct {
 	// Read Only: true
 	// Format: uri
 	URL strfmt.URI `json:"url,omitempty"`
+
+	// Virtualmachine count
+	// Read Only: true
+	VirtualmachineCount int64 `json:"virtualmachine_count,omitempty"`
 }
 
 // Validate validates this nested device role

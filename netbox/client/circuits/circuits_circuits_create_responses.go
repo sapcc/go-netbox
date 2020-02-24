@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // CircuitsCircuitsCreateReader is a Reader for the CircuitsCircuitsCreate structure.
@@ -38,7 +38,6 @@ type CircuitsCircuitsCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CircuitsCircuitsCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewCircuitsCircuitsCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type CircuitsCircuitsCreateCreated struct {
 
 func (o *CircuitsCircuitsCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /circuits/circuits/][%d] circuitsCircuitsCreateCreated  %+v", 201, o.Payload)
+}
+
+func (o *CircuitsCircuitsCreateCreated) GetPayload() *models.Circuit {
+	return o.Payload
 }
 
 func (o *CircuitsCircuitsCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

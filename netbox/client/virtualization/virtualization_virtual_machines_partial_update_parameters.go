@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewVirtualizationVirtualMachinesPartialUpdateParams creates a new VirtualizationVirtualMachinesPartialUpdateParams object
@@ -79,7 +79,7 @@ for the virtualization virtual machines partial update operation typically these
 type VirtualizationVirtualMachinesPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.WritableVirtualMachine
+	Data *models.WritableVirtualMachineWithConfigContext
 	/*ID
 	  A unique integer value identifying this virtual machine.
 
@@ -125,13 +125,13 @@ func (o *VirtualizationVirtualMachinesPartialUpdateParams) SetHTTPClient(client 
 }
 
 // WithData adds the data to the virtualization virtual machines partial update params
-func (o *VirtualizationVirtualMachinesPartialUpdateParams) WithData(data *models.WritableVirtualMachine) *VirtualizationVirtualMachinesPartialUpdateParams {
+func (o *VirtualizationVirtualMachinesPartialUpdateParams) WithData(data *models.WritableVirtualMachineWithConfigContext) *VirtualizationVirtualMachinesPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the virtualization virtual machines partial update params
-func (o *VirtualizationVirtualMachinesPartialUpdateParams) SetData(data *models.WritableVirtualMachine) {
+func (o *VirtualizationVirtualMachinesPartialUpdateParams) SetData(data *models.WritableVirtualMachineWithConfigContext) {
 	o.Data = data
 }
 

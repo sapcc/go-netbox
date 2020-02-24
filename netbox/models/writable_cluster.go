@@ -22,9 +22,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -43,6 +42,10 @@ type WritableCluster struct {
 
 	// Custom fields
 	CustomFields interface{} `json:"custom_fields,omitempty"`
+
+	// Device count
+	// Read Only: true
+	DeviceCount int64 `json:"device_count,omitempty"`
 
 	// Group
 	Group *int64 `json:"group,omitempty"`
@@ -68,9 +71,16 @@ type WritableCluster struct {
 	// tags
 	Tags []string `json:"tags"`
 
+	// Tenant
+	Tenant *int64 `json:"tenant,omitempty"`
+
 	// Type
 	// Required: true
 	Type *int64 `json:"type"`
+
+	// Virtualmachine count
+	// Read Only: true
+	VirtualmachineCount int64 `json:"virtualmachine_count,omitempty"`
 }
 
 // Validate validates this writable cluster

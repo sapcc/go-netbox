@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // NewExtrasTagsUpdateParams creates a new ExtrasTagsUpdateParams object
@@ -81,7 +81,7 @@ type ExtrasTagsUpdateParams struct {
 	/*Data*/
 	Data *models.Tag
 	/*ID
-	  A unique integer value identifying this Tag.
+	  A unique integer value identifying this tag.
 
 	*/
 	ID int64

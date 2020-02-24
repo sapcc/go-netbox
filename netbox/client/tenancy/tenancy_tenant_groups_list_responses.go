@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // TenancyTenantGroupsListReader is a Reader for the TenancyTenantGroupsList structure.
@@ -42,7 +42,6 @@ type TenancyTenantGroupsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *TenancyTenantGroupsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewTenancyTenantGroupsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type TenancyTenantGroupsListOK struct {
 
 func (o *TenancyTenantGroupsListOK) Error() string {
 	return fmt.Sprintf("[GET /tenancy/tenant-groups/][%d] tenancyTenantGroupsListOK  %+v", 200, o.Payload)
+}
+
+func (o *TenancyTenantGroupsListOK) GetPayload() *TenancyTenantGroupsListOKBody {
+	return o.Payload
 }
 
 func (o *TenancyTenantGroupsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

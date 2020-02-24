@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimDevicesPartialUpdateReader is a Reader for the DcimDevicesPartialUpdate structure.
@@ -38,7 +38,6 @@ type DcimDevicesPartialUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimDevicesPartialUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimDevicesPartialUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,16 +60,20 @@ func NewDcimDevicesPartialUpdateOK() *DcimDevicesPartialUpdateOK {
 DcimDevicesPartialUpdateOK dcim devices partial update o k
 */
 type DcimDevicesPartialUpdateOK struct {
-	Payload *models.Device
+	Payload *models.DeviceWithConfigContext
 }
 
 func (o *DcimDevicesPartialUpdateOK) Error() string {
 	return fmt.Sprintf("[PATCH /dcim/devices/{id}/][%d] dcimDevicesPartialUpdateOK  %+v", 200, o.Payload)
 }
 
+func (o *DcimDevicesPartialUpdateOK) GetPayload() *models.DeviceWithConfigContext {
+	return o.Payload
+}
+
 func (o *DcimDevicesPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Device)
+	o.Payload = new(models.DeviceWithConfigContext)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

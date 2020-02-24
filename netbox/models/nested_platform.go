@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -31,19 +30,23 @@ import (
 // swagger:model NestedPlatform
 type NestedPlatform struct {
 
+	// Device count
+	// Read Only: true
+	DeviceCount int64 `json:"device_count,omitempty"`
+
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
 
 	// Name
 	// Required: true
-	// Max Length: 50
+	// Max Length: 100
 	// Min Length: 1
 	Name *string `json:"name"`
 
 	// Slug
 	// Required: true
-	// Max Length: 50
+	// Max Length: 100
 	// Min Length: 1
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
@@ -52,6 +55,10 @@ type NestedPlatform struct {
 	// Read Only: true
 	// Format: uri
 	URL strfmt.URI `json:"url,omitempty"`
+
+	// Virtualmachine count
+	// Read Only: true
+	VirtualmachineCount int64 `json:"virtualmachine_count,omitempty"`
 }
 
 // Validate validates this nested platform
@@ -86,7 +93,7 @@ func (m *NestedPlatform) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := validate.MaxLength("name", "body", string(*m.Name), 50); err != nil {
+	if err := validate.MaxLength("name", "body", string(*m.Name), 100); err != nil {
 		return err
 	}
 
@@ -103,7 +110,7 @@ func (m *NestedPlatform) validateSlug(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := validate.MaxLength("slug", "body", string(*m.Slug), 50); err != nil {
+	if err := validate.MaxLength("slug", "body", string(*m.Slug), 100); err != nil {
 		return err
 	}
 

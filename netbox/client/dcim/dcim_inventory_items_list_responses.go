@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimInventoryItemsListReader is a Reader for the DcimInventoryItemsList structure.
@@ -42,7 +42,6 @@ type DcimInventoryItemsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimInventoryItemsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimInventoryItemsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type DcimInventoryItemsListOK struct {
 
 func (o *DcimInventoryItemsListOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/inventory-items/][%d] dcimInventoryItemsListOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimInventoryItemsListOK) GetPayload() *DcimInventoryItemsListOKBody {
+	return o.Payload
 }
 
 func (o *DcimInventoryItemsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

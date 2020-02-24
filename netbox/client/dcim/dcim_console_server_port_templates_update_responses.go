@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimConsoleServerPortTemplatesUpdateReader is a Reader for the DcimConsoleServerPortTemplatesUpdate structure.
@@ -38,7 +38,6 @@ type DcimConsoleServerPortTemplatesUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimConsoleServerPortTemplatesUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimConsoleServerPortTemplatesUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimConsoleServerPortTemplatesUpdateOK struct {
 
 func (o *DcimConsoleServerPortTemplatesUpdateOK) Error() string {
 	return fmt.Sprintf("[PUT /dcim/console-server-port-templates/{id}/][%d] dcimConsoleServerPortTemplatesUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimConsoleServerPortTemplatesUpdateOK) GetPayload() *models.ConsoleServerPortTemplate {
+	return o.Payload
 }
 
 func (o *DcimConsoleServerPortTemplatesUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
