@@ -17442,8 +17442,8 @@
           "maxLength": 64,
           "minLength": 1
         },
-        "form_factor": {
-          "title": "Form factor",
+        "type": {
+          "title": "Type",
           "required": [
             "label",
             "value"
@@ -17454,7 +17454,7 @@
               "type": "string"
             },
             "value": {
-              "type": "integer"
+              "type": "string"
             }
           }
         },
