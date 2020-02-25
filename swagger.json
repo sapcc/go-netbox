@@ -17530,7 +17530,7 @@
               "type": "string"
             },
             "value": {
-              "type": "integer"
+              "type": "string"
             }
           }
         },
@@ -20535,7 +20535,7 @@
           "family": {
             "type": "integer"
           },
-          "address":  {
+          "address": {
             "title": "Address",
             "description": "IPv4 or IPv6 address (with mask)",
             "type": "string"
@@ -20613,7 +20613,7 @@
               "type": "string"
             },
             "value": {
-              "type": "integer"
+              "type": "string"
             }
           }
         },
