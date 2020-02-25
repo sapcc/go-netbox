@@ -14,6 +14,7 @@ require (
 	github.com/go-openapi/validate v0.19.6
 	github.com/mailru/easyjson v0.7.1 // indirect
 	github.com/netbox-community/go-netbox v0.0.0-20200211112514-6bc857cb89fd // indirect
+	github.com/stretchr/testify v1.4.0
 	go.mongodb.org/mongo-driver v1.3.0 // indirect
 	golang.org/x/net v0.0.0-20200222125558-5a598a2470a0 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
