@@ -20843,6 +20843,29 @@
           "maxLength": 100,
           "minLength": 1
         },
+        "type": {
+          "title": "Type",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "enabled": {
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "lag": {
+          "$ref": "#/definitions/NestedInterface"
+        },
         "manufacturer": {
           "title": "Manufacturer",
           "description": "Optionally limit this platform to devices of a certain manufacturer",
@@ -20868,6 +20891,44 @@
         },
         "virtualmachine_count": {
           "title": "Virtualmachine count",
+        "cable": {
+          "$ref": "#/definitions/NestedCable"
+        },
+        "mode": {
+          "title": "Mode",
+          "required": [
+            "label",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "untagged_vlan": {
+          "$ref": "#/definitions/NestedVLAN"
+        },
+        "tagged_vlans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NestedVLAN"
+          },
+          "uniqueItems": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "count_ipaddresses": {
+          "title": "Count ipaddresses",
           "type": "integer",
           "readOnly": true
         }
@@ -24403,6 +24464,25 @@
           "type": "string",
           "maxLength": 64,
           "minLength": 1
+        }
+      }
+    },
+    "IPAddressEnumeration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "family": {
+            "type": "integer"
+          },
+          "address": {
+            "title": "Address",
+            "description": "IPv4 or IPv6 address (with mask)",
+            "type": "string"
+          },
+          "vrf": {
+            "$ref": "#/definitions/NestedVRF"
+          }
         }
       }
     },
