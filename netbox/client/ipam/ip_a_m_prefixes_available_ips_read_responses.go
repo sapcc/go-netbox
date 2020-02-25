@@ -61,7 +61,7 @@ func NewIPAMPrefixesAvailableIpsReadOK() *IPAMPrefixesAvailableIpsReadOK {
 IPAMPrefixesAvailableIpsReadOK ipam prefixes available ips read o k
 */
 type IPAMPrefixesAvailableIpsReadOK struct {
-	Payload models.IPAddressEnumeration
+	Payload *models.Prefix
 }
 
 func (o *IPAMPrefixesAvailableIpsReadOK) Error() string {
@@ -70,8 +70,10 @@ func (o *IPAMPrefixesAvailableIpsReadOK) Error() string {
 
 func (o *IPAMPrefixesAvailableIpsReadOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	o.Payload = new(models.Prefix)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

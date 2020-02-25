@@ -67,6 +67,10 @@ type VLAN struct {
 	// Min Length: 1
 	Name *string `json:"name"`
 
+	// Prefix count
+	// Read Only: true
+	PrefixCount int64 `json:"prefix_count,omitempty"`
+
 	// role
 	Role *NestedRole `json:"role,omitempty"`
 

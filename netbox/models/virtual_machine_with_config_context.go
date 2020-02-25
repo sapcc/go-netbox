@@ -42,7 +42,7 @@ type VirtualMachineWithConfigContext struct {
 
 	// Config context
 	// Read Only: true
-	ConfigContext interface{} `json:"config_context,omitempty"`
+	ConfigContext string `json:"config_context,omitempty"`
 
 	// Created
 	// Read Only: true
@@ -67,7 +67,7 @@ type VirtualMachineWithConfigContext struct {
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
 	// Local context data
-	LocalContextData interface{} `json:"local_context_data,omitempty"`
+	LocalContextData *string `json:"local_context_data,omitempty"`
 
 	// Memory (MB)
 	// Maximum: 2.147483647e+09
