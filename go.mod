@@ -1,4 +1,4 @@
-module github.com/hosting-de-labs/go-netbox
+module github.com/sapcc/go-netbox
 
 go 1.12
 
