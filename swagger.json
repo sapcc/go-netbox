@@ -20891,6 +20891,9 @@
         },
         "virtualmachine_count": {
           "title": "Virtualmachine count",
+          "type": "integer",
+          "readOnly": true
+        },
         "cable": {
           "$ref": "#/definitions/NestedCable"
         },
