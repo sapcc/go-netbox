@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // ExtrasObjectChangesListReader is a Reader for the ExtrasObjectChangesList structure.
@@ -42,7 +42,6 @@ type ExtrasObjectChangesListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExtrasObjectChangesListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewExtrasObjectChangesListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type ExtrasObjectChangesListOK struct {
 
 func (o *ExtrasObjectChangesListOK) Error() string {
 	return fmt.Sprintf("[GET /extras/object-changes/][%d] extrasObjectChangesListOK  %+v", 200, o.Payload)
+}
+
+func (o *ExtrasObjectChangesListOK) GetPayload() *ExtrasObjectChangesListOKBody {
+	return o.Payload
 }
 
 func (o *ExtrasObjectChangesListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

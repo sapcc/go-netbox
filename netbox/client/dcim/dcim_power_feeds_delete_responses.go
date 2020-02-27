@@ -35,7 +35,6 @@ type DcimPowerFeedsDeleteReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimPowerFeedsDeleteReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 204:
 		result := NewDcimPowerFeedsDeleteNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {

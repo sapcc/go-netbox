@@ -3659,6 +3659,12 @@
         "description": "",
         "parameters": [
           {
+            "name": "exclude",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "query",
             "description": "",
@@ -19536,7 +19542,10 @@
         },
         "config_context": {
           "title": "Config context",
-          "type": "string",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
           "readOnly": true
         },
         "created": {
@@ -19709,7 +19718,10 @@
         },
         "config_context": {
           "title": "Config context",
-          "type": "string",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
           "readOnly": true
         },
         "created": {

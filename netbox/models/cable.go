@@ -22,9 +22,8 @@ package models
 import (
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -59,31 +58,31 @@ type Cable struct {
 
 	// Termination a
 	// Read Only: true
-	TerminationA map[string]string `json:"termination_a,omitempty"`
+	Terminationa map[string]string `json:"termination_a,omitempty"`
 
 	// Termination a id
 	// Required: true
 	// Maximum: 2.147483647e+09
 	// Minimum: 0
-	TerminationAID *int64 `json:"termination_a_id"`
+	TerminationaID *int64 `json:"termination_a_id"`
 
 	// Termination a type
 	// Required: true
-	TerminationAType *string `json:"termination_a_type"`
+	TerminationaType *string `json:"termination_a_type"`
 
 	// Termination b
 	// Read Only: true
-	TerminationB map[string]string `json:"termination_b,omitempty"`
+	Terminationb map[string]string `json:"termination_b,omitempty"`
 
 	// Termination b id
 	// Required: true
 	// Maximum: 2.147483647e+09
 	// Minimum: 0
-	TerminationBID *int64 `json:"termination_b_id"`
+	TerminationbID *int64 `json:"termination_b_id"`
 
 	// Termination b type
 	// Required: true
-	TerminationBType *string `json:"termination_b_type"`
+	TerminationbType *string `json:"termination_b_type"`
 
 	// Type
 	// Enum: [cat3 cat5 cat5e cat6 cat6a cat7 dac-active dac-passive coaxial mmf mmf-om1 mmf-om2 mmf-om3 mmf-om4 smf smf-os1 smf-os2 aoc power]
@@ -114,19 +113,19 @@ func (m *Cable) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateTerminationAID(formats); err != nil {
+	if err := m.validateTerminationaID(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTerminationAType(formats); err != nil {
+	if err := m.validateTerminationaType(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTerminationBID(formats); err != nil {
+	if err := m.validateTerminationbID(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTerminationBType(formats); err != nil {
+	if err := m.validateTerminationbType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -223,52 +222,52 @@ func (m *Cable) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Cable) validateTerminationAID(formats strfmt.Registry) error {
+func (m *Cable) validateTerminationaID(formats strfmt.Registry) error {
 
-	if err := validate.Required("termination_a_id", "body", m.TerminationAID); err != nil {
+	if err := validate.Required("termination_a_id", "body", m.TerminationaID); err != nil {
 		return err
 	}
 
-	if err := validate.MinimumInt("termination_a_id", "body", int64(*m.TerminationAID), 0, false); err != nil {
+	if err := validate.MinimumInt("termination_a_id", "body", int64(*m.TerminationaID), 0, false); err != nil {
 		return err
 	}
 
-	if err := validate.MaximumInt("termination_a_id", "body", int64(*m.TerminationAID), 2.147483647e+09, false); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Cable) validateTerminationAType(formats strfmt.Registry) error {
-
-	if err := validate.Required("termination_a_type", "body", m.TerminationAType); err != nil {
+	if err := validate.MaximumInt("termination_a_id", "body", int64(*m.TerminationaID), 2.147483647e+09, false); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Cable) validateTerminationBID(formats strfmt.Registry) error {
+func (m *Cable) validateTerminationaType(formats strfmt.Registry) error {
 
-	if err := validate.Required("termination_b_id", "body", m.TerminationBID); err != nil {
-		return err
-	}
-
-	if err := validate.MinimumInt("termination_b_id", "body", int64(*m.TerminationBID), 0, false); err != nil {
-		return err
-	}
-
-	if err := validate.MaximumInt("termination_b_id", "body", int64(*m.TerminationBID), 2.147483647e+09, false); err != nil {
+	if err := validate.Required("termination_a_type", "body", m.TerminationaType); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Cable) validateTerminationBType(formats strfmt.Registry) error {
+func (m *Cable) validateTerminationbID(formats strfmt.Registry) error {
 
-	if err := validate.Required("termination_b_type", "body", m.TerminationBType); err != nil {
+	if err := validate.Required("termination_b_id", "body", m.TerminationbID); err != nil {
+		return err
+	}
+
+	if err := validate.MinimumInt("termination_b_id", "body", int64(*m.TerminationbID), 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("termination_b_id", "body", int64(*m.TerminationbID), 2.147483647e+09, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Cable) validateTerminationbType(formats strfmt.Registry) error {
+
+	if err := validate.Required("termination_b_type", "body", m.TerminationbType); err != nil {
 		return err
 	}
 

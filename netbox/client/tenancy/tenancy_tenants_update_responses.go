@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // TenancyTenantsUpdateReader is a Reader for the TenancyTenantsUpdate structure.
@@ -38,7 +38,6 @@ type TenancyTenantsUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *TenancyTenantsUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewTenancyTenantsUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type TenancyTenantsUpdateOK struct {
 
 func (o *TenancyTenantsUpdateOK) Error() string {
 	return fmt.Sprintf("[PUT /tenancy/tenants/{id}/][%d] tenancyTenantsUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *TenancyTenantsUpdateOK) GetPayload() *models.Tenant {
+	return o.Payload
 }
 
 func (o *TenancyTenantsUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

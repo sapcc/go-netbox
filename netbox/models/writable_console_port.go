@@ -23,9 +23,8 @@ import (
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -247,26 +246,26 @@ const (
 	// WritableConsolePortTypeRj45 captures enum value "rj-45"
 	WritableConsolePortTypeRj45 string = "rj-45"
 
-	// WritableConsolePortTypeUsbA captures enum value "usb-a"
-	WritableConsolePortTypeUsbA string = "usb-a"
+	// WritableConsolePortTypeUsba captures enum value "usb-a"
+	WritableConsolePortTypeUsba string = "usb-a"
 
-	// WritableConsolePortTypeUsbB captures enum value "usb-b"
-	WritableConsolePortTypeUsbB string = "usb-b"
+	// WritableConsolePortTypeUsbb captures enum value "usb-b"
+	WritableConsolePortTypeUsbb string = "usb-b"
 
-	// WritableConsolePortTypeUsbC captures enum value "usb-c"
-	WritableConsolePortTypeUsbC string = "usb-c"
+	// WritableConsolePortTypeUsbc captures enum value "usb-c"
+	WritableConsolePortTypeUsbc string = "usb-c"
 
-	// WritableConsolePortTypeUsbMiniA captures enum value "usb-mini-a"
-	WritableConsolePortTypeUsbMiniA string = "usb-mini-a"
+	// WritableConsolePortTypeUsbMinia captures enum value "usb-mini-a"
+	WritableConsolePortTypeUsbMinia string = "usb-mini-a"
 
-	// WritableConsolePortTypeUsbMiniB captures enum value "usb-mini-b"
-	WritableConsolePortTypeUsbMiniB string = "usb-mini-b"
+	// WritableConsolePortTypeUsbMinib captures enum value "usb-mini-b"
+	WritableConsolePortTypeUsbMinib string = "usb-mini-b"
 
-	// WritableConsolePortTypeUsbMicroA captures enum value "usb-micro-a"
-	WritableConsolePortTypeUsbMicroA string = "usb-micro-a"
+	// WritableConsolePortTypeUsbMicroa captures enum value "usb-micro-a"
+	WritableConsolePortTypeUsbMicroa string = "usb-micro-a"
 
-	// WritableConsolePortTypeUsbMicroB captures enum value "usb-micro-b"
-	WritableConsolePortTypeUsbMicroB string = "usb-micro-b"
+	// WritableConsolePortTypeUsbMicrob captures enum value "usb-micro-b"
+	WritableConsolePortTypeUsbMicrob string = "usb-micro-b"
 
 	// WritableConsolePortTypeOther captures enum value "other"
 	WritableConsolePortTypeOther string = "other"

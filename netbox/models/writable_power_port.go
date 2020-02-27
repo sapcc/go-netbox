@@ -23,9 +23,8 @@ import (
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -310,41 +309,41 @@ const (
 	// WritablePowerPortTypeIec60320C20 captures enum value "iec-60320-c20"
 	WritablePowerPortTypeIec60320C20 string = "iec-60320-c20"
 
-	// WritablePowerPortTypeIec60309PNE4h captures enum value "iec-60309-p-n-e-4h"
-	WritablePowerPortTypeIec60309PNE4h string = "iec-60309-p-n-e-4h"
+	// WritablePowerPortTypeIec60309pne4h captures enum value "iec-60309-p-n-e-4h"
+	WritablePowerPortTypeIec60309pne4h string = "iec-60309-p-n-e-4h"
 
-	// WritablePowerPortTypeIec60309PNE6h captures enum value "iec-60309-p-n-e-6h"
-	WritablePowerPortTypeIec60309PNE6h string = "iec-60309-p-n-e-6h"
+	// WritablePowerPortTypeIec60309pne6h captures enum value "iec-60309-p-n-e-6h"
+	WritablePowerPortTypeIec60309pne6h string = "iec-60309-p-n-e-6h"
 
-	// WritablePowerPortTypeIec60309PNE9h captures enum value "iec-60309-p-n-e-9h"
-	WritablePowerPortTypeIec60309PNE9h string = "iec-60309-p-n-e-9h"
+	// WritablePowerPortTypeIec60309pne9h captures enum value "iec-60309-p-n-e-9h"
+	WritablePowerPortTypeIec60309pne9h string = "iec-60309-p-n-e-9h"
 
-	// WritablePowerPortTypeIec603092pE4h captures enum value "iec-60309-2p-e-4h"
-	WritablePowerPortTypeIec603092pE4h string = "iec-60309-2p-e-4h"
+	// WritablePowerPortTypeIec603092pe4h captures enum value "iec-60309-2p-e-4h"
+	WritablePowerPortTypeIec603092pe4h string = "iec-60309-2p-e-4h"
 
-	// WritablePowerPortTypeIec603092pE6h captures enum value "iec-60309-2p-e-6h"
-	WritablePowerPortTypeIec603092pE6h string = "iec-60309-2p-e-6h"
+	// WritablePowerPortTypeIec603092pe6h captures enum value "iec-60309-2p-e-6h"
+	WritablePowerPortTypeIec603092pe6h string = "iec-60309-2p-e-6h"
 
-	// WritablePowerPortTypeIec603092pE9h captures enum value "iec-60309-2p-e-9h"
-	WritablePowerPortTypeIec603092pE9h string = "iec-60309-2p-e-9h"
+	// WritablePowerPortTypeIec603092pe9h captures enum value "iec-60309-2p-e-9h"
+	WritablePowerPortTypeIec603092pe9h string = "iec-60309-2p-e-9h"
 
-	// WritablePowerPortTypeIec603093pE4h captures enum value "iec-60309-3p-e-4h"
-	WritablePowerPortTypeIec603093pE4h string = "iec-60309-3p-e-4h"
+	// WritablePowerPortTypeIec603093pe4h captures enum value "iec-60309-3p-e-4h"
+	WritablePowerPortTypeIec603093pe4h string = "iec-60309-3p-e-4h"
 
-	// WritablePowerPortTypeIec603093pE6h captures enum value "iec-60309-3p-e-6h"
-	WritablePowerPortTypeIec603093pE6h string = "iec-60309-3p-e-6h"
+	// WritablePowerPortTypeIec603093pe6h captures enum value "iec-60309-3p-e-6h"
+	WritablePowerPortTypeIec603093pe6h string = "iec-60309-3p-e-6h"
 
-	// WritablePowerPortTypeIec603093pE9h captures enum value "iec-60309-3p-e-9h"
-	WritablePowerPortTypeIec603093pE9h string = "iec-60309-3p-e-9h"
+	// WritablePowerPortTypeIec603093pe9h captures enum value "iec-60309-3p-e-9h"
+	WritablePowerPortTypeIec603093pe9h string = "iec-60309-3p-e-9h"
 
-	// WritablePowerPortTypeIec603093pNE4h captures enum value "iec-60309-3p-n-e-4h"
-	WritablePowerPortTypeIec603093pNE4h string = "iec-60309-3p-n-e-4h"
+	// WritablePowerPortTypeIec603093pne4h captures enum value "iec-60309-3p-n-e-4h"
+	WritablePowerPortTypeIec603093pne4h string = "iec-60309-3p-n-e-4h"
 
-	// WritablePowerPortTypeIec603093pNE6h captures enum value "iec-60309-3p-n-e-6h"
-	WritablePowerPortTypeIec603093pNE6h string = "iec-60309-3p-n-e-6h"
+	// WritablePowerPortTypeIec603093pne6h captures enum value "iec-60309-3p-n-e-6h"
+	WritablePowerPortTypeIec603093pne6h string = "iec-60309-3p-n-e-6h"
 
-	// WritablePowerPortTypeIec603093pNE9h captures enum value "iec-60309-3p-n-e-9h"
-	WritablePowerPortTypeIec603093pNE9h string = "iec-60309-3p-n-e-9h"
+	// WritablePowerPortTypeIec603093pne9h captures enum value "iec-60309-3p-n-e-9h"
+	WritablePowerPortTypeIec603093pne9h string = "iec-60309-3p-n-e-9h"
 
 	// WritablePowerPortTypeNema515p captures enum value "nema-5-15p"
 	WritablePowerPortTypeNema515p string = "nema-5-15p"
@@ -409,41 +408,41 @@ const (
 	// WritablePowerPortTypeCs8465c captures enum value "cs8465c"
 	WritablePowerPortTypeCs8465c string = "cs8465c"
 
-	// WritablePowerPortTypeItaE captures enum value "ita-e"
-	WritablePowerPortTypeItaE string = "ita-e"
+	// WritablePowerPortTypeItae captures enum value "ita-e"
+	WritablePowerPortTypeItae string = "ita-e"
 
-	// WritablePowerPortTypeItaF captures enum value "ita-f"
-	WritablePowerPortTypeItaF string = "ita-f"
+	// WritablePowerPortTypeItaf captures enum value "ita-f"
+	WritablePowerPortTypeItaf string = "ita-f"
 
 	// WritablePowerPortTypeItaEf captures enum value "ita-ef"
 	WritablePowerPortTypeItaEf string = "ita-ef"
 
-	// WritablePowerPortTypeItaG captures enum value "ita-g"
-	WritablePowerPortTypeItaG string = "ita-g"
+	// WritablePowerPortTypeItag captures enum value "ita-g"
+	WritablePowerPortTypeItag string = "ita-g"
 
-	// WritablePowerPortTypeItaH captures enum value "ita-h"
-	WritablePowerPortTypeItaH string = "ita-h"
+	// WritablePowerPortTypeItah captures enum value "ita-h"
+	WritablePowerPortTypeItah string = "ita-h"
 
-	// WritablePowerPortTypeItaI captures enum value "ita-i"
-	WritablePowerPortTypeItaI string = "ita-i"
+	// WritablePowerPortTypeItai captures enum value "ita-i"
+	WritablePowerPortTypeItai string = "ita-i"
 
-	// WritablePowerPortTypeItaJ captures enum value "ita-j"
-	WritablePowerPortTypeItaJ string = "ita-j"
+	// WritablePowerPortTypeItaj captures enum value "ita-j"
+	WritablePowerPortTypeItaj string = "ita-j"
 
-	// WritablePowerPortTypeItaK captures enum value "ita-k"
-	WritablePowerPortTypeItaK string = "ita-k"
+	// WritablePowerPortTypeItak captures enum value "ita-k"
+	WritablePowerPortTypeItak string = "ita-k"
 
-	// WritablePowerPortTypeItaL captures enum value "ita-l"
-	WritablePowerPortTypeItaL string = "ita-l"
+	// WritablePowerPortTypeItal captures enum value "ita-l"
+	WritablePowerPortTypeItal string = "ita-l"
 
-	// WritablePowerPortTypeItaM captures enum value "ita-m"
-	WritablePowerPortTypeItaM string = "ita-m"
+	// WritablePowerPortTypeItam captures enum value "ita-m"
+	WritablePowerPortTypeItam string = "ita-m"
 
-	// WritablePowerPortTypeItaN captures enum value "ita-n"
-	WritablePowerPortTypeItaN string = "ita-n"
+	// WritablePowerPortTypeItan captures enum value "ita-n"
+	WritablePowerPortTypeItan string = "ita-n"
 
-	// WritablePowerPortTypeItaO captures enum value "ita-o"
-	WritablePowerPortTypeItaO string = "ita-o"
+	// WritablePowerPortTypeItao captures enum value "ita-o"
+	WritablePowerPortTypeItao string = "ita-o"
 )
 
 // prop value enum

@@ -22,9 +22,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -86,10 +85,10 @@ type Circuit struct {
 	Tenant *NestedTenant `json:"tenant,omitempty"`
 
 	// termination a
-	TerminationA *CircuitCircuitTermination `json:"termination_a,omitempty"`
+	Terminationa *CircuitCircuitTermination `json:"termination_a,omitempty"`
 
 	// termination z
-	TerminationZ *CircuitCircuitTermination `json:"termination_z,omitempty"`
+	Terminationz *CircuitCircuitTermination `json:"termination_z,omitempty"`
 
 	// type
 	// Required: true
@@ -140,11 +139,11 @@ func (m *Circuit) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateTerminationA(formats); err != nil {
+	if err := m.validateTerminationa(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTerminationZ(formats); err != nil {
+	if err := m.validateTerminationz(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -315,14 +314,14 @@ func (m *Circuit) validateTenant(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Circuit) validateTerminationA(formats strfmt.Registry) error {
+func (m *Circuit) validateTerminationa(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.TerminationA) { // not required
+	if swag.IsZero(m.Terminationa) { // not required
 		return nil
 	}
 
-	if m.TerminationA != nil {
-		if err := m.TerminationA.Validate(formats); err != nil {
+	if m.Terminationa != nil {
+		if err := m.Terminationa.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("termination_a")
 			}
@@ -333,14 +332,14 @@ func (m *Circuit) validateTerminationA(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Circuit) validateTerminationZ(formats strfmt.Registry) error {
+func (m *Circuit) validateTerminationz(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.TerminationZ) { // not required
+	if swag.IsZero(m.Terminationz) { // not required
 		return nil
 	}
 
-	if m.TerminationZ != nil {
-		if err := m.TerminationZ.Validate(formats); err != nil {
+	if m.Terminationz != nil {
+		if err := m.Terminationz.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("termination_z")
 			}

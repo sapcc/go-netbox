@@ -22,9 +22,8 @@ package models
 import (
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -127,74 +126,74 @@ const (
 	// WritableInterfaceTemplateTypeNr100baseTx captures enum value "100base-tx"
 	WritableInterfaceTemplateTypeNr100baseTx string = "100base-tx"
 
-	// WritableInterfaceTemplateTypeNr1000baseT captures enum value "1000base-t"
-	WritableInterfaceTemplateTypeNr1000baseT string = "1000base-t"
+	// WritableInterfaceTemplateTypeNr1000baset captures enum value "1000base-t"
+	WritableInterfaceTemplateTypeNr1000baset string = "1000base-t"
 
-	// WritableInterfaceTemplateTypeNr25gbaseT captures enum value "2.5gbase-t"
-	WritableInterfaceTemplateTypeNr25gbaseT string = "2.5gbase-t"
+	// WritableInterfaceTemplateTypeNr25gbaset captures enum value "2.5gbase-t"
+	WritableInterfaceTemplateTypeNr25gbaset string = "2.5gbase-t"
 
-	// WritableInterfaceTemplateTypeNr5gbaseT captures enum value "5gbase-t"
-	WritableInterfaceTemplateTypeNr5gbaseT string = "5gbase-t"
+	// WritableInterfaceTemplateTypeNr5gbaset captures enum value "5gbase-t"
+	WritableInterfaceTemplateTypeNr5gbaset string = "5gbase-t"
 
-	// WritableInterfaceTemplateTypeNr10gbaseT captures enum value "10gbase-t"
-	WritableInterfaceTemplateTypeNr10gbaseT string = "10gbase-t"
+	// WritableInterfaceTemplateTypeNr10gbaset captures enum value "10gbase-t"
+	WritableInterfaceTemplateTypeNr10gbaset string = "10gbase-t"
 
 	// WritableInterfaceTemplateTypeNr10gbaseCx4 captures enum value "10gbase-cx4"
 	WritableInterfaceTemplateTypeNr10gbaseCx4 string = "10gbase-cx4"
 
-	// WritableInterfaceTemplateTypeNr1000baseXGbic captures enum value "1000base-x-gbic"
-	WritableInterfaceTemplateTypeNr1000baseXGbic string = "1000base-x-gbic"
+	// WritableInterfaceTemplateTypeNr1000basexGbic captures enum value "1000base-x-gbic"
+	WritableInterfaceTemplateTypeNr1000basexGbic string = "1000base-x-gbic"
 
-	// WritableInterfaceTemplateTypeNr1000baseXSfp captures enum value "1000base-x-sfp"
-	WritableInterfaceTemplateTypeNr1000baseXSfp string = "1000base-x-sfp"
+	// WritableInterfaceTemplateTypeNr1000basexSfp captures enum value "1000base-x-sfp"
+	WritableInterfaceTemplateTypeNr1000basexSfp string = "1000base-x-sfp"
 
-	// WritableInterfaceTemplateTypeNr10gbaseXSfpp captures enum value "10gbase-x-sfpp"
-	WritableInterfaceTemplateTypeNr10gbaseXSfpp string = "10gbase-x-sfpp"
+	// WritableInterfaceTemplateTypeNr10gbasexSfpp captures enum value "10gbase-x-sfpp"
+	WritableInterfaceTemplateTypeNr10gbasexSfpp string = "10gbase-x-sfpp"
 
-	// WritableInterfaceTemplateTypeNr10gbaseXXfp captures enum value "10gbase-x-xfp"
-	WritableInterfaceTemplateTypeNr10gbaseXXfp string = "10gbase-x-xfp"
+	// WritableInterfaceTemplateTypeNr10gbasexXfp captures enum value "10gbase-x-xfp"
+	WritableInterfaceTemplateTypeNr10gbasexXfp string = "10gbase-x-xfp"
 
-	// WritableInterfaceTemplateTypeNr10gbaseXXenpak captures enum value "10gbase-x-xenpak"
-	WritableInterfaceTemplateTypeNr10gbaseXXenpak string = "10gbase-x-xenpak"
+	// WritableInterfaceTemplateTypeNr10gbasexXenpak captures enum value "10gbase-x-xenpak"
+	WritableInterfaceTemplateTypeNr10gbasexXenpak string = "10gbase-x-xenpak"
 
-	// WritableInterfaceTemplateTypeNr10gbaseXX2 captures enum value "10gbase-x-x2"
-	WritableInterfaceTemplateTypeNr10gbaseXX2 string = "10gbase-x-x2"
+	// WritableInterfaceTemplateTypeNr10gbasexX2 captures enum value "10gbase-x-x2"
+	WritableInterfaceTemplateTypeNr10gbasexX2 string = "10gbase-x-x2"
 
-	// WritableInterfaceTemplateTypeNr25gbaseXSfp28 captures enum value "25gbase-x-sfp28"
-	WritableInterfaceTemplateTypeNr25gbaseXSfp28 string = "25gbase-x-sfp28"
+	// WritableInterfaceTemplateTypeNr25gbasexSfp28 captures enum value "25gbase-x-sfp28"
+	WritableInterfaceTemplateTypeNr25gbasexSfp28 string = "25gbase-x-sfp28"
 
-	// WritableInterfaceTemplateTypeNr40gbaseXQsfpp captures enum value "40gbase-x-qsfpp"
-	WritableInterfaceTemplateTypeNr40gbaseXQsfpp string = "40gbase-x-qsfpp"
+	// WritableInterfaceTemplateTypeNr40gbasexQsfpp captures enum value "40gbase-x-qsfpp"
+	WritableInterfaceTemplateTypeNr40gbasexQsfpp string = "40gbase-x-qsfpp"
 
-	// WritableInterfaceTemplateTypeNr50gbaseXSfp28 captures enum value "50gbase-x-sfp28"
-	WritableInterfaceTemplateTypeNr50gbaseXSfp28 string = "50gbase-x-sfp28"
+	// WritableInterfaceTemplateTypeNr50gbasexSfp28 captures enum value "50gbase-x-sfp28"
+	WritableInterfaceTemplateTypeNr50gbasexSfp28 string = "50gbase-x-sfp28"
 
-	// WritableInterfaceTemplateTypeNr100gbaseXCfp captures enum value "100gbase-x-cfp"
-	WritableInterfaceTemplateTypeNr100gbaseXCfp string = "100gbase-x-cfp"
+	// WritableInterfaceTemplateTypeNr100gbasexCfp captures enum value "100gbase-x-cfp"
+	WritableInterfaceTemplateTypeNr100gbasexCfp string = "100gbase-x-cfp"
 
-	// WritableInterfaceTemplateTypeNr100gbaseXCfp2 captures enum value "100gbase-x-cfp2"
-	WritableInterfaceTemplateTypeNr100gbaseXCfp2 string = "100gbase-x-cfp2"
+	// WritableInterfaceTemplateTypeNr100gbasexCfp2 captures enum value "100gbase-x-cfp2"
+	WritableInterfaceTemplateTypeNr100gbasexCfp2 string = "100gbase-x-cfp2"
 
-	// WritableInterfaceTemplateTypeNr200gbaseXCfp2 captures enum value "200gbase-x-cfp2"
-	WritableInterfaceTemplateTypeNr200gbaseXCfp2 string = "200gbase-x-cfp2"
+	// WritableInterfaceTemplateTypeNr200gbasexCfp2 captures enum value "200gbase-x-cfp2"
+	WritableInterfaceTemplateTypeNr200gbasexCfp2 string = "200gbase-x-cfp2"
 
-	// WritableInterfaceTemplateTypeNr100gbaseXCfp4 captures enum value "100gbase-x-cfp4"
-	WritableInterfaceTemplateTypeNr100gbaseXCfp4 string = "100gbase-x-cfp4"
+	// WritableInterfaceTemplateTypeNr100gbasexCfp4 captures enum value "100gbase-x-cfp4"
+	WritableInterfaceTemplateTypeNr100gbasexCfp4 string = "100gbase-x-cfp4"
 
-	// WritableInterfaceTemplateTypeNr100gbaseXCpak captures enum value "100gbase-x-cpak"
-	WritableInterfaceTemplateTypeNr100gbaseXCpak string = "100gbase-x-cpak"
+	// WritableInterfaceTemplateTypeNr100gbasexCpak captures enum value "100gbase-x-cpak"
+	WritableInterfaceTemplateTypeNr100gbasexCpak string = "100gbase-x-cpak"
 
-	// WritableInterfaceTemplateTypeNr100gbaseXQsfp28 captures enum value "100gbase-x-qsfp28"
-	WritableInterfaceTemplateTypeNr100gbaseXQsfp28 string = "100gbase-x-qsfp28"
+	// WritableInterfaceTemplateTypeNr100gbasexQsfp28 captures enum value "100gbase-x-qsfp28"
+	WritableInterfaceTemplateTypeNr100gbasexQsfp28 string = "100gbase-x-qsfp28"
 
-	// WritableInterfaceTemplateTypeNr200gbaseXQsfp56 captures enum value "200gbase-x-qsfp56"
-	WritableInterfaceTemplateTypeNr200gbaseXQsfp56 string = "200gbase-x-qsfp56"
+	// WritableInterfaceTemplateTypeNr200gbasexQsfp56 captures enum value "200gbase-x-qsfp56"
+	WritableInterfaceTemplateTypeNr200gbasexQsfp56 string = "200gbase-x-qsfp56"
 
-	// WritableInterfaceTemplateTypeNr400gbaseXQsfpdd captures enum value "400gbase-x-qsfpdd"
-	WritableInterfaceTemplateTypeNr400gbaseXQsfpdd string = "400gbase-x-qsfpdd"
+	// WritableInterfaceTemplateTypeNr400gbasexQsfpdd captures enum value "400gbase-x-qsfpdd"
+	WritableInterfaceTemplateTypeNr400gbasexQsfpdd string = "400gbase-x-qsfpdd"
 
-	// WritableInterfaceTemplateTypeNr400gbaseXOsfp captures enum value "400gbase-x-osfp"
-	WritableInterfaceTemplateTypeNr400gbaseXOsfp string = "400gbase-x-osfp"
+	// WritableInterfaceTemplateTypeNr400gbasexOsfp captures enum value "400gbase-x-osfp"
+	WritableInterfaceTemplateTypeNr400gbasexOsfp string = "400gbase-x-osfp"
 
 	// WritableInterfaceTemplateTypeIeee80211a captures enum value "ieee802.11a"
 	WritableInterfaceTemplateTypeIeee80211a string = "ieee802.11a"

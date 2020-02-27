@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimPowerPanelsListReader is a Reader for the DcimPowerPanelsList structure.
@@ -42,7 +42,6 @@ type DcimPowerPanelsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimPowerPanelsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimPowerPanelsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type DcimPowerPanelsListOK struct {
 
 func (o *DcimPowerPanelsListOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/power-panels/][%d] dcimPowerPanelsListOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimPowerPanelsListOK) GetPayload() *DcimPowerPanelsListOKBody {
+	return o.Payload
 }
 
 func (o *DcimPowerPanelsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

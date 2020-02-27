@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // ExtrasTagsCreateReader is a Reader for the ExtrasTagsCreate structure.
@@ -38,7 +38,6 @@ type ExtrasTagsCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExtrasTagsCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewExtrasTagsCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type ExtrasTagsCreateCreated struct {
 
 func (o *ExtrasTagsCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /extras/tags/][%d] extrasTagsCreateCreated  %+v", 201, o.Payload)
+}
+
+func (o *ExtrasTagsCreateCreated) GetPayload() *models.Tag {
+	return o.Payload
 }
 
 func (o *ExtrasTagsCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

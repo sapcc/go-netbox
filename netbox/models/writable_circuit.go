@@ -23,9 +23,8 @@ import (
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -89,11 +88,11 @@ type WritableCircuit struct {
 
 	// Termination a
 	// Read Only: true
-	TerminationA string `json:"termination_a,omitempty"`
+	Terminationa string `json:"termination_a,omitempty"`
 
 	// Termination z
 	// Read Only: true
-	TerminationZ string `json:"termination_z,omitempty"`
+	Terminationz string `json:"termination_z,omitempty"`
 
 	// Type
 	// Required: true

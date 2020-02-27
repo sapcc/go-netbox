@@ -20,9 +20,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"strconv"
 
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -31,18 +32,34 @@ import (
 // swagger:model WritablePlatform
 type WritablePlatform struct {
 
+	// cable
+	Cable *NestedCable `json:"cable,omitempty"`
+
+	// Count ipaddresses
+	// Read Only: true
+	CountIpaddresses int64 `json:"count_ipaddresses,omitempty"`
+
 	// Device count
 	// Read Only: true
 	DeviceCount int64 `json:"device_count,omitempty"`
+
+	// Enabled
+	Enabled bool `json:"enabled,omitempty"`
 
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
 
+	// lag
+	Lag *NestedInterface `json:"lag,omitempty"`
+
 	// Manufacturer
 	//
 	// Optionally limit this platform to devices of a certain manufacturer
 	Manufacturer *int64 `json:"manufacturer,omitempty"`
+
+	// mode
+	Mode *WritablePlatformMode `json:"mode,omitempty"`
 
 	// Name
 	// Required: true
@@ -68,6 +85,19 @@ type WritablePlatform struct {
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
 
+	// tagged vlans
+	// Unique: true
+	TaggedVlans []*NestedVLAN `json:"tagged_vlans"`
+
+	// tags
+	Tags []string `json:"tags"`
+
+	// type
+	Type *WritablePlatformType `json:"type,omitempty"`
+
+	// untagged vlan
+	UntaggedVlan *NestedVLAN `json:"untagged_vlan,omitempty"`
+
 	// Virtualmachine count
 	// Read Only: true
 	VirtualmachineCount int64 `json:"virtualmachine_count,omitempty"`
@@ -76,6 +106,18 @@ type WritablePlatform struct {
 // Validate validates this writable platform
 func (m *WritablePlatform) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateCable(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLag(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMode(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
@@ -89,9 +131,79 @@ func (m *WritablePlatform) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTaggedVlans(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUntaggedVlan(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *WritablePlatform) validateCable(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Cable) { // not required
+		return nil
+	}
+
+	if m.Cable != nil {
+		if err := m.Cable.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cable")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *WritablePlatform) validateLag(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Lag) { // not required
+		return nil
+	}
+
+	if m.Lag != nil {
+		if err := m.Lag.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("lag")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *WritablePlatform) validateMode(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Mode) { // not required
+		return nil
+	}
+
+	if m.Mode != nil {
+		if err := m.Mode.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("mode")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -146,6 +258,88 @@ func (m *WritablePlatform) validateSlug(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *WritablePlatform) validateTaggedVlans(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.TaggedVlans) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("tagged_vlans", "body", m.TaggedVlans); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.TaggedVlans); i++ {
+		if swag.IsZero(m.TaggedVlans[i]) { // not required
+			continue
+		}
+
+		if m.TaggedVlans[i] != nil {
+			if err := m.TaggedVlans[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("tagged_vlans" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *WritablePlatform) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *WritablePlatform) validateType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *WritablePlatform) validateUntaggedVlan(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.UntaggedVlan) { // not required
+		return nil
+	}
+
+	if m.UntaggedVlan != nil {
+		if err := m.UntaggedVlan.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("untagged_vlan")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // MarshalBinary interface implementation
 func (m *WritablePlatform) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -157,6 +351,140 @@ func (m *WritablePlatform) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *WritablePlatform) UnmarshalBinary(b []byte) error {
 	var res WritablePlatform
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// WritablePlatformMode Mode
+// swagger:model WritablePlatformMode
+type WritablePlatformMode struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *string `json:"value"`
+}
+
+// Validate validates this writable platform mode
+func (m *WritablePlatformMode) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *WritablePlatformMode) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("mode"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WritablePlatformMode) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("mode"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *WritablePlatformMode) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *WritablePlatformMode) UnmarshalBinary(b []byte) error {
+	var res WritablePlatformMode
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// WritablePlatformType Type
+// swagger:model WritablePlatformType
+type WritablePlatformType struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *string `json:"value"`
+}
+
+// Validate validates this writable platform type
+func (m *WritablePlatformType) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *WritablePlatformType) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("type"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WritablePlatformType) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("type"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *WritablePlatformType) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *WritablePlatformType) UnmarshalBinary(b []byte) error {
+	var res WritablePlatformType
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

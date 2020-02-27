@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimDevicesReadReader is a Reader for the DcimDevicesRead structure.
@@ -38,7 +38,6 @@ type DcimDevicesReadReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimDevicesReadReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimDevicesReadOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimDevicesReadOK struct {
 
 func (o *DcimDevicesReadOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/devices/{id}/][%d] dcimDevicesReadOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimDevicesReadOK) GetPayload() *models.DeviceWithConfigContext {
+	return o.Payload
 }
 
 func (o *DcimDevicesReadOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

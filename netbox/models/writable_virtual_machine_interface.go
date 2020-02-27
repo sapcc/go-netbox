@@ -23,9 +23,8 @@ import (
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -266,74 +265,74 @@ const (
 	// WritableVirtualMachineInterfaceTypeNr100baseTx captures enum value "100base-tx"
 	WritableVirtualMachineInterfaceTypeNr100baseTx string = "100base-tx"
 
-	// WritableVirtualMachineInterfaceTypeNr1000baseT captures enum value "1000base-t"
-	WritableVirtualMachineInterfaceTypeNr1000baseT string = "1000base-t"
+	// WritableVirtualMachineInterfaceTypeNr1000baset captures enum value "1000base-t"
+	WritableVirtualMachineInterfaceTypeNr1000baset string = "1000base-t"
 
-	// WritableVirtualMachineInterfaceTypeNr25gbaseT captures enum value "2.5gbase-t"
-	WritableVirtualMachineInterfaceTypeNr25gbaseT string = "2.5gbase-t"
+	// WritableVirtualMachineInterfaceTypeNr25gbaset captures enum value "2.5gbase-t"
+	WritableVirtualMachineInterfaceTypeNr25gbaset string = "2.5gbase-t"
 
-	// WritableVirtualMachineInterfaceTypeNr5gbaseT captures enum value "5gbase-t"
-	WritableVirtualMachineInterfaceTypeNr5gbaseT string = "5gbase-t"
+	// WritableVirtualMachineInterfaceTypeNr5gbaset captures enum value "5gbase-t"
+	WritableVirtualMachineInterfaceTypeNr5gbaset string = "5gbase-t"
 
-	// WritableVirtualMachineInterfaceTypeNr10gbaseT captures enum value "10gbase-t"
-	WritableVirtualMachineInterfaceTypeNr10gbaseT string = "10gbase-t"
+	// WritableVirtualMachineInterfaceTypeNr10gbaset captures enum value "10gbase-t"
+	WritableVirtualMachineInterfaceTypeNr10gbaset string = "10gbase-t"
 
 	// WritableVirtualMachineInterfaceTypeNr10gbaseCx4 captures enum value "10gbase-cx4"
 	WritableVirtualMachineInterfaceTypeNr10gbaseCx4 string = "10gbase-cx4"
 
-	// WritableVirtualMachineInterfaceTypeNr1000baseXGbic captures enum value "1000base-x-gbic"
-	WritableVirtualMachineInterfaceTypeNr1000baseXGbic string = "1000base-x-gbic"
+	// WritableVirtualMachineInterfaceTypeNr1000basexGbic captures enum value "1000base-x-gbic"
+	WritableVirtualMachineInterfaceTypeNr1000basexGbic string = "1000base-x-gbic"
 
-	// WritableVirtualMachineInterfaceTypeNr1000baseXSfp captures enum value "1000base-x-sfp"
-	WritableVirtualMachineInterfaceTypeNr1000baseXSfp string = "1000base-x-sfp"
+	// WritableVirtualMachineInterfaceTypeNr1000basexSfp captures enum value "1000base-x-sfp"
+	WritableVirtualMachineInterfaceTypeNr1000basexSfp string = "1000base-x-sfp"
 
-	// WritableVirtualMachineInterfaceTypeNr10gbaseXSfpp captures enum value "10gbase-x-sfpp"
-	WritableVirtualMachineInterfaceTypeNr10gbaseXSfpp string = "10gbase-x-sfpp"
+	// WritableVirtualMachineInterfaceTypeNr10gbasexSfpp captures enum value "10gbase-x-sfpp"
+	WritableVirtualMachineInterfaceTypeNr10gbasexSfpp string = "10gbase-x-sfpp"
 
-	// WritableVirtualMachineInterfaceTypeNr10gbaseXXfp captures enum value "10gbase-x-xfp"
-	WritableVirtualMachineInterfaceTypeNr10gbaseXXfp string = "10gbase-x-xfp"
+	// WritableVirtualMachineInterfaceTypeNr10gbasexXfp captures enum value "10gbase-x-xfp"
+	WritableVirtualMachineInterfaceTypeNr10gbasexXfp string = "10gbase-x-xfp"
 
-	// WritableVirtualMachineInterfaceTypeNr10gbaseXXenpak captures enum value "10gbase-x-xenpak"
-	WritableVirtualMachineInterfaceTypeNr10gbaseXXenpak string = "10gbase-x-xenpak"
+	// WritableVirtualMachineInterfaceTypeNr10gbasexXenpak captures enum value "10gbase-x-xenpak"
+	WritableVirtualMachineInterfaceTypeNr10gbasexXenpak string = "10gbase-x-xenpak"
 
-	// WritableVirtualMachineInterfaceTypeNr10gbaseXX2 captures enum value "10gbase-x-x2"
-	WritableVirtualMachineInterfaceTypeNr10gbaseXX2 string = "10gbase-x-x2"
+	// WritableVirtualMachineInterfaceTypeNr10gbasexX2 captures enum value "10gbase-x-x2"
+	WritableVirtualMachineInterfaceTypeNr10gbasexX2 string = "10gbase-x-x2"
 
-	// WritableVirtualMachineInterfaceTypeNr25gbaseXSfp28 captures enum value "25gbase-x-sfp28"
-	WritableVirtualMachineInterfaceTypeNr25gbaseXSfp28 string = "25gbase-x-sfp28"
+	// WritableVirtualMachineInterfaceTypeNr25gbasexSfp28 captures enum value "25gbase-x-sfp28"
+	WritableVirtualMachineInterfaceTypeNr25gbasexSfp28 string = "25gbase-x-sfp28"
 
-	// WritableVirtualMachineInterfaceTypeNr40gbaseXQsfpp captures enum value "40gbase-x-qsfpp"
-	WritableVirtualMachineInterfaceTypeNr40gbaseXQsfpp string = "40gbase-x-qsfpp"
+	// WritableVirtualMachineInterfaceTypeNr40gbasexQsfpp captures enum value "40gbase-x-qsfpp"
+	WritableVirtualMachineInterfaceTypeNr40gbasexQsfpp string = "40gbase-x-qsfpp"
 
-	// WritableVirtualMachineInterfaceTypeNr50gbaseXSfp28 captures enum value "50gbase-x-sfp28"
-	WritableVirtualMachineInterfaceTypeNr50gbaseXSfp28 string = "50gbase-x-sfp28"
+	// WritableVirtualMachineInterfaceTypeNr50gbasexSfp28 captures enum value "50gbase-x-sfp28"
+	WritableVirtualMachineInterfaceTypeNr50gbasexSfp28 string = "50gbase-x-sfp28"
 
-	// WritableVirtualMachineInterfaceTypeNr100gbaseXCfp captures enum value "100gbase-x-cfp"
-	WritableVirtualMachineInterfaceTypeNr100gbaseXCfp string = "100gbase-x-cfp"
+	// WritableVirtualMachineInterfaceTypeNr100gbasexCfp captures enum value "100gbase-x-cfp"
+	WritableVirtualMachineInterfaceTypeNr100gbasexCfp string = "100gbase-x-cfp"
 
-	// WritableVirtualMachineInterfaceTypeNr100gbaseXCfp2 captures enum value "100gbase-x-cfp2"
-	WritableVirtualMachineInterfaceTypeNr100gbaseXCfp2 string = "100gbase-x-cfp2"
+	// WritableVirtualMachineInterfaceTypeNr100gbasexCfp2 captures enum value "100gbase-x-cfp2"
+	WritableVirtualMachineInterfaceTypeNr100gbasexCfp2 string = "100gbase-x-cfp2"
 
-	// WritableVirtualMachineInterfaceTypeNr200gbaseXCfp2 captures enum value "200gbase-x-cfp2"
-	WritableVirtualMachineInterfaceTypeNr200gbaseXCfp2 string = "200gbase-x-cfp2"
+	// WritableVirtualMachineInterfaceTypeNr200gbasexCfp2 captures enum value "200gbase-x-cfp2"
+	WritableVirtualMachineInterfaceTypeNr200gbasexCfp2 string = "200gbase-x-cfp2"
 
-	// WritableVirtualMachineInterfaceTypeNr100gbaseXCfp4 captures enum value "100gbase-x-cfp4"
-	WritableVirtualMachineInterfaceTypeNr100gbaseXCfp4 string = "100gbase-x-cfp4"
+	// WritableVirtualMachineInterfaceTypeNr100gbasexCfp4 captures enum value "100gbase-x-cfp4"
+	WritableVirtualMachineInterfaceTypeNr100gbasexCfp4 string = "100gbase-x-cfp4"
 
-	// WritableVirtualMachineInterfaceTypeNr100gbaseXCpak captures enum value "100gbase-x-cpak"
-	WritableVirtualMachineInterfaceTypeNr100gbaseXCpak string = "100gbase-x-cpak"
+	// WritableVirtualMachineInterfaceTypeNr100gbasexCpak captures enum value "100gbase-x-cpak"
+	WritableVirtualMachineInterfaceTypeNr100gbasexCpak string = "100gbase-x-cpak"
 
-	// WritableVirtualMachineInterfaceTypeNr100gbaseXQsfp28 captures enum value "100gbase-x-qsfp28"
-	WritableVirtualMachineInterfaceTypeNr100gbaseXQsfp28 string = "100gbase-x-qsfp28"
+	// WritableVirtualMachineInterfaceTypeNr100gbasexQsfp28 captures enum value "100gbase-x-qsfp28"
+	WritableVirtualMachineInterfaceTypeNr100gbasexQsfp28 string = "100gbase-x-qsfp28"
 
-	// WritableVirtualMachineInterfaceTypeNr200gbaseXQsfp56 captures enum value "200gbase-x-qsfp56"
-	WritableVirtualMachineInterfaceTypeNr200gbaseXQsfp56 string = "200gbase-x-qsfp56"
+	// WritableVirtualMachineInterfaceTypeNr200gbasexQsfp56 captures enum value "200gbase-x-qsfp56"
+	WritableVirtualMachineInterfaceTypeNr200gbasexQsfp56 string = "200gbase-x-qsfp56"
 
-	// WritableVirtualMachineInterfaceTypeNr400gbaseXQsfpdd captures enum value "400gbase-x-qsfpdd"
-	WritableVirtualMachineInterfaceTypeNr400gbaseXQsfpdd string = "400gbase-x-qsfpdd"
+	// WritableVirtualMachineInterfaceTypeNr400gbasexQsfpdd captures enum value "400gbase-x-qsfpdd"
+	WritableVirtualMachineInterfaceTypeNr400gbasexQsfpdd string = "400gbase-x-qsfpdd"
 
-	// WritableVirtualMachineInterfaceTypeNr400gbaseXOsfp captures enum value "400gbase-x-osfp"
-	WritableVirtualMachineInterfaceTypeNr400gbaseXOsfp string = "400gbase-x-osfp"
+	// WritableVirtualMachineInterfaceTypeNr400gbasexOsfp captures enum value "400gbase-x-osfp"
+	WritableVirtualMachineInterfaceTypeNr400gbasexOsfp string = "400gbase-x-osfp"
 
 	// WritableVirtualMachineInterfaceTypeIeee80211a captures enum value "ieee802.11a"
 	WritableVirtualMachineInterfaceTypeIeee80211a string = "ieee802.11a"

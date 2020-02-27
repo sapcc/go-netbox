@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimCablesListReader is a Reader for the DcimCablesList structure.
@@ -42,7 +42,6 @@ type DcimCablesListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimCablesListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimCablesListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type DcimCablesListOK struct {
 
 func (o *DcimCablesListOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/cables/][%d] dcimCablesListOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimCablesListOK) GetPayload() *DcimCablesListOKBody {
+	return o.Payload
 }
 
 func (o *DcimCablesListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

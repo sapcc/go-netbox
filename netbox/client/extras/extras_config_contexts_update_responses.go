@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // ExtrasConfigContextsUpdateReader is a Reader for the ExtrasConfigContextsUpdate structure.
@@ -38,7 +38,6 @@ type ExtrasConfigContextsUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExtrasConfigContextsUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewExtrasConfigContextsUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type ExtrasConfigContextsUpdateOK struct {
 
 func (o *ExtrasConfigContextsUpdateOK) Error() string {
 	return fmt.Sprintf("[PUT /extras/config-contexts/{id}/][%d] extrasConfigContextsUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *ExtrasConfigContextsUpdateOK) GetPayload() *models.ConfigContext {
+	return o.Payload
 }
 
 func (o *ExtrasConfigContextsUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

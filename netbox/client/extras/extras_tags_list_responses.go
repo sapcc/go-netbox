@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // ExtrasTagsListReader is a Reader for the ExtrasTagsList structure.
@@ -42,7 +42,6 @@ type ExtrasTagsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExtrasTagsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewExtrasTagsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type ExtrasTagsListOK struct {
 
 func (o *ExtrasTagsListOK) Error() string {
 	return fmt.Sprintf("[GET /extras/tags/][%d] extrasTagsListOK  %+v", 200, o.Payload)
+}
+
+func (o *ExtrasTagsListOK) GetPayload() *ExtrasTagsListOKBody {
+	return o.Payload
 }
 
 func (o *ExtrasTagsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

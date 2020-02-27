@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimPowerFeedsPartialUpdateReader is a Reader for the DcimPowerFeedsPartialUpdate structure.
@@ -38,7 +38,6 @@ type DcimPowerFeedsPartialUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimPowerFeedsPartialUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimPowerFeedsPartialUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimPowerFeedsPartialUpdateOK struct {
 
 func (o *DcimPowerFeedsPartialUpdateOK) Error() string {
 	return fmt.Sprintf("[PATCH /dcim/power-feeds/{id}/][%d] dcimPowerFeedsPartialUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimPowerFeedsPartialUpdateOK) GetPayload() *models.PowerFeed {
+	return o.Payload
 }
 
 func (o *DcimPowerFeedsPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // CircuitsCircuitTerminationsUpdateReader is a Reader for the CircuitsCircuitTerminationsUpdate structure.
@@ -38,7 +38,6 @@ type CircuitsCircuitTerminationsUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CircuitsCircuitTerminationsUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewCircuitsCircuitTerminationsUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type CircuitsCircuitTerminationsUpdateOK struct {
 
 func (o *CircuitsCircuitTerminationsUpdateOK) Error() string {
 	return fmt.Sprintf("[PUT /circuits/circuit-terminations/{id}/][%d] circuitsCircuitTerminationsUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *CircuitsCircuitTerminationsUpdateOK) GetPayload() *models.CircuitTermination {
+	return o.Payload
 }
 
 func (o *CircuitsCircuitTerminationsUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

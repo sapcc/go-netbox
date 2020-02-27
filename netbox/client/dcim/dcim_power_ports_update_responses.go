@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimPowerPortsUpdateReader is a Reader for the DcimPowerPortsUpdate structure.
@@ -38,7 +38,6 @@ type DcimPowerPortsUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimPowerPortsUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimPowerPortsUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimPowerPortsUpdateOK struct {
 
 func (o *DcimPowerPortsUpdateOK) Error() string {
 	return fmt.Sprintf("[PUT /dcim/power-ports/{id}/][%d] dcimPowerPortsUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimPowerPortsUpdateOK) GetPayload() *models.PowerPort {
+	return o.Payload
 }
 
 func (o *DcimPowerPortsUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

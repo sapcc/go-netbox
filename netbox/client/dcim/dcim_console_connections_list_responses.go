@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimConsoleConnectionsListReader is a Reader for the DcimConsoleConnectionsList structure.
@@ -42,7 +42,6 @@ type DcimConsoleConnectionsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimConsoleConnectionsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimConsoleConnectionsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type DcimConsoleConnectionsListOK struct {
 
 func (o *DcimConsoleConnectionsListOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/console-connections/][%d] dcimConsoleConnectionsListOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimConsoleConnectionsListOK) GetPayload() *DcimConsoleConnectionsListOKBody {
+	return o.Payload
 }
 
 func (o *DcimConsoleConnectionsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

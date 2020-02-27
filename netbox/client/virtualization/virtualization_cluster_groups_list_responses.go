@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // VirtualizationClusterGroupsListReader is a Reader for the VirtualizationClusterGroupsList structure.
@@ -42,7 +42,6 @@ type VirtualizationClusterGroupsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *VirtualizationClusterGroupsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewVirtualizationClusterGroupsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type VirtualizationClusterGroupsListOK struct {
 
 func (o *VirtualizationClusterGroupsListOK) Error() string {
 	return fmt.Sprintf("[GET /virtualization/cluster-groups/][%d] virtualizationClusterGroupsListOK  %+v", 200, o.Payload)
+}
+
+func (o *VirtualizationClusterGroupsListOK) GetPayload() *VirtualizationClusterGroupsListOKBody {
+	return o.Payload
 }
 
 func (o *VirtualizationClusterGroupsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

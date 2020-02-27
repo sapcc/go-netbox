@@ -20,9 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -35,11 +34,11 @@ type InterfaceConnection struct {
 	ConnectionStatus *InterfaceConnectionConnectionStatus `json:"connection_status,omitempty"`
 
 	// interface a
-	InterfaceA *NestedInterface `json:"interface_a,omitempty"`
+	Interfacea *NestedInterface `json:"interface_a,omitempty"`
 
 	// interface b
 	// Required: true
-	InterfaceB *NestedInterface `json:"interface_b"`
+	Interfaceb *NestedInterface `json:"interface_b"`
 }
 
 // Validate validates this interface connection
@@ -50,11 +49,11 @@ func (m *InterfaceConnection) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateInterfaceA(formats); err != nil {
+	if err := m.validateInterfacea(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateInterfaceB(formats); err != nil {
+	if err := m.validateInterfaceb(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -82,14 +81,14 @@ func (m *InterfaceConnection) validateConnectionStatus(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *InterfaceConnection) validateInterfaceA(formats strfmt.Registry) error {
+func (m *InterfaceConnection) validateInterfacea(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.InterfaceA) { // not required
+	if swag.IsZero(m.Interfacea) { // not required
 		return nil
 	}
 
-	if m.InterfaceA != nil {
-		if err := m.InterfaceA.Validate(formats); err != nil {
+	if m.Interfacea != nil {
+		if err := m.Interfacea.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("interface_a")
 			}
@@ -100,14 +99,14 @@ func (m *InterfaceConnection) validateInterfaceA(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *InterfaceConnection) validateInterfaceB(formats strfmt.Registry) error {
+func (m *InterfaceConnection) validateInterfaceb(formats strfmt.Registry) error {
 
-	if err := validate.Required("interface_b", "body", m.InterfaceB); err != nil {
+	if err := validate.Required("interface_b", "body", m.Interfaceb); err != nil {
 		return err
 	}
 
-	if m.InterfaceB != nil {
-		if err := m.InterfaceB.Validate(formats); err != nil {
+	if m.Interfaceb != nil {
+		if err := m.Interfaceb.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("interface_b")
 			}

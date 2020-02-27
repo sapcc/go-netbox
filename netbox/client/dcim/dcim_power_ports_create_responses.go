@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimPowerPortsCreateReader is a Reader for the DcimPowerPortsCreate structure.
@@ -38,7 +38,6 @@ type DcimPowerPortsCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimPowerPortsCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewDcimPowerPortsCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimPowerPortsCreateCreated struct {
 
 func (o *DcimPowerPortsCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /dcim/power-ports/][%d] dcimPowerPortsCreateCreated  %+v", 201, o.Payload)
+}
+
+func (o *DcimPowerPortsCreateCreated) GetPayload() *models.PowerPort {
+	return o.Payload
 }
 
 func (o *DcimPowerPortsCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

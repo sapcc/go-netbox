@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimPowerFeedsListReader is a Reader for the DcimPowerFeedsList structure.
@@ -42,7 +42,6 @@ type DcimPowerFeedsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimPowerFeedsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimPowerFeedsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type DcimPowerFeedsListOK struct {
 
 func (o *DcimPowerFeedsListOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/power-feeds/][%d] dcimPowerFeedsListOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimPowerFeedsListOK) GetPayload() *DcimPowerFeedsListOKBody {
+	return o.Payload
 }
 
 func (o *DcimPowerFeedsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

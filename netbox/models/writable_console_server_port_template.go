@@ -22,9 +22,8 @@ package models
 import (
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -126,26 +125,26 @@ const (
 	// WritableConsoleServerPortTemplateTypeRj45 captures enum value "rj-45"
 	WritableConsoleServerPortTemplateTypeRj45 string = "rj-45"
 
-	// WritableConsoleServerPortTemplateTypeUsbA captures enum value "usb-a"
-	WritableConsoleServerPortTemplateTypeUsbA string = "usb-a"
+	// WritableConsoleServerPortTemplateTypeUsba captures enum value "usb-a"
+	WritableConsoleServerPortTemplateTypeUsba string = "usb-a"
 
-	// WritableConsoleServerPortTemplateTypeUsbB captures enum value "usb-b"
-	WritableConsoleServerPortTemplateTypeUsbB string = "usb-b"
+	// WritableConsoleServerPortTemplateTypeUsbb captures enum value "usb-b"
+	WritableConsoleServerPortTemplateTypeUsbb string = "usb-b"
 
-	// WritableConsoleServerPortTemplateTypeUsbC captures enum value "usb-c"
-	WritableConsoleServerPortTemplateTypeUsbC string = "usb-c"
+	// WritableConsoleServerPortTemplateTypeUsbc captures enum value "usb-c"
+	WritableConsoleServerPortTemplateTypeUsbc string = "usb-c"
 
-	// WritableConsoleServerPortTemplateTypeUsbMiniA captures enum value "usb-mini-a"
-	WritableConsoleServerPortTemplateTypeUsbMiniA string = "usb-mini-a"
+	// WritableConsoleServerPortTemplateTypeUsbMinia captures enum value "usb-mini-a"
+	WritableConsoleServerPortTemplateTypeUsbMinia string = "usb-mini-a"
 
-	// WritableConsoleServerPortTemplateTypeUsbMiniB captures enum value "usb-mini-b"
-	WritableConsoleServerPortTemplateTypeUsbMiniB string = "usb-mini-b"
+	// WritableConsoleServerPortTemplateTypeUsbMinib captures enum value "usb-mini-b"
+	WritableConsoleServerPortTemplateTypeUsbMinib string = "usb-mini-b"
 
-	// WritableConsoleServerPortTemplateTypeUsbMicroA captures enum value "usb-micro-a"
-	WritableConsoleServerPortTemplateTypeUsbMicroA string = "usb-micro-a"
+	// WritableConsoleServerPortTemplateTypeUsbMicroa captures enum value "usb-micro-a"
+	WritableConsoleServerPortTemplateTypeUsbMicroa string = "usb-micro-a"
 
-	// WritableConsoleServerPortTemplateTypeUsbMicroB captures enum value "usb-micro-b"
-	WritableConsoleServerPortTemplateTypeUsbMicroB string = "usb-micro-b"
+	// WritableConsoleServerPortTemplateTypeUsbMicrob captures enum value "usb-micro-b"
+	WritableConsoleServerPortTemplateTypeUsbMicrob string = "usb-micro-b"
 
 	// WritableConsoleServerPortTemplateTypeOther captures enum value "other"
 	WritableConsoleServerPortTemplateTypeOther string = "other"

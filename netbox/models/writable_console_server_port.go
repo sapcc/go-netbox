@@ -23,9 +23,8 @@ import (
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
@@ -247,26 +246,26 @@ const (
 	// WritableConsoleServerPortTypeRj45 captures enum value "rj-45"
 	WritableConsoleServerPortTypeRj45 string = "rj-45"
 
-	// WritableConsoleServerPortTypeUsbA captures enum value "usb-a"
-	WritableConsoleServerPortTypeUsbA string = "usb-a"
+	// WritableConsoleServerPortTypeUsba captures enum value "usb-a"
+	WritableConsoleServerPortTypeUsba string = "usb-a"
 
-	// WritableConsoleServerPortTypeUsbB captures enum value "usb-b"
-	WritableConsoleServerPortTypeUsbB string = "usb-b"
+	// WritableConsoleServerPortTypeUsbb captures enum value "usb-b"
+	WritableConsoleServerPortTypeUsbb string = "usb-b"
 
-	// WritableConsoleServerPortTypeUsbC captures enum value "usb-c"
-	WritableConsoleServerPortTypeUsbC string = "usb-c"
+	// WritableConsoleServerPortTypeUsbc captures enum value "usb-c"
+	WritableConsoleServerPortTypeUsbc string = "usb-c"
 
-	// WritableConsoleServerPortTypeUsbMiniA captures enum value "usb-mini-a"
-	WritableConsoleServerPortTypeUsbMiniA string = "usb-mini-a"
+	// WritableConsoleServerPortTypeUsbMinia captures enum value "usb-mini-a"
+	WritableConsoleServerPortTypeUsbMinia string = "usb-mini-a"
 
-	// WritableConsoleServerPortTypeUsbMiniB captures enum value "usb-mini-b"
-	WritableConsoleServerPortTypeUsbMiniB string = "usb-mini-b"
+	// WritableConsoleServerPortTypeUsbMinib captures enum value "usb-mini-b"
+	WritableConsoleServerPortTypeUsbMinib string = "usb-mini-b"
 
-	// WritableConsoleServerPortTypeUsbMicroA captures enum value "usb-micro-a"
-	WritableConsoleServerPortTypeUsbMicroA string = "usb-micro-a"
+	// WritableConsoleServerPortTypeUsbMicroa captures enum value "usb-micro-a"
+	WritableConsoleServerPortTypeUsbMicroa string = "usb-micro-a"
 
-	// WritableConsoleServerPortTypeUsbMicroB captures enum value "usb-micro-b"
-	WritableConsoleServerPortTypeUsbMicroB string = "usb-micro-b"
+	// WritableConsoleServerPortTypeUsbMicrob captures enum value "usb-micro-b"
+	WritableConsoleServerPortTypeUsbMicrob string = "usb-micro-b"
 
 	// WritableConsoleServerPortTypeOther captures enum value "other"
 	WritableConsoleServerPortTypeOther string = "other"

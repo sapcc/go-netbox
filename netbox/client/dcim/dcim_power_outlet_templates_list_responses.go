@@ -31,7 +31,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimPowerOutletTemplatesListReader is a Reader for the DcimPowerOutletTemplatesList structure.
@@ -42,7 +42,6 @@ type DcimPowerOutletTemplatesListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimPowerOutletTemplatesListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimPowerOutletTemplatesListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type DcimPowerOutletTemplatesListOK struct {
 
 func (o *DcimPowerOutletTemplatesListOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/power-outlet-templates/][%d] dcimPowerOutletTemplatesListOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimPowerOutletTemplatesListOK) GetPayload() *DcimPowerOutletTemplatesListOKBody {
+	return o.Payload
 }
 
 func (o *DcimPowerOutletTemplatesListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

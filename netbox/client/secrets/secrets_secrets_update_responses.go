@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // SecretsSecretsUpdateReader is a Reader for the SecretsSecretsUpdate structure.
@@ -38,7 +38,6 @@ type SecretsSecretsUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *SecretsSecretsUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewSecretsSecretsUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type SecretsSecretsUpdateOK struct {
 
 func (o *SecretsSecretsUpdateOK) Error() string {
 	return fmt.Sprintf("[PUT /secrets/secrets/{id}/][%d] secretsSecretsUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *SecretsSecretsUpdateOK) GetPayload() *models.Secret {
+	return o.Payload
 }
 
 func (o *SecretsSecretsUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

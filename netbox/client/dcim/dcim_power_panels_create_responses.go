@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/hosting-de-labs/go-netbox/netbox/models"
+	"github.com/hosting-de-labs/go-netbox/netbox/models"
 )
 
 // DcimPowerPanelsCreateReader is a Reader for the DcimPowerPanelsCreate structure.
@@ -38,7 +38,6 @@ type DcimPowerPanelsCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimPowerPanelsCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewDcimPowerPanelsCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimPowerPanelsCreateCreated struct {
 
 func (o *DcimPowerPanelsCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /dcim/power-panels/][%d] dcimPowerPanelsCreateCreated  %+v", 201, o.Payload)
+}
+
+func (o *DcimPowerPanelsCreateCreated) GetPayload() *models.PowerPanel {
+	return o.Payload
 }
 
 func (o *DcimPowerPanelsCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
