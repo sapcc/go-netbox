@@ -4009,6 +4009,41 @@
             "type": "string"
           },
           {
+            "name": "cf_isms_geraeterolle",
+            "in": "query",
+            "description": "ISMS device role",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cf_isms_pruefnummer",
+            "in": "query",
+            "description": "ISMS check number",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cf_isms_fachlich_verantwortlicher",
+            "in": "query",
+            "description": "ISMS technical contact responsible",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cf_isms_letze_elektrische_pruefung",
+            "in": "query",
+            "description": "ISMS last electrical check",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cf_isms_elektrische_pruefungsdaten",
+            "in": "query",
+            "description": "ISMS electrical check data",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "Number of results to return per page.",

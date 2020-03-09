@@ -78,6 +78,31 @@ type DcimDevicesListParams struct {
 
 	/*AssetTag*/
 	AssetTag *string
+	/*CfIsmsElektrischePruefungsdaten
+	  ISMS electrical check data
+
+	*/
+	CfIsmsElektrischePruefungsdaten *string
+	/*CfIsmsFachlichVerantwortlicher
+	  ISMS technical contact responsible
+
+	*/
+	CfIsmsFachlichVerantwortlicher *string
+	/*CfIsmsGeraeterolle
+	  ISMS device role
+
+	*/
+	CfIsmsGeraeterolle *string
+	/*CfIsmsLetzeElektrischePruefung
+	  ISMS last electrical check
+
+	*/
+	CfIsmsLetzeElektrischePruefung *string
+	/*CfIsmsPruefnummer
+	  ISMS check number
+
+	*/
+	CfIsmsPruefnummer *string
 	/*ClusterID*/
 	ClusterID *int64
 	/*ConsolePorts*/
@@ -237,6 +262,61 @@ func (o *DcimDevicesListParams) WithAssetTag(assetTag *string) *DcimDevicesListP
 // SetAssetTag adds the assetTag to the dcim devices list params
 func (o *DcimDevicesListParams) SetAssetTag(assetTag *string) {
 	o.AssetTag = assetTag
+}
+
+// WithCfIsmsElektrischePruefungsdaten adds the cfIsmsElektrischePruefungsdaten to the dcim devices list params
+func (o *DcimDevicesListParams) WithCfIsmsElektrischePruefungsdaten(cfIsmsElektrischePruefungsdaten *string) *DcimDevicesListParams {
+	o.SetCfIsmsElektrischePruefungsdaten(cfIsmsElektrischePruefungsdaten)
+	return o
+}
+
+// SetCfIsmsElektrischePruefungsdaten adds the cfIsmsElektrischePruefungsdaten to the dcim devices list params
+func (o *DcimDevicesListParams) SetCfIsmsElektrischePruefungsdaten(cfIsmsElektrischePruefungsdaten *string) {
+	o.CfIsmsElektrischePruefungsdaten = cfIsmsElektrischePruefungsdaten
+}
+
+// WithCfIsmsFachlichVerantwortlicher adds the cfIsmsFachlichVerantwortlicher to the dcim devices list params
+func (o *DcimDevicesListParams) WithCfIsmsFachlichVerantwortlicher(cfIsmsFachlichVerantwortlicher *string) *DcimDevicesListParams {
+	o.SetCfIsmsFachlichVerantwortlicher(cfIsmsFachlichVerantwortlicher)
+	return o
+}
+
+// SetCfIsmsFachlichVerantwortlicher adds the cfIsmsFachlichVerantwortlicher to the dcim devices list params
+func (o *DcimDevicesListParams) SetCfIsmsFachlichVerantwortlicher(cfIsmsFachlichVerantwortlicher *string) {
+	o.CfIsmsFachlichVerantwortlicher = cfIsmsFachlichVerantwortlicher
+}
+
+// WithCfIsmsGeraeterolle adds the cfIsmsGeraeterolle to the dcim devices list params
+func (o *DcimDevicesListParams) WithCfIsmsGeraeterolle(cfIsmsGeraeterolle *string) *DcimDevicesListParams {
+	o.SetCfIsmsGeraeterolle(cfIsmsGeraeterolle)
+	return o
+}
+
+// SetCfIsmsGeraeterolle adds the cfIsmsGeraeterolle to the dcim devices list params
+func (o *DcimDevicesListParams) SetCfIsmsGeraeterolle(cfIsmsGeraeterolle *string) {
+	o.CfIsmsGeraeterolle = cfIsmsGeraeterolle
+}
+
+// WithCfIsmsLetzeElektrischePruefung adds the cfIsmsLetzeElektrischePruefung to the dcim devices list params
+func (o *DcimDevicesListParams) WithCfIsmsLetzeElektrischePruefung(cfIsmsLetzeElektrischePruefung *string) *DcimDevicesListParams {
+	o.SetCfIsmsLetzeElektrischePruefung(cfIsmsLetzeElektrischePruefung)
+	return o
+}
+
+// SetCfIsmsLetzeElektrischePruefung adds the cfIsmsLetzeElektrischePruefung to the dcim devices list params
+func (o *DcimDevicesListParams) SetCfIsmsLetzeElektrischePruefung(cfIsmsLetzeElektrischePruefung *string) {
+	o.CfIsmsLetzeElektrischePruefung = cfIsmsLetzeElektrischePruefung
+}
+
+// WithCfIsmsPruefnummer adds the cfIsmsPruefnummer to the dcim devices list params
+func (o *DcimDevicesListParams) WithCfIsmsPruefnummer(cfIsmsPruefnummer *string) *DcimDevicesListParams {
+	o.SetCfIsmsPruefnummer(cfIsmsPruefnummer)
+	return o
+}
+
+// SetCfIsmsPruefnummer adds the cfIsmsPruefnummer to the dcim devices list params
+func (o *DcimDevicesListParams) SetCfIsmsPruefnummer(cfIsmsPruefnummer *string) {
+	o.CfIsmsPruefnummer = cfIsmsPruefnummer
 }
 
 // WithClusterID adds the clusterID to the dcim devices list params
@@ -818,6 +898,86 @@ func (o *DcimDevicesListParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		qAssetTag := qrAssetTag
 		if qAssetTag != "" {
 			if err := r.SetQueryParam("asset_tag", qAssetTag); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.CfIsmsElektrischePruefungsdaten != nil {
+
+		// query param cf_isms_elektrische_pruefungsdaten
+		var qrCfIsmsElektrischePruefungsdaten string
+		if o.CfIsmsElektrischePruefungsdaten != nil {
+			qrCfIsmsElektrischePruefungsdaten = *o.CfIsmsElektrischePruefungsdaten
+		}
+		qCfIsmsElektrischePruefungsdaten := qrCfIsmsElektrischePruefungsdaten
+		if qCfIsmsElektrischePruefungsdaten != "" {
+			if err := r.SetQueryParam("cf_isms_elektrische_pruefungsdaten", qCfIsmsElektrischePruefungsdaten); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.CfIsmsFachlichVerantwortlicher != nil {
+
+		// query param cf_isms_fachlich_verantwortlicher
+		var qrCfIsmsFachlichVerantwortlicher string
+		if o.CfIsmsFachlichVerantwortlicher != nil {
+			qrCfIsmsFachlichVerantwortlicher = *o.CfIsmsFachlichVerantwortlicher
+		}
+		qCfIsmsFachlichVerantwortlicher := qrCfIsmsFachlichVerantwortlicher
+		if qCfIsmsFachlichVerantwortlicher != "" {
+			if err := r.SetQueryParam("cf_isms_fachlich_verantwortlicher", qCfIsmsFachlichVerantwortlicher); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.CfIsmsGeraeterolle != nil {
+
+		// query param cf_isms_geraeterolle
+		var qrCfIsmsGeraeterolle string
+		if o.CfIsmsGeraeterolle != nil {
+			qrCfIsmsGeraeterolle = *o.CfIsmsGeraeterolle
+		}
+		qCfIsmsGeraeterolle := qrCfIsmsGeraeterolle
+		if qCfIsmsGeraeterolle != "" {
+			if err := r.SetQueryParam("cf_isms_geraeterolle", qCfIsmsGeraeterolle); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.CfIsmsLetzeElektrischePruefung != nil {
+
+		// query param cf_isms_letze_elektrische_pruefung
+		var qrCfIsmsLetzeElektrischePruefung string
+		if o.CfIsmsLetzeElektrischePruefung != nil {
+			qrCfIsmsLetzeElektrischePruefung = *o.CfIsmsLetzeElektrischePruefung
+		}
+		qCfIsmsLetzeElektrischePruefung := qrCfIsmsLetzeElektrischePruefung
+		if qCfIsmsLetzeElektrischePruefung != "" {
+			if err := r.SetQueryParam("cf_isms_letze_elektrische_pruefung", qCfIsmsLetzeElektrischePruefung); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.CfIsmsPruefnummer != nil {
+
+		// query param cf_isms_pruefnummer
+		var qrCfIsmsPruefnummer string
+		if o.CfIsmsPruefnummer != nil {
+			qrCfIsmsPruefnummer = *o.CfIsmsPruefnummer
+		}
+		qCfIsmsPruefnummer := qrCfIsmsPruefnummer
+		if qCfIsmsPruefnummer != "" {
+			if err := r.SetQueryParam("cf_isms_pruefnummer", qCfIsmsPruefnummer); err != nil {
 				return err
 			}
 		}
