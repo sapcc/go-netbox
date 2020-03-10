@@ -19592,11 +19592,6 @@
       }
     },
     "WritableDeviceWithConfigContext": {
-      "required": [
-        "device_type",
-        "device_role",
-        "site"
-      ],
       "type": "object",
       "properties": {
         "id": {

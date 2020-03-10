@@ -58,12 +58,10 @@ type WritableDeviceWithConfigContext struct {
 	CustomFields interface{} `json:"custom_fields,omitempty"`
 
 	// Device role
-	// Required: true
-	DeviceRole *int64 `json:"device_role"`
+	DeviceRole int64 `json:"device_role,omitempty"`
 
 	// Device type
-	// Required: true
-	DeviceType *int64 `json:"device_type"`
+	DeviceType int64 `json:"device_type,omitempty"`
 
 	// Display name
 	// Read Only: true
@@ -120,8 +118,7 @@ type WritableDeviceWithConfigContext struct {
 	Serial string `json:"serial,omitempty"`
 
 	// Site
-	// Required: true
-	Site *int64 `json:"site"`
+	Site int64 `json:"site,omitempty"`
 
 	// Status
 	// Enum: [offline active planned staged failed inventory decommissioning]
@@ -159,14 +156,6 @@ func (m *WritableDeviceWithConfigContext) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
-	if err := m.validateDeviceRole(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDeviceType(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateFace(formats); err != nil {
 		res = append(res, err)
 	}
@@ -188,10 +177,6 @@ func (m *WritableDeviceWithConfigContext) Validate(formats strfmt.Registry) erro
 	}
 
 	if err := m.validateSerial(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSite(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -237,24 +222,6 @@ func (m *WritableDeviceWithConfigContext) validateCreated(formats strfmt.Registr
 	}
 
 	if err := validate.FormatOf("created", "body", "date", m.Created.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *WritableDeviceWithConfigContext) validateDeviceRole(formats strfmt.Registry) error {
-
-	if err := validate.Required("device_role", "body", m.DeviceRole); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *WritableDeviceWithConfigContext) validateDeviceType(formats strfmt.Registry) error {
-
-	if err := validate.Required("device_type", "body", m.DeviceType); err != nil {
 		return err
 	}
 
@@ -372,15 +339,6 @@ func (m *WritableDeviceWithConfigContext) validateSerial(formats strfmt.Registry
 	}
 
 	if err := validate.MaxLength("serial", "body", string(m.Serial), 50); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *WritableDeviceWithConfigContext) validateSite(formats strfmt.Registry) error {
-
-	if err := validate.Required("site", "body", m.Site); err != nil {
 		return err
 	}
 
