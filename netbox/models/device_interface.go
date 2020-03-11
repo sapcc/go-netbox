@@ -52,7 +52,7 @@ type DeviceInterface struct {
 
 	// Count ipaddresses
 	// Read Only: true
-	CountIpaddresses string `json:"count_ipaddresses,omitempty"`
+	CountIpaddresses int64 `json:"count_ipaddresses,omitempty"`
 
 	// Description
 	// Max Length: 100
