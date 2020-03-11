@@ -41,7 +41,7 @@ type CircuitTermination struct {
 
 	// Connected endpoint
 	// Read Only: true
-	ConnectedEndpoint map[string]string `json:"connected_endpoint,omitempty"`
+	ConnectedEndpoint interface{} `json:"connected_endpoint,omitempty"`
 
 	// Connected endpoint type
 	// Read Only: true

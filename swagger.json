@@ -17170,9 +17170,6 @@
           "title": "Connected endpoint",
           "description": "",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {
@@ -17266,9 +17263,6 @@
           "title": "Connected endpoint",
           "description": "",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {
@@ -18602,9 +18596,6 @@
           "title": "Connected endpoint",
           "description": "",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {
@@ -18772,9 +18763,6 @@
           "title": "Connected endpoint",
           "description": "",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {
@@ -18928,10 +18916,6 @@
         "connected_endpoint": {
           "title": "Connected endpoint",
           "description": "",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {
@@ -19018,9 +19002,6 @@
           "title": "Connected endpoint",
           "description": "",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {
@@ -20365,11 +20346,8 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "description": "\n        Return the appropriate serializer for the type of connected object.\n        ",
+          "description": "Return the appropriate serializer for the type of connected object.",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {
@@ -20572,11 +20550,8 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "description": "\n        Return the appropriate serializer for the type of connected object.\n        ",
+          "description": "Return the appropriate serializer for the type of connected object.",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {
@@ -20974,11 +20949,8 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "description": "\n        Return the appropriate serializer for the type of connected object.\n        ",
+          "description": "Return the appropriate serializer for the type of connected object.",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {
@@ -21633,11 +21605,8 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "description": "\n        Return the appropriate serializer for the type of connected object.\n        ",
+          "description": "Return the appropriate serializer for the type of connected object.",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {
@@ -21774,11 +21743,8 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "description": "\n        Return the appropriate serializer for the type of connected object.\n        ",
+          "description": "Return the appropriate serializer for the type of connected object.",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {
@@ -22108,11 +22074,8 @@
         },
         "connected_endpoint": {
           "title": "Connected endpoint",
-          "description": "\n        Return the appropriate serializer for the type of connected object.\n        ",
+          "description": "Return the appropriate serializer for the type of connected object.",
           "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
           "readOnly": true
         },
         "connection_status": {

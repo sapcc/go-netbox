@@ -38,11 +38,9 @@ type WritablePowerOutlet struct {
 
 	// Connected endpoint
 	//
-	//
-	//         Return the appropriate serializer for the type of connected object.
-	//
+	// Return the appropriate serializer for the type of connected object.
 	// Read Only: true
-	ConnectedEndpoint map[string]string `json:"connected_endpoint,omitempty"`
+	ConnectedEndpoint interface{} `json:"connected_endpoint,omitempty"`
 
 	// Connected endpoint type
 	// Read Only: true
