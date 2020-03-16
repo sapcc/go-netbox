@@ -21,7 +21,6 @@ package models
 
 import (
 	"encoding/json"
-	"strconv"
 
 	"github.com/go-openapi/errors"
 	strfmt "github.com/go-openapi/strfmt"
@@ -66,6 +65,7 @@ type WritableVirtualMachineInterface struct {
 	TaggedVlans []int64 `json:"tagged_vlans"`
 
 	// tags
+	// Unique: true
 	Tags []string `json:"tags"`
 
 	// Type
@@ -229,12 +229,8 @@ func (m *WritableVirtualMachineInterface) validateTags(formats strfmt.Registry) 
 		return nil
 	}
 
-	for i := 0; i < len(m.Tags); i++ {
-
-		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
-			return err
-		}
-
+	if err := validate.UniqueItems("tags", "body", m.Tags); err != nil {
+		return err
 	}
 
 	return nil

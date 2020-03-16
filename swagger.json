@@ -20412,11 +20412,6 @@
       }
     },
     "WritableDeviceInterface": {
-      "required": [
-        "device",
-        "name",
-        "type"
-      ],
       "type": "object",
       "properties": {
         "id": {
@@ -26518,6 +26513,7 @@
         },
         "tagged_vlans": {
           "type": "array",
+          "x-nullable": true,
           "items": {
             "title": "Tagged VLANs",
             "type": "integer"
@@ -26526,10 +26522,11 @@
         },
         "tags": {
           "type": "array",
+          "x-nullable": true,
           "items": {
-            "type": "string",
-            "minLength": 1
-          }
+            "type": "string"
+          },
+          "uniqueItems": true
         }
       }
     },
