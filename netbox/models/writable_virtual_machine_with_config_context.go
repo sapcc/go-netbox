@@ -34,8 +34,7 @@ import (
 type WritableVirtualMachineWithConfigContext struct {
 
 	// Cluster
-	// Required: true
-	Cluster *int64 `json:"cluster"`
+	Cluster int64 `json:"cluster,omitempty"`
 
 	// Comments
 	Comments string `json:"comments,omitempty"`
@@ -75,10 +74,9 @@ type WritableVirtualMachineWithConfigContext struct {
 	Memory *int64 `json:"memory,omitempty"`
 
 	// Name
-	// Required: true
 	// Max Length: 64
 	// Min Length: 1
-	Name *string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// Platform
 	Platform *int64 `json:"platform,omitempty"`
@@ -120,10 +118,6 @@ type WritableVirtualMachineWithConfigContext struct {
 func (m *WritableVirtualMachineWithConfigContext) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCluster(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateCreated(formats); err != nil {
 		res = append(res, err)
 	}
@@ -159,15 +153,6 @@ func (m *WritableVirtualMachineWithConfigContext) Validate(formats strfmt.Regist
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *WritableVirtualMachineWithConfigContext) validateCluster(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -233,15 +218,15 @@ func (m *WritableVirtualMachineWithConfigContext) validateMemory(formats strfmt.
 
 func (m *WritableVirtualMachineWithConfigContext) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", m.Name); err != nil {
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("name", "body", string(m.Name), 1); err != nil {
 		return err
 	}
 
-	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
-		return err
-	}
-
-	if err := validate.MaxLength("name", "body", string(*m.Name), 64); err != nil {
+	if err := validate.MaxLength("name", "body", string(m.Name), 64); err != nil {
 		return err
 	}
 

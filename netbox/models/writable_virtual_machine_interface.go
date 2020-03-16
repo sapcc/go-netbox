@@ -57,10 +57,9 @@ type WritableVirtualMachineInterface struct {
 	Mtu *int64 `json:"mtu,omitempty"`
 
 	// Name
-	// Required: true
 	// Max Length: 64
 	// Min Length: 1
-	Name *string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// tagged vlans
 	// Unique: true
@@ -70,9 +69,8 @@ type WritableVirtualMachineInterface struct {
 	Tags []string `json:"tags"`
 
 	// Type
-	// Required: true
 	// Enum: [virtual lag 100base-tx 1000base-t 2.5gbase-t 5gbase-t 10gbase-t 10gbase-cx4 1000base-x-gbic 1000base-x-sfp 10gbase-x-sfpp 10gbase-x-xfp 10gbase-x-xenpak 10gbase-x-x2 25gbase-x-sfp28 40gbase-x-qsfpp 50gbase-x-sfp28 100gbase-x-cfp 100gbase-x-cfp2 200gbase-x-cfp2 100gbase-x-cfp4 100gbase-x-cpak 100gbase-x-qsfp28 200gbase-x-qsfp56 400gbase-x-qsfpdd 400gbase-x-osfp ieee802.11a ieee802.11g ieee802.11n ieee802.11ac ieee802.11ad ieee802.11ax gsm cdma lte sonet-oc3 sonet-oc12 sonet-oc48 sonet-oc192 sonet-oc768 sonet-oc1920 sonet-oc3840 1gfc-sfp 2gfc-sfp 4gfc-sfp 8gfc-sfpp 16gfc-sfpp 32gfc-sfp28 128gfc-sfp28 inifiband-sdr inifiband-ddr inifiband-qdr inifiband-fdr10 inifiband-fdr inifiband-edr inifiband-hdr inifiband-ndr inifiband-xdr t1 e1 t3 e3 cisco-stackwise cisco-stackwise-plus cisco-flexstack cisco-flexstack-plus juniper-vcp extreme-summitstack extreme-summitstack-128 extreme-summitstack-256 extreme-summitstack-512 other]
-	Type *string `json:"type"`
+	Type string `json:"type,omitempty"`
 
 	// Untagged VLAN
 	UntaggedVlan *int64 `json:"untagged_vlan,omitempty"`
@@ -197,15 +195,15 @@ func (m *WritableVirtualMachineInterface) validateMtu(formats strfmt.Registry) e
 
 func (m *WritableVirtualMachineInterface) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", m.Name); err != nil {
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("name", "body", string(m.Name), 1); err != nil {
 		return err
 	}
 
-	if err := validate.MinLength("name", "body", string(*m.Name), 1); err != nil {
-		return err
-	}
-
-	if err := validate.MaxLength("name", "body", string(*m.Name), 64); err != nil {
+	if err := validate.MaxLength("name", "body", string(m.Name), 64); err != nil {
 		return err
 	}
 
@@ -483,12 +481,12 @@ func (m *WritableVirtualMachineInterface) validateTypeEnum(path, location string
 
 func (m *WritableVirtualMachineInterface) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
+	if swag.IsZero(m.Type) { // not required
+		return nil
 	}
 
 	// value enum
-	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
 		return err
 	}
 

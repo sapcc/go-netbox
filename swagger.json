@@ -26385,10 +26385,6 @@
       }
     },
     "WritableVirtualMachineInterface": {
-      "required": [
-        "name",
-        "type"
-      ],
       "type": "object",
       "properties": {
         "id": {
@@ -26659,10 +26655,6 @@
       }
     },
     "WritableVirtualMachineWithConfigContext": {
-      "required": [
-        "name",
-        "cluster"
-      ],
       "type": "object",
       "properties": {
         "id": {
