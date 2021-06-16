@@ -1,3 +1,8 @@
+Please use https://github.com/sapcc/go-netbox-go this is outdated.
+====================================================================
+
+
+
 netbox [![GoDoc](http://godoc.org/github.com/hosting-de-labs/go-netbox?status.svg)](http://godoc.org/github.com/hosting-de-labs/go-netbox) [![Build Status](https://travis-ci.com/hosting-de-labs/go-netbox.svg?branch=master)](https://travis-ci.com/hosting-de-labs/go-netbox) [![Report Card](https://goreportcard.com/badge/github.com/hosting-de-labs/go-netbox)](https://goreportcard.com/report/github.com/hosting-de-labs/go-netbox)
 ======
 
